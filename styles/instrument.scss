@@ -64,7 +64,7 @@ body {
 }
 
 // Comfortable measure for running prose.
-main.content > * { max-width: 86ch; }
+main.content > * { max-width: 92ch; }
 
 // Structural and tabular elements are exempt: constraining them to the prose
 // measure is what was breaking the lifecycle spine, which needs the full column
@@ -387,8 +387,20 @@ summary:focus-visible {
   font-weight: 600;
 }
 
-// Wide content scrolls inside its own container; the page body never does.
-.cell-output, pre, table { overflow-x: auto; }
+// Code blocks and data tables scroll inside their own container; the page body
+// never scrolls horizontally.
+pre, table, .acq-report { overflow-x: auto; }
+
+// Figures scale down to the column instead of scrolling. Applied regardless of
+// column width so a figure can never introduce a horizontal scrollbar, even if
+// the grid is narrowed later or viewed on a small screen.
+figure img,
+.cell-output-display img,
+.quarto-figure img,
+main.content img {
+  max-width: 100%;
+  height: auto;
+}
 
 @media (max-width: 640px) {
   .acq-cta,

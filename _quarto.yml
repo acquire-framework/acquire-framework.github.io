@@ -73,6 +73,14 @@ format:
     theme:
       light: [cosmo, styles/instrument.scss]
       dark: [darkly, styles/instrument.scss]
+    # Wider body column so build-time figures (936 px at the size acqsite.py
+    # renders them) fit without horizontal scroll. Prose is kept to a readable
+    # measure separately in instrument.scss, so widening the column widens the
+    # space available to figures and tables rather than the line length.
+    grid:
+      body-width: 1150px
+      sidebar-width: 270px
+      margin-width: 200px
     toc: true
     toc-depth: 3
     anchor-sections: true
