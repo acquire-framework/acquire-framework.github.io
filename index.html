@@ -391,7 +391,7 @@ Figure&nbsp;1: Effective sampling rate collapses halfway through the recording. 
 </div>
 </div>
 <p>Running the diagnostics against it takes one line:</p>
-<div id="a7d959f3" class="cell" data-execution_count="2">
+<div id="062b3629" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> acquire</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> acquire.check(df, nominal_hz<span class="op">=</span><span class="dv">50</span>)</span>
@@ -451,13 +451,13 @@ Figure&nbsp;1: Effective sampling rate collapses halfway through the recording. 
 </tr>
 </tbody>
 </table>
-</div>
+<div class="acq-scope">ACQUIRE spec 26.7, acquire-framework 26.7.0</div></div>
 </div>
 </div>
 <p>Two failures, both invisible to conventional monitoring, both traceable to a specific recipe. That is the whole idea.</p>
 </section>
-<section id="what-acquire-v0.1-contains" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="what-acquire-v0.1-contains">What ACQUIRE v0.1 contains</h2>
+<section id="what-acquire-v26.7-contains" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="what-acquire-v26.7-contains">What ACQUIRE v26.7 contains</h2>
 <p><strong><a href="./taxonomy/index.html">The acquisition-failure taxonomy</a></strong> — eight failure modes by system layer, each mapped to its signature in the dataset and to the property it threatens. Table 1 of the paper, machine-readable.</p>
 <p><strong><a href="./checklist/index.html">The Minimum Reporting Checklist</a></strong> — ten methods-section disclosures about the measuring system. Table 2 of the paper. Complementary to CONSORT-EHEALTH and mERA, which report the intervention rather than the instrument.</p>
 <p><strong><a href="./recipes/index.html">The failure catalogue</a></strong> — entered by symptom, for when data already looks wrong. Each entry states what you observe, what causes it, how to detect it, and how well that detection is evidenced.</p>
@@ -483,7 +483,7 @@ Figure&nbsp;1: Effective sampling rate collapses halfway through the recording. 
 </section>
 <section id="status" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="status">Status</h2>
-<p>Version 0.1.0. The catalogue is small and honest about it: every recipe carries an evidence level, and most are currently at the lowest one. The taxonomy is expert-derived and formative rather than systematically validated, and is brought to REPRODUCE for community evaluation and extension.</p>
+<p>Version 26.7. The catalogue is small and honest about it: every recipe carries an evidence level, and most are currently at the lowest one. The taxonomy is expert-derived and formative rather than systematically validated, and is brought to REPRODUCE for community evaluation and extension.</p>
 <p>Replications are the single most useful contribution — see <a href="https://github.com/acquire-framework/acquire-framework.github.io/blob/main/CONTRIBUTING.md">contributing</a>.</p>
 
 
@@ -941,7 +941,7 @@ Companion)</em> (Shanghai, China). <a href="https://acquire-framework.github.io"
 <p>Maintained at the Department of Measurements and Electronics, AGH University of Krakow</p>
 <div class="toc-actions"><ul><li><a href="https://github.com/acquire-framework/acquire-framework.github.io/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/acquire-framework/acquire-framework.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
-<p>v26.7 · commit <a href="https://github.com/acquire-framework/acquire-framework.github.io/tree/a11dbb0556b8077815f18e4088d7acdb0aaf1456"><code>a11dbb0</code></a> · built 2026-07-18 MIT · <a href="./cite.html">How to cite</a> · <a href="./versions.html">All versions</a></p>
+<p>ACQUIRE spec 26.7 · site build <a href="https://github.com/acquire-framework/acquire-framework.github.io/tree/5a8e54e4c30f3db544d30bed5bd2cd9f5769efed"><code>5a8e54e</code></a> · built 2026-07-18 MIT · <a href="./cite.html">How to cite</a> · <a href="./versions.html">All versions</a></p>
 </div>
   </div>
 </footer>

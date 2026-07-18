@@ -19,7 +19,7 @@
 #            data and logs, so that disclosure is a by-product of validation
 #            rather than unpaid reporting work.
 
-version: "26.7"
+spec_version: "26.7"   # see spec/spec.yml
 updated: "2026-07-18"
 paper: "Danioł & Sroka (2026), UbiComp/ISWC '26 Companion"
 

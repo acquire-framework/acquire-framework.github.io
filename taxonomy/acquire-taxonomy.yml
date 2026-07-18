@@ -15,7 +15,7 @@
 #            E   experience-derived candidate class, NOT a prevalence estimate
 #            A   illustrative assumption
 
-version: "26.7"
+spec_version: "26.7"   # see spec/spec.yml
 updated: "2026-07-18"
 paper: "Danioł & Sroka (2026), UbiComp/ISWC '26 Companion"
 

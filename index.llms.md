@@ -37,9 +37,11 @@ report
 | ✓ | Stuck sensor | longest frozen run 0.0 s | ≤ 2.0 s |  |
 | ✓ | Saturation | 0.001% of samples at rail (±15.6 m/s²) | ≤ 0.1% |  |
 
+ACQUIRE spec 26.7, acquire-framework 26.7.0
+
 Two failures, both invisible to conventional monitoring, both traceable to a specific recipe. That is the whole idea.
 
-## What ACQUIRE v0.1 contains
+## What ACQUIRE v26.7 contains
 
 **[The acquisition-failure taxonomy](taxonomy/index.llms.md)** — eight failure modes by system layer, each mapped to its signature in the dataset and to the property it threatens. Table 1 of the paper, machine-readable.
 
@@ -76,7 +78,7 @@ ACQUIRE — *Acquisition Criteria for Quality, Uncertainty, Integrity, Reproduci
 
 ## Status
 
-Version 0.1.0. The catalogue is small and honest about it: every recipe carries an evidence level, and most are currently at the lowest one. The taxonomy is expert-derived and formative rather than systematically validated, and is brought to REPRODUCE for community evaluation and extension.
+Version 26.7. The catalogue is small and honest about it: every recipe carries an evidence level, and most are currently at the lowest one. The taxonomy is expert-derived and formative rather than systematically validated, and is brought to REPRODUCE for community evaluation and extension.
 
 Replications are the single most useful contribution — see [contributing](https://github.com/acquire-framework/acquire-framework.github.io/blob/main/CONTRIBUTING.md).
 

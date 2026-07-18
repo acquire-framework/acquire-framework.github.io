@@ -112,7 +112,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -334,7 +334,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-specification" id="toc-the-specification" class="nav-link active" data-scroll-target="#the-specification">The specification</a></li>
+  <li><a href="#the-website" id="toc-the-website" class="nav-link" data-scroll-target="#the-website">The website</a></li>
+  <li><a href="#the-diagnostics-package" id="toc-the-diagnostics-package" class="nav-link" data-scroll-target="#the-diagnostics-package">The diagnostics package</a></li>
+  <li><a href="#this-build" id="toc-this-build" class="nav-link" data-scroll-target="#this-build">This build</a></li>
+  <li><a href="#published-specifications" id="toc-published-specifications" class="nav-link" data-scroll-target="#published-specifications">Published specifications</a></li>
+  <li><a href="#citing" id="toc-citing" class="nav-link" data-scroll-target="#citing">Citing</a></li>
+  <li><a href="#rebuilding-a-specification-from-source" id="toc-rebuilding-a-specification-from-source" class="nav-link" data-scroll-target="#rebuilding-a-specification-from-source">Rebuilding a specification from source</a></li>
+  <li><a href="#why-a-doi-as-well-as-a-url" id="toc-why-a-doi-as-well-as-a-url" class="nav-link" data-scroll-target="#why-a-doi-as-well-as-a-url">Why a DOI as well as a URL</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/acquire-framework/acquire-framework.github.io/edit/main/versions.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/acquire-framework/acquire-framework.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -343,7 +358,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Versions</h1>
-<p class="subtitle lead">Every release stays reachable, at a fixed URL and a fixed commit.</p>
+<p class="subtitle lead">What changes, what doesn’t, and what you should cite.</p>
 </div>
 
 
@@ -360,44 +375,93 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>A study that reports “assessed against ACQUIRE v26.7” must be checkable against <em>that</em> version. Thresholds move, recipes are corrected, and evidence levels rise as replications arrive — so a citation naming only a URL says nothing about what the study actually applied.</p>
-<p>Every release is therefore published twice: as an immutable copy of this site at its own address, and as an archived snapshot with a DOI.</p>
-<section id="scheme" class="level2">
-<h2 class="anchored" data-anchor-id="scheme">Scheme</h2>
-<p>Versions are calendar-based: <strong><code>&lt;year&gt;.&lt;month&gt;</code></strong>, so <code>26.7</code> is the release of July 2026. A second release within a month adds a patch — <code>26.7.1</code>.</p>
-<p>Calendar versioning is deliberate. Semantic versioning describes API compatibility, which is the wrong question here: what a reader needs to know is <em>when</em> the guidance was current, because advice about operating-system behaviour ages whether or not the interface changes.</p>
+<p>Three things here change at different rates, so they are versioned separately. Conflating them would mean either that fixing a typo bumps the number studies cite, or that a published snapshot silently diverges from the site.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Versioned as</th>
+<th style="text-align: left;">Changes when</th>
+<th style="text-align: left;">Cite this?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Specification</strong></td>
+<td style="text-align: left;"><code>26.7</code></td>
+<td style="text-align: left;">A taxonomy row, checklist item, or threshold changes</td>
+<td style="text-align: left;"><strong>Yes</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Website</strong></td>
+<td style="text-align: left;">build commit only</td>
+<td style="text-align: left;">Any edit — prose, layout, typo</td>
+<td style="text-align: left;">No</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Diagnostics package</strong></td>
+<td style="text-align: left;"><code>26.7.0</code></td>
+<td style="text-align: left;">Code changes, including fixes that alter no requirement</td>
+<td style="text-align: left;">If you ran it</td>
+</tr>
+</tbody>
+</table>
+<section id="the-specification" class="level2">
+<h2 class="anchored" data-anchor-id="the-specification">The specification</h2>
+<p>The normative content: the <a href="./taxonomy/index.html">acquisition-failure taxonomy</a>, the <a href="./checklist/index.html">Minimum Reporting Checklist</a>, and the thresholds and evidence levels attached to them. This is what a study means when it says it was assessed against ACQUIRE 26.7.</p>
+<p>Versions are calendar-based, <strong><code>&lt;year&gt;.&lt;month&gt;</code></strong> — <code>26.7</code> is July 2026, and a second release in a month adds a patch, <code>26.7.1</code>. Calendar rather than semantic versioning is deliberate: semantic versioning describes API compatibility, and what a reader needs to know here is <em>when</em> the requirements were current, because guidance about operating-system behaviour ages whether or not any interface changes.</p>
+<p>Which files are normative is declared explicitly in <a href="spec/spec.yml"><code>spec/spec.yml</code></a>, and CI fails if any of them changes without a version bump. That guard exists so two different sets of requirements can never be published under one number.</p>
+</section>
+<section id="the-website" class="level2">
+<h2 class="anchored" data-anchor-id="the-website">The website</h2>
+<p>The site has <strong>no version of its own</strong>. It is identified only by the commit it was built from, shown in the footer of every page.</p>
+<p>Rewording an explanation, restyling a page, or correcting a typo changes what a reader sees without changing what the framework requires — so it must not change what a study cites.</p>
+</section>
+<section id="the-diagnostics-package" class="level2">
+<h2 class="anchored" data-anchor-id="the-diagnostics-package">The diagnostics package</h2>
+<p><code>acquire-framework</code> is versioned <code>&lt;spec&gt;.&lt;patch&gt;</code>: <strong>26.7.0</strong> implements specification 26.7, and the patch component moves independently for bug fixes that alter no requirement.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> acquire</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>acquire.__version__    <span class="co"># '26.7.0'  — the code you ran</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>acquire.SPEC_VERSION   <span class="co"># '26.7'    — the requirements it implements</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Diagnostic reports stamp both, so a quality-control record attached to a dataset stays interpretable years later: a reader can tell which requirements applied and which implementation produced the numbers.</p>
 </section>
 <section id="this-build" class="level2">
 <h2 class="anchored" data-anchor-id="this-build">This build</h2>
 <table class="caption-top table">
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Version</td>
+<td style="text-align: left;">Specification</td>
 <td style="text-align: left;"><strong>26.7</strong></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Commit</td>
-<td style="text-align: left;"><a href="https://github.com/acquire-framework/acquire-framework.github.io/tree/a11dbb0556b8077815f18e4088d7acdb0aaf1456"><code>a11dbb0</code></a></td>
+<td style="text-align: left;">Package</td>
+<td style="text-align: left;"><p>26.7.0</p></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Built</td>
-<td style="text-align: left;"><p>2026-07-18</p></td>
+<td style="text-align: left;">Site build</td>
+<td style="text-align: left;"><a href="https://github.com/acquire-framework/acquire-framework.github.io/tree/5a8e54e4c30f3db544d30bed5bd2cd9f5769efed"><code>5a8e54e</code></a></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Permalink</td>
-<td style="text-align: left;"><a href="https://acquire-framework.github.io">https://acquire-framework.github.io</a></td>
+<td style="text-align: left;">Built</td>
+<td style="text-align: left;"><p>2026-07-18</p></td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="released-versions" class="level2">
-<h2 class="anchored" data-anchor-id="released-versions">Released versions</h2>
+<section id="published-specifications" class="level2">
+<h2 class="anchored" data-anchor-id="published-specifications">Published specifications</h2>
 <table class="caption-top table">
 <thead>
 <tr class="header">
-<th style="text-align: left;">Version</th>
+<th style="text-align: left;">Spec</th>
 <th style="text-align: left;">Permalink</th>
-<th style="text-align: left;">Commit</th>
+<th style="text-align: left;">Tag</th>
 <th style="text-align: left;">Archive</th>
 </tr>
 </thead>
@@ -405,43 +469,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="odd">
 <td style="text-align: left;">26.7</td>
 <td style="text-align: left;"><a href="./v26.7/">/v26.7/</a></td>
-<td style="text-align: left;">tagged <code>v26.7</code></td>
+<td style="text-align: left;"><code>v26.7</code></td>
 <td style="text-align: left;">DOI pending</td>
 </tr>
 </tbody>
 </table>
-<p>The root of this site tracks <strong>current guidance</strong> and changes as corrections land. Versioned copies never change once published — they are built from the tag and then left alone.</p>
-<p>So: cite <code>/v26.7/</code> in a paper, and read the root when you want the latest thinking.</p>
+<p>A snapshot is published at <code>/v&lt;spec&gt;/</code> when the <strong>specification</strong> changes — not when the site changes. Snapshots are built once from the tag and never rebuilt, so the explanatory prose inside an old snapshot may be less polished than the current site. That is intended: the snapshot exists to preserve what was <em>required</em>, not to be the best-written version.</p>
+<p>The root of this site always shows current guidance.</p>
 </section>
-<section id="citing-a-version" class="level2">
-<h2 class="anchored" data-anchor-id="citing-a-version">Citing a version</h2>
-<p>State the version, and give the permalink rather than the bare domain:</p>
+<section id="citing" class="level2">
+<h2 class="anchored" data-anchor-id="citing">Citing</h2>
+<p>Give the permalink, not the bare domain:</p>
 <blockquote class="blockquote">
-<p>Data collection followed the ACQUIRE checklist v26.7 (<a href="https://acquire-framework.github.io/v26.7/" class="uri">https://acquire-framework.github.io/v26.7/</a>).</p>
+<p>Data collection followed the ACQUIRE Minimum Reporting Checklist, specification 26.7 (<a href="https://acquire-framework.github.io/v26.7/" class="uri">https://acquire-framework.github.io/v26.7/</a>).</p>
 </blockquote>
-<p>Where the exact build matters — for an audit, or a dispute about what a threshold was — cite the commit as well. Every page of every build carries its commit in the footer, so a reader can always establish precisely what they read.</p>
+<p>If you ran the diagnostics, name the package build too, since a threshold could have been implemented incorrectly and later fixed without the specification changing:</p>
+<blockquote class="blockquote">
+<p>Diagnostics were run with <code>acquire-framework</code> 26.7.0.</p>
+</blockquote>
+</section>
+<section id="rebuilding-a-specification-from-source" class="level2">
+<h2 class="anchored" data-anchor-id="rebuilding-a-specification-from-source">Rebuilding a specification from source</h2>
+<p>Each specification release is a tag:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/acquire-framework/acquire-framework.github.io</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> acquire-framework.github.io</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout v26.7</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> sync <span class="at">--extra</span> dev <span class="at">--extra</span> docs <span class="at">--frozen</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run pytest</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="va">QUARTO_PYTHON</span><span class="op">=</span>.venv/bin/python <span class="ex">uv</span> run quarto render</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The lockfile is committed, the Quarto version is pinned in CI, and the build honours <code>SOURCE_DATE_EPOCH</code>, so a rebuild resolves the same dependencies rather than whatever is current.</p>
 </section>
 <section id="why-a-doi-as-well-as-a-url" class="level2">
 <h2 class="anchored" data-anchor-id="why-a-doi-as-well-as-a-url">Why a DOI as well as a URL</h2>
 <p>A URL is a location, not an archive: it depends on this domain continuing to exist and on us continuing to host it. A DOI resolves to a snapshot held by an archive whose job is permanence.</p>
-<p>For a framework whose argument is that provenance must survive the people who created it, relying on our own hosting would be an obvious inconsistency. Each release is therefore also deposited, and the DOI is the citation of record for anything that must remain verifiable long-term.</p>
-</section>
-<section id="reproducing-a-version" class="level2">
-<h2 class="anchored" data-anchor-id="reproducing-a-version">Reproducing a version</h2>
-<p>Each release is a tag in the repository, so a version can be rebuilt from source:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/acquire-framework/acquire-framework.github.io</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> acquire-framework.github.io</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout v26.7</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> sync <span class="at">--extra</span> dev <span class="at">--extra</span> docs <span class="at">--frozen</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run pytest</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="va">QUARTO_PYTHON</span><span class="op">=</span>.venv/bin/python <span class="ex">uv</span> run quarto render</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The lockfile is committed and the Quarto version is pinned in CI, so a rebuild resolves the same dependency versions rather than whatever is current.</p>
-</section>
-<section id="the-diagnostics-package" class="level2">
-<h2 class="anchored" data-anchor-id="the-diagnostics-package">The diagnostics package</h2>
-<p>Package releases track the framework version, so <code>acquire-framework==26.7</code> implements the checks described by v26.7 of this site:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install acquire-framework==26.7</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Reports emitted by the package stamp the version that produced them, which is what makes a quality-control record attachable to a dataset and still interpretable years later.</p>
+<p>For a framework arguing that provenance must survive the people who created it, relying on our own hosting would be an obvious inconsistency. Each specification release is therefore also deposited, and the DOI is the citation of record for anything that must remain verifiable long-term.</p>
 
 
 </section>
@@ -896,9 +957,9 @@ Companion)</em> (Shanghai, China). <a href="https://acquire-framework.github.io"
 </div>   
     <div class="nav-footer-center">
 <p>Maintained at the Department of Measurements and Electronics, AGH University of Krakow</p>
-<div class="toc-actions"><ul><li><a href="https://github.com/acquire-framework/acquire-framework.github.io/edit/main/versions.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/acquire-framework/acquire-framework.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/acquire-framework/acquire-framework.github.io/edit/main/versions.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/acquire-framework/acquire-framework.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
-<p>v26.7 · commit <a href="https://github.com/acquire-framework/acquire-framework.github.io/tree/a11dbb0556b8077815f18e4088d7acdb0aaf1456"><code>a11dbb0</code></a> · built 2026-07-18 MIT · <a href="./cite.html">How to cite</a> · <a href="./versions.html">All versions</a></p>
+<p>ACQUIRE spec 26.7 · site build <a href="https://github.com/acquire-framework/acquire-framework.github.io/tree/5a8e54e4c30f3db544d30bed5bd2cd9f5769efed"><code>5a8e54e</code></a> · built 2026-07-18 MIT · <a href="./cite.html">How to cite</a> · <a href="./versions.html">All versions</a></p>
 </div>
   </div>
 </footer>

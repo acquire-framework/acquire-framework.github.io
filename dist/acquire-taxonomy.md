@@ -1,4 +1,4 @@
-# ACQUIRE acquisition-failure taxonomy v26.7
+# ACQUIRE acquisition-failure taxonomy, specification 26.7
 
 Machine-readable form of Table 1 of Danioł & Sroka (2026), UbiComp/ISWC '26 Companion.
 

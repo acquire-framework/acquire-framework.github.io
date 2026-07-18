@@ -10,7 +10,7 @@ For building a study, not for reporting one.
 
 Each item maps to the MRC item it ultimately serves, or to a taxonomy row it guards against.
 
-**Version 26.7** · updated 2026-07-18 · 65 items
+**Revised 2026-07-18** · 65 items · not part of the cited specification
 
 **Study types used for filtering:**
 

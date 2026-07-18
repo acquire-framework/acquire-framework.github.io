@@ -405,7 +405,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="symptom">Symptom</h2>
 <p>The recording contains fewer samples than the requested rate implies, but the data is otherwise unremarkable: values are plausible, timestamps increase, files arrive on schedule, and no error is logged. The deficit is usually concentrated in time — overnight, or whenever the device sits still — rather than spread evenly across the recording.</p>
 <p>Analysts typically notice months later, when frequency-domain features behave strangely or an activity classifier degrades without explanation.</p>
-<div id="df49f82d" class="cell" data-execution_count="1">
+<div id="e15dd0a8" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display" data-execution_count="1">
 <div class="acq-report">
 <table class="caption-top table table-sm table-striped small">
@@ -461,7 +461,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-</div>
+<div class="acq-scope">ACQUIRE spec 26.7, acquire-framework 26.7.0</div></div>
 </div>
 </div>
 <div id="cell-fig-doze" class="cell" data-execution_count="2">
@@ -488,7 +488,7 @@ Figure&nbsp;1: The deficit is a shelf, not a slope. Its edges mark the moment po
 <section id="detection" class="level2">
 <h2 class="anchored" data-anchor-id="detection">Detection</h2>
 <p>The effective rate — samples per elapsed second — is compared against the rate the application requested. The nominal rate cannot be inferred from the data, because inferring it would define away exactly this failure, so it must be supplied:</p>
-<div id="7a01a347" class="cell" data-execution_count="3">
+<div id="c2a0a141" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> acquire</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> acquire.check(df, nominal_hz<span class="op">=</span><span class="dv">50</span>)   <span class="co"># nominal must be stated, not inferred</span></span>
@@ -504,7 +504,7 @@ Figure&nbsp;1: The deficit is a shelf, not a slope. Its edges mark the moment po
 <section id="evidence" class="level2">
 <h2 class="anchored" data-anchor-id="evidence">Evidence</h2>
 <p>The detector’s sensitivity is measured against synthetic recordings with faults of known magnitude, rather than asserted. This table is generated at build time:</p>
-<div id="4f85d68e" class="cell" data-execution_count="4">
+<div id="4e60f6d9" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display" data-execution_count="4">
 <div>
 
@@ -1039,7 +1039,7 @@ Companion)</em> (Shanghai, China). <a href="https://acquire-framework.github.io"
 <p>Maintained at the Department of Measurements and Electronics, AGH University of Krakow</p>
 <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/acquire-framework/acquire-framework.github.io/edit/main/recipes/03-doze-downsampling.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/acquire-framework/acquire-framework.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
-<p>v26.7 · commit <a href="https://github.com/acquire-framework/acquire-framework.github.io/tree/a11dbb0556b8077815f18e4088d7acdb0aaf1456"><code>a11dbb0</code></a> · built 2026-07-18 MIT · <a href="../cite.html">How to cite</a> · <a href="../versions.html">All versions</a></p>
+<p>ACQUIRE spec 26.7 · site build <a href="https://github.com/acquire-framework/acquire-framework.github.io/tree/5a8e54e4c30f3db544d30bed5bd2cd9f5769efed"><code>5a8e54e</code></a> · built 2026-07-18 MIT · <a href="../cite.html">How to cite</a> · <a href="../versions.html">All versions</a></p>
 </div>
   </div>
 </footer>

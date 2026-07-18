@@ -34,6 +34,8 @@ Analysts typically notice months later, when frequency-domain features behave st
 | ✓ | Stuck sensor | longest frozen run 0.0 s | ≤ 2.0 s |  |
 | ✓ | Saturation | 0.001% of samples at rail (±15.6 m/s²) | ≤ 0.1% |  |
 
+ACQUIRE spec 26.7, acquire-framework 26.7.0
+
 ![](03-doze-downsampling_files/figure-html/fig-doze-output-1.png)
 
 Figure 1: The deficit is a shelf, not a slope. Its edges mark the moment power management engaged.

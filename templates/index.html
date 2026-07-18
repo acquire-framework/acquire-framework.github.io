@@ -413,7 +413,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="sensor-schema">Sensor schema</h2>
 <p>Publish one per sensor stream, alongside the data. Without it a dataset is not machine-interpretable: a reader cannot tell what was measured, in what units, at what nominal rate, or against what expectation — and so cannot check the data for the failures the taxonomy catalogues.</p>
 <p>The nominal rate matters most. It cannot be inferred from the data, because inferring it would define away <a href="../taxonomy/index.html">ACQ-F01</a>, the best-quantified failure in the taxonomy.</p>
-<div id="a217a189" class="cell" data-execution_count="2">
+<div id="f2c3e3b7" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ACQUIRE sensor schema template — satisfies MRC-08.</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
@@ -476,7 +476,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="quality-flags" class="level2">
 <h2 class="anchored" data-anchor-id="quality-flags">Quality flags</h2>
 <p>A flag is only interpretable if the reader knows the threshold that produced it and what applied it. The <code>not_covered</code> section is the important one: a reader who sees only green flags will otherwise infer a validation that never ran.</p>
-<div id="211e666d" class="cell" data-execution_count="3">
+<div id="e83fed69" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ACQUIRE quality-flag template — supports MRC-01, MRC-02, MRC-09.</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
@@ -498,37 +498,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">flag</span><span class="kw">:</span><span class="at"> rate_deficit</span></span>
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">description</span><span class="kw">:</span><span class="at"> Effective sampling rate below nominal beyond tolerance</span></span>
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">threshold</span><span class="kw">:</span><span class="at"> &lt;e.g. |1 - effective/nominal| &gt; 0.05&gt;</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">applied_by</span><span class="kw">:</span><span class="at"> &lt;e.g. acquire v0.1.0, check TIME-01&gt;</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">applied_by</span><span class="kw">:</span><span class="at"> &lt;e.g. acquire v26.7, check TIME-01&gt;</span></span>
 <span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">property</span><span class="kw">:</span><span class="at"> O</span></span>
 <span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">flag</span><span class="kw">:</span><span class="at"> gap</span></span>
 <span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">description</span><span class="kw">:</span><span class="at"> Interruption in the stream longer than the stated limit</span></span>
 <span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">threshold</span><span class="kw">:</span><span class="at"> &lt;e.g. inter-sample interval &gt; 1.0 s&gt;</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">applied_by</span><span class="kw">:</span><span class="at"> &lt;e.g. acquire v0.1.0, check TIME-02&gt;</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">applied_by</span><span class="kw">:</span><span class="at"> &lt;e.g. acquire v26.7, check TIME-02&gt;</span></span>
 <span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">property</span><span class="kw">:</span><span class="at"> O</span></span>
 <span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">flag</span><span class="kw">:</span><span class="at"> clock_nonmonotonic</span></span>
 <span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">description</span><span class="kw">:</span><span class="at"> Timestamps not strictly increasing</span></span>
 <span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">threshold</span><span class="kw">:</span><span class="at"> any backward step</span></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">applied_by</span><span class="kw">:</span><span class="at"> &lt;e.g. acquire v0.1.0, check TIME-03&gt;</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">applied_by</span><span class="kw">:</span><span class="at"> &lt;e.g. acquire v26.7, check TIME-03&gt;</span></span>
 <span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">property</span><span class="kw">:</span><span class="at"> M</span></span>
 <span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">flag</span><span class="kw">:</span><span class="at"> unit_scale_suspect</span></span>
 <span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">description</span><span class="kw">:</span><span class="at"> Resting magnitude departs from one standard gravity</span></span>
 <span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">threshold</span><span class="kw">:</span><span class="at"> &lt;e.g. |1 - observed/9.80665| &gt; 0.02&gt;</span></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">applied_by</span><span class="kw">:</span><span class="at"> &lt;e.g. acquire v0.1.0, check SIG-01&gt;</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">applied_by</span><span class="kw">:</span><span class="at"> &lt;e.g. acquire v26.7, check SIG-01&gt;</span></span>
 <span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">property</span><span class="kw">:</span><span class="at"> M</span></span>
 <span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">flag</span><span class="kw">:</span><span class="at"> sensor_stuck</span></span>
 <span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">description</span><span class="kw">:</span><span class="at"> All channels bit-identical across consecutive samples</span></span>
 <span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">threshold</span><span class="kw">:</span><span class="at"> &lt;e.g. frozen run &gt; 2 s&gt;</span></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">applied_by</span><span class="kw">:</span><span class="at"> &lt;e.g. acquire v0.1.0, check SIG-02&gt;</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">applied_by</span><span class="kw">:</span><span class="at"> &lt;e.g. acquire v26.7, check SIG-02&gt;</span></span>
 <span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">property</span><span class="kw">:</span><span class="at"> M</span></span>
 <span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">flag</span><span class="kw">:</span><span class="at"> saturation</span></span>
 <span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">description</span><span class="kw">:</span><span class="at"> Samples censored at the configured range</span></span>
 <span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">threshold</span><span class="kw">:</span><span class="at"> &lt;e.g. &gt; 0.1% of samples at the rail&gt;</span></span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">applied_by</span><span class="kw">:</span><span class="at"> &lt;e.g. acquire v0.1.0, check SIG-03&gt;</span></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">applied_by</span><span class="kw">:</span><span class="at"> &lt;e.g. acquire v26.7, check SIG-03&gt;</span></span>
 <span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">property</span><span class="kw">:</span><span class="at"> M</span></span>
 <span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="co"># What these flags do NOT cover. State this explicitly: a reader who sees only</span></span>
@@ -555,7 +555,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="uncertainty-statement" class="level2">
 <h2 class="anchored" data-anchor-id="uncertainty-statement">Uncertainty statement</h2>
 <p>Part A is the quantitative budget. Part B is the justification route permitted by MRC-05, with the floor that keeps it from becoming a null answer: name the dominant sources, state why each could not be quantified, describe the validation evidence offered instead.</p>
-<div id="3fef0991" class="cell" data-execution_count="4">
+<div id="96051549" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Uncertainty statement template — satisfies MRC-05</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -648,7 +648,7 @@ After:
 <h2 class="anchored" data-anchor-id="dataset-provenance">Dataset provenance</h2>
 <p>Records the auditable lineage from a published number back to the act of measurement — the record-fidelity analogue of metrological traceability, and distinct from it.</p>
 <p>Provenance reconstructed at the end of a study is a best-effort narrative; provenance recorded as data arrives is evidence.</p>
-<div id="b71c9244" class="cell" data-execution_count="5">
+<div id="a8287d53" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ACQUIRE dataset provenance template — satisfies MRC-03 and MRC-09.</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
@@ -704,7 +704,7 @@ After:
 <span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a><span class="co"># ── quality control ───────────────────────────────────────────────────────────</span></span>
 <span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a><span class="fu">quality_control</span><span class="kw">:</span></span>
-<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">diagnostics</span><span class="kw">:</span><span class="at"> &lt;e.g. acquire v0.1.0&gt;</span></span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">diagnostics</span><span class="kw">:</span><span class="at"> &lt;e.g. acquire v26.7&gt;</span></span>
 <span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">report</span><span class="kw">:</span><span class="at"> &lt;path to the emitted diagnostic report&gt;</span></span>
 <span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">exclusion_criteria</span><span class="kw">:</span></span>
 <span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">criterion</span><span class="kw">:</span><span class="at"> &lt;e.g. effective rate below 95% of nominal&gt;</span></span>
@@ -742,9 +742,9 @@ After:
 <h2 class="anchored" data-anchor-id="reviewer-form">Reviewer form</h2>
 <p>For reviewing a manuscript or dataset reporting in-the-wild sensor data. Its purpose is to let a reviewer request <em>specific</em> acquisition details instead of “more detail on data quality”, which authors cannot act on.</p>
 <p>Note the proportionality rule and the instruction that absence of a disclosure is a finding rather than a failing — the form should not push authors toward false precision.</p>
-<div id="ab9ae9aa" class="cell" data-execution_count="6">
+<div id="99bd35de" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># ACQUIRE reviewer form v0.1</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># ACQUIRE reviewer form v26.7</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>For reviewing a manuscript or dataset that reports in-the-wild sensor data.</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -828,7 +828,7 @@ After:
 <span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a>---</span>
 <span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a>*ACQUIRE MRC v0.1. The checklist has not been evaluated for usability, coverage,</span>
+<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a>*ACQUIRE MRC v26.7. The checklist has not been evaluated for usability, coverage,</span>
 <span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a>or inter-rater agreement; no claim is made that applying it improves study</span>
 <span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a>outcomes. Feedback on the form itself is welcome as a repository issue.*</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -1289,7 +1289,7 @@ Companion)</em> (Shanghai, China). <a href="https://acquire-framework.github.io"
 <p>Maintained at the Department of Measurements and Electronics, AGH University of Krakow</p>
 <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/acquire-framework/acquire-framework.github.io/edit/main/templates/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/acquire-framework/acquire-framework.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
-<p>v26.7 · commit <a href="https://github.com/acquire-framework/acquire-framework.github.io/tree/a11dbb0556b8077815f18e4088d7acdb0aaf1456"><code>a11dbb0</code></a> · built 2026-07-18 MIT · <a href="../cite.html">How to cite</a> · <a href="../versions.html">All versions</a></p>
+<p>ACQUIRE spec 26.7 · site build <a href="https://github.com/acquire-framework/acquire-framework.github.io/tree/5a8e54e4c30f3db544d30bed5bd2cd9f5769efed"><code>5a8e54e</code></a> · built 2026-07-18 MIT · <a href="../cite.html">How to cite</a> · <a href="../versions.html">All versions</a></p>
 </div>
   </div>
 </footer>

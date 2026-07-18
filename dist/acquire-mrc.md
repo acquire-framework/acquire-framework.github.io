@@ -1,9 +1,9 @@
-# ACQUIRE Minimum Reporting Checklist v26.7
+# ACQUIRE Minimum Reporting Checklist, specification 26.7
 
 Machine-readable form of Table 2 of Danioł & Sroka (2026), UbiComp/ISWC '26 Companion.
 
-v0.1 has not been evaluated for usability, coverage, or inter-rater
-agreement. No claim is made that applying it improves study outcomes.
+This specification has not been evaluated for usability, coverage, or
+inter-rater agreement. No claim is made that applying it improves outcomes.
 
 Items marked not applicable require a written justification: silent
 omission and reasoned exclusion look identical in a finished document.

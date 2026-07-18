@@ -101,37 +101,37 @@ definitions:
   - flag: rate_deficit
     description: Effective sampling rate below nominal beyond tolerance
     threshold: <e.g. |1 - effective/nominal| > 0.05>
-    applied_by: <e.g. acquire v0.1.0, check TIME-01>
+    applied_by: <e.g. acquire v26.7, check TIME-01>
     property: O
 
   - flag: gap
     description: Interruption in the stream longer than the stated limit
     threshold: <e.g. inter-sample interval > 1.0 s>
-    applied_by: <e.g. acquire v0.1.0, check TIME-02>
+    applied_by: <e.g. acquire v26.7, check TIME-02>
     property: O
 
   - flag: clock_nonmonotonic
     description: Timestamps not strictly increasing
     threshold: any backward step
-    applied_by: <e.g. acquire v0.1.0, check TIME-03>
+    applied_by: <e.g. acquire v26.7, check TIME-03>
     property: M
 
   - flag: unit_scale_suspect
     description: Resting magnitude departs from one standard gravity
     threshold: <e.g. |1 - observed/9.80665| > 0.02>
-    applied_by: <e.g. acquire v0.1.0, check SIG-01>
+    applied_by: <e.g. acquire v26.7, check SIG-01>
     property: M
 
   - flag: sensor_stuck
     description: All channels bit-identical across consecutive samples
     threshold: <e.g. frozen run > 2 s>
-    applied_by: <e.g. acquire v0.1.0, check SIG-02>
+    applied_by: <e.g. acquire v26.7, check SIG-02>
     property: M
 
   - flag: saturation
     description: Samples censored at the configured range
     threshold: <e.g. > 0.1% of samples at the rail>
-    applied_by: <e.g. acquire v0.1.0, check SIG-03>
+    applied_by: <e.g. acquire v26.7, check SIG-03>
     property: M
 
 # What these flags do NOT cover. State this explicitly: a reader who sees only
@@ -308,7 +308,7 @@ processing:
 
 # ── quality control ───────────────────────────────────────────────────────────
 quality_control:
-  diagnostics: <e.g. acquire v0.1.0>
+  diagnostics: <e.g. acquire v26.7>
   report: <path to the emitted diagnostic report>
   exclusion_criteria:
     - criterion: <e.g. effective rate below 95% of nominal>
@@ -348,7 +348,7 @@ For reviewing a manuscript or dataset reporting in-the-wild sensor data. Its pur
 Note the proportionality rule and the instruction that absence of a disclosure is a finding rather than a failing — the form should not push authors toward false precision.
 
 ``` markdown
-# ACQUIRE reviewer form v0.1
+# ACQUIRE reviewer form v26.7
 
 For reviewing a manuscript or dataset that reports in-the-wild sensor data.
 
@@ -432,7 +432,7 @@ author knows exactly what to add:
 
 ---
 
-*ACQUIRE MRC v0.1. The checklist has not been evaluated for usability, coverage,
+*ACQUIRE MRC v26.7. The checklist has not been evaluated for usability, coverage,
 or inter-rater agreement; no claim is made that applying it improves study
 outcomes. Feedback on the form itself is welcome as a repository issue.*
 ```

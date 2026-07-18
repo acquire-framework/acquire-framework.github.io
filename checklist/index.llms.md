@@ -8,7 +8,7 @@ The MRC reports a **different object** than existing mHealth reporting standards
 
 > **IMPORTANT:**
 >
-> **v0.1 is one group’s opinion, not a community consensus.** The checklist has not been evaluated for usability, coverage, or inter-rater agreement, and no claim is made that applying it improves study outcomes.
+> **v26.7 is one group’s opinion, not a community consensus.** The checklist has not been evaluated for usability, coverage, or inter-rater agreement, and no claim is made that applying it improves study outcomes.
 >
 > It becomes a standard only if other groups use it, disagree with it in public, and shape it. [Challenge an item →](https://github.com/acquire-framework/acquire-framework.github.io/issues/new?template=checklist-feedback.yml)
 
