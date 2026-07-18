@@ -138,7 +138,7 @@ items:
     template: templates/dataset-provenance.yml
 
   - id: MRC-10
-    tier: core
+    tier: conditional
     statement: >-
       Pre-deployment verification evidence: which failure modes of the taxonomy
       were tested, how, and with what observed behaviour.
