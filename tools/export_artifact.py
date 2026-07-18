@@ -102,7 +102,7 @@ def export_mrc(spec: dict) -> None:
         "SPDX-License-Identifier: CC0-1.0 — public domain, no attribution",
         "required. Citation is a scholarly norm here, not a licence condition.",
         "",
-        f"Machine-readable form of Table 2 of {spec['paper']}.",
+        f"Machine-readable form of Table 3 of {spec['paper']}.",
         "",
         "This specification has not been evaluated for usability, coverage, or",
         "inter-rater agreement. No claim is made that applying it improves outcomes.",

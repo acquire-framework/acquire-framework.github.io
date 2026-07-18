@@ -7,10 +7,16 @@
 
 The framework's citable content and its presentation change at different rates.
 This guard keeps that separation honest: if a taxonomy row or checklist item is
-edited, the version a study cites must change too, otherwise two different
-requirements would be published under one number.
+edited, the version a study cites must change too, otherwise two different sets
+of requirements would be published under one number.
 
-Editing prose, styles, templates, examples or package code does not trip it.
+Comparison is **semantic, not textual**: each normative file is parsed and the
+resulting structures compared. Fixing a typo in a comment, rewrapping a line, or
+correcting a cross-reference in a header therefore does not demand a version
+bump, because none of them changes a requirement. Changing the wording of an
+item does, because the parser sees it.
+
+Editing prose, styles, templates, examples or supporting code never trips this.
 """
 
 from __future__ import annotations
@@ -30,49 +36,53 @@ def git(*args: str) -> str:
     ).stdout.strip()
 
 
-def spec_version_at(ref: str | None = None) -> str | None:
-    if ref is None:
-        text = (ROOT / "spec" / "spec.yml").read_text(encoding="utf-8")
-    else:
-        try:
-            text = git("show", f"{ref}:spec/spec.yml")
-        except subprocess.CalledProcessError:
-            return None  # spec.yml did not exist at that ref
-    return yaml.safe_load(text)["spec_version"]
+def load_at(path: str, ref: str | None) -> object | None:
+    """Parse *path* at *ref* (or the working tree if ref is None)."""
+    try:
+        text = (
+            (ROOT / path).read_text(encoding="utf-8")
+            if ref is None
+            else git("show", f"{ref}:{path}")
+        )
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        return None
+    return yaml.safe_load(text)
 
 
 def main() -> int:
     base = sys.argv[1] if len(sys.argv) > 1 else "origin/main"
 
     manifest = yaml.safe_load((ROOT / "spec" / "spec.yml").read_text(encoding="utf-8"))
-    normative = set(manifest["normative"])
     current = manifest["spec_version"]
 
-    try:
-        changed = set(git("diff", "--name-only", f"{base}...HEAD").splitlines())
-    except subprocess.CalledProcessError:
-        print(f"could not diff against {base}; skipping check")
+    # spec.yml is where a bump is declared, so it is not itself evidence that
+    # requirements changed.
+    normative = [p for p in manifest["normative"] if p != "spec/spec.yml"]
+
+    changed = []
+    for path in normative:
+        before, after = load_at(path, base), load_at(path, None)
+        if before != after:
+            changed.append(path)
+
+    if not changed:
+        print("no normative content changed (semantic comparison)")
         return 0
 
-    touched = sorted(changed & normative)
-    # spec.yml itself changing is how a bump is expressed, so it does not
-    # by itself constitute a normative content change.
-    substantive = [p for p in touched if p != "spec/spec.yml"]
-
-    if not substantive:
-        print("no normative content changed")
-        return 0
-
-    previous = spec_version_at(base)
-    print(f"normative files changed: {', '.join(substantive)}")
+    previous = (load_at("spec/spec.yml", base) or {}).get("spec_version")
+    print(f"normative content changed: {', '.join(changed)}")
     print(f"spec_version {previous} -> {current}")
 
     if previous is not None and previous == current:
         print(
             "\nERROR: normative content changed but spec_version did not.\n"
             "Bump spec_version in spec/spec.yml and add a changelog entry, so a\n"
-            "study citing the previous version is not silently reassessed\n"
-            "against different requirements.",
+            "study citing the previous version is not silently reassessed against\n"
+            "different requirements.\n\n"
+            "If your change was editorial — a comment, a cross-reference, or\n"
+            "formatting — this check would not have fired, so something in the\n"
+            "parsed content did change. Compare with:\n"
+            f"    git diff {base} -- {' '.join(changed)}",
             file=sys.stderr,
         )
         return 1

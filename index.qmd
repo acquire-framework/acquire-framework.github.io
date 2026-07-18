@@ -59,7 +59,7 @@ by system layer, each mapped to its signature in the dataset and to the property
 it threatens. Table 1 of the paper, machine-readable.
 
 **[The Minimum Reporting Checklist](checklist/index.qmd)** — ten methods-section
-disclosures about the measuring system. Table 2 of the paper. Complementary to
+disclosures about the measuring system. Table 3 of the paper. Complementary to
 CONSORT-EHEALTH and mERA, which report the intervention rather than the
 instrument.
 
