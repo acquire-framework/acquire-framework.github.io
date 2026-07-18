@@ -1,0 +1,405 @@
+# SPDX-License-Identifier: CC0-1.0
+# SPDX-FileCopyrightText: 2026 Mateusz Danioł, Ryszard Sroka
+# The ACQUIRE checklist — single source of truth.
+#
+# The site renders it, the package validates against it, and the exported
+# artifact is generated from it. One definition, several consumers, no drift.
+#
+# Items are VERIFIABLE STATEMENTS, not advice: each is something a study either
+# did or did not do and can report. This is what allows a completed checklist to
+# function as supplementary material in the manner of CONSORT or STROBE.
+
+# Not normative: this operational companion is not part of the cited spec.
+revised: "2026-07-18"
+updated: "2026-07-18"
+doi: null # minted on first tagged release
+
+study_types:
+  mobile-imu: "Inertial data collected via a mobile application"
+  wearable-ble: "Data collected from a BLE wearable device"
+  multi-device: "Two or more devices recording concurrently"
+  longitudinal: "Collection spanning weeks or months"
+
+items:
+  # ── design ────────────────────────────────────────────────────────────────
+  - id: DSGN-01
+    stage: design
+    statement: >-
+      The required sampling rate was derived from the phenomenon being measured,
+      not inherited from a previous study or an SDK default.
+    applies_when: [mobile-imu, wearable-ble]
+  - id: DSGN-02
+    stage: design
+    statement: >-
+      A minimum acceptable data yield per participant was stated in advance,
+      together with the analysis consequence of falling below it.
+    applies_when: [longitudinal]
+  - id: DSGN-03
+    stage: design
+    statement: >-
+      Explicit validity criteria were written down before collection began.
+    applies_when: [mobile-imu, wearable-ble]
+  - id: DSGN-04
+    stage: design
+    statement: >-
+      The measurement range required by the most vigorous activity in the
+      protocol was calculated rather than assumed.
+    recipe: recipes/05-range-saturation
+    applies_when: [mobile-imu, wearable-ble]
+  - id: DSGN-05
+    stage: design
+    statement: >-
+      Device and OS diversity in the intended population was enumerated,
+      including the oldest hardware permitted.
+    applies_when: [mobile-imu]
+  - id: DSGN-06
+    stage: design
+    statement: >-
+      Battery and storage budgets were computed for the intended duration and
+      rate on the worst-case device.
+    applies_when: [mobile-imu, longitudinal]
+  - id: DSGN-07
+    stage: design
+    statement: >-
+      Consent and ethics documentation covers telemetry and crash reporting, not
+      only the primary sensor data.
+    applies_when: [mobile-imu, wearable-ble]
+  - id: DSGN-08
+    stage: design
+    statement: >-
+      A data management plan exists naming where raw data lives, who can access
+      it, and how long it is retained.
+    applies_when: [mobile-imu, wearable-ble]
+
+  # ── instrument ────────────────────────────────────────────────────────────
+  - id: INST-01
+    stage: instrument
+    statement: >-
+      Crash and error reporting is embedded in the acquisition application and
+      verified to deliver from a real device.
+    applies_when: [mobile-imu]
+  - id: INST-02
+    stage: instrument
+    statement: >-
+      Telemetry reports are scrubbed of participant identifiers and raw signal
+      content, and the scrubbing is tested.
+    applies_when: [mobile-imu]
+  - id: INST-03
+    stage: instrument
+    statement: >-
+      Where data residency or ethics approval requires it, a self-hosted
+      telemetry backend is used.
+    applies_when: [mobile-imu]
+  - id: INST-04
+    stage: instrument
+    statement: >-
+      Effective sampling rate was verified against nominal on every device model
+      before deployment.
+    recipe: recipes/03-doze-downsampling
+    applies_when: [mobile-imu, wearable-ble]
+  - id: INST-05
+    stage: instrument
+    statement: >-
+      The application runs as a foreground service or declares appropriate
+      background modes, verified on the oldest handset in the fleet.
+    recipe: recipes/03-doze-downsampling
+    applies_when: [mobile-imu]
+  - id: INST-06
+    stage: instrument
+    statement: The nominal sampling rate is recorded in dataset metadata.
+    recipe: recipes/03-doze-downsampling
+    applies_when: [mobile-imu, wearable-ble]
+  - id: INST-07
+    stage: instrument
+    statement: Both a monotonic timestamp and wall-clock time are recorded.
+    recipe: recipes/01-clock-drift
+    applies_when: [mobile-imu, wearable-ble]
+  - id: INST-08
+    stage: instrument
+    statement: NTP corrections are logged as events so they can be undone.
+    recipe: recipes/01-clock-drift
+    applies_when: [multi-device]
+  - id: INST-09
+    stage: instrument
+    statement: >-
+      A deliberate synchronisation event is recorded at the start of each session.
+    recipe: recipes/01-clock-drift
+    applies_when: [multi-device]
+  - id: INST-10
+    stage: instrument
+    statement: Units are recorded explicitly in dataset metadata.
+    recipe: recipes/02-unit-scale-mismatch
+    applies_when: [mobile-imu, wearable-ble]
+  - id: INST-11
+    stage: instrument
+    statement: >-
+      A static calibration recording was captured at enrolment for every device.
+    recipe: recipes/02-unit-scale-mismatch
+    applies_when: [mobile-imu, wearable-ble]
+  - id: INST-12
+    stage: instrument
+    statement: >-
+      Sensor range is configured for the most vigorous activity in the protocol,
+      and the configured range is recorded.
+    recipe: recipes/05-range-saturation
+    applies_when: [mobile-imu, wearable-ble]
+  - id: INST-13
+    stage: instrument
+    statement: >-
+      Every upload attempt is logged with outcome, size, and device-side
+      timestamp.
+    applies_when: [mobile-imu, longitudinal]
+  - id: INST-14
+    stage: instrument
+    statement: >-
+      Application version and build are recorded with every recording.
+    applies_when: [mobile-imu]
+  - id: INST-15
+    stage: instrument
+    statement: >-
+      Local buffering survives application restart and device reboot, verified
+      by actually restarting and rebooting.
+    applies_when: [mobile-imu, longitudinal]
+
+  # ── pilot ─────────────────────────────────────────────────────────────────
+  - id: PLT-01
+    stage: pilot
+    statement: >-
+      At least one recording traversed the complete chain to analysis and was
+      validated at the far end.
+    applies_when: [mobile-imu, wearable-ble]
+  - id: PLT-02
+    stage: pilot
+    statement: >-
+      Automated diagnostics were run over pilot recordings and the results
+      recorded.
+    applies_when: [mobile-imu, wearable-ble]
+  - id: PLT-03
+    stage: pilot
+    statement: >-
+      The pilot ran on the oldest and cheapest device model permitted in the
+      study.
+    applies_when: [mobile-imu]
+  - id: PLT-04
+    stage: pilot
+    statement: The pilot included at least one full overnight period.
+    recipe: recipes/03-doze-downsampling
+    applies_when: [mobile-imu, longitudinal]
+  - id: PLT-05
+    stage: pilot
+    statement: >-
+      Behaviour was verified with the device offline for a prolonged period and
+      buffered data confirmed to arrive intact.
+    applies_when: [mobile-imu, longitudinal]
+  - id: PLT-06
+    stage: pilot
+    statement: Behaviour was verified across application restart and device reboot.
+    applies_when: [mobile-imu]
+  - id: PLT-07
+    stage: pilot
+    statement: Behaviour was verified under aggressive battery saving.
+    recipe: recipes/03-doze-downsampling
+    applies_when: [mobile-imu]
+  - id: PLT-08
+    stage: pilot
+    statement: Behaviour was verified with storage nearly full.
+    applies_when: [mobile-imu, longitudinal]
+  - id: PLT-09
+    stage: pilot
+    statement: >-
+      A static calibration recording confirmed resting magnitude of one g on
+      every device model.
+    recipe: recipes/02-unit-scale-mismatch
+    applies_when: [mobile-imu, wearable-ble]
+  - id: PLT-10
+    stage: pilot
+    statement: >-
+      A vigorous-activity recording confirmed the configured range is not
+      saturated.
+    recipe: recipes/05-range-saturation
+    applies_when: [mobile-imu, wearable-ble]
+  - id: PLT-11
+    stage: pilot
+    statement: >-
+      Monitoring and alerting were active during the pilot and at least one
+      alert was deliberately triggered.
+    applies_when: [mobile-imu, wearable-ble]
+
+  # ── deploy ────────────────────────────────────────────────────────────────
+  - id: DPLY-01
+    stage: deploy
+    statement: >-
+      Enrolment was staged, with a small first cohort validated before the
+      remainder were enrolled.
+    applies_when: [longitudinal]
+  - id: DPLY-02
+    stage: deploy
+    statement: >-
+      Each participant's first 24 hours were validated before their data counted
+      toward the study.
+    applies_when: [longitudinal]
+  - id: DPLY-03
+    stage: deploy
+    statement: >-
+      The application version deployed to each participant is recorded, and
+      changes during the study are logged.
+    applies_when: [mobile-imu, longitudinal]
+  - id: DPLY-04
+    stage: deploy
+    statement: >-
+      A tested rollback path exists that does not lose buffered data.
+    applies_when: [mobile-imu, longitudinal]
+  - id: DPLY-05
+    stage: deploy
+    statement: >-
+      Device model, OS version, and vendor are recorded per participant.
+    applies_when: [mobile-imu]
+  - id: DPLY-06
+    stage: deploy
+    statement: >-
+      Participants have a documented route to report problems, and reports are
+      logged alongside technical telemetry.
+    applies_when: [longitudinal]
+  - id: DPLY-07
+    stage: deploy
+    statement: >-
+      Onboarding states explicitly what participants must not do, and compliance
+      is verified rather than assumed.
+    applies_when: [mobile-imu, longitudinal]
+
+  # ── monitor ───────────────────────────────────────────────────────────────
+  - id: MON-01
+    stage: monitor
+    statement: >-
+      Error and crash telemetry is deployed and confirmed to deliver from
+      production devices.
+    applies_when: [mobile-imu]
+  - id: MON-02
+    stage: monitor
+    statement: >-
+      Alerts route to a person on duty with a stated expected response time.
+    applies_when: [longitudinal]
+  - id: MON-03
+    stage: monitor
+    statement: >-
+      Alerting was deliberately triggered at least once to confirm the whole
+      path works.
+    applies_when: [longitudinal]
+  - id: MON-04
+    stage: monitor
+    statement: >-
+      Effective sampling rate per device is computed on ingestion and alerted on
+      when it deviates from nominal.
+    recipe: recipes/03-doze-downsampling
+    applies_when: [mobile-imu, wearable-ble, longitudinal]
+  - id: MON-05
+    stage: monitor
+    statement: >-
+      Signal variance is monitored with alerting on collapse to zero.
+    recipe: recipes/04-stuck-sensor
+    applies_when: [mobile-imu, wearable-ble, longitudinal]
+  - id: MON-06
+    stage: monitor
+    statement: >-
+      Data yield per participant per day is tracked against the minimum
+      acceptable threshold.
+    applies_when: [longitudinal]
+  - id: MON-07
+    stage: monitor
+    statement: >-
+      Diagnostics run automatically over incoming data rather than on request.
+    applies_when: [longitudinal]
+  - id: MON-08
+    stage: monitor
+    statement: >-
+      Detection latency — the interval between a failure starting and someone
+      knowing — is measured and reported.
+    applies_when: [longitudinal]
+
+  # ── curate ────────────────────────────────────────────────────────────────
+  - id: CUR-01
+    stage: curate
+    statement: >-
+      Raw data is stored immutably; processing produces new artifacts rather
+      than overwriting originals.
+    applies_when: [mobile-imu, wearable-ble]
+  - id: CUR-02
+    stage: curate
+    statement: >-
+      Every processing step is recorded with the software version that performed
+      it.
+    applies_when: [mobile-imu, wearable-ble]
+  - id: CUR-03
+    stage: curate
+    statement: >-
+      Data is versioned and any published analysis names the version it used.
+    applies_when: [mobile-imu, wearable-ble]
+  - id: CUR-04
+    stage: curate
+    statement: Validation results are stored alongside the data.
+    applies_when: [mobile-imu, wearable-ble]
+  - id: CUR-05
+    stage: curate
+    statement: >-
+      Exclusions are recorded with reasons at the point of decision.
+    applies_when: [mobile-imu, wearable-ble]
+  - id: CUR-06
+    stage: curate
+    statement: >-
+      Device metadata travels with the data rather than living separately.
+    applies_when: [mobile-imu, wearable-ble]
+  - id: CUR-07
+    stage: curate
+    statement: Backups exist and restoring from them has been tested.
+    applies_when: [longitudinal]
+  - id: CUR-08
+    stage: curate
+    statement: >-
+      Personal data handling matches what consent and ethics approval permit,
+      including for telemetry.
+    applies_when: [mobile-imu, wearable-ble]
+
+  # ── release ───────────────────────────────────────────────────────────────
+  - id: REL-01
+    stage: release
+    statement: The dataset has a persistent identifier and a stated licence.
+    applies_when: [mobile-imu, wearable-ble]
+  - id: REL-02
+    stage: release
+    statement: >-
+      Nominal sampling rate, units, sensor range, and device models are
+      documented per recording.
+    applies_when: [mobile-imu, wearable-ble]
+  - id: REL-03
+    stage: release
+    statement: >-
+      Validation results are published with the data, including failures.
+    applies_when: [mobile-imu, wearable-ble]
+  - id: REL-04
+    stage: release
+    statement: Exclusions and their reasons are reported in aggregate.
+    applies_when: [mobile-imu, wearable-ble]
+  - id: REL-05
+    stage: release
+    statement: >-
+      Known limitations are stated, including failure modes that could not be
+      checked.
+    applies_when: [mobile-imu, wearable-ble]
+  - id: REL-06
+    stage: release
+    statement: >-
+      The completed ACQUIRE checklist is attached as supplementary material,
+      with justifications for items marked not applicable.
+    applies_when: [mobile-imu, wearable-ble]
+  - id: REL-07
+    stage: release
+    statement: >-
+      Code producing the released artifacts is archived at the same version as
+      the data.
+    applies_when: [mobile-imu, wearable-ble]
+  - id: REL-08
+    stage: release
+    statement: >-
+      A minimal worked example is included so a new user can reproduce one
+      figure.
+    applies_when: [mobile-imu, wearable-ble]

@@ -1,0 +1,11 @@
+id,tier,statement,property,taxonomy
+MRC-01,core,"Expected versus observed completeness, per modality, with the sampling and background-execution policy.",O,ACQ-F01
+MRC-02,core,"Missingness statistics and their suspected attribution (technical / adherence / attrition), with the evidence used.",O,"ACQ-F01,ACQ-F04,ACQ-F05"
+MRC-03,core,"Device models, OS versions, app and firmware versions, and every mid-study change.",M+EN,ACQ-F06
+MRC-04,core,"Timestamping source, synchronization policy, and residual clock uncertainty after reconciliation.",M,ACQ-F03
+MRC-05,conditional,"An accuracy or uncertainty statement appropriate to each primary derived measurand, or a documented justification of why quantitative uncertainty could not be established and what validation evidence is provided instead.",M,ACQ-F08
+MRC-06,core,"Upload retry, deduplication, and integrity-verification logic (checksums, sequence numbers).",EN,ACQ-F02
+MRC-07,core,"Context and system-health events recorded alongside the data: power state, connectivity, permissions; crashes and service kills.",EN,"ACQ-F01,ACQ-F02,ACQ-F04"
+MRC-08,core,Machine-readable schema and collection-software artifacts published alongside the data.,EN,ACQ-F07
+MRC-09,core,QC exclusion criteria and preprocessing provenance from raw log to released dataset.,EN,ACQ-F07
+MRC-10,conditional,"Pre-deployment verification evidence: which failure modes of the taxonomy were tested, how, and with what observed behaviour.",M+EN+O,"ACQ-F01,ACQ-F02,ACQ-F03,ACQ-F04,ACQ-F06"

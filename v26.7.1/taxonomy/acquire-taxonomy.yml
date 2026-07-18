@@ -1,0 +1,152 @@
+# SPDX-License-Identifier: CC0-1.0
+# SPDX-FileCopyrightText: 2026 Mateusz Danioł, Ryszard Sroka
+# ACQUIRE initial acquisition-failure taxonomy, v26.7
+#
+# Machine-readable form of Table 1 of the accompanying paper.
+#
+# Status: initial, expert-derived, formative. NOT a systematic review — no
+# protocol, no pre-registered search strategy, no independent coders, no
+# inter-rater reliability, no external validation. Offered for community
+# evaluation and extension.
+#
+# property:  M   measurement validity
+#            EN  record integrity and provenance
+#            O   observation-process validity
+#
+# evidence:  L   anchored by an illustrative published example
+#            E   experience-derived candidate class, NOT a prevalence estimate
+#            A   illustrative assumption
+
+spec_version: "26.7.1"   # see spec/spec.yml
+updated: "2026-07-18"
+paper: "Danioł & Sroka (2026), UbiComp/ISWC '26 Companion"
+
+properties:
+  M: Measurement validity — the quantity indicated by the instrument
+  EN: Record integrity and provenance — whether what was indicated was faithfully retained
+  O: Observation-process validity — which observations exist at all
+
+evidence_levels:
+  L: Anchored by an illustrative published example
+  E: Experience-derived candidate class, not a prevalence estimate
+  A: Illustrative assumption
+
+layers:
+  device-os: Device and OS layer
+  connectivity: Connectivity, backend and integrity layer
+  wearable-ble: Wearable and BLE layer
+  participant: Participant layer
+  metadata: Metadata, provenance and protocol layer
+
+failures:
+  - id: ACQ-F01
+    layer: device-os
+    mode: Background-execution kill (Doze, vendor optimizers)
+    signature: >-
+      Non-random gaps; completeness far below 100%; worsens over weeks.
+    property: [O, EN]
+    property_note: >-
+      Observation depends on device state and may bias time-aggregated
+      estimands. [EN] additionally if kills are unlogged.
+    evidence: L
+    evidence_note: >-
+      84% of scheduled executions missing across four devices
+      (Gonzalez-Perez et al. 2022); 54.2% geolocation loss in the
+      625-participant IAB-SMART study (Bähr et al. 2022); no GPS on 49% of
+      observation days in a 2,394-person Beiwe cohort (Yi et al. 2024, a
+      figure that aggregates technical loss with attrition and adherence).
+
+  - id: ACQ-F02
+    layer: connectivity
+    mode: Offline-first sync loss / token expiry / duplicate re-sync
+    signature: Missing or duplicated records; silent truncation.
+    property: [EN]
+    property_note: Integrity and idempotency of the record.
+    evidence: L
+    evidence_note: >-
+      Sync and export failures reported but unquantified (Slade et al. 2025);
+      [E] checksums and deduplication rarely described in methods sections.
+
+  - id: ACQ-F03
+    layer: wearable-ble
+    mode: Clock drift / timestamp reconciliation
+    signature: Drifting session boundaries; misaligned modalities.
+    property: [M]
+    property_note: >-
+      Instrumental drift; traceability to a common time reference at an
+      uncertainty suited to the measurand.
+    evidence: L
+    evidence_note: >-
+      Tens of ppm, of order seconds per day (Tirado-Andrés et al. 2019);
+      BLE application-layer synchronization error exceeding 25 ms in 28% of
+      sessions, maximum 183 ms (Yan et al. 2017).
+    limitation: >-
+      Modest drift is NOT detectable from a single recording: nothing
+      distinguishes a fast clock from slow sampling. Detection requires an
+      external reference — a second device, a logged NTP offset, or a
+      deliberate synchronization event.
+    worked_example: examples/synchronization
+
+  - id: ACQ-F04
+    layer: wearable-ble
+    mode: BLE disconnection / firmware-dependent buffering
+    signature: Physiological gaps indistinguishable from true signal absence.
+    property: [EN, O]
+    property_note: >-
+      Gap provenance unrecorded; observation selectively absent.
+    evidence: E
+    evidence_note: >-
+      No systematic reporting of field disconnection and packet-loss rates
+      was identified.
+
+  - id: ACQ-F05
+    layer: participant
+    mode: Participant non-adherence / disabled permissions
+    signature: Missing sessions, confounded with technical loss.
+    property: [O]
+    property_note: >-
+      Operator and protocol effects; missing-not-at-random risk.
+    evidence: L
+    evidence_note: >-
+      Mean EMA compliance 79.2% across 477 articles, with 43% of studies
+      below the conventional 80% threshold (Wrzus & Neubauer 2023);
+      permission and authorization failures reported by Slade et al. 2025.
+
+  - id: ACQ-F06
+    layer: metadata
+    mode: Mid-study protocol / firmware / configuration change
+    signature: Discontinuity not marked in the data.
+    property: [M, EN]
+    property_note: >-
+      Measurement performance may change; the change is not recorded and
+      prior verification is not transferable across it.
+    evidence: L
+    evidence_note: >-
+      A January 2019 Google Play policy change cut call- and text-log
+      collection mid-recruitment in RADAR-MDD (Matcham et al. 2022);
+      [E] protocols frequently changed without being versioned.
+
+  - id: ACQ-F07
+    layer: metadata
+    mode: Missing schema / software / firmware provenance
+    signature: Dataset not machine-interpretable or re-executable.
+    property: [EN]
+    property_note: >-
+      Severs the provenance chain from a published number back to the act of
+      measurement — the record-fidelity analogue of, but distinct from,
+      metrological traceability.
+    evidence: E
+    evidence_note: "Compare datasheets for datasets (Gebru et al. 2021)."
+
+  - id: ACQ-F08
+    layer: metadata
+    mode: No accuracy or uncertainty statement
+    signature: Numbers reported without stated uncertainty.
+    property: [M]
+    property_note: Measurement uncertainty unstated (JCGM 2008, GUM).
+    evidence: L
+    evidence_note: >-
+      Under-reported for wearables with no standardized characterization
+      protocol (Cosoli et al. 2024); over 70% of surveyed light-dosimetry
+      studies reported no sensor calibration (Spitschan et al. 2022).
+

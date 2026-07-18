@@ -1,0 +1,106 @@
+**ACQUIRE 26.7.1** — a fixed snapshot of the specification, built 2026-07-18 from commit `199e1e9`. Thresholds and recipes change as evidence accumulates. [See the current version](https://acquire-framework.github.io/).
+
+# Versions
+
+What changes, what doesn’t, and what you should cite.
+
+Three things here change at different rates, so they are versioned separately. Conflating them would mean either that fixing a typo bumps the number studies cite, or that a published snapshot silently diverges from the site.
+
+|  | Versioned as | Changes when | Cite this? |
+|:---|:---|:---|:---|
+| **Specification** | `26.7` | A taxonomy row, checklist item, or threshold changes | **Yes** |
+| **Website** | build commit only | Any edit — prose, layout, typo | No |
+| **Tooling** | not released | — | — |
+
+## The specification
+
+The normative content: the [acquisition-failure taxonomy](taxonomy/index.llms.md), the [Minimum Reporting Checklist](checklist/index.llms.md), and the thresholds and evidence levels attached to them. This is what a study means when it says it was assessed against ACQUIRE 26.7.1.
+
+Versions are calendar-based, **`<year>.<month>`** — `26.7` is July 2026, and a second release within a month adds a patch, as `26.7.1` does here. Calendar rather than semantic versioning is deliberate: semantic versioning describes API compatibility, and what a reader needs to know here is *when* the requirements were current, because guidance about operating-system behaviour ages whether or not any interface changes.
+
+Which files are normative is declared explicitly in [`spec/spec.yml`](spec/spec.yml), and CI fails if any of them changes without a version bump. That guard exists so two different sets of requirements can never be published under one number.
+
+## The website
+
+The site has **no version of its own**. It is identified only by the commit it was built from, shown in the footer of every page.
+
+Rewording an explanation, restyling a page, or correcting a typo changes what a reader sees without changing what the framework requires — so it must not change what a study cites.
+
+## Tooling
+
+No diagnostic software is published. The framework as released is a specification and a set of documents: a taxonomy, a reporting checklist, templates, and one executable example that reproduces a figure from the paper.
+
+Tooling that would automate parts of the checklist is on the roadmap and is deliberately not announced here — a framework about honest reporting should not advertise capability it does not have.
+
+## This build
+
+|  |  |
+|:---|:---|
+| Specification | **26.7.1** |
+| Site build | [`199e1e9`](https://github.com/acquire-framework/acquire-framework.github.io/tree/199e1e96f18f98f967a7bb714136868243da7090) |
+| Built | 2026-07-18 |
+
+## Published specifications
+
+| Spec     | Permalink               | Tag       | Archive     |
+|:---------|:------------------------|:----------|:------------|
+| 26.7.1   | [/v26.7.1/](./v26.7.1/) | `v26.7.1` | DOI pending |
+| ~~26.7~~ | withdrawn               | —         | —           |
+
+Specification 26.7 was published on 18 July 2026 and withdrawn the same day, before any known use, because it asserted the availability of diagnostic software that is not released. It is not served and should not be cited.
+
+Withdrawing a snapshot is not the same as rewriting one. Published snapshots are never altered; where one is wrong, it is withdrawn and the reason recorded in [`spec/spec.yml`](spec/spec.yml).
+
+A snapshot is published at `/v<spec>/` when the **specification** changes — not when the site changes. Snapshots are built once from the tag and never rebuilt, so the explanatory prose inside an old snapshot may be less polished than the current site. That is intended: the snapshot exists to preserve what was *required*, not to be the best-written version.
+
+The root of this site always shows current guidance.
+
+## Citing
+
+Give the permalink, not the bare domain:
+
+> Data collection followed the ACQUIRE Minimum Reporting Checklist, specification 26.7.1 (<https://acquire-framework.github.io/v26.7.1/>).
+
+## Rebuilding a specification from source
+
+Each specification release is a tag:
+
+``` bash
+git clone https://github.com/acquire-framework/acquire-framework.github.io
+cd acquire-framework.github.io
+git checkout v26.7.1
+uv sync --extra dev --extra docs --frozen
+uv run pytest
+QUARTO_PYTHON=.venv/bin/python uv run quarto render
+```
+
+The lockfile is committed, the Quarto version is pinned in CI, and the build honours `SOURCE_DATE_EPOCH`, so a rebuild resolves the same dependencies rather than whatever is current.
+
+## Why a DOI as well as a URL
+
+A URL is a location, not an archive: it depends on this domain continuing to exist and on us continuing to host it. A DOI resolves to a snapshot held by an archive whose job is permanence.
+
+For a framework arguing that provenance must survive the people who created it, relying on our own hosting would be an obvious inconsistency. Each specification release is therefore also deposited, and the DOI is the citation of record for anything that must remain verifiable long-term.
+
+## Citation
+
+BibTeX citation:
+
+``` quarto-appendix-bibtex
+@inproceedings{daniol2026acquire,
+  author = {Danioł, Mateusz and Sroka, Ryszard},
+  publisher = {Association for Computing Machinery},
+  title = {Reproducibility {Begins} at {Acquisition:} {The} {ACQUIRE}
+    {Framework} for {Trustworthy} {In-the-Wild} {Sensing}},
+  booktitle = {Companion of the 2026 ACM International Joint Conference
+    on Pervasive and Ubiquitous Computing (UbiComp/ISWC ’26 Companion)},
+  date = {2026},
+  address = {Shanghai, China},
+  url = {https://acquire-framework.github.io},
+  langid = {en}
+}
+```
+
+For attribution, please cite this work as:
+
+Danioł, Mateusz, and Ryszard Sroka. 2026. “Reproducibility Begins at Acquisition: The ACQUIRE Framework for Trustworthy In-the-Wild Sensing.” *Companion of the 2026 ACM International Joint Conference on Pervasive and Ubiquitous Computing (UbiComp/ISWC ’26 Companion)* (Shanghai, China). <https://acquire-framework.github.io>.
