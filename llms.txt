@@ -1,0 +1,28 @@
+# ACQUIRE Framework
+
+> Recipes, guidelines and diagnostics for reproducible in-the-wild sensing studies.
+
+## Pages
+
+- [Versions](https://acquire-framework.github.io/versions.llms.md)
+- [Acquisition-failure taxonomy](https://acquire-framework.github.io/taxonomy/index.llms.md)
+- [Range saturation](https://acquire-framework.github.io/recipes/05-range-saturation.llms.md)
+- [Silent downsampling under OS power management](https://acquire-framework.github.io/recipes/03-doze-downsampling.llms.md)
+- [Clock drift and reset across devices](https://acquire-framework.github.io/recipes/01-clock-drift.llms.md)
+- [Pilot](https://acquire-framework.github.io/lifecycle/pilot.llms.md)
+- [Instrument](https://acquire-framework.github.io/lifecycle/instrument.llms.md)
+- [Design](https://acquire-framework.github.io/lifecycle/design.llms.md)
+- [Curate](https://acquire-framework.github.io/lifecycle/curate.llms.md)
+- [Citing ACQUIRE](https://acquire-framework.github.io/cite.llms.md)
+- [Extended operational checklist](https://acquire-framework.github.io/checklist/extended.llms.md)
+- [Check your data](https://acquire-framework.github.io/check/index.llms.md)
+- [Minimum Reporting Checklist](https://acquire-framework.github.io/checklist/index.llms.md)
+- [ACQUIRE Framework](https://acquire-framework.github.io/index.llms.md)
+- [Deploy](https://acquire-framework.github.io/lifecycle/deploy.llms.md)
+- [The guideline book](https://acquire-framework.github.io/lifecycle/index.llms.md)
+- [Monitor](https://acquire-framework.github.io/lifecycle/monitor.llms.md)
+- [Release](https://acquire-framework.github.io/lifecycle/release.llms.md)
+- [Unit and scale mismatch](https://acquire-framework.github.io/recipes/02-unit-scale-mismatch.llms.md)
+- [Stuck sensor reporting stale values](https://acquire-framework.github.io/recipes/04-stuck-sensor.llms.md)
+- [Failure catalogue](https://acquire-framework.github.io/recipes/index.llms.md)
+- [Templates and forms](https://acquire-framework.github.io/templates/index.llms.md)
