@@ -26,16 +26,16 @@ Rewording an explanation, restyling a page, or correcting a typo changes what a 
 
 ## Tooling
 
-No diagnostic software is published. The framework as released is a specification and a set of documents: a taxonomy, a reporting checklist, templates, and one executable example that reproduces a figure from the paper.
+No software is published as part of this release. The framework as released is a specification and a set of documents: a taxonomy, a reporting checklist, templates, and one executable example that reproduces a figure from the paper.
 
-Tooling that would automate parts of the checklist is on the roadmap and is deliberately not announced here — a framework about honest reporting should not advertise capability it does not have.
+Any future tooling is not announced here: a framework about honest reporting should not advertise capability it does not have.
 
 ## This build
 
 |  |  |
 |:---|:---|
 | Specification | **26.7.1** |
-| Site build | [`d5a33a8`](https://github.com/acquire-framework/acquire-framework.github.io/tree/d5a33a82c6f94e60673e6eb041bb1eb647c021c7) |
+| Site build | [`520259f`](https://github.com/acquire-framework/acquire-framework.github.io/tree/520259f152f4d41fda6550a728487dbe7a332646) |
 | Built | 2026-07-18 |
 
 ## Published specifications

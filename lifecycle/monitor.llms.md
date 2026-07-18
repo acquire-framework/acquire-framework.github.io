@@ -8,7 +8,7 @@ This is the stage that separates studies which recover from failure from studies
 
 **“Is data arriving?”** — answered by uptime checks, file counts, and crash reporting. Necessary, and satisfied by every failure in this catalogue except an outright crash. A throttled stream arrives. A stuck sensor arrives. Data in the wrong units arrives.
 
-**“Is the arriving data valid?”** — answered by running diagnostics over incoming data continuously. This is the question that catches silent failure.
+**“Is the arriving data valid?”** — answered by running validity checks over incoming data continuously. This is the question that catches silent failure.
 
 ## Checklist
 

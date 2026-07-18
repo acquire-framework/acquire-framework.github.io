@@ -31,7 +31,7 @@ Because the data looks fine in isolation, this failure typically surfaces only w
 
 ## Detection
 
-This is the framework’s showcase diagnostic, because the reference value is a **physical constant rather than a convention**: a device at rest measures one standard gravity, 9.80665 m/s². Any deviation is a real measurement error, and no labelling effort is required to establish the ground truth.
+This is the framework’s showcase check, because the reference value is a **physical constant rather than a convention**: a device at rest measures one standard gravity, 9.80665 m/s². Any deviation is a real measurement error, and no labelling effort is required to establish the ground truth.
 
 Concretely: compute the vector magnitude, identify low-motion samples by a rolling standard deviation, and compare their mean magnitude against 9.80665 m/s². A ratio near 1/9.81 indicates data recorded in g; a ratio near 9.81 indicates a gravity conversion applied twice.
 

@@ -65,7 +65,7 @@ Each item maps to the MRC item it ultimately serves, or to a taxonomy row it gua
 |  | Statement | Applies to | Guards against |
 |:---|:---|:---|:---|
 | `PLT-01` | At least one recording traversed the complete chain to analysis and was validated at the far end. | `mobile-imu`, `wearable-ble` |  |
-| `PLT-02` | Automated diagnostics were run over pilot recordings and the results recorded. | `mobile-imu`, `wearable-ble` |  |
+| `PLT-02` | Automated validity checks were run over pilot recordings and the results recorded. | `mobile-imu`, `wearable-ble` |  |
 | `PLT-03` | The pilot ran on the oldest and cheapest device model permitted in the study. | `mobile-imu` |  |
 | `PLT-04` | The pilot included at least one full overnight period. | `mobile-imu`, `longitudinal` | [detail](../recipes/03-doze-downsampling.llms.md) |
 | `PLT-05` | Behaviour was verified with the device offline for a prolonged period and buffered data confirmed to arrive intact. | `mobile-imu`, `longitudinal` |  |
@@ -102,7 +102,7 @@ Each item maps to the MRC item it ultimately serves, or to a taxonomy row it gua
 | `MON-04` | Effective sampling rate per device is computed on ingestion and alerted on when it deviates from nominal. | `mobile-imu`, `wearable-ble`, `longitudinal` | [detail](../recipes/03-doze-downsampling.llms.md) |
 | `MON-05` | Signal variance is monitored with alerting on collapse to zero. | `mobile-imu`, `wearable-ble`, `longitudinal` | [detail](../recipes/04-stuck-sensor.llms.md) |
 | `MON-06` | Data yield per participant per day is tracked against the minimum acceptable threshold. | `longitudinal` |  |
-| `MON-07` | Diagnostics run automatically over incoming data rather than on request. | `longitudinal` |  |
+| `MON-07` | Validity checks run automatically over incoming data rather than on request. | `longitudinal` |  |
 | `MON-08` | Detection latency — the interval between a failure starting and someone knowing — is measured and reported. | `longitudinal` |  |
 
 ### Curate

@@ -38,7 +38,7 @@ Concretely: take the successive differences of the timestamp column and test whe
 
 **A limitation stated plainly:** modest drift is *not* detectable from a single recording. Nothing in the data distinguishes “the clock ran fast” from “sampling ran slow” — both stretch elapsed time identically. Detecting drift requires an external reference: a second device, an NTP query logged alongside the data, or a deliberate synchronisation event.
 
-This is why clock agreement appears in the framework’s `NOT_CHECKED` list rather than as a diagnostic that quietly under-performs.
+This is why clock agreement appears in the framework’s `NOT_CHECKED` list rather than as a check that quietly under-performs.
 
 Only gross drift, large enough to breach the sampling-rate tolerance, surfaces indirectly through [TIME-01](../recipes/03-doze-downsampling.llms.md).
 

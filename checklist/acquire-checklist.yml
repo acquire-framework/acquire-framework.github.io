@@ -171,7 +171,7 @@ items:
   - id: PLT-02
     stage: pilot
     statement: >-
-      Automated diagnostics were run over pilot recordings and the results
+      Automated validity checks were run over pilot recordings and the results
       recorded.
     applies_when: [mobile-imu, wearable-ble]
   - id: PLT-03
@@ -307,7 +307,7 @@ items:
   - id: MON-07
     stage: monitor
     statement: >-
-      Diagnostics run automatically over incoming data rather than on request.
+      Validity checks run automatically over incoming data rather than on request.
     applies_when: [longitudinal]
   - id: MON-08
     stage: monitor

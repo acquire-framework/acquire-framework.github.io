@@ -11,8 +11,8 @@
 #     its build commit. Rewording a paragraph, fixing a typo, or restyling a
 #     page changes what a reader sees but not what the framework requires.
 #
-#   * the diagnostics package, which needs bug-fix releases that do not change
-#     any requirement. The package declares which spec version it implements.
+#   * the supporting code, which needs fixes that do not change any
+#     requirement, and is not part of what a study cites.
 #
 # Conflating them would mean either that a typo fix bumps the number studies
 # cite, or that a published snapshot silently diverges from the site.

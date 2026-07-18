@@ -409,7 +409,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="sensor-schema">Sensor schema</h2>
 <p>Publish one per sensor stream, alongside the data. Without it a dataset is not machine-interpretable: a reader cannot tell what was measured, in what units, at what nominal rate, or against what expectation — and so cannot check the data for the failures the taxonomy catalogues.</p>
 <p>The nominal rate matters most. It cannot be inferred from the data, because inferring it would define away <a href="../taxonomy/index.html">ACQ-F01</a>, the best-quantified failure in the taxonomy.</p>
-<div id="372b8b27" class="cell" data-execution_count="2">
+<div id="1c54ec1a" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="an">SPDX-License-Identifier:</span><span class="co"> CC-BY-4.0</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="an">SPDX-FileCopyrightText:</span><span class="co"> 2026 Mateusz Danioł, Ryszard Sroka</span></span>
@@ -474,7 +474,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="quality-flags" class="level2">
 <h2 class="anchored" data-anchor-id="quality-flags">Quality flags</h2>
 <p>A flag is only interpretable if the reader knows the threshold that produced it and what applied it. The <code>not_covered</code> section is the important one: a reader who sees only green flags will otherwise infer a validation that never ran.</p>
-<div id="c1ec4f54" class="cell" data-execution_count="3">
+<div id="2b57bef6" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="an">SPDX-License-Identifier:</span><span class="co"> CC-BY-4.0</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="an">SPDX-FileCopyrightText:</span><span class="co"> 2026 Mateusz Danioł, Ryszard Sroka</span></span>
@@ -555,7 +555,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="uncertainty-statement" class="level2">
 <h2 class="anchored" data-anchor-id="uncertainty-statement">Uncertainty statement</h2>
 <p>Part A is the quantitative budget. Part B is the justification route permitted by MRC-05, with the floor that keeps it from becoming a null answer: name the dominant sources, state why each could not be quantified, describe the validation evidence offered instead.</p>
-<div id="dbcd09c6" class="cell" data-execution_count="4">
+<div id="400a0c7d" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Uncertainty statement template — satisfies MRC-05</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -648,7 +648,7 @@ After:
 <h2 class="anchored" data-anchor-id="dataset-provenance">Dataset provenance</h2>
 <p>Records the auditable lineage from a published number back to the act of measurement — the record-fidelity analogue of metrological traceability, and distinct from it.</p>
 <p>Provenance reconstructed at the end of a study is a best-effort narrative; provenance recorded as data arrives is evidence.</p>
-<div id="ccce5e7e" class="cell" data-execution_count="5">
+<div id="0ac9cd8a" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="an">SPDX-License-Identifier:</span><span class="co"> CC-BY-4.0</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="an">SPDX-FileCopyrightText:</span><span class="co"> 2026 Mateusz Danioł, Ryszard Sroka</span></span>
@@ -706,8 +706,8 @@ After:
 <span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a><span class="co"># ── quality control ───────────────────────────────────────────────────────────</span></span>
 <span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a><span class="fu">quality_control</span><span class="kw">:</span></span>
-<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">diagnostics</span><span class="kw">:</span><span class="at"> &lt;e.g. acquire v26.7&gt;</span></span>
-<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">report</span><span class="kw">:</span><span class="at"> &lt;path to the emitted diagnostic report&gt;</span></span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">checks_applied</span><span class="kw">:</span><span class="at"> &lt;name and version of the validation software used&gt;</span></span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">report</span><span class="kw">:</span><span class="at"> &lt;path to the emitted validation report&gt;</span></span>
 <span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">exclusion_criteria</span><span class="kw">:</span></span>
 <span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">criterion</span><span class="kw">:</span><span class="at"> &lt;e.g. effective rate below 95% of nominal&gt;</span></span>
 <span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">rationale</span><span class="kw">:</span><span class="at"> &lt;why this threshold&gt;</span></span>
@@ -744,7 +744,7 @@ After:
 <h2 class="anchored" data-anchor-id="reviewer-form">Reviewer form</h2>
 <p>For reviewing a manuscript or dataset reporting in-the-wild sensor data. Its purpose is to let a reviewer request <em>specific</em> acquisition details instead of “more detail on data quality”, which authors cannot act on.</p>
 <p>Note the proportionality rule and the instruction that absence of a disclosure is a finding rather than a failing — the form should not push authors toward false precision.</p>
-<div id="2fb303a3" class="cell" data-execution_count="6">
+<div id="7a3a618d" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># ACQUIRE reviewer form v26.7</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1291,7 +1291,7 @@ Companion)</em> (Shanghai, China). <a href="https://acquire-framework.github.io"
 <p>Maintained at the Department of Measurements and Electronics, AGH University of Krakow</p>
 <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/acquire-framework/acquire-framework.github.io/edit/main/templates/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/acquire-framework/acquire-framework.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
-<p>ACQUIRE spec 26.7.1 · site build <a href="https://github.com/acquire-framework/acquire-framework.github.io/tree/d5a33a82c6f94e60673e6eb041bb1eb647c021c7"><code>d5a33a8</code></a> · built 2026-07-18 <a href="../licensing.html">Licensing</a> · <a href="../cite.html">How to cite</a> · <a href="../versions.html">All versions</a></p>
+<p>ACQUIRE spec 26.7.1 · site build <a href="https://github.com/acquire-framework/acquire-framework.github.io/tree/520259f152f4d41fda6550a728487dbe7a332646"><code>520259f</code></a> · built 2026-07-18 <a href="../licensing.html">Licensing</a> · <a href="../cite.html">How to cite</a> · <a href="../versions.html">All versions</a></p>
 </div>
   </div>
 </footer>

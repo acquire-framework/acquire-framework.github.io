@@ -6,7 +6,7 @@ How this artifact may be reused, and how it was produced.
 |:---|:---|:---|
 | **Data** — the taxonomy and checklist as structured records | [CC0 1.0](https://github.com/acquire-framework/acquire-framework.github.io/blob/main/LICENSES/CC0-1.0.txt) | `taxonomy/*.yml`, `checklist/*.yml`, the CSV and Markdown exports |
 | **Documentation** — prose, templates, forms | [CC BY 4.0](https://github.com/acquire-framework/acquire-framework.github.io/blob/main/LICENSES/CC-BY-4.0.txt) | this site, `templates/`, `recipes/`, `lifecycle/` |
-| **Code** — diagnostics, tooling, examples | [MIT](https://github.com/acquire-framework/acquire-framework.github.io/blob/main/LICENSES/MIT.txt) | `acquire/`, `tools/`, `tests/`, `examples/` |
+| **Code** — tooling, scripts, examples | [MIT](https://github.com/acquire-framework/acquire-framework.github.io/blob/main/LICENSES/MIT.txt) | `acquire/`, `tools/`, `tests/`, `examples/` |
 
 Copyright 2026 Mateusz Danioł, Ryszard Sroka.
 
@@ -18,13 +18,13 @@ We would like to be cited, and the [citation page](cite.llms.md) says how. But t
 
 **The documentation is CC BY 4.0.** The prose explains, argues, and interprets. Attribution is appropriate there and does not impede reuse — translate it, adapt it for a course, extract it into a lab handbook, and keep the credit.
 
-**The code is MIT.** Permissive, familiar, and compatible with essentially any research or commercial pipeline the diagnostics might run inside.
+**The code is MIT.** Permissive, familiar, and compatible with essentially any research or commercial pipeline the scripts might run inside.
 
 ## What this means in practice
 
 - Copy the taxonomy or checklist into your own tool, standard, or paper with **no obligation at all**.
 - Adapt the templates and prose provided you credit ACQUIRE.
-- Vendor the diagnostics code under MIT terms.
+- Vendor any of the code under MIT terms.
 - **A completed checklist is yours.** Filling one in does not make your document a derivative work of ours — attach it to a paper or dataset under whatever licence you like.
 
 ## Machine-readable

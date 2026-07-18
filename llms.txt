@@ -1,6 +1,6 @@
 # ACQUIRE Framework
 
-> Recipes, guidelines and diagnostics for reproducible in-the-wild sensing studies.
+> A taxonomy, reporting checklist and templates for reproducible in-the-wild sensing studies.
 
 ## Pages
 

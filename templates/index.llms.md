@@ -314,8 +314,8 @@ processing:
 
 # ── quality control ───────────────────────────────────────────────────────────
 quality_control:
-  diagnostics: <e.g. acquire v26.7>
-  report: <path to the emitted diagnostic report>
+  checks_applied: <name and version of the validation software used>
+  report: <path to the emitted validation report>
   exclusion_criteria:
     - criterion: <e.g. effective rate below 95% of nominal>
       rationale: <why this threshold>
