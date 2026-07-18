@@ -1,16 +1,24 @@
 cff-version: 1.2.0
 title: >-
-  ACQUIRE Framework: Acquisition, Curation and Quality for In-the-Wild
-  Reproducible Studies
+  ACQUIRE v0.1: Taxonomy, Checklist and Diagnostics for Reproducible In-the-Wild
+  Sensing
 message: >-
-  If you use this framework or its checklist, please cite it and state the
-  version. Thresholds and recipes change as evidence accumulates, so a version
-  identifies exactly what a study was assessed against.
+  If you use this framework, its taxonomy, or its checklist, please cite the
+  accompanying paper (see preferred-citation) and state the artifact version.
+  Thresholds and recipes change as evidence accumulates, so a version identifies
+  exactly what a study was assessed against.
 type: software
 authors:
   - given-names: Mateusz
     family-names: Daniol
-    affiliation: AGH University of Krakow
+    email: daniol@agh.edu.pl
+    affiliation: >-
+      Department of Measurements and Electronics, AGH University of Krakow
+  - given-names: Ryszard
+    family-names: Sroka
+    email: rsroka@agh.edu.pl
+    affiliation: >-
+      Department of Measurements and Electronics, AGH University of Krakow
 version: 0.1.0
 date-released: "2026-07-18"
 license: MIT
@@ -18,17 +26,37 @@ repository-code: >-
   https://github.com/acquire-framework/acquire-framework.github.io
 url: https://acquire-framework.github.io
 abstract: >-
-  ACQUIRE provides recipes, lifecycle guidelines, and executable diagnostics for
-  running reproducible in-the-wild sensing studies. It addresses instrument
-  validity, silent failure detection, monitoring, data versioning, and
-  reproducible dataset release, and includes a reporting checklist intended to
-  serve the role that CONSORT and STROBE serve in clinical and observational
-  research.
+  ACQUIRE — Acquisition Criteria for Quality, Uncertainty, Integrity,
+  Reproducibility, and Evidence — treats the whole acquisition chain of an
+  in-the-wild sensing study as a measuring system, and evaluates it along three
+  axes: measurement validity, record integrity and provenance, and
+  observation-process validity. This artifact bundles the failure taxonomy, the
+  reporting checklist, reporting and provenance templates, and executable
+  diagnostics for detecting acquisition failures in tri-axial inertial data.
 keywords:
   - reproducibility
-  - in-the-wild studies
-  - mobile sensing
-  - wearables
-  - data quality
-  - metrology
-  - inertial measurement
+  - in-the-wild sensing
+  - mobile health
+  - wearable computing
+  - measurement uncertainty
+  - data provenance
+  - observation process
+  - offline-first architecture
+preferred-citation:
+  type: conference-paper
+  title: >-
+    Reproducibility Begins at Acquisition: The ACQUIRE Framework for Trustworthy
+    In-the-Wild Sensing
+  authors:
+    - given-names: Mateusz
+      family-names: Daniol
+    - given-names: Ryszard
+      family-names: Sroka
+  collection-title: >-
+    Companion of the 2026 ACM International Joint Conference on Pervasive and
+    Ubiquitous Computing (UbiComp/ISWC '26 Companion)
+  publisher:
+    name: Association for Computing Machinery
+  year: 2026
+  location:
+    name: Shanghai, China

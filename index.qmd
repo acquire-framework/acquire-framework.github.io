@@ -1,6 +1,6 @@
 ---
 title: "ACQUIRE Framework"
-subtitle: "Acquisition, Curation and QUality for In-the-wild REproducible studies"
+subtitle: "Acquisition Criteria for Quality, Uncertainty, Integrity, Reproducibility, and Evidence"
 toc: false
 page-layout: full
 ---
@@ -86,8 +86,25 @@ It exits non-zero on failure, so it can gate a pipeline.
 There is also a [browser-based demonstration](check/index.qmd) that runs the same
 code locally in your tab — nothing is uploaded, and nothing leaves your device.
 
+## The paper {.unnumbered}
+
+ACQUIRE — *Acquisition Criteria for Quality, Uncertainty, Integrity,
+Reproducibility, and Evidence* — treats the whole acquisition chain as a
+measuring system and evaluates it along three axes: **measurement validity**,
+**record integrity and provenance**, and **observation-process validity**.
+
+> Daniol, M. and Sroka, R. (2026). Reproducibility Begins at Acquisition: The
+> ACQUIRE Framework for Trustworthy In-the-Wild Sensing. *Companion of the 2026
+> ACM International Joint Conference on Pervasive and Ubiquitous Computing
+> (UbiComp/ISWC '26 Companion)*, Shanghai, China.
+
+[How to cite →](cite.qmd)
+
 ## Status {.unnumbered}
 
 Version 0.1.0. The catalogue is small and honest about it: every recipe carries
-an evidence level, and most are currently at the lowest one. Replications are
-the single most useful contribution — see [contributing](https://github.com/acquire-framework/acquire-framework.github.io/blob/main/CONTRIBUTING.md).
+an evidence level, and most are currently at the lowest one. The taxonomy is
+expert-derived and formative rather than systematically validated, and is
+brought to REPRODUCE for community evaluation and extension.
+
+Replications are the single most useful contribution — see [contributing](https://github.com/acquire-framework/acquire-framework.github.io/blob/main/CONTRIBUTING.md).

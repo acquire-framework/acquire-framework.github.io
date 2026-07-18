@@ -13,6 +13,7 @@ project:
     # Anchored to the project root: an unanchored "robots.txt" matches
     # recursively and drags in fixtures from installed packages.
     - "/robots.txt"
+    - "/assets/**"
 
 website:
   title: "ACQUIRE Framework"
@@ -60,10 +61,15 @@ website:
             - lifecycle/curate.qmd
             - lifecycle/release.qmd
   page-footer:
+    border: true
     left: |
-      ACQUIRE v0.1.0 · MIT · [Cite this framework](/cite.qmd)
+      [![AGH University of Krakow](/assets/agh-logo.svg){.agh-mark fig-alt="AGH University of Krakow"}](https://www.agh.edu.pl/en)
+    center: |
+      Maintained at the Department of Measurements and Electronics,
+      AGH University of Krakow
     right: |
-      Built with [Quarto](https://quarto.org)
+      ACQUIRE Framework v0.1.0 · MIT
+      [Cite this work](/cite.qmd)
 
 format:
   html:

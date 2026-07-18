@@ -1,6 +1,6 @@
 # ACQUIRE Framework
 
-*Acquisition, Curation and QUality for In-the-wild REproducible studies*
+*Acquisition Criteria for Quality, Uncertainty, Integrity, Reproducibility, and Evidence*
 
 Recipes, guidelines, and diagnostics for running reproducible in-the-wild sensing
 studies — instrument validity, failure detection, monitoring, data versioning, and

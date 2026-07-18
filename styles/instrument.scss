@@ -387,6 +387,41 @@ summary:focus-visible {
   font-weight: 600;
 }
 
+// ── footer ──────────────────────────────────────────────────────────────────
+
+.nav-footer {
+  border-top: 1px solid var(--acq-border);
+  padding-top: 1.4rem;
+  padding-bottom: 1.4rem;
+  font-size: 0.86rem;
+  color: var(--acq-muted);
+  align-items: center;
+}
+
+.nav-footer a { color: var(--acq-accent); }
+
+.nav-footer .agh-mark {
+  height: 58px;
+  width: auto;
+  display: block;
+}
+
+// The mark is supplied as dark artwork, so it must be inverted to stay legible
+// against the dark theme's background.
+body.quarto-dark .nav-footer .agh-mark {
+  filter: invert(1) brightness(1.6);
+}
+
+.nav-footer-center {
+  text-align: center;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .nav-footer { text-align: center; }
+  .nav-footer .agh-mark { margin: 0 auto 0.75rem; }
+}
+
 // Code blocks and data tables scroll inside their own container; the page body
 // never scrolls horizontally.
 pre, table, .acq-report { overflow-x: auto; }
