@@ -56,6 +56,14 @@ jobs:
           fi
           echo "clean"
 
+      # enablement: true turns Pages on for the repository from the workflow
+      # itself, so the first push deploys without a manual settings step.
+      - name: Configure Pages
+        if: github.ref == 'refs/heads/main'
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
       - name: Upload artifact
         if: github.ref == 'refs/heads/main'
         uses: actions/upload-pages-artifact@v3
