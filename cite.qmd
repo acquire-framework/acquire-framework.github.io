@@ -13,8 +13,8 @@ URL is what keeps that honest.
 ```bibtex
 @software{acquire_2026,
   author  = {Daniol, Mateusz},
-  title   = {{ACQUIRE}: Acquisition, Curation and Quality Infrastructure
-             for Reproducible In-the-Wild Studies},
+  title   = {{ACQUIRE} Framework: Acquisition, Curation and Quality for
+             In-the-Wild Reproducible Studies},
   version = {0.1.0},
   year    = {2026},
   url     = {https://acquire-framework.github.io}

@@ -1,6 +1,6 @@
 ---
-title: "ACQUIRE"
-subtitle: "Acquisition, Curation and QUality Infrastructure for REproducible in-the-wild studies"
+title: "ACQUIRE Framework"
+subtitle: "Acquisition, Curation and QUality for In-the-wild REproducible studies"
 toc: false
 page-layout: full
 ---

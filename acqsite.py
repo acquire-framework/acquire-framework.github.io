@@ -10,14 +10,18 @@ from __future__ import annotations
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 
-BG = "#0e0f11"
-SURFACE = "#16181b"
-TEXT = "#e4e2df"
-MUTED = "#9aa0a6"
-ACCENT = "#3ad6c4"
-PASS = "#5aa9ff"
-FAIL = "#ff9147"
-BORDER = "#2a2e33"
+# Figures are rendered once at build time and cannot follow the reader's theme.
+# They are therefore styled light and given an explicit light background, so
+# they stay legible as a light card when the page is viewed in dark mode. Every
+# ink colour below meets WCAG AA against this background.
+BG = "#f6f5f3"
+SURFACE = "#ffffff"
+TEXT = "#1b1a19"
+MUTED = "#55504b"
+ACCENT = "#0b6e63"
+PASS = "#1149a8"
+FAIL = "#9a4409"
+BORDER = "#c9c5bf"
 
 
 def style() -> None:

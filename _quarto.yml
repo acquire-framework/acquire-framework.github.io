@@ -15,7 +15,7 @@ project:
     - "/robots.txt"
 
 website:
-  title: "ACQUIRE"
+  title: "ACQUIRE Framework"
   # Emits llms.txt and per-page .llms.md with rewritten internal links.
   # Published as an agent-facing index, not as an SEO measure — crawlers
   # demonstrably do not consume it. See the design document for the evidence.
@@ -67,7 +67,12 @@ website:
 
 format:
   html:
-    theme: [darkly, styles/instrument.scss]
+    # Light is the default and the primary design target; the dark variant is
+    # available from the navbar toggle. One stylesheet serves both — see
+    # styles/instrument.scss, which switches on body.quarto-dark.
+    theme:
+      light: [cosmo, styles/instrument.scss]
+      dark: [darkly, styles/instrument.scss]
     toc: true
     toc-depth: 3
     anchor-sections: true

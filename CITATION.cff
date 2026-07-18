@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 title: >-
-  ACQUIRE: Acquisition, Curation and Quality Infrastructure for Reproducible
-  In-the-Wild Studies
+  ACQUIRE Framework: Acquisition, Curation and Quality for In-the-Wild
+  Reproducible Studies
 message: >-
   If you use this framework or its checklist, please cite it and state the
   version. Thresholds and recipes change as evidence accumulates, so a version
