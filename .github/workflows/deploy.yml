@@ -48,12 +48,17 @@ jobs:
           QUARTO_PYTHON: .venv/bin/python
         run: uv run quarto render
 
-      - name: Verify internal planning docs were not published
+      # Guards against working notes reaching the public site: only .qmd pages
+      # are rendered, so anything under a notes directory appearing in _site
+      # means the render list was widened by mistake.
+      - name: Verify no working notes were published
         run: |
-          if grep -rlqi "working notes" _site 2>/dev/null; then
-            echo "::error::Internal planning material found in _site"
-            exit 1
-          fi
+          for d in docs notes planning private; do
+            if [ -e "_site/$d" ]; then
+              echo "::error::_site/$d should not be published"
+              exit 1
+            fi
+          done
           echo "clean"
 
       # enablement: true turns Pages on for the repository from the workflow

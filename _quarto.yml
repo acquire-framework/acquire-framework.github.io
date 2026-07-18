@@ -4,9 +4,8 @@ project:
   # Execute every page from the project root so paths and the shared `acqsite`
   # helper resolve identically regardless of where a page lives.
   execute-dir: project
-  # Only .qmd pages are published. This deliberately excludes docs/plans/, which
-  # holds internal planning material (working notes strategy, internal
-  # considerations) that must not appear on the public site.
+  # Only .qmd pages are published, so working notes kept alongside the project
+  # cannot reach the public site by accident.
   render:
     - "**/*.qmd"
   resources:
