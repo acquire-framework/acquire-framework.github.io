@@ -164,14 +164,28 @@ summary:focus-visible {
 // squeezed them. Each gets its own column with room to breathe, collapsing to
 // a single column on narrow viewports.
 
-// Two explicit columns so the routes always sit side by side on desktop,
-// rather than auto-fit dropping one onto a second row at awkward widths.
+// Two explicit columns so the routes always sit side by side on desktop.
+//
+// Pandoc wraps consecutive links in a single <p>, so the grid would otherwise
+// have exactly one child and the block-level anchors inside it would stack.
+// The rule is applied to both the container and that paragraph, and the
+// paragraph is made to span the full row — so the layout is correct whether or
+// not Pandoc inserts it.
 .acq-cta {
+  margin: 2.2rem 0 0.5rem;
+  max-width: 54rem;
+}
+
+.acq-cta,
+.acq-cta > p {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.9rem;
-  margin: 2.2rem 0 0.5rem;
-  max-width: 54rem;
+}
+
+.acq-cta > p {
+  margin: 0;
+  grid-column: 1 / -1;
 }
 
 .acq-cta a {
@@ -377,7 +391,8 @@ summary:focus-visible {
 .cell-output, pre, table { overflow-x: auto; }
 
 @media (max-width: 640px) {
-  .acq-cta { grid-template-columns: 1fr; }
+  .acq-cta,
+  .acq-cta > p { grid-template-columns: 1fr; }
   .acq-catalogue .row-item { flex-wrap: wrap; }
   .acq-catalogue .dots { margin-left: 0; }
 }
