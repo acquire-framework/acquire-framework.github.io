@@ -27,7 +27,7 @@ and shape it. [Challenge an item →](https://github.com/acquire-framework/acqui
 
 **Authors**, who attach it to a methods section. **Reviewers**, who use it to
 request specific acquisition details rather than a vague "more detail on data
-quality" — see the [reviewer form](https://github.com/acquire-framework/acquire-framework.github.io/blob/main/templates/reviewer-form.md).
+quality" — see the [reviewer form](../templates/index.qmd#reviewer-form).
 **Dataset curators**, who use the schema and provenance templates. And
 **students**, for whom acquisition discipline is most cheaply instilled during
 supervision.
@@ -114,18 +114,18 @@ carry no information. A justification is acceptable only if it:
 3. **Describes the validation evidence offered instead**
 
 "Uncertainty could not be established" alone does not satisfy the item. The
-[uncertainty statement template](https://github.com/acquire-framework/acquire-framework.github.io/blob/main/templates/uncertainty-statement.md)
+[uncertainty statement template](../templates/index.qmd#uncertainty-statement)
 provides both the budget form and the justification form.
 
 ## Templates
 
 | Template | Satisfies |
 |:--|:--|
-| [Sensor schema](https://github.com/acquire-framework/acquire-framework.github.io/blob/main/templates/sensor-schema.yml) | MRC-08 |
-| [Quality flags](https://github.com/acquire-framework/acquire-framework.github.io/blob/main/templates/quality-flags.yml) | MRC-01, MRC-02, MRC-09 |
-| [Uncertainty statement](https://github.com/acquire-framework/acquire-framework.github.io/blob/main/templates/uncertainty-statement.md) | MRC-05 |
-| [Dataset provenance](https://github.com/acquire-framework/acquire-framework.github.io/blob/main/templates/dataset-provenance.yml) | MRC-03, MRC-09 |
-| [Reviewer form](https://github.com/acquire-framework/acquire-framework.github.io/blob/main/templates/reviewer-form.md) | all |
+| [Sensor schema](../templates/index.qmd#sensor-schema) | MRC-08 |
+| [Quality flags](../templates/index.qmd#quality-flags) | MRC-01, MRC-02, MRC-09 |
+| [Uncertainty statement](../templates/index.qmd#uncertainty-statement) | MRC-05 |
+| [Dataset provenance](../templates/index.qmd#dataset-provenance) | MRC-03, MRC-09 |
+| [Reviewer form](../templates/index.qmd#reviewer-form) | all |
 
 ## Going further
 

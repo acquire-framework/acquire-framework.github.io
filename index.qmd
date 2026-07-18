@@ -78,11 +78,11 @@ how to detect it, and how well that detection is evidenced.
 **[The guideline book](lifecycle/index.qmd)** — an operational companion for
 teams building a study, stage by stage.
 
-**Templates and forms** — [sensor schema](https://github.com/acquire-framework/acquire-framework.github.io/blob/main/templates/sensor-schema.yml),
-[quality flags](https://github.com/acquire-framework/acquire-framework.github.io/blob/main/templates/quality-flags.yml),
-[uncertainty statement](https://github.com/acquire-framework/acquire-framework.github.io/blob/main/templates/uncertainty-statement.md),
-[dataset provenance](https://github.com/acquire-framework/acquire-framework.github.io/blob/main/templates/dataset-provenance.yml),
-and a [reviewer form](https://github.com/acquire-framework/acquire-framework.github.io/blob/main/templates/reviewer-form.md).
+**Templates and forms** — [sensor schema](templates/index.qmd#sensor-schema),
+[quality flags](templates/index.qmd#quality-flags),
+[uncertainty statement](templates/index.qmd#uncertainty-statement),
+[dataset provenance](templates/index.qmd#dataset-provenance),
+and a [reviewer form](templates/index.qmd#reviewer-form).
 
 **[A worked synchronization example](https://github.com/acquire-framework/acquire-framework.github.io/tree/main/examples/synchronization)** —
 executable. Two BLE devices at +40 and −25 ppm, re-anchored at reconnection:
@@ -113,7 +113,7 @@ Reproducibility, and Evidence* — treats the whole acquisition chain as a
 measuring system and evaluates it along three axes: **measurement validity**,
 **record integrity and provenance**, and **observation-process validity**.
 
-> Daniol, M. and Sroka, R. (2026). Reproducibility Begins at Acquisition: The
+> Danioł, M. and Sroka, R. (2026). Reproducibility Begins at Acquisition: The
 > ACQUIRE Framework for Trustworthy In-the-Wild Sensing. *Companion of the 2026
 > ACM International Joint Conference on Pervasive and Ubiquitous Computing
 > (UbiComp/ISWC '26 Companion)*, Shanghai, China.

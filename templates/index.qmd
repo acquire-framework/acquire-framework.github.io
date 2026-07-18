@@ -1,0 +1,95 @@
+---
+title: "Templates and forms"
+subtitle: "Fill-in artifacts for the disclosures the checklist asks for."
+toc: true
+---
+
+Each template corresponds to items of the
+[Minimum Reporting Checklist](../checklist/index.qmd). They are shown in full
+below and can be downloaded directly.
+
+| Template | Satisfies | Download |
+|:--|:--|:--|
+| [Sensor schema](#sensor-schema) | MRC-08 | [`sensor-schema.yml`](sensor-schema.yml) |
+| [Quality flags](#quality-flags) | MRC-01, 02, 09 | [`quality-flags.yml`](quality-flags.yml) |
+| [Uncertainty statement](#uncertainty-statement) | MRC-05 | [`uncertainty-statement.md`](uncertainty-statement.md) |
+| [Dataset provenance](#dataset-provenance) | MRC-03, 09 | [`dataset-provenance.yml`](dataset-provenance.yml) |
+| [Reviewer form](#reviewer-form) | all | [`reviewer-form.md`](reviewer-form.md) |
+
+```{python}
+#| echo: false
+from pathlib import Path
+from IPython.display import Markdown
+
+def show(filename: str, lang: str) -> str:
+    body = Path("templates", filename).read_text(encoding="utf-8").rstrip()
+    return f"```{lang}\n{body}\n```"
+```
+
+## Sensor schema {#sensor-schema}
+
+Publish one per sensor stream, alongside the data. Without it a dataset is not
+machine-interpretable: a reader cannot tell what was measured, in what units, at
+what nominal rate, or against what expectation — and so cannot check the data
+for the failures the taxonomy catalogues.
+
+The nominal rate matters most. It cannot be inferred from the data, because
+inferring it would define away
+[ACQ-F01](../taxonomy/index.qmd), the best-quantified failure in the taxonomy.
+
+```{python}
+#| echo: false
+Markdown(show("sensor-schema.yml", "yaml"))
+```
+
+## Quality flags {#quality-flags}
+
+A flag is only interpretable if the reader knows the threshold that produced it
+and what applied it. The `not_covered` section is the important one: a reader
+who sees only green flags will otherwise infer a validation that never ran.
+
+```{python}
+#| echo: false
+Markdown(show("quality-flags.yml", "yaml"))
+```
+
+## Uncertainty statement {#uncertainty-statement}
+
+Part A is the quantitative budget. Part B is the justification route permitted
+by MRC-05, with the floor that keeps it from becoming a null answer: name the
+dominant sources, state why each could not be quantified, describe the
+validation evidence offered instead.
+
+```{python}
+#| echo: false
+Markdown(show("uncertainty-statement.md", "markdown"))
+```
+
+## Dataset provenance {#dataset-provenance}
+
+Records the auditable lineage from a published number back to the act of
+measurement — the record-fidelity analogue of metrological traceability, and
+distinct from it.
+
+Provenance reconstructed at the end of a study is a best-effort narrative;
+provenance recorded as data arrives is evidence.
+
+```{python}
+#| echo: false
+Markdown(show("dataset-provenance.yml", "yaml"))
+```
+
+## Reviewer form {#reviewer-form}
+
+For reviewing a manuscript or dataset reporting in-the-wild sensor data. Its
+purpose is to let a reviewer request *specific* acquisition details instead of
+"more detail on data quality", which authors cannot act on.
+
+Note the proportionality rule and the instruction that absence of a disclosure
+is a finding rather than a failing — the form should not push authors toward
+false precision.
+
+```{python}
+#| echo: false
+Markdown(show("reviewer-form.md", "markdown"))
+```
