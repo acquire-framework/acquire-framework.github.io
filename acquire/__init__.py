@@ -14,7 +14,7 @@ from . import checks, schema, synth
 from .report import CheckResult, Report
 from .schema import SchemaError
 
-__version__ = "0.1.0"
+__version__ = "26.7"
 
 __all__ = [
     "CheckResult",

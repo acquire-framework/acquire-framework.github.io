@@ -72,7 +72,7 @@ The two instruments answer different questions and are used at different times.
 | **Question** | What must a reader be told? | What should a team do? |
 | **Used** | When writing the methods section | Throughout the study |
 | **Audience** | Authors, reviewers, curators | Engineers, PhD students, PIs |
-| **Status** | The paper's instrument, v0.1 | Practice, no standing as a standard |
+| **Status** | The paper's instrument, v26.7 | Practice, no standing as a standard |
 | **Length** | 10 items | 65 items |
 
 A study can complete the extended checklist and still report nothing; a study

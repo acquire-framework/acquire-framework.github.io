@@ -60,7 +60,7 @@ report
 Two failures, both invisible to conventional monitoring, both traceable to a
 specific recipe. That is the whole idea.
 
-## What ACQUIRE v0.1 contains {.unnumbered}
+## What ACQUIRE v26.7 contains {.unnumbered}
 
 **[The acquisition-failure taxonomy](taxonomy/index.qmd)** — eight failure modes
 by system layer, each mapped to its signature in the dataset and to the property
@@ -122,7 +122,7 @@ measuring system and evaluates it along three axes: **measurement validity**,
 
 ## Status {.unnumbered}
 
-Version 0.1.0. The catalogue is small and honest about it: every recipe carries
+Version 26.7. The catalogue is small and honest about it: every recipe carries
 an evidence level, and most are currently at the lowest one. The taxonomy is
 expert-derived and formative rather than systematically validated, and is
 brought to REPRODUCE for community evaluation and extension.

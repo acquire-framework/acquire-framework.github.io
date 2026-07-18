@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 title: >-
-  ACQUIRE v0.1: Taxonomy, Checklist and Diagnostics for Reproducible In-the-Wild
+  ACQUIRE v26.7: Taxonomy, Checklist and Diagnostics for Reproducible In-the-Wild
   Sensing
 message: >-
   If you use this framework, its taxonomy, or its checklist, please cite the
@@ -19,7 +19,7 @@ authors:
     email: rsroka@agh.edu.pl
     affiliation: >-
       Department of Measurements and Electronics, AGH University of Krakow
-version: 0.1.0
+version: "26.7"
 date-released: "2026-07-18"
 license: MIT
 repository-code: >-

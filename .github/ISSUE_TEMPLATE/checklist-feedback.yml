@@ -1,14 +1,14 @@
 name: Score or challenge a checklist item
 description: >-
   Tell us an MRC item is wrong, unmeasurable, redundant, or missing. Public
-  disagreement is how v0.1 becomes something worth adopting.
+  disagreement is how v26.7 becomes something worth adopting.
 title: "[checklist] "
 labels: ["checklist", "needs-triage"]
 body:
   - type: markdown
     attributes:
       value: |
-        The Minimum Reporting Checklist is **v0.1 and one group's opinion**. It
+        The Minimum Reporting Checklist is **v26.7 and one group's opinion**. It
         has not been evaluated for usability, coverage, or inter-rater
         agreement, and no claim is made that applying it improves study
         outcomes.

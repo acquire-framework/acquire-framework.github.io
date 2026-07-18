@@ -1,16 +1,20 @@
 name: Test and deploy
 
+# Root of the site is built from main and tracks current guidance.
+# Every tag v<version> is additionally published as an immutable copy at
+# /v<version>/, so a study citing a version can be checked against exactly
+# what it cited. Versioned copies are never rebuilt or overwritten.
+
 on:
   push:
     branches: [main]
+    tags: ["v*"]
   pull_request:
     branches: [main]
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
   group: pages
@@ -21,6 +25,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Tags and full history, so the stamped commit is meaningful.
+          fetch-depth: 0
 
       - name: Install uv
         uses: astral-sh/setup-uv@v5
@@ -43,9 +50,40 @@ jobs:
       - name: Run tests
         run: uv run pytest -q
 
+      - name: Determine release identity
+        id: release
+        run: |
+          VERSION=$(uv run python -c "import re,pathlib; \
+            print(re.search(r'__version__\s*=\s*\"([^\"]+)\"', \
+            pathlib.Path('acquire/__init__.py').read_text()).group(1))")
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          if [ "${GITHUB_REF_TYPE}" = "tag" ]; then
+            echo "is_release=true" >> "$GITHUB_OUTPUT"
+            echo "tag=${GITHUB_REF_NAME}" >> "$GITHUB_OUTPUT"
+            # A tag must agree with the packaged version, or the published
+            # artifact would not be the version it claims to be.
+            if [ "v$VERSION" != "${GITHUB_REF_NAME}" ]; then
+              echo "::error::tag ${GITHUB_REF_NAME} does not match package version $VERSION"
+              exit 1
+            fi
+          else
+            echo "is_release=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      # Versioned copies are self-contained: absolute URLs in the sitemap and
+      # llms.txt must point inside the version, not back at the root.
+      - name: Point absolute URLs at the versioned copy
+        if: steps.release.outputs.is_release == 'true'
+        run: |
+          sed -i "s|site-url: https://acquire-framework.github.io|site-url: https://acquire-framework.github.io/v${{ steps.release.outputs.version }}|" _quarto.yml
+
+      - name: Stamp version and commit provenance
+        env:
+          ACQUIRE_RELEASE_TAG: ${{ steps.release.outputs.tag }}
+        run: uv run python tools/stamp_version.py
+
       # The CSV and Markdown forms of the taxonomy and checklist are derived
       # from the YAML sources rather than committed, so they cannot drift.
-      # They must exist before render, which serves them as site resources.
       - name: Export machine-readable artifact forms
         run: uv run python tools/export_artifact.py
 
@@ -67,28 +105,25 @@ jobs:
           done
           echo "clean"
 
-      # enablement: true turns Pages on for the repository from the workflow
-      # itself, so the first push deploys without a manual settings step.
-      - name: Configure Pages
-        if: github.ref == 'refs/heads/main'
-        uses: actions/configure-pages@v5
-        with:
-          enablement: true
+      # ── publish ──────────────────────────────────────────────────────────
+      # keep_files preserves the /v<version>/ directories already on the
+      # branch; without it each deploy would delete every published version.
 
-      - name: Upload artifact
+      - name: Publish current guidance to the site root
         if: github.ref == 'refs/heads/main'
-        uses: actions/upload-pages-artifact@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          path: _site
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
+          keep_files: true
+          commit_message: "site: ${{ github.sha }}"
 
-  deploy:
-    if: github.ref == 'refs/heads/main'
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Publish immutable versioned copy
+        if: steps.release.outputs.is_release == 'true'
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
+          destination_dir: v${{ steps.release.outputs.version }}
+          keep_files: true
+          commit_message: "release: v${{ steps.release.outputs.version }} (${{ github.sha }})"

@@ -18,37 +18,37 @@ definitions:
   - flag: rate_deficit
     description: Effective sampling rate below nominal beyond tolerance
     threshold: <e.g. |1 - effective/nominal| > 0.05>
-    applied_by: <e.g. acquire v0.1.0, check TIME-01>
+    applied_by: <e.g. acquire v26.7, check TIME-01>
     property: O
 
   - flag: gap
     description: Interruption in the stream longer than the stated limit
     threshold: <e.g. inter-sample interval > 1.0 s>
-    applied_by: <e.g. acquire v0.1.0, check TIME-02>
+    applied_by: <e.g. acquire v26.7, check TIME-02>
     property: O
 
   - flag: clock_nonmonotonic
     description: Timestamps not strictly increasing
     threshold: any backward step
-    applied_by: <e.g. acquire v0.1.0, check TIME-03>
+    applied_by: <e.g. acquire v26.7, check TIME-03>
     property: M
 
   - flag: unit_scale_suspect
     description: Resting magnitude departs from one standard gravity
     threshold: <e.g. |1 - observed/9.80665| > 0.02>
-    applied_by: <e.g. acquire v0.1.0, check SIG-01>
+    applied_by: <e.g. acquire v26.7, check SIG-01>
     property: M
 
   - flag: sensor_stuck
     description: All channels bit-identical across consecutive samples
     threshold: <e.g. frozen run > 2 s>
-    applied_by: <e.g. acquire v0.1.0, check SIG-02>
+    applied_by: <e.g. acquire v26.7, check SIG-02>
     property: M
 
   - flag: saturation
     description: Samples censored at the configured range
     threshold: <e.g. > 0.1% of samples at the rail>
-    applied_by: <e.g. acquire v0.1.0, check SIG-03>
+    applied_by: <e.g. acquire v26.7, check SIG-03>
     property: M
 
 # What these flags do NOT cover. State this explicitly: a reader who sees only

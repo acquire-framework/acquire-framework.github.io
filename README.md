@@ -7,7 +7,7 @@ studies — instrument validity, failure detection, monitoring, data versioning,
 reproducible dataset release.
 
 **Site:** <https://acquire-framework.github.io>
-**Status:** v0.1.0 — first public release.
+**Status:** v26.7 — first public release.
 
 ## What's here
 

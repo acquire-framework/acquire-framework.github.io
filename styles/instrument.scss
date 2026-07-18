@@ -387,6 +387,31 @@ summary:focus-visible {
   font-weight: 600;
 }
 
+// ── version banner ──────────────────────────────────────────────────────────
+// Shown only on the immutable /v<version>/ copies, so a reader arriving from a
+// citation knows this is a fixed snapshot rather than current guidance.
+
+.acq-version-banner {
+  background: var(--acq-fail-bg);
+  border-bottom: 2px solid var(--acq-fail);
+  color: var(--acq-text);
+  padding: 0.7rem 1.2rem;
+  font-size: 0.88rem;
+  text-align: center;
+}
+
+.acq-version-banner code {
+  font-size: 0.85em;
+  background: none;
+  color: var(--acq-muted);
+}
+
+.acq-version-banner a {
+  color: var(--acq-accent);
+  text-decoration: underline;
+  font-weight: 600;
+}
+
 // ── footer ──────────────────────────────────────────────────────────────────
 
 .nav-footer {

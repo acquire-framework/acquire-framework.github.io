@@ -15,7 +15,7 @@ standards. CONSORT-EHEALTH and mERA standardize the reporting of
 sensor data. ACQUIRE is complementary: it reports the **measuring system**.
 
 ::: {.callout-important appearance="simple"}
-**v0.1 is one group's opinion, not a community consensus.** The checklist has
+**v26.7 is one group's opinion, not a community consensus.** The checklist has
 not been evaluated for usability, coverage, or inter-rater agreement, and no
 claim is made that applying it improves study outcomes.
 

@@ -52,7 +52,7 @@ processing:
 
 # ── quality control ───────────────────────────────────────────────────────────
 quality_control:
-  diagnostics: <e.g. acquire v0.1.0>
+  diagnostics: <e.g. acquire v26.7>
   report: <path to the emitted diagnostic report>
   exclusion_criteria:
     - criterion: <e.g. effective rate below 95% of nominal>

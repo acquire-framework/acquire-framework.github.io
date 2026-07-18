@@ -1,4 +1,4 @@
-# ACQUIRE reviewer form v0.1
+# ACQUIRE reviewer form v26.7
 
 For reviewing a manuscript or dataset that reports in-the-wild sensor data.
 
@@ -82,6 +82,6 @@ author knows exactly what to add:
 
 ---
 
-*ACQUIRE MRC v0.1. The checklist has not been evaluated for usability, coverage,
+*ACQUIRE MRC v26.7. The checklist has not been evaluated for usability, coverage,
 or inter-rater agreement; no claim is made that applying it improves study
 outcomes. Feedback on the form itself is welcome as a repository issue.*

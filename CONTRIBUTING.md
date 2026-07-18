@@ -20,7 +20,7 @@ Usually an afternoon, and it makes the framework usable by everyone with that
 hardware.
 
 **Disagreement with the checklist.** Items you think are wrong, unmeasurable, or
-missing. At v0.1 this is one group's opinion; it becomes a standard only through
+missing. At v26.7 this is one group's opinion; it becomes a standard only through
 public disagreement.
 
 ## Recipe format

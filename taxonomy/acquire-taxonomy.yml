@@ -1,4 +1,4 @@
-# ACQUIRE initial acquisition-failure taxonomy, v0.1
+# ACQUIRE initial acquisition-failure taxonomy, v26.7
 #
 # Machine-readable form of Table 1 of the accompanying paper.
 #
@@ -15,7 +15,7 @@
 #            E   experience-derived candidate class, NOT a prevalence estimate
 #            A   illustrative assumption
 
-version: "0.1.0"
+version: "26.7"
 updated: "2026-07-18"
 paper: "Danioł & Sroka (2026), UbiComp/ISWC '26 Companion"
 

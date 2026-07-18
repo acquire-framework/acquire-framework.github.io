@@ -1,4 +1,4 @@
-# ACQUIRE Minimum Reporting Checklist (MRC) v0.1
+# ACQUIRE Minimum Reporting Checklist (MRC) v26.7
 #
 # Machine-readable form of Table 2 of the accompanying paper. Each item derives
 # from a row of the taxonomy (taxonomy/acquire-taxonomy.yml) and is intended to
@@ -19,7 +19,7 @@
 #            data and logs, so that disclosure is a by-product of validation
 #            rather than unpaid reporting work.
 
-version: "0.1.0"
+version: "26.7"
 updated: "2026-07-18"
 paper: "Danioł & Sroka (2026), UbiComp/ISWC '26 Companion"
 
