@@ -54,7 +54,7 @@ external reference: a second device, an NTP query logged alongside the data, or
 a deliberate synchronisation event.
 
 This is why clock agreement appears in the framework's `NOT_CHECKED` list rather
-than as a diagnostic that quietly under-performs.
+than as a check that quietly under-performs.
 
 Only gross drift, large enough to breach the sampling-rate tolerance, surfaces
 indirectly through [TIME-01](03-doze-downsampling.qmd).

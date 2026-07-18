@@ -2,9 +2,9 @@
 
 *Acquisition Criteria for Quality, Uncertainty, Integrity, Reproducibility, and Evidence*
 
-Recipes, guidelines, and diagnostics for running reproducible in-the-wild sensing
-studies — instrument validity, failure detection, monitoring, data versioning, and
-reproducible dataset release.
+A taxonomy, a reporting checklist and templates for running reproducible
+in-the-wild sensing studies — instrument validity, failure detection,
+monitoring, data versioning, and reproducible dataset release.
 
 **Site:** <https://acquire-framework.github.io>
 **Status:** specification 26.7.1.
@@ -12,14 +12,18 @@ reproducible dataset release.
 ## What's here
 
 - **`spec/`** — the specification manifest and changelog.
-- **`lifecycle/`** — the guideline book, organised by study stage.
+- **`taxonomy/`** — the acquisition-failure taxonomy.
+- **`checklist/`** — the Minimum Reporting Checklist, YAML as single source of truth.
+- **`templates/`** — sensor schema, quality flags, uncertainty statement,
+  dataset provenance, reviewer form.
 - **`recipes/`** — the failure catalogue, organised by symptom.
-- **`checklist/`** — the reporting checklist, YAML as single source of truth.
+- **`lifecycle/`** — the guideline book, organised by study stage.
+- **`examples/`** — a worked cross-device synchronization example.
 
 ## What this is
 
-A specification and a set of documents. No diagnostic software is published;
-tooling is on the roadmap and deliberately not announced.
+A specification and a set of documents. No software is published as part of
+this release.
 
 ## Development
 

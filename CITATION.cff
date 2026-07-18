@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 title: >-
-  ACQUIRE v26.7: Taxonomy, Checklist and Diagnostics for Reproducible In-the-Wild
-  Sensing
+  ACQUIRE 26.7.1: Taxonomy, Checklist and Reporting Templates for Reproducible
+  In-the-Wild Sensing
 message: >-
   If you use this framework, its taxonomy, or its checklist, please cite the
   accompanying paper (see preferred-citation) and state the artifact version.
@@ -35,8 +35,8 @@ abstract: >-
   in-the-wild sensing study as a measuring system, and evaluates it along three
   axes: measurement validity, record integrity and provenance, and
   observation-process validity. This artifact bundles the failure taxonomy, the
-  reporting checklist, reporting and provenance templates, and executable
-  diagnostics for detecting acquisition failures in tri-axial inertial data.
+  reporting checklist, reporting and provenance templates, a reviewer form, and
+  a worked example of cross-device synchronization uncertainty.
 keywords:
   - reproducibility
   - in-the-wild sensing
