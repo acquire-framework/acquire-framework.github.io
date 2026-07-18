@@ -1,0 +1,49 @@
+---
+title: "Failure catalogue"
+subtitle: "Entered by symptom, for when the data already looks wrong."
+toc: false
+---
+
+Each entry states what you observe, what causes it, how to detect it
+automatically, and how well that detection is evidenced.
+
+The evidence level is shown for every recipe and is deliberately conservative.
+Most entries are currently at `●●○○` or below, which reflects the honest state
+of the field rather than a gap in ambition — replication is the contribution
+this catalogue most needs.
+
+::: {.acq-catalogue}
+
+::: {.row-item}
+[TIME-01]{.id} [Silent downsampling under OS power management](03-doze-downsampling.qmd) [●●○○]{.dots}
+:::
+
+::: {.row-item}
+[TIME-03]{.id} [Clock drift and reset across devices](01-clock-drift.qmd) [●○○○]{.dots}
+:::
+
+::: {.row-item}
+[SIG-01]{.id} [Unit and scale mismatch](02-unit-scale-mismatch.qmd) [●●○○]{.dots}
+:::
+
+::: {.row-item}
+[SIG-02]{.id} [Stuck sensor reporting stale values](04-stuck-sensor.qmd) [●○○○]{.dots}
+:::
+
+::: {.row-item}
+[SIG-03]{.id} [Range saturation](05-range-saturation.qmd) [●○○○]{.dots}
+:::
+
+:::
+
+## Evidence levels
+
+| Badge | Level | Meaning |
+|:--|:--|:--|
+| `●○○○` | anecdotal | Observed, not systematically validated |
+| `●●○○` | single site | One deployment; detector validated against ground truth |
+| `●●●○` | replicated | Confirmed by an independent group |
+| `●●●●` | multi-site | Confirmed across three or more independent groups |
+
+A recipe at `●○○○` is not wrong — it is unreplicated. Treat the distinction as
+you would any other single-source claim.

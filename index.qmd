@@ -1,0 +1,93 @@
+---
+title: "ACQUIRE"
+subtitle: "Acquisition, Curation and QUality Infrastructure for REproducible in-the-wild studies"
+toc: false
+page-layout: full
+---
+
+::: {.acq-hero}
+
+::: {.acq-lede}
+Reproducibility begins at acquisition.
+:::
+
+Most in-the-wild sensing studies collect invalid data for weeks before anyone
+notices. Dashboards stay green, files keep arriving, and the failure only
+surfaces during analysis — when the fieldwork is already spent.
+
+ACQUIRE is a guideline book and a set of diagnostics for catching those failures
+while they are still cheap to fix.
+
+::: {.acq-cta}
+[Building a study? Start here](lifecycle/index.qmd)
+[Something wrong with your data?](recipes/index.qmd){.secondary}
+:::
+
+:::
+
+## What silent failure looks like {.unnumbered}
+
+Below is one hour of accelerometer data from a phone that reported itself
+healthy for the entire recording. The app requested 50 Hz. Every file arrived.
+No error was logged.
+
+```{python}
+#| label: fig-hero
+#| fig-cap: "Effective sampling rate collapses halfway through the recording. Nothing in the application's own telemetry registers this."
+#| echo: false
+
+import acqsite, acquire
+from acquire.synth import Fault
+
+acqsite.style()
+df = acquire.synth.faulty(duration_s=3600, rate_hz=50, seed=3)
+
+fig, ax = acqsite.new_axes(height=2.1)
+acqsite.rate_trace(ax, df, nominal_hz=50)
+fig.tight_layout()
+```
+
+Running the diagnostics against it takes one line:
+
+```{python}
+#| echo: true
+import acquire
+
+report = acquire.check(df, nominal_hz=50)
+report
+```
+
+Two failures, both invisible to conventional monitoring, both traceable to a
+specific recipe. That is the whole idea.
+
+## Two ways in {.unnumbered}
+
+**[The guideline book](lifecycle/index.qmd)** follows the study lifecycle —
+design, instrument, pilot, deploy, monitor, curate, release. Each stage carries
+an ordered checklist. Use it when you are building a study and want to know what
+to do next.
+
+**[The failure catalogue](recipes/index.qmd)** is entered by symptom. Each entry
+states what you observe, what causes it, how to detect it automatically, and how
+well that detection is evidenced. Use it when your data already looks wrong.
+
+## Run it on your own data {.unnumbered}
+
+The diagnostics are a Python package, intended to run in your own pipeline or CI
+against incoming study data:
+
+```bash
+pip install acquire-framework
+acquire check recordings/day01.csv --nominal 50
+```
+
+It exits non-zero on failure, so it can gate a pipeline.
+
+There is also a [browser-based demonstration](check/index.qmd) that runs the same
+code locally in your tab — nothing is uploaded, and nothing leaves your device.
+
+## Status {.unnumbered}
+
+Version 0.1.0. The catalogue is small and honest about it: every recipe carries
+an evidence level, and most are currently at the lowest one. Replications are
+the single most useful contribution — see [contributing](https://github.com/acquire-framework/acquire-framework.github.io/blob/main/CONTRIBUTING.md).

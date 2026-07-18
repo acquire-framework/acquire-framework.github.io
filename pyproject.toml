@@ -1,0 +1,36 @@
+[project]
+name = "acquire-framework"
+version = "0.1.0"
+description = "Diagnostics for reproducible in-the-wild sensing studies"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Mateusz Daniol" }]
+keywords = ["sensing", "reproducibility", "imu", "wearables", "data-quality"]
+
+# Pyodide constraint: the core package must depend only on packages that ship
+# with Pyodide (numpy, pandas, scipy) or are pure Python. Anything else breaks
+# the in-browser checker. Enforced by tests/test_pyodide_constraint.py.
+dependencies = ["numpy>=1.24", "pandas>=2.0"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "ruff>=0.6"]
+# Site build only. Deliberately kept out of the core dependencies above so the
+# Pyodide constraint is not weakened by anything the website happens to need.
+docs = ["matplotlib>=3.8", "pyyaml>=6.0", "jupyter>=1.0", "nbclient>=0.10"]
+
+[project.scripts]
+acquire = "acquire.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["acquire"]
+
+[tool.ruff]
+line-length = 88
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

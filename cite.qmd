@@ -1,0 +1,45 @@
+---
+title: "Citing ACQUIRE"
+toc: false
+---
+
+## The framework
+
+ACQUIRE is versioned and archived, so a citation identifies exactly which
+version of the recipes, thresholds, and checklist a study was assessed against.
+Thresholds will change as evidence accumulates; citing a version rather than a
+URL is what keeps that honest.
+
+```bibtex
+@software{acquire_2026,
+  author  = {Daniol, Mateusz},
+  title   = {{ACQUIRE}: Acquisition, Curation and Quality Infrastructure
+             for Reproducible In-the-Wild Studies},
+  version = {0.1.0},
+  year    = {2026},
+  url     = {https://acquire-framework.github.io}
+}
+```
+
+A DOI will be minted on the first tagged release and added here.
+
+## The checklist
+
+If you attach a completed checklist as supplementary material, cite the
+checklist version explicitly — it is stamped in the exported artifact:
+
+> Data collection followed the ACQUIRE checklist v0.1.0 (Daniol, 2026). The
+> completed checklist, including justifications for items marked not applicable,
+> is provided as supplementary material.
+
+## Contributing changes the citation
+
+Contributors of accepted recipes, replications, and adapters are credited on the
+release record. This is deliberate: replication is the contribution the
+catalogue most needs, and it should carry the kind of credit that appears on a
+CV.
+
+Note that contributing to the framework is distinct from co-authorship on
+associated research papers — see
+[CONTRIBUTING](https://github.com/acquire-framework/acquire-framework.github.io/blob/main/CONTRIBUTING.md)
+for how the two are handled.

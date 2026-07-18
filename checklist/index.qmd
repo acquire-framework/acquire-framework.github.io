@@ -1,0 +1,91 @@
+---
+title: "The ACQUIRE checklist"
+subtitle: "Verifiable statements about how a study was conducted."
+toc: true
+---
+
+Clinical trials have CONSORT. Systematic reviews have PRISMA. Observational
+studies have STROBE. In-the-wild sensing has nothing comparable — no agreed
+statement of what a study should have done and reported for its measurements to
+be assessable by a reader.
+
+This checklist is a first attempt. It is generated from
+[`checklist/acquire-checklist.yml`](https://github.com/acquire-framework/acquire-framework.github.io/blob/main/checklist/acquire-checklist.yml),
+which is the single source of truth for the site, the package, and the exported
+artifact.
+
+## How to use it
+
+Work through the items relevant to your study type, then attach the completed
+checklist as supplementary material alongside your paper or dataset.
+
+**Items marked not applicable require a written justification.** Silent omission
+and reasoned exclusion look identical in a finished document, and only one of
+them is honest. Requiring the justification is what makes the completed artifact
+worth a reader's trust.
+
+```{python}
+#| echo: false
+import yaml
+from pathlib import Path
+import pandas as pd
+from IPython.display import Markdown
+
+spec = yaml.safe_load(Path("checklist/acquire-checklist.yml").read_text())
+
+types = spec["study_types"]
+lines = [f"**Version {spec['version']}** · updated {spec['updated']} · "
+         f"{len(spec['items'])} items\n"]
+lines.append("\n**Study types used for filtering:**\n")
+for key, desc in types.items():
+    lines.append(f"- `{key}` — {desc}")
+Markdown("\n".join(lines))
+```
+
+## Items
+
+```{python}
+#| echo: false
+from IPython.display import Markdown
+
+STAGE_ORDER = ["design", "instrument", "pilot", "deploy", "monitor", "curate", "release"]
+by_stage = {}
+for item in spec["items"]:
+    by_stage.setdefault(item["stage"], []).append(item)
+
+out = []
+for stage in STAGE_ORDER:
+    items = by_stage.get(stage, [])
+    if not items:
+        continue
+    out.append(f"### {stage.capitalize()}\n")
+    out.append(f"[{len(items)} items]{{.acq-label}}\n")
+    out.append("| | Statement | Applies to | Recipe |")
+    out.append("|:--|:--|:--|:--|")
+    for item in items:
+        applies = ", ".join(f"`{t}`" for t in item.get("applies_when", []))
+        recipe = item.get("recipe")
+        link = f"[detail](../{recipe}.qmd)" if recipe else ""
+        out.append(
+            f"| `{item['id']}` | {item['statement'].strip()} | {applies} | {link} |"
+        )
+    out.append("")
+Markdown("\n".join(out))
+```
+
+## Export
+
+Machine-readable export is planned for v0.2: a completed checklist will be
+emitted as YAML and as a formatted PDF, each stamped with the checklist version,
+the date, and the DOI of the release that produced it, so a reader can tell
+exactly which version of the standard a study was assessed against.
+
+For now, the source YAML can be copied and completed directly.
+
+## This is a draft standard
+
+Version 0.1.0 is one group's opinion, not a community consensus, and should be
+read that way. It becomes a standard only if other groups use it, disagree with
+it in public, and shape it. Disagreement about specific items — especially items
+you think are wrong, unmeasurable, or missing — is the most useful contribution
+at this stage.

@@ -1,0 +1,88 @@
+project:
+  type: website
+  output-dir: _site
+  # Execute every page from the project root so paths and the shared `acqsite`
+  # helper resolve identically regardless of where a page lives.
+  execute-dir: project
+  # Only .qmd pages are published. This deliberately excludes docs/plans/, which
+  # holds internal planning material (working notes strategy, internal
+  # considerations) that must not appear on the public site.
+  render:
+    - "**/*.qmd"
+  resources:
+    # Anchored to the project root: an unanchored "robots.txt" matches
+    # recursively and drags in fixtures from installed packages.
+    - "/robots.txt"
+
+website:
+  title: "ACQUIRE"
+  # Emits llms.txt and per-page .llms.md with rewritten internal links.
+  # Published as an agent-facing index, not as an SEO measure — crawlers
+  # demonstrably do not consume it. See the design document for the evidence.
+  llms-txt: true
+  description: >-
+    Recipes, guidelines and diagnostics for reproducible in-the-wild sensing
+    studies.
+  site-url: https://acquire-framework.github.io
+  repo-url: https://github.com/acquire-framework/acquire-framework.github.io
+  repo-actions: [edit, issue]
+  search:
+    location: navbar
+    type: overlay
+  navbar:
+    logo-alt: "ACQUIRE"
+    left:
+      - text: "Guideline book"
+        href: lifecycle/index.qmd
+      - text: "Failure catalogue"
+        href: recipes/index.qmd
+      - text: "Checklist"
+        href: checklist/index.qmd
+      - text: "Check your data"
+        href: check/index.qmd
+    right:
+      - icon: github
+        href: https://github.com/acquire-framework/acquire-framework.github.io
+        aria-label: GitHub
+  sidebar:
+    - id: lifecycle
+      title: "Guideline book"
+      style: floating
+      contents:
+        - lifecycle/index.qmd
+        - section: "Study lifecycle"
+          contents:
+            - lifecycle/design.qmd
+            - lifecycle/instrument.qmd
+            - lifecycle/pilot.qmd
+            - lifecycle/deploy.qmd
+            - lifecycle/monitor.qmd
+            - lifecycle/curate.qmd
+            - lifecycle/release.qmd
+  page-footer:
+    left: |
+      ACQUIRE v0.1.0 · MIT · [Cite this framework](/cite.qmd)
+    right: |
+      Built with [Quarto](https://quarto.org)
+
+format:
+  html:
+    theme: [darkly, styles/instrument.scss]
+    toc: true
+    toc-depth: 3
+    anchor-sections: true
+    code-copy: true
+    code-overflow: wrap
+    link-external-newwindow: true
+    email-obfuscation: javascript
+
+
+# Only re-execute pages whose code has changed. Without this every CI build
+# re-runs every diagnostic, which makes the site slow to build and flaky.
+execute:
+  freeze: auto
+  echo: true
+  warning: false
+
+bibliography: references.bib
+citation: true

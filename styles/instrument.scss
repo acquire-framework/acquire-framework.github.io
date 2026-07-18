@@ -1,0 +1,281 @@
+/*-- scss:defaults --*/
+
+// ACQUIRE visual system — "instrument" register.
+// Reads as a measurement device, not as academic documentation and not as
+// generic developer docs. See docs/plans/2026-07-18-…-design.md §3.
+
+// TODO: self-host IBM Plex rather than loading from Google Fonts, so the site
+// makes no third-party requests. Deferred from the v0.1 deploy.
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
+
+$font-family-sans-serif: "IBM Plex Sans", system-ui, -apple-system, sans-serif !default;
+$font-family-monospace: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace !default;
+
+// Base is a warm near-black. Pure #000 is harsh over a long reading session.
+$acq-bg:        #0e0f11 !default;
+$acq-surface:   #16181b !default;
+$acq-border:    #2a2e33 !default;
+$acq-text:      #e4e2df !default;
+$acq-muted:     #9aa0a6 !default;
+
+// Single accent, reserved exclusively for interactive elements: if it is cyan,
+// it is clickable, and nothing else is.
+$acq-accent:    #3ad6c4 !default;
+
+// Pass/fail deliberately avoids red/green — roughly 8% of men have a red-green
+// deficiency and this audience skews male engineering. Always paired with a
+// glyph so state survives greyscale printing too.
+$acq-pass:      #5aa9ff !default;
+$acq-fail:      #ff9147 !default;
+
+$body-bg: $acq-bg !default;
+$body-color: $acq-text !default;
+$link-color: $acq-accent !default;
+$border-color: $acq-border !default;
+$code-block-bg: $acq-surface !default;
+$navbar-bg: $acq-bg !default;
+$navbar-fg: $acq-text !default;
+
+$headings-font-weight: 600 !default;
+$border-radius: 3px !default;
+
+/*-- scss:rules --*/
+
+body {
+  // Instrument panels are information-dense; this is tighter than a typical
+  // docs site on purpose.
+  font-size: 0.95rem;
+  line-height: 1.6;
+  // Figures must line up in columns and must not jitter as live values update.
+  font-variant-numeric: tabular-nums;
+}
+
+h1, h2, h3, h4 { letter-spacing: -0.01em; }
+
+h1.title {
+  font-size: 2.4rem;
+  line-height: 1.15;
+  font-weight: 700;
+}
+
+// Structural labels: SYMPTOM / ROOT CAUSE / DETECTION / EVIDENCE.
+// Mono, uppercase, letterspaced — the signal that this is a readout.
+.acq-label,
+.recipe h2 {
+  font-family: var(--bs-font-monospace, "IBM Plex Mono", monospace);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: $acq-muted;
+  border-bottom: 1px solid $acq-border;
+  padding-bottom: 0.35rem;
+  margin-top: 2.4rem;
+  margin-bottom: 0.9rem;
+}
+
+// ── hero ────────────────────────────────────────────────────────────────────
+
+.acq-hero {
+  padding: 3.5rem 0 1rem;
+  border-bottom: 1px solid $acq-border;
+  margin-bottom: 2.5rem;
+}
+
+.acq-hero .acq-lede {
+  font-size: 1.5rem;
+  line-height: 1.35;
+  font-weight: 600;
+  max-width: 30ch;
+  margin-bottom: 1.2rem;
+}
+
+.acq-hero p {
+  color: $acq-muted;
+  max-width: 62ch;
+}
+
+.acq-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1.8rem 0 0.5rem;
+}
+
+.acq-cta a {
+  font-family: var(--bs-font-monospace, monospace);
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.6rem 1.1rem;
+  border: 1px solid $acq-accent;
+  border-radius: 3px;
+  text-decoration: none;
+  color: $acq-accent;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.acq-cta a:hover {
+  background: $acq-accent;
+  color: $acq-bg;
+}
+
+.acq-cta a.secondary {
+  border-color: $acq-border;
+  color: $acq-muted;
+}
+
+.acq-cta a.secondary:hover {
+  background: $acq-surface;
+  color: $acq-text;
+  border-color: $acq-muted;
+}
+
+// ── diagnostic report panel ─────────────────────────────────────────────────
+
+.acq-report {
+  border: 1px solid $acq-border;
+  border-radius: 3px;
+  background: $acq-surface;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+}
+
+.acq-report table {
+  width: 100%;
+  margin: 0;
+  font-family: var(--bs-font-monospace, monospace);
+  font-size: 0.82rem;
+  border-collapse: collapse;
+}
+
+.acq-report td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  vertical-align: top;
+}
+
+.acq-report tr:last-child td { border-bottom: none; }
+
+.acq-report .acq-mark {
+  width: 2rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+.acq-report .acq-pass .acq-mark { color: $acq-pass; }
+.acq-report .acq-fail .acq-mark { color: $acq-fail; }
+.acq-report .acq-fail td:nth-child(2) { color: $acq-text; font-weight: 500; }
+.acq-report .acq-val { color: $acq-text; }
+.acq-report .acq-exp { color: $acq-muted; }
+.acq-report .acq-recipe { white-space: nowrap; font-size: 0.75rem; }
+
+.acq-scope {
+  padding: 0.75rem 1rem 0.25rem;
+  border-top: 1px solid $acq-border;
+  font-size: 0.78rem;
+  color: $acq-muted;
+}
+
+.acq-scope strong {
+  font-family: var(--bs-font-monospace, monospace);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.7rem;
+  color: $acq-muted;
+}
+
+.acq-scope ul { margin: 0.4rem 0 0; padding-left: 1.1rem; }
+
+// ── evidence maturity badge ─────────────────────────────────────────────────
+
+.acq-evidence {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--bs-font-monospace, monospace);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $acq-muted;
+  border: 1px solid $acq-border;
+  border-radius: 3px;
+  padding: 0.3rem 0.6rem;
+  margin-bottom: 1.5rem;
+}
+
+.acq-evidence .dots { color: $acq-accent; letter-spacing: 0.15em; }
+
+// ── contribution prompt ─────────────────────────────────────────────────────
+
+.acq-contribute {
+  border: 1px dashed $acq-border;
+  border-left: 2px solid $acq-fail;
+  border-radius: 3px;
+  padding: 0.9rem 1.1rem;
+  margin: 1.75rem 0;
+  font-size: 0.86rem;
+  color: $acq-muted;
+}
+
+.acq-contribute strong { color: $acq-text; }
+
+// ── lifecycle spine ─────────────────────────────────────────────────────────
+
+.acq-stages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  font-family: var(--bs-font-monospace, monospace);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 2rem 0;
+}
+
+.acq-stages a {
+  padding: 0.45rem 0.7rem;
+  border: 1px solid $acq-border;
+  border-radius: 3px;
+  text-decoration: none;
+  color: $acq-muted;
+}
+
+.acq-stages a:hover { border-color: $acq-accent; color: $acq-accent; }
+.acq-stages .sep { align-self: center; color: $acq-border; }
+
+// ── catalogue index ─────────────────────────────────────────────────────────
+
+.acq-catalogue { border-top: 1px solid $acq-border; margin-top: 1.5rem; }
+
+.acq-catalogue .row-item {
+  display: flex;
+  gap: 1rem;
+  align-items: baseline;
+  padding: 0.85rem 0.25rem;
+  border-bottom: 1px solid $acq-border;
+}
+
+.acq-catalogue .id {
+  font-family: var(--bs-font-monospace, monospace);
+  font-size: 0.72rem;
+  color: $acq-muted;
+  min-width: 5.5rem;
+}
+
+.acq-catalogue .dots {
+  font-family: var(--bs-font-monospace, monospace);
+  color: $acq-accent;
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+// Wide content scrolls inside its own container; the page body never does.
+.cell-output, pre { overflow-x: auto; }
+
+@media (max-width: 600px) {
+  .acq-hero .acq-lede { font-size: 1.25rem; }
+  .acq-catalogue .row-item { flex-wrap: wrap; }
+}

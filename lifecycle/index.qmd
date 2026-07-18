@@ -1,0 +1,63 @@
+---
+title: "The guideline book"
+subtitle: "What to do, in the order you need to do it."
+toc: false
+---
+
+The failure catalogue is organised by symptom, for when something has already
+gone wrong. This section is organised by **stage**, for when you are building a
+study and want to know what comes next.
+
+::: {.acq-stages}
+[design](design.qmd) [→]{.sep}
+[instrument](instrument.qmd) [→]{.sep}
+[pilot](pilot.qmd) [→]{.sep}
+[deploy](deploy.qmd) [→]{.sep}
+[monitor](monitor.qmd) [→]{.sep}
+[curate](curate.qmd) [→]{.sep}
+[release](release.qmd)
+:::
+
+Each stage carries an ordered checklist. Items are written as **verifiable
+statements** — things you either did or did not do and can report — rather than
+as advice. "Consider power management" is useless; "effective sampling rate
+verified against nominal on every device model before deployment" is checkable.
+
+That discipline exists because the checklist is intended to become an artifact
+you submit alongside a paper, in the way CONSORT and STROBE checklists are
+submitted in clinical and observational research. In-the-wild sensing has no
+such instrument today.
+
+## The stages
+
+**[Design](design.qmd)** — decide what you are measuring, at what fidelity, and
+what would count as invalid. Most acquisition failures are made possible by
+decisions taken here.
+
+**[Instrument](instrument.qmd)** — build the acquisition app and its telemetry.
+Embed error reporting, log requests, account for OS behaviour that silently
+degrades sampling.
+
+**[Pilot](pilot.qmd)** — smoke-test the whole chain on real devices with real
+people before anything scales. The cheapest place to find every failure in the
+catalogue.
+
+**[Deploy](deploy.qmd)** — enrol participants and start collection, with the
+ability to detect a bad rollout before it consumes the study.
+
+**[Monitor](monitor.qmd)** — detect failure while it is still cheap. The
+distinguishing question is not "is data arriving?" but "is the arriving data
+valid?"
+
+**[Curate](curate.qmd)** — version, store, and document data as it accumulates,
+rather than reconstructing provenance at the end.
+
+**[Release](release.qmd)** — publish a dataset someone else can actually use,
+with the metadata that makes its validity assessable.
+
+## Using the checklist
+
+The full checklist is [available in one place](../checklist/index.qmd), filtered
+by study type. Not every item applies to every study — items marked not
+applicable require a written justification rather than silent omission, because
+that is what makes the completed artifact trustworthy to a reader.

@@ -1,7 +1,8 @@
 # Quarto
 /.quarto/
 /_site/
-/_freeze/
+# _freeze/ is deliberately NOT ignored: committing it lets CI skip re-executing
+# pages whose code has not changed.
 *.quarto_ipynb
 
 # Python
@@ -19,3 +20,5 @@ build/
 # macOS / Synology
 .DS_Store
 @eaDir/
+
+**/*.quarto_ipynb
