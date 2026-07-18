@@ -19,7 +19,7 @@ authors:
     email: rsroka@agh.edu.pl
     affiliation: >-
       Department of Measurements and Electronics, AGH University of Krakow
-version: "26.7"
+version: "26.7.1"
 date-released: "2026-07-18"
 # Data CC0-1.0, documentation CC-BY-4.0, code MIT — see LICENSING.md.
 license:

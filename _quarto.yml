@@ -53,8 +53,6 @@ website:
         href: recipes/index.qmd
       - text: "Guideline book"
         href: lifecycle/index.qmd
-      - text: "Run the diagnostics"
-        href: check/index.qmd
     right:
       - icon: github
         href: https://github.com/acquire-framework/acquire-framework.github.io

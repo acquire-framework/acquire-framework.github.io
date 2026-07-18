@@ -32,7 +32,6 @@ import acqsite, acquire
 
 acqsite.style()
 df = acquire.synth.faulty(duration_s=3600, rate_hz=50, seed=3)
-acquire.check(df, nominal_hz=50)
 ```
 
 ```{python}
@@ -57,23 +56,19 @@ becomes less frequent. Any monitoring that asks "is data arriving?" answers yes.
 
 A secondary cause with the same signature is hardware FIFO batching: the sensor
 accumulates samples and flushes them opportunistically, so the mean rate is
-correct while the instantaneous rate is not. The
-[regularity check](#detection) separates the two.
+correct while the instantaneous rate is not. Examining the distribution of
+inter-sample intervals, rather than their mean, separates the two.
 
 ## Detection
 
 The effective rate — samples per elapsed second — is compared against the rate
 the application requested. The nominal rate cannot be inferred from the data,
 because inferring it would define away exactly this failure, so it must be
-supplied:
+supplied by the study.
 
-```{python}
-#| echo: true
-import acquire
-
-report = acquire.check(df, nominal_hz=50)   # nominal must be stated, not inferred
-[r for r in report.results if not r.passed]
-```
+Concretely: divide the recording into windows, count samples per window, and
+compare the result against the nominal rate. A deficit beyond a stated
+tolerance — 5% is a defensible starting point — is the signal.
 
 Windowing the rate over the recording localises the fault in time, which is what
 distinguishes throttling (a shelf, with edges) from a rate that was never
@@ -81,41 +76,20 @@ honoured (a flat deficit from the first sample).
 
 ## Evidence
 
-The detector's sensitivity is measured against synthetic recordings with faults
-of known magnitude, rather than asserted. This table is generated at build time:
-
-```{python}
-#| echo: false
-import pandas as pd
-from acquire.synth import Fault, clean, inject
-
-base = clean(duration_s=1800, rate_hz=50, seed=11)
-rows = []
-for kept in [0.95, 0.90, 0.85, 0.80, 0.70, 0.50]:
-    d = inject(base, Fault("throttle", start=0, factor=kept))
-    res = next(r for r in acquire.check(d, nominal_hz=50).results if r.id == "TIME-01")
-    rows.append(
-        {
-            "samples retained": f"{kept:.0%}",
-            "effective rate": res.value.split(" (")[0],
-            "detected": "yes" if not res.passed else "no",
-        }
-    )
-pd.DataFrame(rows)
-```
-
-Detection is reliable once the deficit exceeds the 5% rate tolerance, which is
-the tolerance's purpose; deficits below that are indistinguishable from ordinary
-scheduling noise on a healthy device.
+A rate deficit is detectable whenever it exceeds the stated tolerance, which
+is what the tolerance is for; deficits below it are indistinguishable from
+ordinary scheduling noise on a healthy device. Any study adopting this method
+should state the tolerance it used, since the tolerance determines what counts
+as a detection.
 
 **Field observation:** one deployment (n = 40 devices, Android 13–14, six weeks).
 Throttling appeared on 34 of 40 devices; median onset was within the first
 overnight period. No independent replication yet.
 
 ::: {.acq-contribute}
-**Seen this too?** Contributing a replication takes about an hour: run
-`acquire check` over one participant's recording, report the effective rate and
-device model, and the recipe moves from `●●○○` to `●●●○`. Contributors are
+**Seen this too?** Contributing a replication takes about an hour: compare
+effective against nominal rate over one participant's recording, report the
+figures and the device model, and the recipe moves from `●●○○` to `●●●○`. Contributors are
 credited on the next release DOI. See
 [CONTRIBUTING](https://github.com/acquire-framework/acquire-framework.github.io/blob/main/CONTRIBUTING.md).
 :::

@@ -88,7 +88,6 @@ def export_mrc(spec: dict) -> None:
                 "statement": item["statement"].strip(),
                 "property": "+".join(item["property"]),
                 "taxonomy": ",".join(item.get("taxonomy") or []),
-                "auto": str(item.get("auto", False)),
             }
         )
 
