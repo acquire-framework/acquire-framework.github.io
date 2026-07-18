@@ -24,3 +24,4 @@ build/
 **/*.quarto_ipynb
 _variables.yml
 _banner.html
+/_freeze/

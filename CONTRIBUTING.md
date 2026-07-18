@@ -29,7 +29,8 @@ Every recipe follows the same structure, in this order:
 
 - **Symptom** — what you observe, written so someone can recognise their own data
 - **Root cause** — the mechanism, distinguishing causes that share a signature
-- **Detection** — runnable code, with the diagnostic's limits stated
+- **Detection** — how to detect it, described so a reader can implement it,
+  with the method's limits stated
 - **Evidence** — how well the detector works, on what data, at what sensitivity
 - **Mitigation** — numbered, actionable steps
 
@@ -51,9 +52,8 @@ about what you observed and explicit about what you did not. An honest
 - The core package must import with **only numpy, pandas, and scipy**. Anything
   else breaks the in-browser build; this is enforced by
   `tests/test_pyodide_constraint.py`.
-- Every diagnostic needs a test that injects a fault of known magnitude and
-  asserts detection. A diagnostic that silently fails to detect is worse than no
-  diagnostic.
+- Every check needs a test that injects a fault of known magnitude and asserts
+  detection. A check that silently stops detecting is worse than no check.
 - Report sensitivity, don't assume it. Where a detector has a threshold, test
   across fault magnitudes and publish the table.
 - State limits explicitly. If a check cannot detect something adjacent to what it

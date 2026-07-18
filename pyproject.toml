@@ -1,7 +1,7 @@
 [project]
 name = "acquire-framework"
 dynamic = ["version"]
-description = "Diagnostics for reproducible in-the-wild sensing studies"
+description = "Supporting code for the ACQUIRE framework"
 readme = "README.md"
 requires-python = ">=3.10"
 # The package is MIT. The taxonomy and checklist data are CC0-1.0 and the

@@ -30,8 +30,8 @@ website:
   # demonstrably do not consume it. See the design document for the evidence.
   llms-txt: true
   description: >-
-    Recipes, guidelines and diagnostics for reproducible in-the-wild sensing
-    studies.
+    A taxonomy, reporting checklist and templates for reproducible in-the-wild
+    sensing studies.
   site-url: https://acquire-framework.github.io
   repo-url: https://github.com/acquire-framework/acquire-framework.github.io
   repo-actions: [edit, issue]
@@ -111,10 +111,14 @@ format:
     email-obfuscation: javascript
 
 
-# Only re-execute pages whose code has changed. Without this every CI build
-# re-runs every diagnostic, which makes the site slow to build and flaky.
+# Freeze is deliberately OFF. It caches a page's output against changes to the
+# .qmd alone, but several pages read the taxonomy, checklist and templates from
+# YAML at build time — files Quarto does not track as dependencies. With freeze
+# on, editing a normative source file silently republished the previous
+# content. For this project that trade is not available: a stale build is a
+# correctness failure, and a full render costs under a minute.
 execute:
-  freeze: auto
+  freeze: false
   echo: true
   warning: false
 

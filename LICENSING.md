@@ -7,7 +7,7 @@ meant to be reused in different ways.
 |:--|:--|:--|
 | **Data** — the taxonomy and checklist as structured records | [CC0 1.0](LICENSES/CC0-1.0.txt) | `taxonomy/*.yml`, `checklist/*.yml`, `dist/*.csv`, `dist/*.md` |
 | **Documentation** — prose, templates, forms | [CC BY 4.0](LICENSES/CC-BY-4.0.txt) | `checklist/*.qmd`, `templates/`, `recipes/`, `lifecycle/`, `taxonomy/*.qmd`, and all other prose |
-| **Code** — diagnostics, tooling, examples | [MIT](LICENSES/MIT.txt) | `acquire/`, `tools/`, `tests/`, `examples/`, `acqsite.py` |
+| **Code** — tooling, scripts, examples | [MIT](LICENSES/MIT.txt) | `acquire/`, `tools/`, `tests/`, `examples/`, `acqsite.py` |
 
 Copyright 2026 Mateusz Danioł, Ryszard Sroka.
 
@@ -28,14 +28,14 @@ attribution is appropriate and does not impede reuse. Translate it, adapt it
 for a course, or extract it into a lab handbook — keep the credit.
 
 **The code is MIT.** Permissive, familiar, and compatible with essentially any
-research or commercial pipeline the diagnostics might run inside.
+research or commercial pipeline the scripts might run inside.
 
 ## Practical consequences
 
 - You may copy the taxonomy or checklist into your own tool, standard, or paper
   with no obligation at all.
 - You may adapt the templates and prose provided you credit ACQUIRE.
-- You may vendor the diagnostics code under MIT terms.
+- You may vendor any of the code under MIT terms.
 - A completed checklist you fill in is **yours**, not a derivative work of
   ours. Attach it to a paper or dataset under whatever licence you like.
 

@@ -45,8 +45,8 @@ jobs:
       - name: Install dependencies
         run: uv sync --extra dev --extra docs --frozen
 
-      # The diagnostics are tested before the site that documents them is built.
-      # A detector that silently stops detecting must fail the build, not ship.
+      # Supporting code is tested before the site is built: a check that
+      # silently stops working must fail the build rather than ship.
       - name: Run tests
         run: uv run pytest -q
 
