@@ -1,0 +1,46 @@
+# The ACQUIRE specification manifest.
+#
+# This file declares the version of the framework's NORMATIVE content — the
+# things a study cites when it says "assessed against ACQUIRE 26.7".
+#
+# It is deliberately separate from:
+#
+#   * the website, which has no version of its own and is identified only by
+#     its build commit. Rewording a paragraph, fixing a typo, or restyling a
+#     page changes what a reader sees but not what the framework requires.
+#
+#   * the diagnostics package, which needs bug-fix releases that do not change
+#     any requirement. The package declares which spec version it implements.
+#
+# Conflating them would mean either that a typo fix bumps the number studies
+# cite, or that a published snapshot silently diverges from the site.
+
+spec_version: "26.7"
+released: "2026-07-18"
+doi: null # minted on archival deposit
+
+# Files whose content is normative. Changing any of these requires a
+# spec_version bump; CI enforces this (tools/check_spec_version.py).
+normative:
+  - spec/spec.yml
+  - taxonomy/acquire-taxonomy.yml
+  - checklist/acquire-mrc.yml
+
+# Everything else — .qmd pages, styles, templates, examples, package code — is
+# explanatory or implementing material. It may change freely between spec
+# versions, and does not alter what a study was assessed against.
+#
+# Templates carry their own `schema_version` because a study may have filled
+# one in under an earlier format; that is a third, independent lifecycle.
+
+changelog:
+  - version: "26.7"
+    date: "2026-07-18"
+    summary: >-
+      First public release. Eight-row acquisition-failure taxonomy across five
+      system layers; ten-item Minimum Reporting Checklist with core and
+      conditional tiers, a justification floor on MRC-05, and per-item mapping
+      to the taxonomy rows each derives from.
+    changes:
+      - Initial taxonomy (ACQ-F01 … ACQ-F08)
+      - Initial Minimum Reporting Checklist (MRC-01 … MRC-10)

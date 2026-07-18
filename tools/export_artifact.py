@@ -48,7 +48,7 @@ def export_taxonomy(spec: dict) -> None:
         writer.writerows(rows)
 
     md = [
-        "# ACQUIRE acquisition-failure taxonomy v" + spec["version"],
+        "# ACQUIRE acquisition-failure taxonomy, specification " + spec["spec_version"],
         "",
         f"Machine-readable form of Table 1 of {spec['paper']}.",
         "",
@@ -93,12 +93,12 @@ def export_mrc(spec: dict) -> None:
         writer.writerows(rows)
 
     md = [
-        "# ACQUIRE Minimum Reporting Checklist v" + spec["version"],
+        "# ACQUIRE Minimum Reporting Checklist, specification " + spec["spec_version"],
         "",
         f"Machine-readable form of Table 2 of {spec['paper']}.",
         "",
-        "v0.1 has not been evaluated for usability, coverage, or inter-rater",
-        "agreement. No claim is made that applying it improves study outcomes.",
+        "This specification has not been evaluated for usability, coverage, or",
+        "inter-rater agreement. No claim is made that applying it improves outcomes.",
         "",
         "Items marked not applicable require a written justification: silent",
         "omission and reasoned exclusion look identical in a finished document.",

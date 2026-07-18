@@ -14,12 +14,20 @@ from . import checks, schema, synth
 from .report import CheckResult, Report
 from .schema import SchemaError
 
-__version__ = "26.7"
+#: Package version. The patch component moves independently of the spec:
+#: 26.7.N implements ACQUIRE spec 26.7, and N increments for code fixes
+#: that change no requirement.
+__version__ = "26.7.0"
+
+#: The version of the normative framework content this package implements.
+#: Reports stamp it, so a quality-control record stays interpretable.
+SPEC_VERSION = "26.7"
 
 __all__ = [
     "CheckResult",
     "Report",
     "SchemaError",
+    "SPEC_VERSION",
     "__version__",
     "check",
     "checks",
@@ -59,7 +67,11 @@ def check(
     """
     schema.validate(df)
 
-    report = Report(not_checked=list(NOT_CHECKED))
+    report = Report(
+        not_checked=list(NOT_CHECKED),
+        spec_version=SPEC_VERSION,
+        package_version=__version__,
+    )
 
     # Monotonicity gates everything else: windowing a non-monotonic series is
     # meaningless, so it is evaluated first and reported first.

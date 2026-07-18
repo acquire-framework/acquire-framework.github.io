@@ -50,20 +50,27 @@ jobs:
       - name: Run tests
         run: uv run pytest -q
 
+      # The citable specification and the site change at different rates.
+      # This fails a PR that edits a taxonomy row or checklist item without
+      # bumping spec_version, so two sets of requirements cannot ship under
+      # one number.
+      - name: Check spec version was bumped if normative content changed
+        if: github.event_name == 'pull_request'
+        run: uv run python tools/check_spec_version.py origin/${{ github.base_ref }}
+
       - name: Determine release identity
         id: release
         run: |
-          VERSION=$(uv run python -c "import re,pathlib; \
-            print(re.search(r'__version__\s*=\s*\"([^\"]+)\"', \
-            pathlib.Path('acquire/__init__.py').read_text()).group(1))")
+          VERSION=$(uv run python -c "import yaml,pathlib; \
+            print(yaml.safe_load(pathlib.Path('spec/spec.yml').read_text())['spec_version'])")
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           if [ "${GITHUB_REF_TYPE}" = "tag" ]; then
             echo "is_release=true" >> "$GITHUB_OUTPUT"
             echo "tag=${GITHUB_REF_NAME}" >> "$GITHUB_OUTPUT"
-            # A tag must agree with the packaged version, or the published
-            # artifact would not be the version it claims to be.
+            # A tag must agree with the declared spec version, or the
+            # published snapshot would not be the specification it claims.
             if [ "v$VERSION" != "${GITHUB_REF_NAME}" ]; then
-              echo "::error::tag ${GITHUB_REF_NAME} does not match package version $VERSION"
+              echo "::error::tag ${GITHUB_REF_NAME} does not match spec_version $VERSION"
               exit 1
             fi
           else

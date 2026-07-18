@@ -7,7 +7,8 @@
 # did or did not do and can report. This is what allows a completed checklist to
 # function as supplementary material in the manner of CONSORT or STROBE.
 
-version: "26.7"
+# Not normative: this operational companion is not part of the cited spec.
+revised: "2026-07-18"
 updated: "2026-07-18"
 doi: null # minted on first tagged release
 

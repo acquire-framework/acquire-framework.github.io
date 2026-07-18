@@ -1,75 +1,102 @@
 ---
 title: "Versions"
-subtitle: "Every release stays reachable, at a fixed URL and a fixed commit."
-toc: false
+subtitle: "What changes, what doesn't, and what you should cite."
+toc: true
 ---
 
-A study that reports "assessed against ACQUIRE v26.7" must be checkable against
-*that* version. Thresholds move, recipes are corrected, and evidence levels rise
-as replications arrive — so a citation naming only a URL says nothing about what
-the study actually applied.
+Three things here change at different rates, so they are versioned separately.
+Conflating them would mean either that fixing a typo bumps the number studies
+cite, or that a published snapshot silently diverges from the site.
 
-Every release is therefore published twice: as an immutable copy of this site at
-its own address, and as an archived snapshot with a DOI.
+| | Versioned as | Changes when | Cite this? |
+|:--|:--|:--|:--|
+| **Specification** | `26.7` | A taxonomy row, checklist item, or threshold changes | **Yes** |
+| **Website** | build commit only | Any edit — prose, layout, typo | No |
+| **Diagnostics package** | `26.7.0` | Code changes, including fixes that alter no requirement | If you ran it |
 
-## Scheme
+## The specification
 
-Versions are calendar-based: **`<year>.<month>`**, so `26.7` is the release of
-July 2026. A second release within a month adds a patch — `26.7.1`.
+The normative content: the [acquisition-failure taxonomy](taxonomy/index.qmd),
+the [Minimum Reporting Checklist](checklist/index.qmd), and the thresholds and
+evidence levels attached to them. This is what a study means when it says it
+was assessed against ACQUIRE 26.7.
 
-Calendar versioning is deliberate. Semantic versioning describes API
-compatibility, which is the wrong question here: what a reader needs to know is
-*when* the guidance was current, because advice about operating-system behaviour
-ages whether or not the interface changes.
+Versions are calendar-based, **`<year>.<month>`** — `26.7` is July 2026, and a
+second release in a month adds a patch, `26.7.1`. Calendar rather than semantic
+versioning is deliberate: semantic versioning describes API compatibility, and
+what a reader needs to know here is *when* the requirements were current,
+because guidance about operating-system behaviour ages whether or not any
+interface changes.
+
+Which files are normative is declared explicitly in
+[`spec/spec.yml`](spec/spec.yml), and CI fails if any of them changes without a
+version bump. That guard exists so two different sets of requirements can never
+be published under one number.
+
+## The website
+
+The site has **no version of its own**. It is identified only by the commit it
+was built from, shown in the footer of every page.
+
+Rewording an explanation, restyling a page, or correcting a typo changes what a
+reader sees without changing what the framework requires — so it must not
+change what a study cites.
+
+## The diagnostics package
+
+`acquire-framework` is versioned `<spec>.<patch>`: **26.7.0** implements
+specification 26.7, and the patch component moves independently for bug fixes
+that alter no requirement.
+
+```python
+import acquire
+acquire.__version__    # '26.7.0'  — the code you ran
+acquire.SPEC_VERSION   # '26.7'    — the requirements it implements
+```
+
+Diagnostic reports stamp both, so a quality-control record attached to a
+dataset stays interpretable years later: a reader can tell which requirements
+applied and which implementation produced the numbers.
 
 ## This build
 
 | | |
 |:--|:--|
-| Version | **{{< var version >}}** |
-| Commit | [`{{< var commit_short >}}`]({{< var commit_url >}}) |
+| Specification | **{{< var spec_version >}}** |
+| Package | {{< var package_version >}} |
+| Site build | [`{{< var commit_short >}}`]({{< var commit_url >}}) |
 | Built | {{< var build_date >}} |
-| Permalink | [{{< var permalink >}}]({{< var permalink >}}) |
 
-## Released versions
+## Published specifications
 
-| Version | Permalink | Commit | Archive |
+| Spec | Permalink | Tag | Archive |
 |:--|:--|:--|:--|
-| 26.7 | [/v26.7/](/v26.7/) | tagged `v26.7` | DOI pending |
+| 26.7 | [/v26.7/](/v26.7/) | `v26.7` | DOI pending |
 
-The root of this site tracks **current guidance** and changes as corrections
-land. Versioned copies never change once published — they are built from the
-tag and then left alone.
+A snapshot is published at `/v<spec>/` when the **specification** changes — not
+when the site changes. Snapshots are built once from the tag and never rebuilt,
+so the explanatory prose inside an old snapshot may be less polished than the
+current site. That is intended: the snapshot exists to preserve what was
+*required*, not to be the best-written version.
 
-So: cite `/v26.7/` in a paper, and read the root when you want the latest
-thinking.
+The root of this site always shows current guidance.
 
-## Citing a version
+## Citing
 
-State the version, and give the permalink rather than the bare domain:
+Give the permalink, not the bare domain:
 
-> Data collection followed the ACQUIRE checklist v26.7
-> (<https://acquire-framework.github.io/v26.7/>).
+> Data collection followed the ACQUIRE Minimum Reporting Checklist,
+> specification 26.7 (<https://acquire-framework.github.io/v26.7/>).
 
-Where the exact build matters — for an audit, or a dispute about what a
-threshold was — cite the commit as well. Every page of every build carries its
-commit in the footer, so a reader can always establish precisely what they read.
+If you ran the diagnostics, name the package build too, since a threshold could
+have been implemented incorrectly and later fixed without the specification
+changing:
 
-## Why a DOI as well as a URL
+> Diagnostics were run with `acquire-framework` 26.7.0.
 
-A URL is a location, not an archive: it depends on this domain continuing to
-exist and on us continuing to host it. A DOI resolves to a snapshot held by an
-archive whose job is permanence.
+## Rebuilding a specification from source
 
-For a framework whose argument is that provenance must survive the people who
-created it, relying on our own hosting would be an obvious inconsistency. Each
-release is therefore also deposited, and the DOI is the citation of record for
-anything that must remain verifiable long-term.
-
-## Reproducing a version
-
-Each release is a tag in the repository, so a version can be rebuilt from
-source:
+Each specification release is a tag:
 
 ```bash
 git clone https://github.com/acquire-framework/acquire-framework.github.io
@@ -80,18 +107,17 @@ uv run pytest
 QUARTO_PYTHON=.venv/bin/python uv run quarto render
 ```
 
-The lockfile is committed and the Quarto version is pinned in CI, so a rebuild
-resolves the same dependency versions rather than whatever is current.
+The lockfile is committed, the Quarto version is pinned in CI, and the build
+honours `SOURCE_DATE_EPOCH`, so a rebuild resolves the same dependencies rather
+than whatever is current.
 
-## The diagnostics package
+## Why a DOI as well as a URL
 
-Package releases track the framework version, so `acquire-framework==26.7`
-implements the checks described by v26.7 of this site:
+A URL is a location, not an archive: it depends on this domain continuing to
+exist and on us continuing to host it. A DOI resolves to a snapshot held by an
+archive whose job is permanence.
 
-```bash
-pip install acquire-framework==26.7
-```
-
-Reports emitted by the package stamp the version that produced them, which is
-what makes a quality-control record attachable to a dataset and still
-interpretable years later.
+For a framework arguing that provenance must survive the people who created it,
+relying on our own hosting would be an obvious inconsistency. Each specification
+release is therefore also deposited, and the DOI is the citation of record for
+anything that must remain verifiable long-term.

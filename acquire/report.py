@@ -42,6 +42,11 @@ class Report:
 
     results: list[CheckResult] = field(default_factory=list)
     not_checked: list[str] = field(default_factory=list)
+    #: Which requirements applied, and which implementation produced the
+    #: numbers. Stamped so a quality-control record attached to a dataset
+    #: stays interpretable after both have moved on.
+    spec_version: str | None = None
+    package_version: str | None = None
 
     def add(self, result: CheckResult) -> None:
         self.results.append(result)
@@ -54,12 +59,22 @@ class Report:
     def passed(self) -> bool:
         return not self.failures
 
+    @property
+    def provenance(self) -> str:
+        return (
+            f"ACQUIRE spec {self.spec_version}, "
+            f"acquire-framework {self.package_version}"
+        )
+
     def __str__(self) -> str:
         lines = [str(r) for r in self.results]
         if self.passed:
             lines.append("")
             lines.append("All checks passed. NOT checked by this run:")
             lines.extend(f"  - {item}" for item in self.not_checked)
+        if self.spec_version:
+            lines.append("")
+            lines.append(self.provenance)
         return "\n".join(lines)
 
     def _repr_html_(self) -> str:
@@ -89,4 +104,12 @@ class Report:
                 '<div class="acq-scope"><strong>Not checked by this run</strong>'
                 f"<ul>{items}</ul></div>"
             )
-        return f'<div class="acq-report"><table>{"".join(rows)}</table>{note}</div>'
+        stamp = (
+            f'<div class="acq-scope">{self.provenance}</div>'
+            if self.spec_version
+            else ""
+        )
+        return (
+            f'<div class="acq-report"><table>{"".join(rows)}</table>'
+            f"{note}{stamp}</div>"
+        )

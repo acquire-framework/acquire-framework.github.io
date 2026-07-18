@@ -19,6 +19,7 @@ project:
     - "/templates/*.md"
     - "/taxonomy/*.yml"
     - "/checklist/*.yml"
+    - "/spec/*.yml"
     - "/dist/**"
     - "/examples/**"
 
@@ -81,7 +82,7 @@ website:
       Maintained at the Department of Measurements and Electronics,
       AGH University of Krakow
     right: |
-      v{{< var version >}} · commit [`{{< var commit_short >}}`]({{< var commit_url >}}) · built {{< var build_date >}}
+      ACQUIRE spec {{< var spec_version >}} · site build [`{{< var commit_short >}}`]({{< var commit_url >}}) · built {{< var build_date >}}
       MIT · [How to cite](/cite.qmd) · [All versions](/versions.qmd)
 
 format:
