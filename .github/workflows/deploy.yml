@@ -43,6 +43,12 @@ jobs:
       - name: Run tests
         run: uv run pytest -q
 
+      # The CSV and Markdown forms of the taxonomy and checklist are derived
+      # from the YAML sources rather than committed, so they cannot drift.
+      # They must exist before render, which serves them as site resources.
+      - name: Export machine-readable artifact forms
+        run: uv run python tools/export_artifact.py
+
       - name: Render site
         env:
           QUARTO_PYTHON: .venv/bin/python
