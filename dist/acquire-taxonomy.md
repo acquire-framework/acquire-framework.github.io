@@ -1,5 +1,8 @@
 # ACQUIRE acquisition-failure taxonomy, specification 26.7
 
+SPDX-License-Identifier: CC0-1.0 — public domain, no attribution
+required. Citation is a scholarly norm here, not a licence condition.
+
 Machine-readable form of Table 1 of Danioł & Sroka (2026), UbiComp/ISWC '26 Companion.
 
 Initial, expert-derived, formative. Not a systematic review: no

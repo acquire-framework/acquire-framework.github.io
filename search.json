@@ -25,14 +25,14 @@
     "href": "versions.html#the-diagnostics-package",
     "title": "Versions",
     "section": "The diagnostics package",
-    "text": "The diagnostics package\nacquire-framework is versioned &lt;spec&gt;.&lt;patch&gt;: 26.7.0 implements specification 26.7, and the patch component moves independently for bug fixes that alter no requirement.\nimport acquire\nacquire.__version__    # '26.7.0'  — the code you ran\nacquire.SPEC_VERSION   # '26.7'    — the requirements it implements\nDiagnostic reports stamp both, so a quality-control record attached to a dataset stays interpretable years later: a reader can tell which requirements applied and which implementation produced the numbers."
+    "text": "The diagnostics package\nThe diagnostics are versioned &lt;spec&gt;.&lt;patch&gt;: 26.7.0 implements specification 26.7, and the patch component moves independently for bug fixes that alter no requirement.\nThey are not yet published to a package index — run them from a clone, and record the commit you ran alongside the version.\nimport acquire\nacquire.__version__    # '26.7.0'  — the code you ran\nacquire.SPEC_VERSION   # '26.7'    — the requirements it implements\nDiagnostic reports stamp both, so a quality-control record attached to a dataset stays interpretable years later: a reader can tell which requirements applied and which implementation produced the numbers."
   },
   {
     "objectID": "versions.html#this-build",
     "href": "versions.html#this-build",
     "title": "Versions",
     "section": "This build",
-    "text": "This build\n\n\n\nSpecification\n26.7\n\n\nPackage\n26.7.0\n\n\nSite build\n5a8e54e\n\n\nBuilt\n2026-07-18"
+    "text": "This build\n\n\n\nSpecification\n26.7\n\n\nPackage\n26.7.0\n\n\nSite build\nc90b23f\n\n\nBuilt\n2026-07-18"
   },
   {
     "objectID": "versions.html#published-specifications",
@@ -46,7 +46,7 @@
     "href": "versions.html#citing",
     "title": "Versions",
     "section": "Citing",
-    "text": "Citing\nGive the permalink, not the bare domain:\n\nData collection followed the ACQUIRE Minimum Reporting Checklist, specification 26.7 (https://acquire-framework.github.io/v26.7/).\n\nIf you ran the diagnostics, name the package build too, since a threshold could have been implemented incorrectly and later fixed without the specification changing:\n\nDiagnostics were run with acquire-framework 26.7.0."
+    "text": "Citing\nGive the permalink, not the bare domain:\n\nData collection followed the ACQUIRE Minimum Reporting Checklist, specification 26.7 (https://acquire-framework.github.io/v26.7/).\n\nIf you ran the diagnostics, name the package build too, since a threshold could have been implemented incorrectly and later fixed without the specification changing:\n\nDiagnostics were run with ACQUIRE 26.7.0 (commit abc1234)."
   },
   {
     "objectID": "versions.html#rebuilding-a-specification-from-source",
@@ -430,6 +430,174 @@
     ]
   },
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "ACQUIRE Framework",
+    "section": "",
+    "text": "Reproducibility begins at acquisition.\n\nMost in-the-wild sensing studies collect invalid data for weeks before anyone notices. Dashboards stay green, files keep arriving, and the failure only surfaces during analysis — when the fieldwork is already spent.\nACQUIRE is a guideline book and a set of diagnostics for catching those failures while they are still cheap to fix.\n\nBuilding a study? Start here Something wrong with your data?"
+  },
+  {
+    "objectID": "index.html#what-silent-failure-looks-like",
+    "href": "index.html#what-silent-failure-looks-like",
+    "title": "ACQUIRE Framework",
+    "section": "What silent failure looks like",
+    "text": "What silent failure looks like\nBelow is one hour of accelerometer data from a phone that reported itself healthy for the entire recording. The app requested 50 Hz. Every file arrived. No error was logged.\n\n\n\n\n\n\n\n\nFigure 1: Effective sampling rate collapses halfway through the recording. Nothing in the application’s own telemetry registers this.\n\n\n\n\n\nRunning the diagnostics against it takes one line:\n\nimport acquire\n\nreport = acquire.check(df, nominal_hz=50)\nreport\n\n\n\n\n\n✓\nTimestamp monotonicity\n0 non-increasing steps\n0\n\n\n\n×\nEffective vs nominal sampling rate\n38.41 Hz (77% of nominal)\n50.00 Hz ±5%\nrecipe →\n\n\n×\nStream continuity\n1 gaps, 45.1 s lost, longest 45.1 s\nno interval &gt; 1.0 s\nrecipe →\n\n\n×\nSampling regularity\njitter 100.0% above median interval (p90)\n≤ 25%\nrecipe →\n\n\n✓\nResting magnitude\n9.806 m/s² (1.000 g)\n9.807 m/s² ±2%\n\n\n\n✓\nStuck sensor\nlongest frozen run 0.0 s\n≤ 2.0 s\n\n\n\n✓\nSaturation\n0.001% of samples at rail (±15.6 m/s²)\n≤ 0.1%\n\n\n\n\nACQUIRE spec 26.7, acquire-framework 26.7.0\n\n\nTwo failures, both invisible to conventional monitoring, both traceable to a specific recipe. That is the whole idea."
+  },
+  {
+    "objectID": "index.html#what-acquire-v26.7-contains",
+    "href": "index.html#what-acquire-v26.7-contains",
+    "title": "ACQUIRE Framework",
+    "section": "What ACQUIRE v26.7 contains",
+    "text": "What ACQUIRE v26.7 contains\nThe acquisition-failure taxonomy — eight failure modes by system layer, each mapped to its signature in the dataset and to the property it threatens. Table 1 of the paper, machine-readable.\nThe Minimum Reporting Checklist — ten methods-section disclosures about the measuring system. Table 2 of the paper. Complementary to CONSORT-EHEALTH and mERA, which report the intervention rather than the instrument.\nThe failure catalogue — entered by symptom, for when data already looks wrong. Each entry states what you observe, what causes it, how to detect it, and how well that detection is evidenced.\nThe guideline book — an operational companion for teams building a study, stage by stage.\nTemplates and forms — sensor schema, quality flags, uncertainty statement, dataset provenance, and a reviewer form.\nA worked synchronization example — executable. Two BLE devices at +40 and −25 ppm, re-anchored at reconnection: completeness stays at 100% and every quality flag stays green while the inter-device offset spends 96% of the recording outside a ±20 ms tolerance, peaking near 0.8 s. A record-integrity audit passes this dataset; a measurement-validity audit does not."
+  },
+  {
+    "objectID": "index.html#run-it-on-your-own-data",
+    "href": "index.html#run-it-on-your-own-data",
+    "title": "ACQUIRE Framework",
+    "section": "Run it on your own data",
+    "text": "Run it on your own data\nThe diagnostics are a Python package, intended to run in your own pipeline or CI against incoming study data:\ngit clone https://github.com/acquire-framework/acquire-framework.github.io\ncd acquire-framework.github.io\nuv sync --extra dev\nuv run acquire check recordings/day01.csv --nominal 50\nIt exits non-zero on failure, so it can gate a pipeline.\nThe diagnostics are not published to a package index yet — run them from a clone until they are.\nThere is also a browser-based demonstration that runs the same code locally in your tab — nothing is uploaded, and nothing leaves your device."
+  },
+  {
+    "objectID": "index.html#the-paper",
+    "href": "index.html#the-paper",
+    "title": "ACQUIRE Framework",
+    "section": "The paper",
+    "text": "The paper\nACQUIRE — Acquisition Criteria for Quality, Uncertainty, Integrity, Reproducibility, and Evidence — treats the whole acquisition chain as a measuring system and evaluates it along three axes: measurement validity, record integrity and provenance, and observation-process validity.\n\nDanioł, M. and Sroka, R. (2026). Reproducibility Begins at Acquisition: The ACQUIRE Framework for Trustworthy In-the-Wild Sensing. Companion of the 2026 ACM International Joint Conference on Pervasive and Ubiquitous Computing (UbiComp/ISWC ’26 Companion), Shanghai, China.\n\nHow to cite →"
+  },
+  {
+    "objectID": "index.html#status",
+    "href": "index.html#status",
+    "title": "ACQUIRE Framework",
+    "section": "Status",
+    "text": "Status\nVersion 26.7. The catalogue is small and honest about it: every recipe carries an evidence level, and most are currently at the lowest one. The taxonomy is expert-derived and formative rather than systematically validated, and is brought to REPRODUCE for community evaluation and extension.\nReplications are the single most useful contribution — see contributing."
+  },
+  {
+    "objectID": "checklist/index.html",
+    "href": "checklist/index.html",
+    "title": "Minimum Reporting Checklist",
+    "section": "",
+    "text": "Clinical trials have CONSORT. Systematic reviews have PRISMA. Observational studies have STROBE. For in-the-wild sensing there is no agreed statement of what a study should have done and reported for its measurements to be assessable by a reader.\nThe MRC reports a different object than existing mHealth reporting standards. CONSORT-EHEALTH and mERA standardize the reporting of interventions, saying little about the acquisition system that produced the sensor data. ACQUIRE is complementary: it reports the measuring system."
+  },
+  {
+    "objectID": "checklist/index.html#who-it-is-for",
+    "href": "checklist/index.html#who-it-is-for",
+    "title": "Minimum Reporting Checklist",
+    "section": "Who it is for",
+    "text": "Who it is for\nAuthors, who attach it to a methods section. Reviewers, who use it to request specific acquisition details rather than a vague “more detail on data quality” — see the reviewer form. Dataset curators, who use the schema and provenance templates. And students, for whom acquisition discipline is most cheaply instilled during supervision."
+  },
+  {
+    "objectID": "checklist/index.html#the-checklist",
+    "href": "checklist/index.html#the-checklist",
+    "title": "Minimum Reporting Checklist",
+    "section": "The checklist",
+    "text": "The checklist\n\n\n\n\n\n\n\n\n\n\n\n\n\nDisclose in the methods section\nProperty\nTier\nDisclosure\n\n\n\n\nMRC-01\nExpected versus observed completeness, per modality, with the sampling and background-execution policy.\n[O]\ncore\npartly automatic\n\n\nMRC-02\nMissingness statistics and their suspected attribution (technical / adherence / attrition), with the evidence used.\n[O]\ncore\npartly automatic\n\n\nMRC-03\nDevice models, OS versions, app and firmware versions, and every mid-study change.\n[M] [EN]\ncore\npartly automatic\n\n\nMRC-04\nTimestamping source, synchronization policy, and residual clock uncertainty after reconciliation.\n[M]\ncore\npartly automatic\n\n\nMRC-05\nAn accuracy or uncertainty statement appropriate to each primary derived measurand, or a documented justification of why quantitative uncertainty could not be established and what validation evidence is provided instead.\n[M]\nconditional\nauthor-disclosed\n\n\nMRC-06\nUpload retry, deduplication, and integrity-verification logic (checksums, sequence numbers).\n[EN]\ncore\nauthor-disclosed\n\n\nMRC-07\nContext and system-health events recorded alongside the data: power state, connectivity, permissions; crashes and service kills.\n[EN]\ncore\nauthor-disclosed\n\n\nMRC-08\nMachine-readable schema and collection-software artifacts published alongside the data.\n[EN]\ncore\nauthor-disclosed\n\n\nMRC-09\nQC exclusion criteria and preprocessing provenance from raw log to released dataset.\n[EN]\ncore\npartly automatic\n\n\nMRC-10\nPre-deployment verification evidence: which failure modes of the taxonomy were tested, how, and with what observed behaviour.\n[M] [EN] [O]\nconditional\nauthor-disclosed"
+  },
+  {
+    "objectID": "checklist/index.html#proportionality",
+    "href": "checklist/index.html#proportionality",
+    "title": "Minimum Reporting Checklist",
+    "section": "Proportionality",
+    "text": "Proportionality\nItems marked core apply to any study using this framework. Items marked conditional should be judged against the intended measurand and the study’s risk, not applied uniformly.\nThe synchronization example makes the point concretely: tens of milliseconds of clock error are negligible for daily step counts and disqualifying for cross-modal latency estimation. The same dataset can be fit for one purpose and unfit for another. Acquisition requirements should be set and evaluated against what is being measured."
+  },
+  {
+    "objectID": "checklist/index.html#disclosure-should-be-a-by-product-not-extra-work",
+    "href": "checklist/index.html#disclosure-should-be-a-by-product-not-extra-work",
+    "title": "Minimum Reporting Checklist",
+    "section": "Disclosure should be a by-product, not extra work",
+    "text": "Disclosure should be a by-product, not extra work\nThe reason most acquisition detail goes unreported is not that authors are careless — it is that disclosure is unpaid work with no reward, and often requires numbers nobody computed.\nSix of the ten items can be populated wholly or partly from data and logs by the shipped diagnostics, so that reporting becomes a by-product of a validation you would want to run anyway:\ngit clone https://github.com/acquire-framework/acquire-framework.github.io\ncd acquire-framework.github.io\nuv sync --extra dev\nuv run acquire check recordings/day01.csv --nominal 50\n\n\n\n\n\n\n\n\n\n\nItem\nWhat the diagnostics supply\nWhat you must still supply\n\n\n\n\nMRC-01\nObserved completeness and effective rate are computed by acquire check (TIME-01, TIME-02). Expected completeness and the background-execution policy are author-supplied.\n—\n\n\nMRC-02\nGap counts, durations and their distribution over time are computed. Attribution is an author judgement and must be argued, not asserted — published completeness figures routinely conflate these three causes.\n—\n\n\nMRC-03\nPopulated automatically where the collection app records these per recording, as the provenance template specifies.\n—\n\n\nMRC-04\nMonotonicity and regularity are checked automatically. The residual synchronization uncertainty must be estimated from the study’s own offset logs — see examples/synchronization for the model and a worked budget.\n—\n\n\nMRC-09\nDiagnostic results and the thresholds that produced them are emitted by acquire check and can be attached verbatim as the QC record.\n—\n\n\n\n\n\nThe remaining four items — integrity logic, health-event recording, published schema and software, and pre-deployment verification — are properties of how the study was built. No tool can infer them, and the checklist’s role there is to make their absence visible rather than silent."
+  },
+  {
+    "objectID": "checklist/index.html#a-floor-under-item-mrc-05",
+    "href": "checklist/index.html#a-floor-under-item-mrc-05",
+    "title": "Minimum Reporting Checklist",
+    "section": "A floor under item MRC-05",
+    "text": "A floor under item MRC-05\nMRC-05 permits a documented justification in place of an uncertainty statement. Without a floor, that escape hatch would be taken universally and the item would carry no information. A justification is acceptable only if it:\n\nNames the dominant uncertainty sources that would appear in a budget\nStates why each could not be quantified\nDescribes the validation evidence offered instead\n\n“Uncertainty could not be established” alone does not satisfy the item. The uncertainty statement template provides both the budget form and the justification form."
+  },
+  {
+    "objectID": "checklist/index.html#templates",
+    "href": "checklist/index.html#templates",
+    "title": "Minimum Reporting Checklist",
+    "section": "Templates",
+    "text": "Templates\n\n\n\nTemplate\nSatisfies\n\n\n\n\nSensor schema\nMRC-08\n\n\nQuality flags\nMRC-01, MRC-02, MRC-09\n\n\nUncertainty statement\nMRC-05\n\n\nDataset provenance\nMRC-03, MRC-09\n\n\nReviewer form\nall"
+  },
+  {
+    "objectID": "checklist/index.html#going-further",
+    "href": "checklist/index.html#going-further",
+    "title": "Minimum Reporting Checklist",
+    "section": "Going further",
+    "text": "Going further\nThe MRC is the reporting minimum — what a reader needs to assess a study after the fact. The extended operational checklist is a longer, stage-by-stage companion for people building a study, covering decisions that never appear in a methods section but determine whether the MRC can be answered honestly at all."
+  },
+  {
+    "objectID": "checklist/index.html#source",
+    "href": "checklist/index.html#source",
+    "title": "Minimum Reporting Checklist",
+    "section": "Source",
+    "text": "Source\nchecklist/acquire-mrc.yml is the single source of truth: the site renders it, the exports derive from it, and each item names the taxonomy rows it comes from."
+  },
+  {
+    "objectID": "check/index.html",
+    "href": "check/index.html",
+    "title": "Check your data",
+    "section": "",
+    "text": "This is the intended production path. The package runs where your data already is — in your ingestion pipeline, your analysis notebook, or CI — with no conversion step and no upload:\ngit clone https://github.com/acquire-framework/acquire-framework.github.io\ncd acquire-framework.github.io\nuv sync --extra dev\nuv run acquire check recordings/day01.csv --nominal 50\n\n\n\n\n\n\nNot yet on a package index. The diagnostics run from a clone of the repository. A published package will follow once the API has settled; until then, pin the commit you ran so your quality-control record stays meaningful.\n\n\n\nIt exits non-zero when a check fails, so it can gate a pipeline directly. In Python:\nimport acquire, pandas as pd\n\ndf = pd.read_csv(\"recordings/day01.csv\")\nreport = acquire.check(df, nominal_hz=50)\n\nfor result in report.failures:\n    print(result)\nThe frame needs four columns — timestamp, ax, ay, az — in the canonical schema. Timestamps may be float seconds or datetimes."
+  },
+  {
+    "objectID": "check/index.html#in-your-pipeline",
+    "href": "check/index.html#in-your-pipeline",
+    "title": "Check your data",
+    "section": "",
+    "text": "This is the intended production path. The package runs where your data already is — in your ingestion pipeline, your analysis notebook, or CI — with no conversion step and no upload:\ngit clone https://github.com/acquire-framework/acquire-framework.github.io\ncd acquire-framework.github.io\nuv sync --extra dev\nuv run acquire check recordings/day01.csv --nominal 50\n\n\n\n\n\n\nNot yet on a package index. The diagnostics run from a clone of the repository. A published package will follow once the API has settled; until then, pin the commit you ran so your quality-control record stays meaningful.\n\n\n\nIt exits non-zero when a check fails, so it can gate a pipeline directly. In Python:\nimport acquire, pandas as pd\n\ndf = pd.read_csv(\"recordings/day01.csv\")\nreport = acquire.check(df, nominal_hz=50)\n\nfor result in report.failures:\n    print(result)\nThe frame needs four columns — timestamp, ax, ay, az — in the canonical schema. Timestamps may be float seconds or datetimes."
+  },
+  {
+    "objectID": "check/index.html#in-your-browser",
+    "href": "check/index.html#in-your-browser",
+    "title": "Check your data",
+    "section": "In your browser",
+    "text": "In your browser\n\n\n\n\n\n\nPlanned for v0.2. The same package will run directly in this page via Pyodide — Python compiled to WebAssembly, executing in your tab.\nYour data will never leave your device. There is no upload, no server, and no request: the computation happens locally, and you can confirm that in your browser’s network tab. For studies operating under ethics approval, consent constraints, or GDPR, that distinction is the difference between a tool you can try and one you cannot.\n\n\n\nThe browser version is deliberately scoped as a demonstration — a way to see what the checks do and what a failure looks like, using example data with deliberately injected faults. Format fragmentation makes “upload your study data” a poor first experience: everyone’s export differs, and a tool that demands conversion before delivering value does not get used."
+  },
+  {
+    "objectID": "check/index.html#why-the-nominal-rate-must-be-supplied",
+    "href": "check/index.html#why-the-nominal-rate-must-be-supplied",
+    "title": "Check your data",
+    "section": "Why the nominal rate must be supplied",
+    "text": "Why the nominal rate must be supplied\nEvery diagnostic takes the sampling rate your application requested. It is not inferred from the data, and this is deliberate: inferring it would define away the most common failure in the catalogue. If the tool guessed 43 Hz because that is what it observed, it could never tell you the app asked for 50.\nThis is the general principle behind the framework. A measurement is only assessable against a stated expectation — which is why so many items in the checklist are about recording what you intended, not just what you got."
+  },
+  {
+    "objectID": "check/index.html#what-the-checks-do-not-cover",
+    "href": "check/index.html#what-the-checks-do-not-cover",
+    "title": "Check your data",
+    "section": "What the checks do not cover",
+    "text": "What the checks do not cover\nStated on every passing report, and worth repeating here:\n\nWhether the sensor was calibrated against a reference instrument\nWhether device clocks agree with each other or with wall time\nWhether the participant wore or carried the device as instructed\nWhether the recorded activity matches any label or diary entry\nAnything about signal streams other than tri-axial acceleration\n\nA passing report means the checks that ran found nothing. It is not a certificate of validity, and a framework that let you read it as one would be reproducing the problem it exists to solve."
+  },
+  {
+    "objectID": "checklist/extended.html",
+    "href": "checklist/extended.html",
+    "title": "Extended operational checklist",
+    "section": "",
+    "text": "This is not the paper’s checklist. The paper’s instrument is the ten-item Minimum Reporting Checklist, which specifies what a study should disclose so a reader can assess it.\nThis longer list is an operational companion covering what a team should do, stage by stage, so that the MRC can be answered honestly at the end. Most of these decisions never appear in a methods section. It is offered as practice, not as a reporting standard, and carries no claim to completeness.\nEach item maps to the MRC item it ultimately serves, or to a taxonomy row it guards against.\nRevised 2026-07-18 · 65 items · not part of the cited specification\nStudy types used for filtering:\n\nmobile-imu — Inertial data collected via a mobile application\nwearable-ble — Data collected from a BLE wearable device\nmulti-device — Two or more devices recording concurrently\nlongitudinal — Collection spanning weeks or months"
+  },
+  {
+    "objectID": "checklist/extended.html#items-by-stage",
+    "href": "checklist/extended.html#items-by-stage",
+    "title": "Extended operational checklist",
+    "section": "Items by stage",
+    "text": "Items by stage\n\n\n\nDesign\n8 items\n\n\n\n\nStatement\nApplies to\nGuards against\n\n\n\n\nDSGN-01\nThe required sampling rate was derived from the phenomenon being measured, not inherited from a previous study or an SDK default.\nmobile-imu, wearable-ble\n\n\n\nDSGN-02\nA minimum acceptable data yield per participant was stated in advance, together with the analysis consequence of falling below it.\nlongitudinal\n\n\n\nDSGN-03\nExplicit validity criteria were written down before collection began.\nmobile-imu, wearable-ble\n\n\n\nDSGN-04\nThe measurement range required by the most vigorous activity in the protocol was calculated rather than assumed.\nmobile-imu, wearable-ble\ndetail\n\n\nDSGN-05\nDevice and OS diversity in the intended population was enumerated, including the oldest hardware permitted.\nmobile-imu\n\n\n\nDSGN-06\nBattery and storage budgets were computed for the intended duration and rate on the worst-case device.\nmobile-imu, longitudinal\n\n\n\nDSGN-07\nConsent and ethics documentation covers telemetry and crash reporting, not only the primary sensor data.\nmobile-imu, wearable-ble\n\n\n\nDSGN-08\nA data management plan exists naming where raw data lives, who can access it, and how long it is retained.\nmobile-imu, wearable-ble\n\n\n\n\n\n\nInstrument\n15 items\n\n\n\n\nStatement\nApplies to\nGuards against\n\n\n\n\nINST-01\nCrash and error reporting is embedded in the acquisition application and verified to deliver from a real device.\nmobile-imu\n\n\n\nINST-02\nTelemetry reports are scrubbed of participant identifiers and raw signal content, and the scrubbing is tested.\nmobile-imu\n\n\n\nINST-03\nWhere data residency or ethics approval requires it, a self-hosted telemetry backend is used.\nmobile-imu\n\n\n\nINST-04\nEffective sampling rate was verified against nominal on every device model before deployment.\nmobile-imu, wearable-ble\ndetail\n\n\nINST-05\nThe application runs as a foreground service or declares appropriate background modes, verified on the oldest handset in the fleet.\nmobile-imu\ndetail\n\n\nINST-06\nThe nominal sampling rate is recorded in dataset metadata.\nmobile-imu, wearable-ble\ndetail\n\n\nINST-07\nBoth a monotonic timestamp and wall-clock time are recorded.\nmobile-imu, wearable-ble\ndetail\n\n\nINST-08\nNTP corrections are logged as events so they can be undone.\nmulti-device\ndetail\n\n\nINST-09\nA deliberate synchronisation event is recorded at the start of each session.\nmulti-device\ndetail\n\n\nINST-10\nUnits are recorded explicitly in dataset metadata.\nmobile-imu, wearable-ble\ndetail\n\n\nINST-11\nA static calibration recording was captured at enrolment for every device.\nmobile-imu, wearable-ble\ndetail\n\n\nINST-12\nSensor range is configured for the most vigorous activity in the protocol, and the configured range is recorded.\nmobile-imu, wearable-ble\ndetail\n\n\nINST-13\nEvery upload attempt is logged with outcome, size, and device-side timestamp.\nmobile-imu, longitudinal\n\n\n\nINST-14\nApplication version and build are recorded with every recording.\nmobile-imu\n\n\n\nINST-15\nLocal buffering survives application restart and device reboot, verified by actually restarting and rebooting.\nmobile-imu, longitudinal\n\n\n\n\n\n\nPilot\n11 items\n\n\n\n\nStatement\nApplies to\nGuards against\n\n\n\n\nPLT-01\nAt least one recording traversed the complete chain to analysis and was validated at the far end.\nmobile-imu, wearable-ble\n\n\n\nPLT-02\nAutomated diagnostics were run over pilot recordings and the results recorded.\nmobile-imu, wearable-ble\n\n\n\nPLT-03\nThe pilot ran on the oldest and cheapest device model permitted in the study.\nmobile-imu\n\n\n\nPLT-04\nThe pilot included at least one full overnight period.\nmobile-imu, longitudinal\ndetail\n\n\nPLT-05\nBehaviour was verified with the device offline for a prolonged period and buffered data confirmed to arrive intact.\nmobile-imu, longitudinal\n\n\n\nPLT-06\nBehaviour was verified across application restart and device reboot.\nmobile-imu\n\n\n\nPLT-07\nBehaviour was verified under aggressive battery saving.\nmobile-imu\ndetail\n\n\nPLT-08\nBehaviour was verified with storage nearly full.\nmobile-imu, longitudinal\n\n\n\nPLT-09\nA static calibration recording confirmed resting magnitude of one g on every device model.\nmobile-imu, wearable-ble\ndetail\n\n\nPLT-10\nA vigorous-activity recording confirmed the configured range is not saturated.\nmobile-imu, wearable-ble\ndetail\n\n\nPLT-11\nMonitoring and alerting were active during the pilot and at least one alert was deliberately triggered.\nmobile-imu, wearable-ble\n\n\n\n\n\n\nDeploy\n7 items\n\n\n\n\n\n\n\n\n\n\nStatement\nApplies to\nGuards against\n\n\n\n\nDPLY-01\nEnrolment was staged, with a small first cohort validated before the remainder were enrolled.\nlongitudinal\n\n\n\nDPLY-02\nEach participant’s first 24 hours were validated before their data counted toward the study.\nlongitudinal\n\n\n\nDPLY-03\nThe application version deployed to each participant is recorded, and changes during the study are logged.\nmobile-imu, longitudinal\n\n\n\nDPLY-04\nA tested rollback path exists that does not lose buffered data.\nmobile-imu, longitudinal\n\n\n\nDPLY-05\nDevice model, OS version, and vendor are recorded per participant.\nmobile-imu\n\n\n\nDPLY-06\nParticipants have a documented route to report problems, and reports are logged alongside technical telemetry.\nlongitudinal\n\n\n\nDPLY-07\nOnboarding states explicitly what participants must not do, and compliance is verified rather than assumed.\nmobile-imu, longitudinal\n\n\n\n\n\n\nMonitor\n8 items\n\n\n\n\nStatement\nApplies to\nGuards against\n\n\n\n\nMON-01\nError and crash telemetry is deployed and confirmed to deliver from production devices.\nmobile-imu\n\n\n\nMON-02\nAlerts route to a person on duty with a stated expected response time.\nlongitudinal\n\n\n\nMON-03\nAlerting was deliberately triggered at least once to confirm the whole path works.\nlongitudinal\n\n\n\nMON-04\nEffective sampling rate per device is computed on ingestion and alerted on when it deviates from nominal.\nmobile-imu, wearable-ble, longitudinal\ndetail\n\n\nMON-05\nSignal variance is monitored with alerting on collapse to zero.\nmobile-imu, wearable-ble, longitudinal\ndetail\n\n\nMON-06\nData yield per participant per day is tracked against the minimum acceptable threshold.\nlongitudinal\n\n\n\nMON-07\nDiagnostics run automatically over incoming data rather than on request.\nlongitudinal\n\n\n\nMON-08\nDetection latency — the interval between a failure starting and someone knowing — is measured and reported.\nlongitudinal\n\n\n\n\n\n\nCurate\n8 items\n\n\n\n\n\n\n\n\n\n\nStatement\nApplies to\nGuards against\n\n\n\n\nCUR-01\nRaw data is stored immutably; processing produces new artifacts rather than overwriting originals.\nmobile-imu, wearable-ble\n\n\n\nCUR-02\nEvery processing step is recorded with the software version that performed it.\nmobile-imu, wearable-ble\n\n\n\nCUR-03\nData is versioned and any published analysis names the version it used.\nmobile-imu, wearable-ble\n\n\n\nCUR-04\nValidation results are stored alongside the data.\nmobile-imu, wearable-ble\n\n\n\nCUR-05\nExclusions are recorded with reasons at the point of decision.\nmobile-imu, wearable-ble\n\n\n\nCUR-06\nDevice metadata travels with the data rather than living separately.\nmobile-imu, wearable-ble\n\n\n\nCUR-07\nBackups exist and restoring from them has been tested.\nlongitudinal\n\n\n\nCUR-08\nPersonal data handling matches what consent and ethics approval permit, including for telemetry.\nmobile-imu, wearable-ble\n\n\n\n\n\n\nRelease\n8 items\n\n\n\n\n\n\n\n\n\n\nStatement\nApplies to\nGuards against\n\n\n\n\nREL-01\nThe dataset has a persistent identifier and a stated licence.\nmobile-imu, wearable-ble\n\n\n\nREL-02\nNominal sampling rate, units, sensor range, and device models are documented per recording.\nmobile-imu, wearable-ble\n\n\n\nREL-03\nValidation results are published with the data, including failures.\nmobile-imu, wearable-ble\n\n\n\nREL-04\nExclusions and their reasons are reported in aggregate.\nmobile-imu, wearable-ble\n\n\n\nREL-05\nKnown limitations are stated, including failure modes that could not be checked.\nmobile-imu, wearable-ble\n\n\n\nREL-06\nThe completed ACQUIRE checklist is attached as supplementary material, with justifications for items marked not applicable.\nmobile-imu, wearable-ble\n\n\n\nREL-07\nCode producing the released artifacts is archived at the same version as the data.\nmobile-imu, wearable-ble\n\n\n\nREL-08\nA minimal worked example is included so a new user can reproduce one figure.\nmobile-imu, wearable-ble"
+  },
+  {
+    "objectID": "checklist/extended.html#how-this-relates-to-the-reporting-checklist",
+    "href": "checklist/extended.html#how-this-relates-to-the-reporting-checklist",
+    "title": "Extended operational checklist",
+    "section": "How this relates to the reporting checklist",
+    "text": "How this relates to the reporting checklist\nThe two instruments answer different questions and are used at different times.\n\n\n\n\n\n\n\n\n\nMinimum Reporting Checklist\nExtended operational checklist\n\n\n\n\nQuestion\nWhat must a reader be told?\nWhat should a team do?\n\n\nUsed\nWhen writing the methods section\nThroughout the study\n\n\nAudience\nAuthors, reviewers, curators\nEngineers, PhD students, PIs\n\n\nStatus\nThe paper’s instrument, v26.7\nPractice, no standing as a standard\n\n\nLength\n10 items\n65 items\n\n\n\nA study can complete the extended checklist and still report nothing; a study can report everything on the MRC without having done any of this. The intended relationship is that doing the first makes the second answerable with real numbers instead of silence."
+  },
+  {
+    "objectID": "checklist/extended.html#source",
+    "href": "checklist/extended.html#source",
+    "title": "Extended operational checklist",
+    "section": "Source",
+    "text": "Source\nchecklist/acquire-checklist.yml.\nItems here are less settled than the MRC and were not derived by the procedure described in the paper. Disagreement is expected and welcome."
+  },
+  {
     "objectID": "cite.html",
     "href": "cite.html",
     "title": "Citing ACQUIRE",
@@ -465,172 +633,32 @@
     "text": "Contributing changes the citation\nContributors of accepted recipes, replications, and adapters are credited on the archived release record. This is deliberate: replication is the contribution the catalogue most needs, and it should carry credit that appears on a CV.\nContributing to the framework is distinct from co-authorship on associated research papers — see CONTRIBUTING for how the two are handled."
   },
   {
-    "objectID": "checklist/extended.html",
-    "href": "checklist/extended.html",
-    "title": "Extended operational checklist",
+    "objectID": "licensing.html",
+    "href": "licensing.html",
+    "title": "Licensing",
     "section": "",
-    "text": "This is not the paper’s checklist. The paper’s instrument is the ten-item Minimum Reporting Checklist, which specifies what a study should disclose so a reader can assess it.\nThis longer list is an operational companion covering what a team should do, stage by stage, so that the MRC can be answered honestly at the end. Most of these decisions never appear in a methods section. It is offered as practice, not as a reporting standard, and carries no claim to completeness.\nEach item maps to the MRC item it ultimately serves, or to a taxonomy row it guards against.\nRevised 2026-07-18 · 65 items · not part of the cited specification\nStudy types used for filtering:\n\nmobile-imu — Inertial data collected via a mobile application\nwearable-ble — Data collected from a BLE wearable device\nmulti-device — Two or more devices recording concurrently\nlongitudinal — Collection spanning weeks or months"
+    "text": "What\nLicence\nWhere\n\n\n\n\nData — the taxonomy and checklist as structured records\nCC0 1.0\ntaxonomy/*.yml, checklist/*.yml, the CSV and Markdown exports\n\n\nDocumentation — prose, templates, forms\nCC BY 4.0\nthis site, templates/, recipes/, lifecycle/\n\n\nCode — diagnostics, tooling, examples\nMIT\nacquire/, tools/, tests/, examples/\nCopyright 2026 Mateusz Danioł, Ryszard Sroka."
   },
   {
-    "objectID": "checklist/extended.html#items-by-stage",
-    "href": "checklist/extended.html#items-by-stage",
-    "title": "Extended operational checklist",
-    "section": "Items by stage",
-    "text": "Items by stage\n\n\n\nDesign\n8 items\n\n\n\n\nStatement\nApplies to\nGuards against\n\n\n\n\nDSGN-01\nThe required sampling rate was derived from the phenomenon being measured, not inherited from a previous study or an SDK default.\nmobile-imu, wearable-ble\n\n\n\nDSGN-02\nA minimum acceptable data yield per participant was stated in advance, together with the analysis consequence of falling below it.\nlongitudinal\n\n\n\nDSGN-03\nExplicit validity criteria were written down before collection began.\nmobile-imu, wearable-ble\n\n\n\nDSGN-04\nThe measurement range required by the most vigorous activity in the protocol was calculated rather than assumed.\nmobile-imu, wearable-ble\ndetail\n\n\nDSGN-05\nDevice and OS diversity in the intended population was enumerated, including the oldest hardware permitted.\nmobile-imu\n\n\n\nDSGN-06\nBattery and storage budgets were computed for the intended duration and rate on the worst-case device.\nmobile-imu, longitudinal\n\n\n\nDSGN-07\nConsent and ethics documentation covers telemetry and crash reporting, not only the primary sensor data.\nmobile-imu, wearable-ble\n\n\n\nDSGN-08\nA data management plan exists naming where raw data lives, who can access it, and how long it is retained.\nmobile-imu, wearable-ble\n\n\n\n\n\n\nInstrument\n15 items\n\n\n\n\nStatement\nApplies to\nGuards against\n\n\n\n\nINST-01\nCrash and error reporting is embedded in the acquisition application and verified to deliver from a real device.\nmobile-imu\n\n\n\nINST-02\nTelemetry reports are scrubbed of participant identifiers and raw signal content, and the scrubbing is tested.\nmobile-imu\n\n\n\nINST-03\nWhere data residency or ethics approval requires it, a self-hosted telemetry backend is used.\nmobile-imu\n\n\n\nINST-04\nEffective sampling rate was verified against nominal on every device model before deployment.\nmobile-imu, wearable-ble\ndetail\n\n\nINST-05\nThe application runs as a foreground service or declares appropriate background modes, verified on the oldest handset in the fleet.\nmobile-imu\ndetail\n\n\nINST-06\nThe nominal sampling rate is recorded in dataset metadata.\nmobile-imu, wearable-ble\ndetail\n\n\nINST-07\nBoth a monotonic timestamp and wall-clock time are recorded.\nmobile-imu, wearable-ble\ndetail\n\n\nINST-08\nNTP corrections are logged as events so they can be undone.\nmulti-device\ndetail\n\n\nINST-09\nA deliberate synchronisation event is recorded at the start of each session.\nmulti-device\ndetail\n\n\nINST-10\nUnits are recorded explicitly in dataset metadata.\nmobile-imu, wearable-ble\ndetail\n\n\nINST-11\nA static calibration recording was captured at enrolment for every device.\nmobile-imu, wearable-ble\ndetail\n\n\nINST-12\nSensor range is configured for the most vigorous activity in the protocol, and the configured range is recorded.\nmobile-imu, wearable-ble\ndetail\n\n\nINST-13\nEvery upload attempt is logged with outcome, size, and device-side timestamp.\nmobile-imu, longitudinal\n\n\n\nINST-14\nApplication version and build are recorded with every recording.\nmobile-imu\n\n\n\nINST-15\nLocal buffering survives application restart and device reboot, verified by actually restarting and rebooting.\nmobile-imu, longitudinal\n\n\n\n\n\n\nPilot\n11 items\n\n\n\n\nStatement\nApplies to\nGuards against\n\n\n\n\nPLT-01\nAt least one recording traversed the complete chain to analysis and was validated at the far end.\nmobile-imu, wearable-ble\n\n\n\nPLT-02\nAutomated diagnostics were run over pilot recordings and the results recorded.\nmobile-imu, wearable-ble\n\n\n\nPLT-03\nThe pilot ran on the oldest and cheapest device model permitted in the study.\nmobile-imu\n\n\n\nPLT-04\nThe pilot included at least one full overnight period.\nmobile-imu, longitudinal\ndetail\n\n\nPLT-05\nBehaviour was verified with the device offline for a prolonged period and buffered data confirmed to arrive intact.\nmobile-imu, longitudinal\n\n\n\nPLT-06\nBehaviour was verified across application restart and device reboot.\nmobile-imu\n\n\n\nPLT-07\nBehaviour was verified under aggressive battery saving.\nmobile-imu\ndetail\n\n\nPLT-08\nBehaviour was verified with storage nearly full.\nmobile-imu, longitudinal\n\n\n\nPLT-09\nA static calibration recording confirmed resting magnitude of one g on every device model.\nmobile-imu, wearable-ble\ndetail\n\n\nPLT-10\nA vigorous-activity recording confirmed the configured range is not saturated.\nmobile-imu, wearable-ble\ndetail\n\n\nPLT-11\nMonitoring and alerting were active during the pilot and at least one alert was deliberately triggered.\nmobile-imu, wearable-ble\n\n\n\n\n\n\nDeploy\n7 items\n\n\n\n\n\n\n\n\n\n\nStatement\nApplies to\nGuards against\n\n\n\n\nDPLY-01\nEnrolment was staged, with a small first cohort validated before the remainder were enrolled.\nlongitudinal\n\n\n\nDPLY-02\nEach participant’s first 24 hours were validated before their data counted toward the study.\nlongitudinal\n\n\n\nDPLY-03\nThe application version deployed to each participant is recorded, and changes during the study are logged.\nmobile-imu, longitudinal\n\n\n\nDPLY-04\nA tested rollback path exists that does not lose buffered data.\nmobile-imu, longitudinal\n\n\n\nDPLY-05\nDevice model, OS version, and vendor are recorded per participant.\nmobile-imu\n\n\n\nDPLY-06\nParticipants have a documented route to report problems, and reports are logged alongside technical telemetry.\nlongitudinal\n\n\n\nDPLY-07\nOnboarding states explicitly what participants must not do, and compliance is verified rather than assumed.\nmobile-imu, longitudinal\n\n\n\n\n\n\nMonitor\n8 items\n\n\n\n\nStatement\nApplies to\nGuards against\n\n\n\n\nMON-01\nError and crash telemetry is deployed and confirmed to deliver from production devices.\nmobile-imu\n\n\n\nMON-02\nAlerts route to a person on duty with a stated expected response time.\nlongitudinal\n\n\n\nMON-03\nAlerting was deliberately triggered at least once to confirm the whole path works.\nlongitudinal\n\n\n\nMON-04\nEffective sampling rate per device is computed on ingestion and alerted on when it deviates from nominal.\nmobile-imu, wearable-ble, longitudinal\ndetail\n\n\nMON-05\nSignal variance is monitored with alerting on collapse to zero.\nmobile-imu, wearable-ble, longitudinal\ndetail\n\n\nMON-06\nData yield per participant per day is tracked against the minimum acceptable threshold.\nlongitudinal\n\n\n\nMON-07\nDiagnostics run automatically over incoming data rather than on request.\nlongitudinal\n\n\n\nMON-08\nDetection latency — the interval between a failure starting and someone knowing — is measured and reported.\nlongitudinal\n\n\n\n\n\n\nCurate\n8 items\n\n\n\n\n\n\n\n\n\n\nStatement\nApplies to\nGuards against\n\n\n\n\nCUR-01\nRaw data is stored immutably; processing produces new artifacts rather than overwriting originals.\nmobile-imu, wearable-ble\n\n\n\nCUR-02\nEvery processing step is recorded with the software version that performed it.\nmobile-imu, wearable-ble\n\n\n\nCUR-03\nData is versioned and any published analysis names the version it used.\nmobile-imu, wearable-ble\n\n\n\nCUR-04\nValidation results are stored alongside the data.\nmobile-imu, wearable-ble\n\n\n\nCUR-05\nExclusions are recorded with reasons at the point of decision.\nmobile-imu, wearable-ble\n\n\n\nCUR-06\nDevice metadata travels with the data rather than living separately.\nmobile-imu, wearable-ble\n\n\n\nCUR-07\nBackups exist and restoring from them has been tested.\nlongitudinal\n\n\n\nCUR-08\nPersonal data handling matches what consent and ethics approval permit, including for telemetry.\nmobile-imu, wearable-ble\n\n\n\n\n\n\nRelease\n8 items\n\n\n\n\n\n\n\n\n\n\nStatement\nApplies to\nGuards against\n\n\n\n\nREL-01\nThe dataset has a persistent identifier and a stated licence.\nmobile-imu, wearable-ble\n\n\n\nREL-02\nNominal sampling rate, units, sensor range, and device models are documented per recording.\nmobile-imu, wearable-ble\n\n\n\nREL-03\nValidation results are published with the data, including failures.\nmobile-imu, wearable-ble\n\n\n\nREL-04\nExclusions and their reasons are reported in aggregate.\nmobile-imu, wearable-ble\n\n\n\nREL-05\nKnown limitations are stated, including failure modes that could not be checked.\nmobile-imu, wearable-ble\n\n\n\nREL-06\nThe completed ACQUIRE checklist is attached as supplementary material, with justifications for items marked not applicable.\nmobile-imu, wearable-ble\n\n\n\nREL-07\nCode producing the released artifacts is archived at the same version as the data.\nmobile-imu, wearable-ble\n\n\n\nREL-08\nA minimal worked example is included so a new user can reproduce one figure.\nmobile-imu, wearable-ble"
+    "objectID": "licensing.html#why-they-differ",
+    "href": "licensing.html#why-they-differ",
+    "title": "Licensing",
+    "section": "Why they differ",
+    "text": "Why they differ\nThe data is CC0 — public domain, no attribution required. The taxonomy and the checklist are only useful as a shared vocabulary. If someone wants to embed the failure classes in a validation tool, a journal submission system, or a competing framework, an attribution requirement is friction with no upside. A reporting standard that is awkward to adopt does not become a standard.\nWe would like to be cited, and the citation page says how. But that is a scholarly norm, not a licence condition, and the two should not be confused: enforcing citation through copyright would work against adoption, which is the only thing that makes a standard worth having.\nThe documentation is CC BY 4.0. The prose explains, argues, and interprets. Attribution is appropriate there and does not impede reuse — translate it, adapt it for a course, extract it into a lab handbook, and keep the credit.\nThe code is MIT. Permissive, familiar, and compatible with essentially any research or commercial pipeline the diagnostics might run inside."
   },
   {
-    "objectID": "checklist/extended.html#how-this-relates-to-the-reporting-checklist",
-    "href": "checklist/extended.html#how-this-relates-to-the-reporting-checklist",
-    "title": "Extended operational checklist",
-    "section": "How this relates to the reporting checklist",
-    "text": "How this relates to the reporting checklist\nThe two instruments answer different questions and are used at different times.\n\n\n\n\n\n\n\n\n\nMinimum Reporting Checklist\nExtended operational checklist\n\n\n\n\nQuestion\nWhat must a reader be told?\nWhat should a team do?\n\n\nUsed\nWhen writing the methods section\nThroughout the study\n\n\nAudience\nAuthors, reviewers, curators\nEngineers, PhD students, PIs\n\n\nStatus\nThe paper’s instrument, v26.7\nPractice, no standing as a standard\n\n\nLength\n10 items\n65 items\n\n\n\nA study can complete the extended checklist and still report nothing; a study can report everything on the MRC without having done any of this. The intended relationship is that doing the first makes the second answerable with real numbers instead of silence."
+    "objectID": "licensing.html#what-this-means-in-practice",
+    "href": "licensing.html#what-this-means-in-practice",
+    "title": "Licensing",
+    "section": "What this means in practice",
+    "text": "What this means in practice\n\nCopy the taxonomy or checklist into your own tool, standard, or paper with no obligation at all.\nAdapt the templates and prose provided you credit ACQUIRE.\nVendor the diagnostics code under MIT terms.\nA completed checklist is yours. Filling one in does not make your document a derivative work of ours — attach it to a paper or dataset under whatever licence you like."
   },
   {
-    "objectID": "checklist/extended.html#source",
-    "href": "checklist/extended.html#source",
-    "title": "Extended operational checklist",
-    "section": "Source",
-    "text": "Source\nchecklist/acquire-checklist.yml.\nItems here are less settled than the MRC and were not derived by the procedure described in the paper. Disagreement is expected and welcome."
-  },
-  {
-    "objectID": "check/index.html",
-    "href": "check/index.html",
-    "title": "Check your data",
-    "section": "",
-    "text": "This is the intended production path. The package runs where your data already is — in your ingestion pipeline, your analysis notebook, or CI — with no conversion step and no upload:\npip install acquire-framework\nacquire check recordings/day01.csv --nominal 50\nIt exits non-zero when a check fails, so it can gate a pipeline directly. In Python:\nimport acquire, pandas as pd\n\ndf = pd.read_csv(\"recordings/day01.csv\")\nreport = acquire.check(df, nominal_hz=50)\n\nfor result in report.failures:\n    print(result)\nThe frame needs four columns — timestamp, ax, ay, az — in the canonical schema. Timestamps may be float seconds or datetimes."
-  },
-  {
-    "objectID": "check/index.html#in-your-pipeline",
-    "href": "check/index.html#in-your-pipeline",
-    "title": "Check your data",
-    "section": "",
-    "text": "This is the intended production path. The package runs where your data already is — in your ingestion pipeline, your analysis notebook, or CI — with no conversion step and no upload:\npip install acquire-framework\nacquire check recordings/day01.csv --nominal 50\nIt exits non-zero when a check fails, so it can gate a pipeline directly. In Python:\nimport acquire, pandas as pd\n\ndf = pd.read_csv(\"recordings/day01.csv\")\nreport = acquire.check(df, nominal_hz=50)\n\nfor result in report.failures:\n    print(result)\nThe frame needs four columns — timestamp, ax, ay, az — in the canonical schema. Timestamps may be float seconds or datetimes."
-  },
-  {
-    "objectID": "check/index.html#in-your-browser",
-    "href": "check/index.html#in-your-browser",
-    "title": "Check your data",
-    "section": "In your browser",
-    "text": "In your browser\n\n\n\n\n\n\nPlanned for v0.2. The same package will run directly in this page via Pyodide — Python compiled to WebAssembly, executing in your tab.\nYour data will never leave your device. There is no upload, no server, and no request: the computation happens locally, and you can confirm that in your browser’s network tab. For studies operating under ethics approval, consent constraints, or GDPR, that distinction is the difference between a tool you can try and one you cannot.\n\n\n\nThe browser version is deliberately scoped as a demonstration — a way to see what the checks do and what a failure looks like, using example data with deliberately injected faults. Format fragmentation makes “upload your study data” a poor first experience: everyone’s export differs, and a tool that demands conversion before delivering value does not get used."
-  },
-  {
-    "objectID": "check/index.html#why-the-nominal-rate-must-be-supplied",
-    "href": "check/index.html#why-the-nominal-rate-must-be-supplied",
-    "title": "Check your data",
-    "section": "Why the nominal rate must be supplied",
-    "text": "Why the nominal rate must be supplied\nEvery diagnostic takes the sampling rate your application requested. It is not inferred from the data, and this is deliberate: inferring it would define away the most common failure in the catalogue. If the tool guessed 43 Hz because that is what it observed, it could never tell you the app asked for 50.\nThis is the general principle behind the framework. A measurement is only assessable against a stated expectation — which is why so many items in the checklist are about recording what you intended, not just what you got."
-  },
-  {
-    "objectID": "check/index.html#what-the-checks-do-not-cover",
-    "href": "check/index.html#what-the-checks-do-not-cover",
-    "title": "Check your data",
-    "section": "What the checks do not cover",
-    "text": "What the checks do not cover\nStated on every passing report, and worth repeating here:\n\nWhether the sensor was calibrated against a reference instrument\nWhether device clocks agree with each other or with wall time\nWhether the participant wore or carried the device as instructed\nWhether the recorded activity matches any label or diary entry\nAnything about signal streams other than tri-axial acceleration\n\nA passing report means the checks that ran found nothing. It is not a certificate of validity, and a framework that let you read it as one would be reproducing the problem it exists to solve."
-  },
-  {
-    "objectID": "checklist/index.html",
-    "href": "checklist/index.html",
-    "title": "Minimum Reporting Checklist",
-    "section": "",
-    "text": "Clinical trials have CONSORT. Systematic reviews have PRISMA. Observational studies have STROBE. For in-the-wild sensing there is no agreed statement of what a study should have done and reported for its measurements to be assessable by a reader.\nThe MRC reports a different object than existing mHealth reporting standards. CONSORT-EHEALTH and mERA standardize the reporting of interventions, saying little about the acquisition system that produced the sensor data. ACQUIRE is complementary: it reports the measuring system."
-  },
-  {
-    "objectID": "checklist/index.html#who-it-is-for",
-    "href": "checklist/index.html#who-it-is-for",
-    "title": "Minimum Reporting Checklist",
-    "section": "Who it is for",
-    "text": "Who it is for\nAuthors, who attach it to a methods section. Reviewers, who use it to request specific acquisition details rather than a vague “more detail on data quality” — see the reviewer form. Dataset curators, who use the schema and provenance templates. And students, for whom acquisition discipline is most cheaply instilled during supervision."
-  },
-  {
-    "objectID": "checklist/index.html#the-checklist",
-    "href": "checklist/index.html#the-checklist",
-    "title": "Minimum Reporting Checklist",
-    "section": "The checklist",
-    "text": "The checklist\n\n\n\n\n\n\n\n\n\n\n\n\n\nDisclose in the methods section\nProperty\nTier\nDisclosure\n\n\n\n\nMRC-01\nExpected versus observed completeness, per modality, with the sampling and background-execution policy.\n[O]\ncore\npartly automatic\n\n\nMRC-02\nMissingness statistics and their suspected attribution (technical / adherence / attrition), with the evidence used.\n[O]\ncore\npartly automatic\n\n\nMRC-03\nDevice models, OS versions, app and firmware versions, and every mid-study change.\n[M] [EN]\ncore\npartly automatic\n\n\nMRC-04\nTimestamping source, synchronization policy, and residual clock uncertainty after reconciliation.\n[M]\ncore\npartly automatic\n\n\nMRC-05\nAn accuracy or uncertainty statement appropriate to each primary derived measurand, or a documented justification of why quantitative uncertainty could not be established and what validation evidence is provided instead.\n[M]\nconditional\nauthor-disclosed\n\n\nMRC-06\nUpload retry, deduplication, and integrity-verification logic (checksums, sequence numbers).\n[EN]\ncore\nauthor-disclosed\n\n\nMRC-07\nContext and system-health events recorded alongside the data: power state, connectivity, permissions; crashes and service kills.\n[EN]\ncore\nauthor-disclosed\n\n\nMRC-08\nMachine-readable schema and collection-software artifacts published alongside the data.\n[EN]\ncore\nauthor-disclosed\n\n\nMRC-09\nQC exclusion criteria and preprocessing provenance from raw log to released dataset.\n[EN]\ncore\npartly automatic\n\n\nMRC-10\nPre-deployment verification evidence: which failure modes of the taxonomy were tested, how, and with what observed behaviour.\n[M] [EN] [O]\nconditional\nauthor-disclosed"
-  },
-  {
-    "objectID": "checklist/index.html#proportionality",
-    "href": "checklist/index.html#proportionality",
-    "title": "Minimum Reporting Checklist",
-    "section": "Proportionality",
-    "text": "Proportionality\nItems marked core apply to any study using this framework. Items marked conditional should be judged against the intended measurand and the study’s risk, not applied uniformly.\nThe synchronization example makes the point concretely: tens of milliseconds of clock error are negligible for daily step counts and disqualifying for cross-modal latency estimation. The same dataset can be fit for one purpose and unfit for another. Acquisition requirements should be set and evaluated against what is being measured."
-  },
-  {
-    "objectID": "checklist/index.html#disclosure-should-be-a-by-product-not-extra-work",
-    "href": "checklist/index.html#disclosure-should-be-a-by-product-not-extra-work",
-    "title": "Minimum Reporting Checklist",
-    "section": "Disclosure should be a by-product, not extra work",
-    "text": "Disclosure should be a by-product, not extra work\nThe reason most acquisition detail goes unreported is not that authors are careless — it is that disclosure is unpaid work with no reward, and often requires numbers nobody computed.\nSix of the ten items can be populated wholly or partly from data and logs by the shipped diagnostics, so that reporting becomes a by-product of a validation you would want to run anyway:\npip install acquire-framework\nacquire check recordings/day01.csv --nominal 50\n\n\n\n\n\n\n\n\n\n\nItem\nWhat the diagnostics supply\nWhat you must still supply\n\n\n\n\nMRC-01\nObserved completeness and effective rate are computed by acquire check (TIME-01, TIME-02). Expected completeness and the background-execution policy are author-supplied.\n—\n\n\nMRC-02\nGap counts, durations and their distribution over time are computed. Attribution is an author judgement and must be argued, not asserted — published completeness figures routinely conflate these three causes.\n—\n\n\nMRC-03\nPopulated automatically where the collection app records these per recording, as the provenance template specifies.\n—\n\n\nMRC-04\nMonotonicity and regularity are checked automatically. The residual synchronization uncertainty must be estimated from the study’s own offset logs — see examples/synchronization for the model and a worked budget.\n—\n\n\nMRC-09\nDiagnostic results and the thresholds that produced them are emitted by acquire check and can be attached verbatim as the QC record.\n—\n\n\n\n\n\nThe remaining four items — integrity logic, health-event recording, published schema and software, and pre-deployment verification — are properties of how the study was built. No tool can infer them, and the checklist’s role there is to make their absence visible rather than silent."
-  },
-  {
-    "objectID": "checklist/index.html#a-floor-under-item-mrc-05",
-    "href": "checklist/index.html#a-floor-under-item-mrc-05",
-    "title": "Minimum Reporting Checklist",
-    "section": "A floor under item MRC-05",
-    "text": "A floor under item MRC-05\nMRC-05 permits a documented justification in place of an uncertainty statement. Without a floor, that escape hatch would be taken universally and the item would carry no information. A justification is acceptable only if it:\n\nNames the dominant uncertainty sources that would appear in a budget\nStates why each could not be quantified\nDescribes the validation evidence offered instead\n\n“Uncertainty could not be established” alone does not satisfy the item. The uncertainty statement template provides both the budget form and the justification form."
-  },
-  {
-    "objectID": "checklist/index.html#templates",
-    "href": "checklist/index.html#templates",
-    "title": "Minimum Reporting Checklist",
-    "section": "Templates",
-    "text": "Templates\n\n\n\nTemplate\nSatisfies\n\n\n\n\nSensor schema\nMRC-08\n\n\nQuality flags\nMRC-01, MRC-02, MRC-09\n\n\nUncertainty statement\nMRC-05\n\n\nDataset provenance\nMRC-03, MRC-09\n\n\nReviewer form\nall"
-  },
-  {
-    "objectID": "checklist/index.html#going-further",
-    "href": "checklist/index.html#going-further",
-    "title": "Minimum Reporting Checklist",
-    "section": "Going further",
-    "text": "Going further\nThe MRC is the reporting minimum — what a reader needs to assess a study after the fact. The extended operational checklist is a longer, stage-by-stage companion for people building a study, covering decisions that never appear in a methods section but determine whether the MRC can be answered honestly at all."
-  },
-  {
-    "objectID": "checklist/index.html#source",
-    "href": "checklist/index.html#source",
-    "title": "Minimum Reporting Checklist",
-    "section": "Source",
-    "text": "Source\nchecklist/acquire-mrc.yml is the single source of truth: the site renders it, the exports derive from it, and each item names the taxonomy rows it comes from."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "ACQUIRE Framework",
-    "section": "",
-    "text": "Reproducibility begins at acquisition.\n\nMost in-the-wild sensing studies collect invalid data for weeks before anyone notices. Dashboards stay green, files keep arriving, and the failure only surfaces during analysis — when the fieldwork is already spent.\nACQUIRE is a guideline book and a set of diagnostics for catching those failures while they are still cheap to fix.\n\nBuilding a study? Start here Something wrong with your data?"
-  },
-  {
-    "objectID": "index.html#what-silent-failure-looks-like",
-    "href": "index.html#what-silent-failure-looks-like",
-    "title": "ACQUIRE Framework",
-    "section": "What silent failure looks like",
-    "text": "What silent failure looks like\nBelow is one hour of accelerometer data from a phone that reported itself healthy for the entire recording. The app requested 50 Hz. Every file arrived. No error was logged.\n\n\n\n\n\n\n\n\nFigure 1: Effective sampling rate collapses halfway through the recording. Nothing in the application’s own telemetry registers this.\n\n\n\n\n\nRunning the diagnostics against it takes one line:\n\nimport acquire\n\nreport = acquire.check(df, nominal_hz=50)\nreport\n\n\n\n\n\n✓\nTimestamp monotonicity\n0 non-increasing steps\n0\n\n\n\n×\nEffective vs nominal sampling rate\n38.41 Hz (77% of nominal)\n50.00 Hz ±5%\nrecipe →\n\n\n×\nStream continuity\n1 gaps, 45.1 s lost, longest 45.1 s\nno interval &gt; 1.0 s\nrecipe →\n\n\n×\nSampling regularity\njitter 100.0% above median interval (p90)\n≤ 25%\nrecipe →\n\n\n✓\nResting magnitude\n9.806 m/s² (1.000 g)\n9.807 m/s² ±2%\n\n\n\n✓\nStuck sensor\nlongest frozen run 0.0 s\n≤ 2.0 s\n\n\n\n✓\nSaturation\n0.001% of samples at rail (±15.6 m/s²)\n≤ 0.1%\n\n\n\n\nACQUIRE spec 26.7, acquire-framework 26.7.0\n\n\nTwo failures, both invisible to conventional monitoring, both traceable to a specific recipe. That is the whole idea."
-  },
-  {
-    "objectID": "index.html#what-acquire-v26.7-contains",
-    "href": "index.html#what-acquire-v26.7-contains",
-    "title": "ACQUIRE Framework",
-    "section": "What ACQUIRE v26.7 contains",
-    "text": "What ACQUIRE v26.7 contains\nThe acquisition-failure taxonomy — eight failure modes by system layer, each mapped to its signature in the dataset and to the property it threatens. Table 1 of the paper, machine-readable.\nThe Minimum Reporting Checklist — ten methods-section disclosures about the measuring system. Table 2 of the paper. Complementary to CONSORT-EHEALTH and mERA, which report the intervention rather than the instrument.\nThe failure catalogue — entered by symptom, for when data already looks wrong. Each entry states what you observe, what causes it, how to detect it, and how well that detection is evidenced.\nThe guideline book — an operational companion for teams building a study, stage by stage.\nTemplates and forms — sensor schema, quality flags, uncertainty statement, dataset provenance, and a reviewer form.\nA worked synchronization example — executable. Two BLE devices at +40 and −25 ppm, re-anchored at reconnection: completeness stays at 100% and every quality flag stays green while the inter-device offset spends 96% of the recording outside a ±20 ms tolerance, peaking near 0.8 s. A record-integrity audit passes this dataset; a measurement-validity audit does not."
-  },
-  {
-    "objectID": "index.html#run-it-on-your-own-data",
-    "href": "index.html#run-it-on-your-own-data",
-    "title": "ACQUIRE Framework",
-    "section": "Run it on your own data",
-    "text": "Run it on your own data\nThe diagnostics are a Python package, intended to run in your own pipeline or CI against incoming study data:\npip install acquire-framework\nacquire check recordings/day01.csv --nominal 50\nIt exits non-zero on failure, so it can gate a pipeline.\nThere is also a browser-based demonstration that runs the same code locally in your tab — nothing is uploaded, and nothing leaves your device."
-  },
-  {
-    "objectID": "index.html#the-paper",
-    "href": "index.html#the-paper",
-    "title": "ACQUIRE Framework",
-    "section": "The paper",
-    "text": "The paper\nACQUIRE — Acquisition Criteria for Quality, Uncertainty, Integrity, Reproducibility, and Evidence — treats the whole acquisition chain as a measuring system and evaluates it along three axes: measurement validity, record integrity and provenance, and observation-process validity.\n\nDanioł, M. and Sroka, R. (2026). Reproducibility Begins at Acquisition: The ACQUIRE Framework for Trustworthy In-the-Wild Sensing. Companion of the 2026 ACM International Joint Conference on Pervasive and Ubiquitous Computing (UbiComp/ISWC ’26 Companion), Shanghai, China.\n\nHow to cite →"
-  },
-  {
-    "objectID": "index.html#status",
-    "href": "index.html#status",
-    "title": "ACQUIRE Framework",
-    "section": "Status",
-    "text": "Status\nVersion 26.7. The catalogue is small and honest about it: every recipe carries an evidence level, and most are currently at the lowest one. The taxonomy is expert-derived and formative rather than systematically validated, and is brought to REPRODUCE for community evaluation and extension.\nReplications are the single most useful contribution — see contributing."
+    "objectID": "licensing.html#machine-readable",
+    "href": "licensing.html#machine-readable",
+    "title": "Licensing",
+    "section": "Machine-readable",
+    "text": "Machine-readable\nFiles carry SPDX-License-Identifier headers where the format permits a comment. Where it does not — CSV, for instance — the licence is the one listed for its directory above.\nFull licence texts live in LICENSES/, named by SPDX identifier, following the REUSE convention."
   },
   {
     "objectID": "lifecycle/deploy.html",

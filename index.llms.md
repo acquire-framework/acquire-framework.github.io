@@ -60,11 +60,15 @@ Two failures, both invisible to conventional monitoring, both traceable to a spe
 The diagnostics are a Python package, intended to run in your own pipeline or CI against incoming study data:
 
 ``` bash
-pip install acquire-framework
-acquire check recordings/day01.csv --nominal 50
+git clone https://github.com/acquire-framework/acquire-framework.github.io
+cd acquire-framework.github.io
+uv sync --extra dev
+uv run acquire check recordings/day01.csv --nominal 50
 ```
 
 It exits non-zero on failure, so it can gate a pipeline.
+
+The diagnostics are not published to a package index yet — run them from a clone until they are.
 
 There is also a [browser-based demonstration](check/index.llms.md) that runs the same code locally in your tab — nothing is uploaded, and nothing leaves your device.
 

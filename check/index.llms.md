@@ -7,9 +7,15 @@ The diagnostics, run against your own recordings.
 This is the intended production path. The package runs where your data already is — in your ingestion pipeline, your analysis notebook, or CI — with no conversion step and no upload:
 
 ``` bash
-pip install acquire-framework
-acquire check recordings/day01.csv --nominal 50
+git clone https://github.com/acquire-framework/acquire-framework.github.io
+cd acquire-framework.github.io
+uv sync --extra dev
+uv run acquire check recordings/day01.csv --nominal 50
 ```
+
+> **NOTE:**
+>
+> **Not yet on a package index.** The diagnostics run from a clone of the repository. A published package will follow once the API has settled; until then, pin the commit you ran so your quality-control record stays meaningful.
 
 It exits non-zero when a check fails, so it can gate a pipeline directly. In Python:
 

@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: CC-BY-4.0
+# SPDX-FileCopyrightText: 2026 Mateusz Danioł, Ryszard Sroka
 # ACQUIRE dataset provenance template — satisfies MRC-03 and MRC-09.
 #
 # Records the auditable lineage from a published number back to the act of

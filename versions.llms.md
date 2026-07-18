@@ -26,7 +26,9 @@ Rewording an explanation, restyling a page, or correcting a typo changes what a 
 
 ## The diagnostics package
 
-`acquire-framework` is versioned `<spec>.<patch>`: **26.7.0** implements specification 26.7, and the patch component moves independently for bug fixes that alter no requirement.
+The diagnostics are versioned `<spec>.<patch>`: **26.7.0** implements specification 26.7, and the patch component moves independently for bug fixes that alter no requirement.
+
+They are **not yet published to a package index** — run them from a clone, and record the commit you ran alongside the version.
 
 ``` python
 import acquire
@@ -42,7 +44,7 @@ Diagnostic reports stamp both, so a quality-control record attached to a dataset
 |:---|:---|
 | Specification | **26.7** |
 | Package | 26.7.0 |
-| Site build | [`5a8e54e`](https://github.com/acquire-framework/acquire-framework.github.io/tree/5a8e54e4c30f3db544d30bed5bd2cd9f5769efed) |
+| Site build | [`c90b23f`](https://github.com/acquire-framework/acquire-framework.github.io/tree/c90b23f6e11208a9fc9d516282085602aee45fb1) |
 | Built | 2026-07-18 |
 
 ## Published specifications
@@ -63,7 +65,7 @@ Give the permalink, not the bare domain:
 
 If you ran the diagnostics, name the package build too, since a threshold could have been implemented incorrectly and later fixed without the specification changing:
 
-> Diagnostics were run with `acquire-framework` 26.7.0.
+> Diagnostics were run with ACQUIRE 26.7.0 (commit `abc1234`).
 
 ## Rebuilding a specification from source
 

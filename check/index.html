@@ -363,8 +363,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="in-your-pipeline" class="level2">
 <h2 class="anchored" data-anchor-id="in-your-pipeline">In your pipeline</h2>
 <p>This is the intended production path. The package runs where your data already is — in your ingestion pipeline, your analysis notebook, or CI — with no conversion step and no upload:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install acquire-framework</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">acquire</span> check recordings/day01.csv <span class="at">--nominal</span> 50</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/acquire-framework/acquire-framework.github.io</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> acquire-framework.github.io</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> sync <span class="at">--extra</span> dev</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run acquire check recordings/day01.csv <span class="at">--nominal</span> 50</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Not yet on a package index.</strong> The diagnostics run from a clone of the repository. A published package will follow once the API has settled; until then, pin the commit you ran so your quality-control record stays meaningful.</p>
+</div>
+</div>
+</div>
 <p>It exits non-zero when a check fails, so it can gate a pipeline directly. In Python:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> acquire, pandas <span class="im">as</span> pd</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -862,7 +874,7 @@ Companion)</em> (Shanghai, China). <a href="https://acquire-framework.github.io"
 <p>Maintained at the Department of Measurements and Electronics, AGH University of Krakow</p>
 <div class="toc-actions"><ul><li><a href="https://github.com/acquire-framework/acquire-framework.github.io/edit/main/check/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/acquire-framework/acquire-framework.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
-<p>ACQUIRE spec 26.7 · site build <a href="https://github.com/acquire-framework/acquire-framework.github.io/tree/5a8e54e4c30f3db544d30bed5bd2cd9f5769efed"><code>5a8e54e</code></a> · built 2026-07-18 MIT · <a href="../cite.html">How to cite</a> · <a href="../versions.html">All versions</a></p>
+<p>ACQUIRE spec 26.7 · site build <a href="https://github.com/acquire-framework/acquire-framework.github.io/tree/c90b23f6e11208a9fc9d516282085602aee45fb1"><code>c90b23f</code></a> · built 2026-07-18 <a href="../licensing.html">Licensing</a> · <a href="../cite.html">How to cite</a> · <a href="../versions.html">All versions</a></p>
 </div>
   </div>
 </footer>

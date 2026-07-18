@@ -391,7 +391,7 @@ Figure&nbsp;1: Effective sampling rate collapses halfway through the recording. 
 </div>
 </div>
 <p>Running the diagnostics against it takes one line:</p>
-<div id="062b3629" class="cell" data-execution_count="2">
+<div id="21001c0f" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> acquire</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> acquire.check(df, nominal_hz<span class="op">=</span><span class="dv">50</span>)</span>
@@ -468,9 +468,12 @@ Figure&nbsp;1: Effective sampling rate collapses halfway through the recording. 
 <section id="run-it-on-your-own-data" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="run-it-on-your-own-data">Run it on your own data</h2>
 <p>The diagnostics are a Python package, intended to run in your own pipeline or CI against incoming study data:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install acquire-framework</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">acquire</span> check recordings/day01.csv <span class="at">--nominal</span> 50</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/acquire-framework/acquire-framework.github.io</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> acquire-framework.github.io</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> sync <span class="at">--extra</span> dev</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run acquire check recordings/day01.csv <span class="at">--nominal</span> 50</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>It exits non-zero on failure, so it can gate a pipeline.</p>
+<p>The diagnostics are not published to a package index yet — run them from a clone until they are.</p>
 <p>There is also a <a href="./check/index.html">browser-based demonstration</a> that runs the same code locally in your tab — nothing is uploaded, and nothing leaves your device.</p>
 </section>
 <section id="the-paper" class="level2 unnumbered">
@@ -941,7 +944,7 @@ Companion)</em> (Shanghai, China). <a href="https://acquire-framework.github.io"
 <p>Maintained at the Department of Measurements and Electronics, AGH University of Krakow</p>
 <div class="toc-actions"><ul><li><a href="https://github.com/acquire-framework/acquire-framework.github.io/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/acquire-framework/acquire-framework.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
-<p>ACQUIRE spec 26.7 · site build <a href="https://github.com/acquire-framework/acquire-framework.github.io/tree/5a8e54e4c30f3db544d30bed5bd2cd9f5769efed"><code>5a8e54e</code></a> · built 2026-07-18 MIT · <a href="./cite.html">How to cite</a> · <a href="./versions.html">All versions</a></p>
+<p>ACQUIRE spec 26.7 · site build <a href="https://github.com/acquire-framework/acquire-framework.github.io/tree/c90b23f6e11208a9fc9d516282085602aee45fb1"><code>c90b23f</code></a> · built 2026-07-18 <a href="./licensing.html">Licensing</a> · <a href="./cite.html">How to cite</a> · <a href="./versions.html">All versions</a></p>
 </div>
   </div>
 </footer>

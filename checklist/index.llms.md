@@ -44,8 +44,10 @@ The reason most acquisition detail goes unreported is not that authors are carel
 Six of the ten items can be populated wholly or partly from data and logs by the shipped diagnostics, so that reporting becomes a by-product of a validation you would want to run anyway:
 
 ``` bash
-pip install acquire-framework
-acquire check recordings/day01.csv --nominal 50
+git clone https://github.com/acquire-framework/acquire-framework.github.io
+cd acquire-framework.github.io
+uv sync --extra dev
+uv run acquire check recordings/day01.csv --nominal 50
 ```
 
 | Item | What the diagnostics supply | What you must still supply |
