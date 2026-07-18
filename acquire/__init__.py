@@ -19,11 +19,11 @@ from .schema import SchemaError
 #: Package version. The patch component moves independently of the spec:
 #: 26.7.N implements ACQUIRE spec 26.7, and N increments for code fixes
 #: that change no requirement.
-__version__ = "26.7.0"
+__version__ = "26.7.1"
 
 #: The version of the normative framework content this package implements.
 #: Reports stamp it, so a quality-control record stays interpretable.
-SPEC_VERSION = "26.7"
+SPEC_VERSION = "26.7.1"
 
 __all__ = [
     "CheckResult",

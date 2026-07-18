@@ -7,27 +7,19 @@ studies — instrument validity, failure detection, monitoring, data versioning,
 reproducible dataset release.
 
 **Site:** <https://acquire-framework.github.io>
-**Status:** v26.7 — first public release.
+**Status:** specification 26.7.1.
 
 ## What's here
 
-- **`acquire/`** — the diagnostics package. Seven checks across timing and signal
-  validity, a canonical schema, and a synthetic generator with injectable faults.
+- **`spec/`** — the specification manifest and changelog.
 - **`lifecycle/`** — the guideline book, organised by study stage.
 - **`recipes/`** — the failure catalogue, organised by symptom.
 - **`checklist/`** — the reporting checklist, YAML as single source of truth.
 
-## Quick start
+## What this is
 
-```bash
-git clone https://github.com/acquire-framework/acquire-framework.github.io
-cd acquire-framework.github.io
-uv sync --extra dev
-uv run acquire check recordings/day01.csv --nominal 50
-```
-
-Exits non-zero on failure, so it can gate a pipeline.
-Not yet published to a package index.
+A specification and a set of documents. No diagnostic software is published;
+tooling is on the roadmap and deliberately not announced.
 
 ## Development
 

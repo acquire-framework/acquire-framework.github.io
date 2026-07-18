@@ -37,26 +37,20 @@ the monitoring most studies actually deploy. "Is data arriving?" answers yes.
 
 Genuine stillness still produces sensor noise. **Exactly repeated values across
 all three axes are therefore a hardware fault, not a quiet participant** — a
-distinction that makes this detectable with no thresholds to tune:
+distinction that makes this detectable with no thresholds to tune.
 
-```{python}
-#| echo: true
-import acquire
-from acquire.synth import Fault, clean, inject
-
-df = inject(clean(duration_s=900, seed=4), Fault("stuck", start=300, end=400))
-
-next(r for r in acquire.check(df, nominal_hz=50).results if r.id == "SIG-02")
-```
+Concretely: test successive samples for bit-identical values across all three
+axes, and report the longest such run. The only parameter is how long a
+frozen run must be before it counts as a fault — longer than any plausible
+period of stillness, so minutes rather than seconds.
 
 ## Evidence
 
-The detector is exact rather than statistical: it reports the longest run of
-bit-identical consecutive samples. The only tunable is how long a frozen run must
-be before it is called a fault, defaulting to two seconds.
+The test is exact rather than statistical, which is unusual in this catalogue:
+bit-identical repetition either occurred or it did not.
 
 **No field observation yet.** This recipe is included because the failure is well
-attested in hardware literature and because the detector is trivially verifiable,
+attested in hardware literature and because the test is trivially verifiable,
 not because it has been observed in a deployment by the authors.
 
 ::: {.acq-contribute}

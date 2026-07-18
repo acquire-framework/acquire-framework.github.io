@@ -79,10 +79,6 @@ for key, title in layers.items():
             out.append(f"::: {{.callout-warning appearance='simple'}}\n"
                        f"**Detection limit.** {f['limitation'].strip()}\n:::\n")
         links = []
-        if f.get("detectable_by"):
-            names = ", ".join(f"`{d}`" for d in f["detectable_by"])
-            links.append(f"Automatically detectable by {names} — see "
-                         f"[running the diagnostics](../check/index.qmd).")
         if f.get("worked_example"):
             links.append(f"Worked example: [`{f['worked_example']}`]"
                          f"(https://github.com/acquire-framework/"
@@ -93,30 +89,6 @@ for key, title in layers.items():
         out.append("\n")
 Markdown("\n".join(out))
 ```
-
-## What has an automatic detector, and what does not
-
-```{python}
-#| echo: false
-import pandas as pd
-rows = []
-for f in spec["failures"]:
-    rows.append({
-        "ID": f["id"],
-        "Failure mode": f["mode"],
-        "Detector": ", ".join(f["detectable_by"]) if f.get("detectable_by") else "— author-disclosed",
-    })
-pd.DataFrame(rows)
-```
-
-Several taxonomy rows have no automatic detector and never will: whether a
-participant wore the device, whether permissions were revoked, whether the
-protocol changed mid-study. These are disclosed by the author, which is what the
-[reporting checklist](../checklist/index.qmd) is for.
-
-The division matters. Where a detector exists, disclosure should be a
-by-product of running it. Where none exists, disclosure depends on the author's
-honesty, and the checklist's job is to make the omission visible.
 
 ## Source
 

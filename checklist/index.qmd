@@ -42,19 +42,13 @@ from IPython.display import Markdown
 
 mrc = yaml.safe_load(Path("checklist/acquire-mrc.yml").read_text())
 
-AUTO = {
-    True: "automatic",
-    "partial": "partly automatic",
-    False: "author-disclosed",
-}
-
-out = ["| | Disclose in the methods section | Property | Tier | Disclosure |",
-       "|:--|:--|:-:|:-:|:-:|"]
+out = ["| | Disclose in the methods section | Property | Tier |",
+       "|:--|:--|:-:|:-:|"]
 for item in mrc["items"]:
     props = " ".join(f"[{p}]" for p in item["property"])
     out.append(
         f"| `{item['id']}` | {item['statement'].strip()} | {props} "
-        f"| {item['tier']} | {AUTO[item.get('auto', False)]} |"
+        f"| {item['tier']} |"
     )
 Markdown("\n".join(out))
 ```
@@ -70,40 +64,6 @@ clock error are negligible for daily step counts and disqualifying for
 cross-modal latency estimation. **The same dataset can be fit for one purpose
 and unfit for another.** Acquisition requirements should be set and evaluated
 against what is being measured.
-
-## Disclosure should be a by-product, not extra work
-
-The reason most acquisition detail goes unreported is not that authors are
-careless — it is that disclosure is unpaid work with no reward, and often
-requires numbers nobody computed.
-
-Six of the ten items can be populated wholly or partly from data and logs by the
-shipped diagnostics, so that reporting becomes a by-product of a validation you
-would want to run anyway:
-
-```bash
-git clone https://github.com/acquire-framework/acquire-framework.github.io
-cd acquire-framework.github.io
-uv sync --extra dev
-uv run acquire check recordings/day01.csv --nominal 50
-```
-
-```{python}
-#| echo: false
-out = ["| Item | What the diagnostics supply | What you must still supply |",
-       "|:--|:--|:--|"]
-for item in mrc["items"]:
-    if item.get("auto") in (True, "partial"):
-        note = item.get("auto_note", "").strip()
-        supplied, _, manual = note.partition(" ")
-        out.append(f"| `{item['id']}` | {note} | — |")
-Markdown("\n".join(out))
-```
-
-The remaining four items — integrity logic, health-event recording, published
-schema and software, and pre-deployment verification — are properties of how the
-study was built. No tool can infer them, and the checklist's role there is to
-make their absence visible rather than silent.
 
 ## A floor under item MRC-05
 

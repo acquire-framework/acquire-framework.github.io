@@ -33,27 +33,16 @@ interpolation, or model capacity recovers it.
 
 ## Detection
 
-```{python}
-#| echo: true
-import acquire
-from acquire.synth import Fault, clean, inject
-
-df = inject(clean(duration_s=900, seed=6), Fault("clip", factor=5.0))
-
-next(r for r in acquire.check(df, nominal_hz=50).results if r.id == "SIG-03")
-```
-
-The check reports the fraction of samples sitting at the observed extreme. A
-healthy recording touches its peak once; a saturated one touches it repeatedly,
-because the rail is a value the signal cannot exceed rather than one it happens
-to reach.
+Concretely: find the maximum absolute value per axis and count how many
+samples sit within a small fraction of it. A healthy recording touches its
+peak once; a saturated one returns to it repeatedly, because the rail is a
+value the signal cannot exceed rather than one it happens to reach.
 
 ## Evidence
 
-**No field observation yet.** The detector is validated only against synthetic
-clipping. Its threshold — 0.1% of samples at the rail — is a defensible starting
-point rather than an empirically derived one, and would benefit from calibration
-against real recordings across activity types.
+**No field observation yet.** A threshold of 0.1% of samples at the rail is a
+defensible starting point rather than an empirically derived one, and would
+benefit from calibration against real recordings across activity types.
 
 ::: {.acq-contribute}
 **The threshold needs empirical grounding.** Recordings from vigorous activity

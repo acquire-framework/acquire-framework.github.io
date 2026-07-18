@@ -6,9 +6,9 @@ other than ours.
 
 ## What to contribute
 
-**Replications** (most valuable). Run `acquire check` over one participant's
-recording and report what you found — device model, OS version, effective rate,
-and whether the failure appeared. An hour of work moves a recipe from `●●○○` to
+**Replications** (most valuable). Apply a recipe's detection method to one
+participant's recording and report what you found — device model, OS version,
+effective against nominal rate, and whether the failure appeared. An hour of work moves a recipe from `●●○○` to
 `●●●○`.
 
 **New failure modes.** Something that went wrong in your study that isn't in the

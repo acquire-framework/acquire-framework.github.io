@@ -40,41 +40,16 @@ This is the framework's showcase diagnostic, because the reference value is a
 standard gravity, 9.80665 m/s². Any deviation is a real measurement error, and
 no labelling effort is required to establish the ground truth.
 
-```{python}
-#| echo: true
-import acquire
-from acquire.synth import Fault, clean, inject
-from acquire.schema import G
+Concretely: compute the vector magnitude, identify low-motion samples by a
+rolling standard deviation, and compare their mean magnitude against
+9.80665 m/s². A ratio near 1/9.81 indicates data recorded in g; a ratio near
+9.81 indicates a gravity conversion applied twice.
 
-df = inject(clean(duration_s=900, seed=9), Fault("scale", factor=1 / G))  # data in g
-
-next(r for r in acquire.check(df, nominal_hz=50).results if r.id == "SIG-01")
-```
-
-The detector identifies low-motion samples by rolling standard deviation and
-compares their mean magnitude against g. It deliberately assumes only that the
-recording contains *some* quiet time — true of any in-the-wild recording, and
-false only for continuously agitated sensors.
+The method assumes only that the recording contains *some* quiet time, which
+is true of any in-the-wild recording and false only for a continuously
+agitated sensor.
 
 ## Evidence
-
-```{python}
-#| echo: false
-import pandas as pd
-
-rows = []
-for name, factor in [
-    ("correct (m/s²)", 1.0),
-    ("recorded in g", 1 / G),
-    ("gravity applied twice", G),
-    ("2% miscalibration", 1.02),
-    ("5% miscalibration", 1.05),
-]:
-    d = inject(clean(duration_s=900, seed=9), Fault("scale", factor=factor))
-    res = next(r for r in acquire.check(d, nominal_hz=50).results if r.id == "SIG-01")
-    rows.append({"condition": name, "observed": res.value, "detected": "yes" if not res.passed else "no"})
-pd.DataFrame(rows)
-```
 
 The 2% tolerance is the deliberate boundary between calibration error worth
 flagging and ordinary sensor accuracy. Consumer MEMS accelerometers are commonly

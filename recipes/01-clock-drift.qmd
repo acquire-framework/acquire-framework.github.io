@@ -38,18 +38,12 @@ clock alone cannot relate the data to anything external.
 ## Detection
 
 Backward steps are detectable from a single recording and gate every other
-timing check, because windowing a non-monotonic series is meaningless:
+timing check, because windowing a non-monotonic series is meaningless.
 
-```{python}
-#| echo: true
-import acquire
-from acquire.synth import clean
-
-df = clean(duration_s=600, rate_hz=50, seed=5)
-df.loc[200, "timestamp"] = df.loc[100, "timestamp"]   # simulate a clock reset
-
-next(r for r in acquire.check(df, nominal_hz=50).results if r.id == "TIME-03")
-```
+Concretely: take the successive differences of the timestamp column and test
+whether any is zero or negative. A single backward step invalidates every
+windowed statistic computed downstream, so this test should gate the others
+rather than run alongside them.
 
 ## Evidence
 
