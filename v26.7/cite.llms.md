@@ -1,0 +1,79 @@
+**Version 26.7** — a fixed snapshot, built 2026-07-18 from commit `a11dbb0`. Thresholds and recipes change as evidence accumulates. [See the current version](https://acquire-framework.github.io/).
+
+# Citing ACQUIRE
+
+## The paper
+
+If you use the framework, the taxonomy, or the checklist, cite the paper. It is the authoritative description of ACQUIRE — *Acquisition Criteria for Quality, Uncertainty, Integrity, Reproducibility, and Evidence* — and of the three axes along which it evaluates an acquisition chain: measurement validity, record integrity and provenance, and observation-process validity.
+
+``` bibtex
+@inproceedings{daniol2026acquire,
+  author    = {Danio{\l}, Mateusz and Sroka, Ryszard},
+  title     = {Reproducibility Begins at Acquisition: The {ACQUIRE} Framework
+               for Trustworthy In-the-Wild Sensing},
+  booktitle = {Companion of the 2026 ACM International Joint Conference on
+               Pervasive and Ubiquitous Computing (UbiComp/ISWC '26 Companion)},
+  year      = {2026},
+  address   = {Shanghai, China},
+  publisher = {Association for Computing Machinery},
+  location  = {Shanghai, China}
+}
+```
+
+The DOI is added here once the proceedings are published.
+
+## The artifact
+
+Cite the software release in addition to the paper when you depend on a specific version of the checklist, taxonomy, or diagnostics. Thresholds and recipes change as evidence accumulates, so a version identifies exactly what a study was assessed against — a URL alone does not.
+
+``` bibtex
+@software{acquire_artifact_2026,
+  author  = {Danio{\l}, Mateusz and Sroka, Ryszard},
+  title   = {{ACQUIRE} v26.7: Taxonomy, Checklist and Diagnostics for
+             Reproducible In-the-Wild Sensing},
+  version = {26.7},
+  year    = {2026},
+  url     = {https://acquire-framework.github.io}
+}
+```
+
+A DOI will be minted on the first archived release and added here.
+
+## The checklist
+
+If you attach a completed checklist as supplementary material, state the checklist version explicitly — it is stamped in the exported artifact:
+
+> Data collection followed the ACQUIRE checklist v26.7 ([Danioł and Sroka 2026](#ref-daniol2026acquire)). The completed checklist, including justifications for items marked not applicable, is provided as supplementary material.
+
+## Contributing changes the citation
+
+Contributors of accepted recipes, replications, and adapters are credited on the archived release record. This is deliberate: replication is the contribution the catalogue most needs, and it should carry credit that appears on a CV.
+
+Contributing to the framework is distinct from co-authorship on associated research papers — see [CONTRIBUTING](https://github.com/acquire-framework/acquire-framework.github.io/blob/main/CONTRIBUTING.md) for how the two are handled.
+
+## References
+
+Danioł, Mateusz, and Ryszard Sroka. 2026. “Reproducibility Begins at Acquisition: The ACQUIRE Framework for Trustworthy in-the-Wild Sensing.” *Companion of the 2026 ACM International Joint Conference on Pervasive and Ubiquitous Computing (UbiComp/ISWC ’26 Companion)* (Shanghai, China).
+
+## Citation
+
+BibTeX citation:
+
+``` quarto-appendix-bibtex
+@inproceedings{daniol2026acquire,
+  author = {Danioł, Mateusz and Sroka, Ryszard},
+  publisher = {Association for Computing Machinery},
+  title = {Reproducibility {Begins} at {Acquisition:} {The} {ACQUIRE}
+    {Framework} for {Trustworthy} {In-the-Wild} {Sensing}},
+  booktitle = {Companion of the 2026 ACM International Joint Conference
+    on Pervasive and Ubiquitous Computing (UbiComp/ISWC ’26 Companion)},
+  date = {2026},
+  address = {Shanghai, China},
+  url = {https://acquire-framework.github.io},
+  langid = {en}
+}
+```
+
+For attribution, please cite this work as:
+
+Danioł, Mateusz, and Ryszard Sroka. 2026. “Reproducibility Begins at Acquisition: The ACQUIRE Framework for Trustworthy In-the-Wild Sensing.” *Companion of the 2026 ACM International Joint Conference on Pervasive and Ubiquitous Computing (UbiComp/ISWC ’26 Companion)* (Shanghai, China). <https://acquire-framework.github.io>.

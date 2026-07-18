@@ -1,0 +1,96 @@
+**Version 26.7** — a fixed snapshot, built 2026-07-18 from commit `a11dbb0`. Thresholds and recipes change as evidence accumulates. [See the current version](https://acquire-framework.github.io/).
+
+# Versions
+
+Every release stays reachable, at a fixed URL and a fixed commit.
+
+A study that reports “assessed against ACQUIRE v26.7” must be checkable against *that* version. Thresholds move, recipes are corrected, and evidence levels rise as replications arrive — so a citation naming only a URL says nothing about what the study actually applied.
+
+Every release is therefore published twice: as an immutable copy of this site at its own address, and as an archived snapshot with a DOI.
+
+## Scheme
+
+Versions are calendar-based: **`<year>.<month>`**, so `26.7` is the release of July 2026. A second release within a month adds a patch — `26.7.1`.
+
+Calendar versioning is deliberate. Semantic versioning describes API compatibility, which is the wrong question here: what a reader needs to know is *when* the guidance was current, because advice about operating-system behaviour ages whether or not the interface changes.
+
+## This build
+
+|  |  |
+|:---|:---|
+| Version | **26.7** |
+| Commit | [`a11dbb0`](https://github.com/acquire-framework/acquire-framework.github.io/tree/a11dbb0556b8077815f18e4088d7acdb0aaf1456) |
+| Built | 2026-07-18 |
+| Permalink | <https://acquire-framework.github.io/v26.7> |
+
+## Released versions
+
+| Version | Permalink           | Commit         | Archive     |
+|:--------|:--------------------|:---------------|:------------|
+| 26.7    | [/v26.7/](./v26.7/) | tagged `v26.7` | DOI pending |
+
+The root of this site tracks **current guidance** and changes as corrections land. Versioned copies never change once published — they are built from the tag and then left alone.
+
+So: cite `/v26.7/` in a paper, and read the root when you want the latest thinking.
+
+## Citing a version
+
+State the version, and give the permalink rather than the bare domain:
+
+> Data collection followed the ACQUIRE checklist v26.7 (<https://acquire-framework.github.io/v26.7/>).
+
+Where the exact build matters — for an audit, or a dispute about what a threshold was — cite the commit as well. Every page of every build carries its commit in the footer, so a reader can always establish precisely what they read.
+
+## Why a DOI as well as a URL
+
+A URL is a location, not an archive: it depends on this domain continuing to exist and on us continuing to host it. A DOI resolves to a snapshot held by an archive whose job is permanence.
+
+For a framework whose argument is that provenance must survive the people who created it, relying on our own hosting would be an obvious inconsistency. Each release is therefore also deposited, and the DOI is the citation of record for anything that must remain verifiable long-term.
+
+## Reproducing a version
+
+Each release is a tag in the repository, so a version can be rebuilt from source:
+
+``` bash
+git clone https://github.com/acquire-framework/acquire-framework.github.io
+cd acquire-framework.github.io
+git checkout v26.7
+uv sync --extra dev --extra docs --frozen
+uv run pytest
+QUARTO_PYTHON=.venv/bin/python uv run quarto render
+```
+
+The lockfile is committed and the Quarto version is pinned in CI, so a rebuild resolves the same dependency versions rather than whatever is current.
+
+## The diagnostics package
+
+Package releases track the framework version, so `acquire-framework==26.7` implements the checks described by v26.7 of this site:
+
+``` bash
+pip install acquire-framework==26.7
+```
+
+Reports emitted by the package stamp the version that produced them, which is what makes a quality-control record attachable to a dataset and still interpretable years later.
+
+## Citation
+
+BibTeX citation:
+
+``` quarto-appendix-bibtex
+@inproceedings{daniol2026acquire,
+  author = {Danioł, Mateusz and Sroka, Ryszard},
+  publisher = {Association for Computing Machinery},
+  title = {Reproducibility {Begins} at {Acquisition:} {The} {ACQUIRE}
+    {Framework} for {Trustworthy} {In-the-Wild} {Sensing}},
+  booktitle = {Companion of the 2026 ACM International Joint Conference
+    on Pervasive and Ubiquitous Computing (UbiComp/ISWC ’26 Companion)},
+  date = {2026},
+  address = {Shanghai, China},
+  url = {https://acquire-framework.github.io},
+  langid = {en}
+}
+```
+
+For attribution, please cite this work as:
+
+Danioł, Mateusz, and Ryszard Sroka. 2026. “Reproducibility Begins at Acquisition: The ACQUIRE Framework for Trustworthy In-the-Wild Sensing.” *Companion of the 2026 ACM International Joint Conference on Pervasive and Ubiquitous Computing (UbiComp/ISWC ’26 Companion)* (Shanghai, China). <https://acquire-framework.github.io>.

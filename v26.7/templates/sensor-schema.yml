@@ -1,0 +1,55 @@
+# ACQUIRE sensor schema template — satisfies MRC-08.
+#
+# Publish one of these per sensor stream, alongside the data. Without it a
+# dataset is not machine-interpretable: a reader cannot tell what was measured,
+# in what units, at what nominal rate, or against what expectation — and so
+# cannot check the data for the failures this framework catalogues.
+#
+# Replace every <angle-bracketed> value. Fields marked REQUIRED are the minimum
+# for the dataset to be assessable at all.
+
+schema_version: "0.1.0"
+stream_id: <e.g. wrist_accelerometer>          # REQUIRED, unique in the dataset
+
+measurand:
+  quantity: <e.g. proper acceleration>          # REQUIRED — what is measured
+  derived: <true|false>                         # REQUIRED — raw or computed?
+  derivation: <if derived, the procedure and its software version>
+
+signal:
+  channels: [<ax>, <ay>, <az>]                  # REQUIRED
+  unit: <e.g. m/s^2>                            # REQUIRED — "accelerometer" is not a unit
+  nominal_rate_hz: <e.g. 50>                    # REQUIRED — cannot be inferred from data;
+                                                # inferring it would define away the most
+                                                # common failure in the taxonomy
+  range: <e.g. ±8 g>                            # REQUIRED — needed to identify saturation
+  resolution: <e.g. 16 bit>
+  axis_convention: <e.g. right-handed, +z out of screen>
+
+time:
+  timestamp_field: <e.g. timestamp>             # REQUIRED
+  representation: <epoch_ms | iso8601 | seconds_since_start>   # REQUIRED
+  source: <device_rtc | host_clock | monotonic + host reconciliation>  # REQUIRED
+  timezone: <e.g. UTC>
+  synchronization_policy: <e.g. reconciled to phone at each BLE reconnection>
+  residual_uncertainty: <e.g. U = 46 ms (k=2), estimated from logged offsets>
+
+instrument:
+  device_model: <e.g. Polar H10>                # REQUIRED
+  firmware_version: <REQUIRED, and every mid-study change>
+  app_version: <REQUIRED, and every mid-study change>
+  os_version: <e.g. Android 14>
+  calibration:
+    performed: <true|false>                     # REQUIRED
+    procedure: <e.g. 60 s static recording, device level, at enrolment>
+    reference: <reference instrument, or "none">
+    date: <YYYY-MM-DD>
+
+quality:
+  flags_file: <path to quality-flags.yml>
+  known_limitations: <state them; silence reads as "none known">
+
+provenance:
+  collection_software: <URL and commit hash>    # REQUIRED
+  raw_record: <path or archive identifier for the append-only raw log>
+  processing: <path to dataset-provenance.yml>
