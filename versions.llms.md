@@ -35,7 +35,7 @@ Tooling that would automate parts of the checklist is on the roadmap and is deli
 |  |  |
 |:---|:---|
 | Specification | **26.7.1** |
-| Site build | [`88c133e`](https://github.com/acquire-framework/acquire-framework.github.io/tree/88c133e56b2535609e1123e93d098d0729443ccc) |
+| Site build | [`d5a33a8`](https://github.com/acquire-framework/acquire-framework.github.io/tree/d5a33a82c6f94e60673e6eb041bb1eb647c021c7) |
 | Built | 2026-07-18 |
 
 ## Published specifications

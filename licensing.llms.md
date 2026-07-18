@@ -1,6 +1,6 @@
-# Licensing
+# Licensing and provenance
 
-Three kinds of content, meant to be reused in different ways.
+How this artifact may be reused, and how it was produced.
 
 | What | Licence | Where |
 |:---|:---|:---|
@@ -32,6 +32,19 @@ We would like to be cited, and the [citation page](cite.llms.md) says how. But t
 Files carry `SPDX-License-Identifier` headers where the format permits a comment. Where it does not — CSV, for instance — the licence is the one listed for its directory above.
 
 Full licence texts live in [`LICENSES/`](https://github.com/acquire-framework/acquire-framework.github.io/tree/main/LICENSES), named by SPDX identifier, following the [REUSE](https://reuse.software/) convention.
+
+## Note on AI use
+
+The substance of this framework — the three-axis structure, the acquisition-failure taxonomy, the Minimum Reporting Checklist, and the argument they rest on — was conceived, categorised and developed by the authors, and is set out in the accompanying paper, which the authors wrote.
+
+AI assistance was used to produce this website and its supporting material:
+
+- **Claude Code (Anthropic, Opus 4.8)** — drafted the explanatory prose on this site, the reporting templates and reviewer form, the supporting tooling and its tests, the visual design, and the versioning scheme. All of it was directed, reviewed and corrected by the authors.
+- **AI-assisted web search** — used when surveying documentation tooling and current publishing practice.
+
+Every change involving AI assistance carries a `Co-Authored-By` trailer in the [repository history](https://github.com/acquire-framework/acquire-framework.github.io/commits/main), so the record is per-commit rather than a blanket statement. That is a finer provenance record than a disclosure paragraph can give, and it is the kind of lineage this framework argues for elsewhere.
+
+The authors are responsible for all content, including any errors.
 
 ## Citation
 

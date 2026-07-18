@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Licensing – ACQUIRE Framework</title>
+<title>Licensing and provenance – ACQUIRE Framework</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -77,7 +77,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -295,7 +295,18 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#why-they-differ" id="toc-why-they-differ" class="nav-link active" data-scroll-target="#why-they-differ">Why they differ</a></li>
+  <li><a href="#what-this-means-in-practice" id="toc-what-this-means-in-practice" class="nav-link" data-scroll-target="#what-this-means-in-practice">What this means in practice</a></li>
+  <li><a href="#machine-readable" id="toc-machine-readable" class="nav-link" data-scroll-target="#machine-readable">Machine-readable</a></li>
+  <li><a href="#note-on-ai-use" id="toc-note-on-ai-use" class="nav-link" data-scroll-target="#note-on-ai-use">Note on AI use</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/acquire-framework/acquire-framework.github.io/edit/main/licensing.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/acquire-framework/acquire-framework.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -303,8 +314,8 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Licensing</h1>
-<p class="subtitle lead">Three kinds of content, meant to be reused in different ways.</p>
+<h1 class="title">Licensing and provenance</h1>
+<p class="subtitle lead">How this artifact may be reused, and how it was produced.</p>
 </div>
 
 
@@ -368,6 +379,17 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="machine-readable">Machine-readable</h2>
 <p>Files carry <code>SPDX-License-Identifier</code> headers where the format permits a comment. Where it does not — CSV, for instance — the licence is the one listed for its directory above.</p>
 <p>Full licence texts live in <a href="https://github.com/acquire-framework/acquire-framework.github.io/tree/main/LICENSES"><code>LICENSES/</code></a>, named by SPDX identifier, following the <a href="https://reuse.software/">REUSE</a> convention.</p>
+</section>
+<section id="note-on-ai-use" class="level2">
+<h2 class="anchored" data-anchor-id="note-on-ai-use">Note on AI use</h2>
+<p>The substance of this framework — the three-axis structure, the acquisition-failure taxonomy, the Minimum Reporting Checklist, and the argument they rest on — was conceived, categorised and developed by the authors, and is set out in the accompanying paper, which the authors wrote.</p>
+<p>AI assistance was used to produce this website and its supporting material:</p>
+<ul>
+<li><strong>Claude Code (Anthropic, Opus 4.8)</strong> — drafted the explanatory prose on this site, the reporting templates and reviewer form, the supporting tooling and its tests, the visual design, and the versioning scheme. All of it was directed, reviewed and corrected by the authors.</li>
+<li><strong>AI-assisted web search</strong> — used when surveying documentation tooling and current publishing practice.</li>
+</ul>
+<p>Every change involving AI assistance carries a <code>Co-Authored-By</code> trailer in the <a href="https://github.com/acquire-framework/acquire-framework.github.io/commits/main">repository history</a>, so the record is per-commit rather than a blanket statement. That is a finer provenance record than a disclosure paragraph can give, and it is the kind of lineage this framework argues for elsewhere.</p>
+<p>The authors are responsible for all content, including any errors.</p>
 
 
 </section>
@@ -822,9 +844,9 @@ Companion)</em> (Shanghai, China). <a href="https://acquire-framework.github.io"
 </div>   
     <div class="nav-footer-center">
 <p>Maintained at the Department of Measurements and Electronics, AGH University of Krakow</p>
-<div class="toc-actions"><ul><li><a href="https://github.com/acquire-framework/acquire-framework.github.io/edit/main/licensing.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/acquire-framework/acquire-framework.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/acquire-framework/acquire-framework.github.io/edit/main/licensing.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/acquire-framework/acquire-framework.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
-<p>ACQUIRE spec 26.7.1 · site build <a href="https://github.com/acquire-framework/acquire-framework.github.io/tree/88c133e56b2535609e1123e93d098d0729443ccc"><code>88c133e</code></a> · built 2026-07-18 <a href="./licensing.html">Licensing</a> · <a href="./cite.html">How to cite</a> · <a href="./versions.html">All versions</a></p>
+<p>ACQUIRE spec 26.7.1 · site build <a href="https://github.com/acquire-framework/acquire-framework.github.io/tree/d5a33a82c6f94e60673e6eb041bb1eb647c021c7"><code>d5a33a8</code></a> · built 2026-07-18 <a href="./licensing.html">Licensing</a> · <a href="./cite.html">How to cite</a> · <a href="./versions.html">All versions</a></p>
 </div>
   </div>
 </footer>

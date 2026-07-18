@@ -32,7 +32,7 @@
     "href": "versions.html#this-build",
     "title": "Versions",
     "section": "This build",
-    "text": "This build\n\n\n\nSpecification\n26.7.1\n\n\nSite build\n88c133e\n\n\nBuilt\n2026-07-18"
+    "text": "This build\n\n\n\nSpecification\n26.7.1\n\n\nSite build\nd5a33a8\n\n\nBuilt\n2026-07-18"
   },
   {
     "objectID": "versions.html#published-specifications",
@@ -579,30 +579,37 @@
   {
     "objectID": "licensing.html",
     "href": "licensing.html",
-    "title": "Licensing",
+    "title": "Licensing and provenance",
     "section": "",
     "text": "What\nLicence\nWhere\n\n\n\n\nData — the taxonomy and checklist as structured records\nCC0 1.0\ntaxonomy/*.yml, checklist/*.yml, the CSV and Markdown exports\n\n\nDocumentation — prose, templates, forms\nCC BY 4.0\nthis site, templates/, recipes/, lifecycle/\n\n\nCode — diagnostics, tooling, examples\nMIT\nacquire/, tools/, tests/, examples/\nCopyright 2026 Mateusz Danioł, Ryszard Sroka."
   },
   {
     "objectID": "licensing.html#why-they-differ",
     "href": "licensing.html#why-they-differ",
-    "title": "Licensing",
+    "title": "Licensing and provenance",
     "section": "Why they differ",
     "text": "Why they differ\nThe data is CC0 — public domain, no attribution required. The taxonomy and the checklist are only useful as a shared vocabulary. If someone wants to embed the failure classes in a validation tool, a journal submission system, or a competing framework, an attribution requirement is friction with no upside. A reporting standard that is awkward to adopt does not become a standard.\nWe would like to be cited, and the citation page says how. But that is a scholarly norm, not a licence condition, and the two should not be confused: enforcing citation through copyright would work against adoption, which is the only thing that makes a standard worth having.\nThe documentation is CC BY 4.0. The prose explains, argues, and interprets. Attribution is appropriate there and does not impede reuse — translate it, adapt it for a course, extract it into a lab handbook, and keep the credit.\nThe code is MIT. Permissive, familiar, and compatible with essentially any research or commercial pipeline the diagnostics might run inside."
   },
   {
     "objectID": "licensing.html#what-this-means-in-practice",
     "href": "licensing.html#what-this-means-in-practice",
-    "title": "Licensing",
+    "title": "Licensing and provenance",
     "section": "What this means in practice",
     "text": "What this means in practice\n\nCopy the taxonomy or checklist into your own tool, standard, or paper with no obligation at all.\nAdapt the templates and prose provided you credit ACQUIRE.\nVendor the diagnostics code under MIT terms.\nA completed checklist is yours. Filling one in does not make your document a derivative work of ours — attach it to a paper or dataset under whatever licence you like."
   },
   {
     "objectID": "licensing.html#machine-readable",
     "href": "licensing.html#machine-readable",
-    "title": "Licensing",
+    "title": "Licensing and provenance",
     "section": "Machine-readable",
     "text": "Machine-readable\nFiles carry SPDX-License-Identifier headers where the format permits a comment. Where it does not — CSV, for instance — the licence is the one listed for its directory above.\nFull licence texts live in LICENSES/, named by SPDX identifier, following the REUSE convention."
+  },
+  {
+    "objectID": "licensing.html#note-on-ai-use",
+    "href": "licensing.html#note-on-ai-use",
+    "title": "Licensing and provenance",
+    "section": "Note on AI use",
+    "text": "Note on AI use\nThe substance of this framework — the three-axis structure, the acquisition-failure taxonomy, the Minimum Reporting Checklist, and the argument they rest on — was conceived, categorised and developed by the authors, and is set out in the accompanying paper, which the authors wrote.\nAI assistance was used to produce this website and its supporting material:\n\nClaude Code (Anthropic, Opus 4.8) — drafted the explanatory prose on this site, the reporting templates and reviewer form, the supporting tooling and its tests, the visual design, and the versioning scheme. All of it was directed, reviewed and corrected by the authors.\nAI-assisted web search — used when surveying documentation tooling and current publishing practice.\n\nEvery change involving AI assistance carries a Co-Authored-By trailer in the repository history, so the record is per-commit rather than a blanket statement. That is a finer provenance record than a disclosure paragraph can give, and it is the kind of lineage this framework argues for elsewhere.\nThe authors are responsible for all content, including any errors."
   },
   {
     "objectID": "lifecycle/deploy.html",
