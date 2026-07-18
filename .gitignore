@@ -1,0 +1,21 @@
+# Quarto
+/.quarto/
+/_site/
+/_freeze/
+*.quarto_ipynb
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# macOS / Synology
+.DS_Store
+@eaDir/
