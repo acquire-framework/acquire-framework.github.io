@@ -10,7 +10,7 @@ message: >-
 type: software
 authors:
   - given-names: Mateusz
-    family-names: Daniol
+    family-names: Danioł
     email: daniol@agh.edu.pl
     affiliation: >-
       Department of Measurements and Electronics, AGH University of Krakow
@@ -49,7 +49,7 @@ preferred-citation:
     In-the-Wild Sensing
   authors:
     - given-names: Mateusz
-      family-names: Daniol
+      family-names: Danioł
     - given-names: Ryszard
       family-names: Sroka
   collection-title: >-

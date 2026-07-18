@@ -104,4 +104,29 @@ execute:
   warning: false
 
 bibliography: references.bib
-citation: true
+
+# Without explicit metadata Quarto emits an empty @online{untitled,...} stub on
+# every page. Pointing it at the accompanying paper means any page a reader
+# lands on offers the correct citation.
+citation:
+  id: daniol2026acquire
+  type: paper-conference
+  title: >-
+    Reproducibility Begins at Acquisition: The ACQUIRE Framework for Trustworthy
+    In-the-Wild Sensing
+  author:
+    - name:
+        given: Mateusz
+        family: Danioł
+      email: daniol@agh.edu.pl
+    - name:
+        given: Ryszard
+        family: Sroka
+      email: rsroka@agh.edu.pl
+  container-title: >-
+    Companion of the 2026 ACM International Joint Conference on Pervasive and
+    Ubiquitous Computing (UbiComp/ISWC '26 Companion)
+  publisher: Association for Computing Machinery
+  publisher-place: Shanghai, China
+  issued: 2026
+  url: https://acquire-framework.github.io
