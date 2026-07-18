@@ -35,7 +35,7 @@ Any future tooling is not announced here: a framework about honest reporting sho
 |  |  |
 |:---|:---|
 | Specification | **26.7.1** |
-| Site build | [`520259f`](https://github.com/acquire-framework/acquire-framework.github.io/tree/520259f152f4d41fda6550a728487dbe7a332646) |
+| Site build | [`eb4cf31`](https://github.com/acquire-framework/acquire-framework.github.io/tree/eb4cf310327f5ef5e63b61c595e863971a767112) |
 | Built | 2026-07-18 |
 
 ## Published specifications

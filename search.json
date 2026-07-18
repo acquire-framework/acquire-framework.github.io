@@ -32,7 +32,7 @@
     "href": "versions.html#this-build",
     "title": "Versions",
     "section": "This build",
-    "text": "This build\n\n\n\nSpecification\n26.7.1\n\n\nSite build\n520259f\n\n\nBuilt\n2026-07-18"
+    "text": "This build\n\n\n\nSpecification\n26.7.1\n\n\nSite build\neb4cf31\n\n\nBuilt\n2026-07-18"
   },
   {
     "objectID": "versions.html#published-specifications",
@@ -441,7 +441,7 @@
     "href": "index.html#what-acquire-v26.7-contains",
     "title": "ACQUIRE Framework",
     "section": "What ACQUIRE v26.7 contains",
-    "text": "What ACQUIRE v26.7 contains\nThe acquisition-failure taxonomy — eight failure modes by system layer, each mapped to its signature in the dataset and to the property it threatens. Table 1 of the paper, machine-readable.\nThe Minimum Reporting Checklist — ten methods-section disclosures about the measuring system. Table 2 of the paper. Complementary to CONSORT-EHEALTH and mERA, which report the intervention rather than the instrument.\nThe failure catalogue — entered by symptom, for when data already looks wrong. Each entry states what you observe, what causes it, how to detect it, and how well that detection is evidenced.\nThe guideline book — an operational companion for teams building a study, stage by stage.\nTemplates and forms — sensor schema, quality flags, uncertainty statement, dataset provenance, and a reviewer form.\nA worked synchronization example — executable. Two BLE devices at +40 and −25 ppm, re-anchored at reconnection: completeness stays at 100% and every quality flag stays green while the inter-device offset spends 96% of the recording outside a ±20 ms tolerance, peaking near 0.8 s. A record-integrity audit passes this dataset; a measurement-validity audit does not."
+    "text": "What ACQUIRE v26.7 contains\nThe acquisition-failure taxonomy — eight failure modes by system layer, each mapped to its signature in the dataset and to the property it threatens. Table 1 of the paper, machine-readable.\nThe Minimum Reporting Checklist — ten methods-section disclosures about the measuring system. Table 3 of the paper. Complementary to CONSORT-EHEALTH and mERA, which report the intervention rather than the instrument.\nThe failure catalogue — entered by symptom, for when data already looks wrong. Each entry states what you observe, what causes it, how to detect it, and how well that detection is evidenced.\nThe guideline book — an operational companion for teams building a study, stage by stage.\nTemplates and forms — sensor schema, quality flags, uncertainty statement, dataset provenance, and a reviewer form.\nA worked synchronization example — executable. Two BLE devices at +40 and −25 ppm, re-anchored at reconnection: completeness stays at 100% and every quality flag stays green while the inter-device offset spends 96% of the recording outside a ±20 ms tolerance, peaking near 0.8 s. A record-integrity audit passes this dataset; a measurement-validity audit does not."
   },
   {
     "objectID": "index.html#the-paper",

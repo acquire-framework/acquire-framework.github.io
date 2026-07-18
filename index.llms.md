@@ -24,7 +24,7 @@ Both failures are invisible to conventional monitoring: completeness looks accep
 
 **[The acquisition-failure taxonomy](taxonomy/index.llms.md)** — eight failure modes by system layer, each mapped to its signature in the dataset and to the property it threatens. Table 1 of the paper, machine-readable.
 
-**[The Minimum Reporting Checklist](checklist/index.llms.md)** — ten methods-section disclosures about the measuring system. Table 2 of the paper. Complementary to CONSORT-EHEALTH and mERA, which report the intervention rather than the instrument.
+**[The Minimum Reporting Checklist](checklist/index.llms.md)** — ten methods-section disclosures about the measuring system. Table 3 of the paper. Complementary to CONSORT-EHEALTH and mERA, which report the intervention rather than the instrument.
 
 **[The failure catalogue](recipes/index.llms.md)** — entered by symptom, for when data already looks wrong. Each entry states what you observe, what causes it, how to detect it, and how well that detection is evidenced.
 

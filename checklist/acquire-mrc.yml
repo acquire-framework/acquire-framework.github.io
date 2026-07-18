@@ -1,8 +1,8 @@
 # SPDX-License-Identifier: CC0-1.0
 # SPDX-FileCopyrightText: 2026 Mateusz Danioł, Ryszard Sroka
-# ACQUIRE Minimum Reporting Checklist (MRC) v26.7
+# ACQUIRE Minimum Reporting Checklist (MRC)
 #
-# Machine-readable form of Table 2 of the accompanying paper. Each item derives
+# Machine-readable form of Table 3 of the accompanying paper. Each item derives
 # from a row of the taxonomy (taxonomy/acquire-taxonomy.yml) and is intended to
 # be auditable by a reviewer and proportionate to the study's measurand and risk.
 #
