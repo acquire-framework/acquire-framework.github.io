@@ -83,7 +83,7 @@ website:
       AGH University of Krakow
     right: |
       ACQUIRE spec {{< var spec_version >}} · site build [`{{< var commit_short >}}`]({{< var commit_url >}}) · built {{< var build_date >}}
-      MIT · [How to cite](/cite.qmd) · [All versions](/versions.qmd)
+      [Licensing](/licensing.qmd) · [How to cite](/cite.qmd) · [All versions](/versions.qmd)
 
 format:
   html:

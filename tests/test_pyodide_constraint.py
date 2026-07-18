@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 Mateusz Danioł, Ryszard Sroka
 """Guard the in-browser build.
 
 The website's interactive checker runs this package under Pyodide, which only

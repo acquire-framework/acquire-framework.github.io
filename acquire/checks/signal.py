@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 Mateusz Danioł, Ryszard Sroka
 """Signal-value diagnostics: units, stuck sensors, saturation.
 
 These checks exploit the one piece of ground truth available in every inertial

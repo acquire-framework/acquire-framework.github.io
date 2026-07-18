@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 Mateusz Danioł, Ryszard Sroka
 """Stamp build provenance into the site.
 
 Writes `_variables.yml`, which Quarto exposes to pages as `{{< var … >}}`.

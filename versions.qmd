@@ -44,9 +44,12 @@ change what a study cites.
 
 ## The diagnostics package
 
-`acquire-framework` is versioned `<spec>.<patch>`: **26.7.0** implements
+The diagnostics are versioned `<spec>.<patch>`: **26.7.0** implements
 specification 26.7, and the patch component moves independently for bug fixes
 that alter no requirement.
+
+They are **not yet published to a package index** — run them from a clone,
+and record the commit you ran alongside the version.
 
 ```python
 import acquire
@@ -92,7 +95,7 @@ If you ran the diagnostics, name the package build too, since a threshold could
 have been implemented incorrectly and later fixed without the specification
 changing:
 
-> Diagnostics were run with `acquire-framework` 26.7.0.
+> Diagnostics were run with ACQUIRE 26.7.0 (commit `abc1234`).
 
 ## Rebuilding a specification from source
 

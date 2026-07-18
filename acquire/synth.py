@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 Mateusz Danioł, Ryszard Sroka
 """Synthetic tri-axial data with deliberately injected faults.
 
 Demonstrating that a detector catches a fault you *planted* is a stronger claim

@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 Mateusz Danioł, Ryszard Sroka
 """Fail if normative content changed without a spec-version bump.
 
     python tools/check_spec_version.py <base-ref>
