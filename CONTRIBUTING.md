@@ -94,3 +94,59 @@ implementation work.
 
 For replications, an issue alone is enough — no pull request needed. Report what
 you ran and what you found, and it will be incorporated with credit.
+
+## Repository workflow
+
+`main` is protected. Direct pushes are rejected for everyone, maintainers
+included, so every change arrives through a pull request and every pull request
+runs the checks.
+
+```bash
+git checkout -b short-description
+# ... make the change ...
+git push -u origin short-description
+gh pr create
+gh pr merge --squash --delete-branch
+```
+
+Squash-merging keeps `main` readable as a record of framework changes rather
+than of build fixes. Linear history is required, so merge commits are rejected.
+
+### What CI enforces
+
+- **Tests pass.** Every check has a test that injects a fault of known
+  magnitude and asserts detection.
+- **The specification version was bumped** if normative content changed.
+  Editing a taxonomy row or checklist item without a version bump fails the
+  build, so two different sets of requirements cannot ship under one number.
+  Editing prose, styles or templates does not trip this.
+- **No working notes reach the published site.**
+
+### Releasing a specification
+
+Specifications are released on a roughly monthly cadence, versioned
+`<year>.<month>`.
+
+1. Bump `spec_version` in `spec/spec.yml` and add a changelog entry
+2. Merge that through a pull request as usual
+3. Tag the merge commit and push the tag
+
+```bash
+git tag -a v26.8 -m "ACQUIRE specification 26.8"
+git push origin v26.8
+```
+
+The tag publishes an immutable copy of the site at `/v26.8/`. CI rejects a tag
+whose name disagrees with `spec_version`, so a published snapshot cannot claim
+a version it is not.
+
+### Published tags are protected
+
+`v*` tags cannot be deleted or moved. A published snapshot is what a study
+cited; altering one would make the citation meaningless.
+
+Where a release turns out to be wrong, it is **withdrawn** rather than
+rewritten: the reason is recorded in `spec/spec.yml`, the directory is removed
+from the published site, and a corrected version is released. Withdrawal
+requires temporarily disabling the tag ruleset, which is deliberate friction —
+it should be rare and considered.
