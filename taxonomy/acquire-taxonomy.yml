@@ -17,7 +17,7 @@
 #            E   experience-derived candidate class, NOT a prevalence estimate
 #            A   illustrative assumption
 
-spec_version: "26.7"   # see spec/spec.yml
+spec_version: "26.7.1"   # see spec/spec.yml
 updated: "2026-07-18"
 paper: "Danioł & Sroka (2026), UbiComp/ISWC '26 Companion"
 
@@ -55,7 +55,6 @@ failures:
       625-participant IAB-SMART study (Bähr et al. 2022); no GPS on 49% of
       observation days in a 2,394-person Beiwe cohort (Yi et al. 2024, a
       figure that aggregates technical loss with attrition and adherence).
-    detectable_by: [rate, gaps]
 
   - id: ACQ-F02
     layer: connectivity
@@ -67,7 +66,6 @@ failures:
     evidence_note: >-
       Sync and export failures reported but unquantified (Slade et al. 2025);
       [E] checksums and deduplication rarely described in methods sections.
-    detectable_by: []
 
   - id: ACQ-F03
     layer: wearable-ble
@@ -82,7 +80,6 @@ failures:
       Tens of ppm, of order seconds per day (Tirado-Andrés et al. 2019);
       BLE application-layer synchronization error exceeding 25 ms in 28% of
       sessions, maximum 183 ms (Yan et al. 2017).
-    detectable_by: [monotonic]
     limitation: >-
       Modest drift is NOT detectable from a single recording: nothing
       distinguishes a fast clock from slow sampling. Detection requires an
@@ -101,7 +98,6 @@ failures:
     evidence_note: >-
       No systematic reporting of field disconnection and packet-loss rates
       was identified.
-    detectable_by: [gaps]
 
   - id: ACQ-F05
     layer: participant
@@ -115,7 +111,6 @@ failures:
       Mean EMA compliance 79.2% across 477 articles, with 43% of studies
       below the conventional 80% threshold (Wrzus & Neubauer 2023);
       permission and authorization failures reported by Slade et al. 2025.
-    detectable_by: []
 
   - id: ACQ-F06
     layer: metadata
@@ -130,7 +125,6 @@ failures:
       A January 2019 Google Play policy change cut call- and text-log
       collection mid-recruitment in RADAR-MDD (Matcham et al. 2022);
       [E] protocols frequently changed without being versioned.
-    detectable_by: []
 
   - id: ACQ-F07
     layer: metadata
@@ -143,7 +137,6 @@ failures:
       metrological traceability.
     evidence: E
     evidence_note: "Compare datasheets for datasets (Gebru et al. 2021)."
-    detectable_by: []
 
   - id: ACQ-F08
     layer: metadata
@@ -156,16 +149,4 @@ failures:
       Under-reported for wearables with no standardized characterization
       protocol (Cosoli et al. 2024); over 70% of surveyed light-dosimetry
       studies reported no sensor calibration (Spitschan et al. 2022).
-    detectable_by: [resting_magnitude]
 
-# Failure modes for which this artifact ships an executable detector. Several
-# taxonomy rows have no automatic detector and are disclosed by the author
-# rather than measured — the checklist covers those.
-detectors:
-  rate: Effective versus nominal sampling rate
-  gaps: Stream continuity
-  monotonic: Timestamp monotonicity
-  regularity: Sampling regularity
-  resting_magnitude: Resting magnitude equals one standard gravity
-  stuck: Stuck sensor reporting stale values
-  clipping: Range saturation

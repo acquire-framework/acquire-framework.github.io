@@ -26,22 +26,11 @@ The samples are not noisy, they are **censored**: the true value was outside the
 
 ## Detection
 
-``` python
-import acquire
-from acquire.synth import Fault, clean, inject
-
-df = inject(clean(duration_s=900, seed=6), Fault("clip", factor=5.0))
-
-next(r for r in acquire.check(df, nominal_hz=50).results if r.id == "SIG-03")
-```
-
-    CheckResult(id='SIG-03', title='Saturation', passed=False, value='33.335% of samples at rail (±5.0 m/s²)', expected='≤ 0.1%', detail='Repeated samples at the extreme of the observed range indicate the sensor range was configured too narrow for the measured activity.', recipe='recipes/05-range-saturation.html')
-
-The check reports the fraction of samples sitting at the observed extreme. A healthy recording touches its peak once; a saturated one touches it repeatedly, because the rail is a value the signal cannot exceed rather than one it happens to reach.
+Concretely: find the maximum absolute value per axis and count how many samples sit within a small fraction of it. A healthy recording touches its peak once; a saturated one returns to it repeatedly, because the rail is a value the signal cannot exceed rather than one it happens to reach.
 
 ## Evidence
 
-**No field observation yet.** The detector is validated only against synthetic clipping. Its threshold — 0.1% of samples at the rail — is a defensible starting point rather than an empirically derived one, and would benefit from calibration against real recordings across activity types.
+**No field observation yet.** A threshold of 0.1% of samples at the rail is a defensible starting point rather than an empirically derived one, and would benefit from calibration against real recordings across activity types.
 
 **The threshold needs empirical grounding.** Recordings from vigorous activity with a known-adequate range would let this be set from data rather than judgement.
 

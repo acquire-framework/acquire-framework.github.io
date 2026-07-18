@@ -26,7 +26,7 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -73,9 +73,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
-
-<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -279,10 +276,6 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="../lifecycle/index.html"> 
 <span class="menu-text">Guideline book</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../check/index.html"> 
-<span class="menu-text">Run the diagnostics</span></a>
-  </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
@@ -310,7 +303,6 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#the-three-properties" id="toc-the-three-properties" class="nav-link active" data-scroll-target="#the-three-properties">The three properties</a></li>
   <li><a href="#evidence-labels" id="toc-evidence-labels" class="nav-link" data-scroll-target="#evidence-labels">Evidence labels</a></li>
   <li><a href="#the-taxonomy" id="toc-the-taxonomy" class="nav-link" data-scroll-target="#the-taxonomy">The taxonomy</a></li>
-  <li><a href="#what-has-an-automatic-detector-and-what-does-not" id="toc-what-has-an-automatic-detector-and-what-does-not" class="nav-link" data-scroll-target="#what-has-an-automatic-detector-and-what-does-not">What has an automatic detector, and what does not</a></li>
   <li><a href="#source" id="toc-source" class="nav-link" data-scroll-target="#source">Source</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/acquire-framework/acquire-framework.github.io/edit/main/taxonomy/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/acquire-framework/acquire-framework.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -420,7 +412,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="the-taxonomy" class="level2">
 <h2 class="anchored" data-anchor-id="the-taxonomy">The taxonomy</h2>
-<div id="e8586804" class="cell" data-execution_count="1">
+<div id="afeb1bb9" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="1">
 <section id="device-and-os-layer" class="level3">
 <h3 class="anchored" data-anchor-id="device-and-os-layer">Device and OS layer</h3>
@@ -432,7 +424,6 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>[O]</strong> <strong>[EN]</strong> Observation depends on device state and may bias time-aggregated estimands. [EN] additionally if kills are unlogged.</p>
 <p><span class="acq-label">evidence</span></p>
 <p><strong>[L]</strong> 84% of scheduled executions missing across four devices (Gonzalez-Perez et al.&nbsp;2022); 54.2% geolocation loss in the 625-participant IAB-SMART study (Bähr et al.&nbsp;2022); no GPS on 49% of observation days in a 2,394-person Beiwe cohort (Yi et al.&nbsp;2024, a figure that aggregates technical loss with attrition and adherence).</p>
-<p>Automatically detectable by <code>rate</code>, <code>gaps</code> — see <a href="../check/index.html">running the diagnostics</a>.</p>
 </section>
 </section>
 <section id="connectivity-backend-and-integrity-layer" class="level3">
@@ -467,7 +458,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<p>Automatically detectable by <code>monotonic</code> — see <a href="../check/index.html">running the diagnostics</a>. Worked example: <a href="https://github.com/acquire-framework/acquire-framework.github.io/tree/main/examples/synchronization"><code>examples/synchronization</code></a>.</p>
+<p>Worked example: <a href="https://github.com/acquire-framework/acquire-framework.github.io/tree/main/examples/synchronization"><code>examples/synchronization</code></a>.</p>
 </section>
 <section id="acq-f04-ble-disconnection-firmware-dependent-buffering" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="acq-f04-ble-disconnection-firmware-dependent-buffering"><code>ACQ-F04</code> — BLE disconnection / firmware-dependent buffering</h4>
@@ -477,7 +468,6 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>[EN]</strong> <strong>[O]</strong> Gap provenance unrecorded; observation selectively absent.</p>
 <p><span class="acq-label">evidence</span></p>
 <p><strong>[E]</strong> No systematic reporting of field disconnection and packet-loss rates was identified.</p>
-<p>Automatically detectable by <code>gaps</code> — see <a href="../check/index.html">running the diagnostics</a>.</p>
 </section>
 </section>
 <section id="participant-layer" class="level3">
@@ -520,85 +510,10 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>[M]</strong> Measurement uncertainty unstated (JCGM 2008, GUM).</p>
 <p><span class="acq-label">evidence</span></p>
 <p><strong>[L]</strong> Under-reported for wearables with no standardized characterization protocol (Cosoli et al.&nbsp;2024); over 70% of surveyed light-dosimetry studies reported no sensor calibration (Spitschan et al.&nbsp;2022).</p>
-<p>Automatically detectable by <code>resting_magnitude</code> — see <a href="../check/index.html">running the diagnostics</a>.</p>
 </section>
 </section>
 </div>
 </div>
-</section>
-<section id="what-has-an-automatic-detector-and-what-does-not" class="level2">
-<h2 class="anchored" data-anchor-id="what-has-an-automatic-detector-and-what-does-not">What has an automatic detector, and what does not</h2>
-<div id="1356ada3" class="cell" data-execution_count="2">
-<div class="cell-output cell-output-display" data-execution_count="2">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">ID</th>
-<th data-quarto-table-cell-role="th">Failure mode</th>
-<th data-quarto-table-cell-role="th">Detector</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">0</th>
-<td>ACQ-F01</td>
-<td>Background-execution kill (Doze, vendor optimi...</td>
-<td>rate, gaps</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">1</th>
-<td>ACQ-F02</td>
-<td>Offline-first sync loss / token expiry / dupli...</td>
-<td>— author-disclosed</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">2</th>
-<td>ACQ-F03</td>
-<td>Clock drift / timestamp reconciliation</td>
-<td>monotonic</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">3</th>
-<td>ACQ-F04</td>
-<td>BLE disconnection / firmware-dependent buffering</td>
-<td>gaps</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">4</th>
-<td>ACQ-F05</td>
-<td>Participant non-adherence / disabled permissions</td>
-<td>— author-disclosed</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">5</th>
-<td>ACQ-F06</td>
-<td>Mid-study protocol / firmware / configuration ...</td>
-<td>— author-disclosed</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">6</th>
-<td>ACQ-F07</td>
-<td>Missing schema / software / firmware provenance</td>
-<td>— author-disclosed</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">7</th>
-<td>ACQ-F08</td>
-<td>No accuracy or uncertainty statement</td>
-<td>resting_magnitude</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-<p>Several taxonomy rows have no automatic detector and never will: whether a participant wore the device, whether permissions were revoked, whether the protocol changed mid-study. These are disclosed by the author, which is what the <a href="../checklist/index.html">reporting checklist</a> is for.</p>
-<p>The division matters. Where a detector exists, disclosure should be a by-product of running it. Where none exists, disclosure depends on the author’s honesty, and the checklist’s job is to make the omission visible.</p>
 </section>
 <section id="source" class="level2">
 <h2 class="anchored" data-anchor-id="source">Source</h2>
@@ -1060,7 +975,7 @@ Companion)</em> (Shanghai, China). <a href="https://acquire-framework.github.io"
 <p>Maintained at the Department of Measurements and Electronics, AGH University of Krakow</p>
 <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/acquire-framework/acquire-framework.github.io/edit/main/taxonomy/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/acquire-framework/acquire-framework.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
-<p>ACQUIRE spec 26.7 · site build <a href="https://github.com/acquire-framework/acquire-framework.github.io/tree/c90b23f6e11208a9fc9d516282085602aee45fb1"><code>c90b23f</code></a> · built 2026-07-18 <a href="../licensing.html">Licensing</a> · <a href="../cite.html">How to cite</a> · <a href="../versions.html">All versions</a></p>
+<p>ACQUIRE spec 26.7.1 · site build <a href="https://github.com/acquire-framework/acquire-framework.github.io/tree/199e1e96f18f98f967a7bb714136868243da7090"><code>199e1e9</code></a> · built 2026-07-18 <a href="../licensing.html">Licensing</a> · <a href="../cite.html">How to cite</a> · <a href="../versions.html">All versions</a></p>
 </div>
   </div>
 </footer>

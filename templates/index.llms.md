@@ -19,6 +19,8 @@ Publish one per sensor stream, alongside the data. Without it a dataset is not m
 The nominal rate matters most. It cannot be inferred from the data, because inferring it would define away [ACQ-F01](../taxonomy/index.llms.md), the best-quantified failure in the taxonomy.
 
 ``` yaml
+# SPDX-License-Identifier: CC-BY-4.0
+# SPDX-FileCopyrightText: 2026 Mateusz Danioł, Ryszard Sroka
 # ACQUIRE sensor schema template — satisfies MRC-08.
 #
 # Publish one of these per sensor stream, alongside the data. Without it a
@@ -81,6 +83,8 @@ provenance:
 A flag is only interpretable if the reader knows the threshold that produced it and what applied it. The `not_covered` section is the important one: a reader who sees only green flags will otherwise infer a validation that never ran.
 
 ``` yaml
+# SPDX-License-Identifier: CC-BY-4.0
+# SPDX-FileCopyrightText: 2026 Mateusz Danioł, Ryszard Sroka
 # ACQUIRE quality-flag template — supports MRC-01, MRC-02, MRC-09.
 #
 # A quality flag records a judgement about a span of data. The point of writing
@@ -254,6 +258,8 @@ Records the auditable lineage from a published number back to the act of measure
 Provenance reconstructed at the end of a study is a best-effort narrative; provenance recorded as data arrives is evidence.
 
 ``` yaml
+# SPDX-License-Identifier: CC-BY-4.0
+# SPDX-FileCopyrightText: 2026 Mateusz Danioł, Ryszard Sroka
 # ACQUIRE dataset provenance template — satisfies MRC-03 and MRC-09.
 #
 # Records the auditable lineage from a published number back to the act of

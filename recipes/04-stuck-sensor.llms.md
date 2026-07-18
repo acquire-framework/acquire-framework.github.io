@@ -26,24 +26,15 @@ This is the most dangerous entry in the catalogue precisely because it defeats t
 
 ## Detection
 
-Genuine stillness still produces sensor noise. **Exactly repeated values across all three axes are therefore a hardware fault, not a quiet participant** — a distinction that makes this detectable with no thresholds to tune:
+Genuine stillness still produces sensor noise. **Exactly repeated values across all three axes are therefore a hardware fault, not a quiet participant** — a distinction that makes this detectable with no thresholds to tune.
 
-``` python
-import acquire
-from acquire.synth import Fault, clean, inject
-
-df = inject(clean(duration_s=900, seed=4), Fault("stuck", start=300, end=400))
-
-next(r for r in acquire.check(df, nominal_hz=50).results if r.id == "SIG-02")
-```
-
-    CheckResult(id='SIG-02', title='Stuck sensor', passed=np.False_, value='longest frozen run 100.0 s', expected='≤ 2.0 s', detail='All three axes identical across consecutive samples. Genuine stillness still produces sensor noise, so exact repetition is a hardware or driver fault, not a quiet participant.', recipe='recipes/04-stuck-sensor.html')
+Concretely: test successive samples for bit-identical values across all three axes, and report the longest such run. The only parameter is how long a frozen run must be before it counts as a fault — longer than any plausible period of stillness, so minutes rather than seconds.
 
 ## Evidence
 
-The detector is exact rather than statistical: it reports the longest run of bit-identical consecutive samples. The only tunable is how long a frozen run must be before it is called a fault, defaulting to two seconds.
+The test is exact rather than statistical, which is unusual in this catalogue: bit-identical repetition either occurred or it did not.
 
-**No field observation yet.** This recipe is included because the failure is well attested in hardware literature and because the detector is trivially verifiable, not because it has been observed in a deployment by the authors.
+**No field observation yet.** This recipe is included because the failure is well attested in hardware literature and because the test is trivially verifiable, not because it has been observed in a deployment by the authors.
 
 **This recipe is unevidenced in the field.** If you have encountered a stuck sensor in a real deployment — device model, firmware version, and what triggered recovery — that report would move it to `●●○○` and is genuinely valuable.
 

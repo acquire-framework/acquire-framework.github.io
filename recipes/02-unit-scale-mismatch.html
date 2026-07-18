@@ -24,45 +24,10 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -109,9 +74,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
-
-<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -315,10 +277,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link" href="../lifecycle/index.html"> 
 <span class="menu-text">Guideline book</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../check/index.html"> 
-<span class="menu-text">Run the diagnostics</span></a>
-  </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
@@ -416,73 +374,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="detection" class="level2">
 <h2 class="anchored" data-anchor-id="detection">Detection</h2>
 <p>This is the framework’s showcase diagnostic, because the reference value is a <strong>physical constant rather than a convention</strong>: a device at rest measures one standard gravity, 9.80665 m/s². Any deviation is a real measurement error, and no labelling effort is required to establish the ground truth.</p>
-<div id="11984474" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> acquire</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> acquire.synth <span class="im">import</span> Fault, clean, inject</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> acquire.schema <span class="im">import</span> G</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> inject(clean(duration_s<span class="op">=</span><span class="dv">900</span>, seed<span class="op">=</span><span class="dv">9</span>), Fault(<span class="st">"scale"</span>, factor<span class="op">=</span><span class="dv">1</span> <span class="op">/</span> G))  <span class="co"># data in g</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="bu">next</span>(r <span class="cf">for</span> r <span class="kw">in</span> acquire.check(df, nominal_hz<span class="op">=</span><span class="dv">50</span>).results <span class="cf">if</span> r.<span class="bu">id</span> <span class="op">==</span> <span class="st">"SIG-01"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>CheckResult(id='SIG-01', title='Resting magnitude', passed=False, value='1.000 m/s² (0.102 g)', expected='9.807 m/s² ±2%', detail='Estimated from 9000 low-motion samples. Consistent with data recorded in g rather than m/s².', recipe='recipes/02-unit-scale-mismatch.html')</code></pre>
-</div>
-</div>
-<p>The detector identifies low-motion samples by rolling standard deviation and compares their mean magnitude against g. It deliberately assumes only that the recording contains <em>some</em> quiet time — true of any in-the-wild recording, and false only for continuously agitated sensors.</p>
+<p>Concretely: compute the vector magnitude, identify low-motion samples by a rolling standard deviation, and compare their mean magnitude against 9.80665 m/s². A ratio near 1/9.81 indicates data recorded in g; a ratio near 9.81 indicates a gravity conversion applied twice.</p>
+<p>The method assumes only that the recording contains <em>some</em> quiet time, which is true of any in-the-wild recording and false only for a continuously agitated sensor.</p>
 </section>
 <section id="evidence" class="level2">
 <h2 class="anchored" data-anchor-id="evidence">Evidence</h2>
-<div id="d27f3d9d" class="cell" data-execution_count="2">
-<div class="cell-output cell-output-display" data-execution_count="2">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">condition</th>
-<th data-quarto-table-cell-role="th">observed</th>
-<th data-quarto-table-cell-role="th">detected</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">0</th>
-<td>correct (m/s²)</td>
-<td>9.806 m/s² (1.000 g)</td>
-<td>no</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">1</th>
-<td>recorded in g</td>
-<td>1.000 m/s² (0.102 g)</td>
-<td>yes</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">2</th>
-<td>gravity applied twice</td>
-<td>96.169 m/s² (9.806 g)</td>
-<td>yes</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">3</th>
-<td>2% miscalibration</td>
-<td>10.003 m/s² (1.020 g)</td>
-<td>no</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">4</th>
-<td>5% miscalibration</td>
-<td>10.297 m/s² (1.050 g)</td>
-<td>yes</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
 <p>The 2% tolerance is the deliberate boundary between calibration error worth flagging and ordinary sensor accuracy. Consumer MEMS accelerometers are commonly specified at 1–3% of full scale, so a tighter tolerance would generate false positives on correctly configured hardware.</p>
 <p><strong>Field observation:</strong> one deployment; two device models shipped values in g despite the SDK documenting m/s². No independent replication yet.</p>
 </section>
@@ -950,7 +846,7 @@ Companion)</em> (Shanghai, China). <a href="https://acquire-framework.github.io"
 <p>Maintained at the Department of Measurements and Electronics, AGH University of Krakow</p>
 <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/acquire-framework/acquire-framework.github.io/edit/main/recipes/02-unit-scale-mismatch.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/acquire-framework/acquire-framework.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
-<p>ACQUIRE spec 26.7 · site build <a href="https://github.com/acquire-framework/acquire-framework.github.io/tree/c90b23f6e11208a9fc9d516282085602aee45fb1"><code>c90b23f</code></a> · built 2026-07-18 <a href="../licensing.html">Licensing</a> · <a href="../cite.html">How to cite</a> · <a href="../versions.html">All versions</a></p>
+<p>ACQUIRE spec 26.7.1 · site build <a href="https://github.com/acquire-framework/acquire-framework.github.io/tree/199e1e96f18f98f967a7bb714136868243da7090"><code>199e1e9</code></a> · built 2026-07-18 <a href="../licensing.html">Licensing</a> · <a href="../cite.html">How to cite</a> · <a href="../versions.html">All versions</a></p>
 </div>
   </div>
 </footer>

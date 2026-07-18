@@ -1,4 +1,4 @@
-# ACQUIRE acquisition-failure taxonomy, specification 26.7
+# ACQUIRE acquisition-failure taxonomy, specification 26.7.1
 
 SPDX-License-Identifier: CC0-1.0 — public domain, no attribution
 required. Citation is a scholarly norm here, not a licence condition.

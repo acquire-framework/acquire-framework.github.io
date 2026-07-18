@@ -23,41 +23,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -311,10 +276,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link" href="../lifecycle/index.html"> 
 <span class="menu-text">Guideline book</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../check/index.html"> 
-<span class="menu-text">Run the diagnostics</span></a>
-  </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
@@ -342,7 +303,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#who-it-is-for" id="toc-who-it-is-for" class="nav-link active" data-scroll-target="#who-it-is-for">Who it is for</a></li>
   <li><a href="#the-checklist" id="toc-the-checklist" class="nav-link" data-scroll-target="#the-checklist">The checklist</a></li>
   <li><a href="#proportionality" id="toc-proportionality" class="nav-link" data-scroll-target="#proportionality">Proportionality</a></li>
-  <li><a href="#disclosure-should-be-a-by-product-not-extra-work" id="toc-disclosure-should-be-a-by-product-not-extra-work" class="nav-link" data-scroll-target="#disclosure-should-be-a-by-product-not-extra-work">Disclosure should be a by-product, not extra work</a></li>
   <li><a href="#a-floor-under-item-mrc-05" id="toc-a-floor-under-item-mrc-05" class="nav-link" data-scroll-target="#a-floor-under-item-mrc-05">A floor under item MRC-05</a></li>
   <li><a href="#templates" id="toc-templates" class="nav-link" data-scroll-target="#templates">Templates</a></li>
   <li><a href="#going-further" id="toc-going-further" class="nav-link" data-scroll-target="#going-further">Going further</a></li>
@@ -394,15 +354,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="the-checklist" class="level2">
 <h2 class="anchored" data-anchor-id="the-checklist">The checklist</h2>
-<div id="22d040dc" class="cell" data-execution_count="1">
+<div id="d3705585" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="1">
 <table class="caption-top table table-sm table-striped small">
 <colgroup>
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -410,7 +369,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <th style="text-align: left;">Disclose in the methods section</th>
 <th style="text-align: center;">Property</th>
 <th style="text-align: center;">Tier</th>
-<th style="text-align: center;">Disclosure</th>
 </tr>
 </thead>
 <tbody>
@@ -419,70 +377,60 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">Expected versus observed completeness, per modality, with the sampling and background-execution policy.</td>
 <td style="text-align: center;">[O]</td>
 <td style="text-align: center;">core</td>
-<td style="text-align: center;">partly automatic</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><code>MRC-02</code></td>
 <td style="text-align: left;">Missingness statistics and their suspected attribution (technical / adherence / attrition), with the evidence used.</td>
 <td style="text-align: center;">[O]</td>
 <td style="text-align: center;">core</td>
-<td style="text-align: center;">partly automatic</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><code>MRC-03</code></td>
 <td style="text-align: left;">Device models, OS versions, app and firmware versions, and every mid-study change.</td>
 <td style="text-align: center;">[M] [EN]</td>
 <td style="text-align: center;">core</td>
-<td style="text-align: center;">partly automatic</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><code>MRC-04</code></td>
 <td style="text-align: left;">Timestamping source, synchronization policy, and residual clock uncertainty after reconciliation.</td>
 <td style="text-align: center;">[M]</td>
 <td style="text-align: center;">core</td>
-<td style="text-align: center;">partly automatic</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><code>MRC-05</code></td>
 <td style="text-align: left;">An accuracy or uncertainty statement appropriate to each primary derived measurand, or a documented justification of why quantitative uncertainty could not be established and what validation evidence is provided instead.</td>
 <td style="text-align: center;">[M]</td>
 <td style="text-align: center;">conditional</td>
-<td style="text-align: center;">author-disclosed</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><code>MRC-06</code></td>
 <td style="text-align: left;">Upload retry, deduplication, and integrity-verification logic (checksums, sequence numbers).</td>
 <td style="text-align: center;">[EN]</td>
 <td style="text-align: center;">core</td>
-<td style="text-align: center;">author-disclosed</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><code>MRC-07</code></td>
 <td style="text-align: left;">Context and system-health events recorded alongside the data: power state, connectivity, permissions; crashes and service kills.</td>
 <td style="text-align: center;">[EN]</td>
 <td style="text-align: center;">core</td>
-<td style="text-align: center;">author-disclosed</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><code>MRC-08</code></td>
 <td style="text-align: left;">Machine-readable schema and collection-software artifacts published alongside the data.</td>
 <td style="text-align: center;">[EN]</td>
 <td style="text-align: center;">core</td>
-<td style="text-align: center;">author-disclosed</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><code>MRC-09</code></td>
 <td style="text-align: left;">QC exclusion criteria and preprocessing provenance from raw log to released dataset.</td>
 <td style="text-align: center;">[EN]</td>
 <td style="text-align: center;">core</td>
-<td style="text-align: center;">partly automatic</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><code>MRC-10</code></td>
 <td style="text-align: left;">Pre-deployment verification evidence: which failure modes of the taxonomy were tested, how, and with what observed behaviour.</td>
 <td style="text-align: center;">[M] [EN] [O]</td>
 <td style="text-align: center;">conditional</td>
-<td style="text-align: center;">author-disclosed</td>
 </tr>
 </tbody>
 </table>
@@ -493,61 +441,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="proportionality">Proportionality</h2>
 <p>Items marked <strong>core</strong> apply to any study using this framework. Items marked <strong>conditional</strong> should be judged against the intended measurand and the study’s risk, not applied uniformly.</p>
 <p>The synchronization example makes the point concretely: tens of milliseconds of clock error are negligible for daily step counts and disqualifying for cross-modal latency estimation. <strong>The same dataset can be fit for one purpose and unfit for another.</strong> Acquisition requirements should be set and evaluated against what is being measured.</p>
-</section>
-<section id="disclosure-should-be-a-by-product-not-extra-work" class="level2">
-<h2 class="anchored" data-anchor-id="disclosure-should-be-a-by-product-not-extra-work">Disclosure should be a by-product, not extra work</h2>
-<p>The reason most acquisition detail goes unreported is not that authors are careless — it is that disclosure is unpaid work with no reward, and often requires numbers nobody computed.</p>
-<p>Six of the ten items can be populated wholly or partly from data and logs by the shipped diagnostics, so that reporting becomes a by-product of a validation you would want to run anyway:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/acquire-framework/acquire-framework.github.io</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> acquire-framework.github.io</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> sync <span class="at">--extra</span> dev</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run acquire check recordings/day01.csv <span class="at">--nominal</span> 50</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="08f0e934" class="cell" data-execution_count="2">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="2">
-<table class="caption-top table table-sm table-striped small">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Item</th>
-<th style="text-align: left;">What the diagnostics supply</th>
-<th style="text-align: left;">What you must still supply</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"><code>MRC-01</code></td>
-<td style="text-align: left;">Observed completeness and effective rate are computed by <code>acquire check</code> (TIME-01, TIME-02). Expected completeness and the background-execution policy are author-supplied.</td>
-<td style="text-align: left;">—</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>MRC-02</code></td>
-<td style="text-align: left;">Gap counts, durations and their distribution over time are computed. Attribution is an author judgement and must be argued, not asserted — published completeness figures routinely conflate these three causes.</td>
-<td style="text-align: left;">—</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>MRC-03</code></td>
-<td style="text-align: left;">Populated automatically where the collection app records these per recording, as the provenance template specifies.</td>
-<td style="text-align: left;">—</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>MRC-04</code></td>
-<td style="text-align: left;">Monotonicity and regularity are checked automatically. The residual synchronization uncertainty must be estimated from the study’s own offset logs — see examples/synchronization for the model and a worked budget.</td>
-<td style="text-align: left;">—</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>MRC-09</code></td>
-<td style="text-align: left;">Diagnostic results and the thresholds that produced them are emitted by <code>acquire check</code> and can be attached verbatim as the QC record.</td>
-<td style="text-align: left;">—</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p>The remaining four items — integrity logic, health-event recording, published schema and software, and pre-deployment verification — are properties of how the study was built. No tool can infer them, and the checklist’s role there is to make their absence visible rather than silent.</p>
 </section>
 <section id="a-floor-under-item-mrc-05" class="level2">
 <h2 class="anchored" data-anchor-id="a-floor-under-item-mrc-05">A floor under item MRC-05</h2>
@@ -1055,7 +948,7 @@ Companion)</em> (Shanghai, China). <a href="https://acquire-framework.github.io"
 <p>Maintained at the Department of Measurements and Electronics, AGH University of Krakow</p>
 <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/acquire-framework/acquire-framework.github.io/edit/main/checklist/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/acquire-framework/acquire-framework.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
-<p>ACQUIRE spec 26.7 · site build <a href="https://github.com/acquire-framework/acquire-framework.github.io/tree/c90b23f6e11208a9fc9d516282085602aee45fb1"><code>c90b23f</code></a> · built 2026-07-18 <a href="../licensing.html">Licensing</a> · <a href="../cite.html">How to cite</a> · <a href="../versions.html">All versions</a></p>
+<p>ACQUIRE spec 26.7.1 · site build <a href="https://github.com/acquire-framework/acquire-framework.github.io/tree/199e1e96f18f98f967a7bb714136868243da7090"><code>199e1e9</code></a> · built 2026-07-18 <a href="../licensing.html">Licensing</a> · <a href="../cite.html">How to cite</a> · <a href="../versions.html">All versions</a></p>
 </div>
   </div>
 </footer>

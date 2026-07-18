@@ -10,7 +10,7 @@ The pilot is the cheapest place to find every failure in the catalogue. Its purp
 
 **PLT-01** — At least one recording has traversed the complete chain — device, upload, storage, and analysis pipeline — and been validated at the far end, not merely observed to arrive.
 
-**PLT-02** — `acquire check` (or equivalent validation) has been run over pilot recordings and the results recorded.
+**PLT-02** — Validation checks have been run over pilot recordings and the results recorded.
 
 **PLT-03** — The pilot ran on the oldest and cheapest device model permitted in the study, not only on the developer’s handset.
 

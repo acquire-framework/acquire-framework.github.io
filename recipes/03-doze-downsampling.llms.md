@@ -24,18 +24,6 @@ The recording contains fewer samples than the requested rate implies, but the da
 
 Analysts typically notice months later, when frequency-domain features behave strangely or an activity classifier degrades without explanation.
 
-|  |  |  |  |  |
-|----|----|----|----|----|
-| ✓ | Timestamp monotonicity | 0 non-increasing steps | 0 |  |
-| × | Effective vs nominal sampling rate | 38.41 Hz (77% of nominal) | 50.00 Hz ±5% | [recipe →](../recipes/03-doze-downsampling.llms.md) |
-| × | Stream continuity | 1 gaps, 45.1 s lost, longest 45.1 s | no interval \> 1.0 s | [recipe →](../recipes/03-doze-downsampling.llms.md) |
-| × | Sampling regularity | jitter 100.0% above median interval (p90) | ≤ 25% | [recipe →](../recipes/03-doze-downsampling.llms.md) |
-| ✓ | Resting magnitude | 9.806 m/s² (1.000 g) | 9.807 m/s² ±2% |  |
-| ✓ | Stuck sensor | longest frozen run 0.0 s | ≤ 2.0 s |  |
-| ✓ | Saturation | 0.001% of samples at rail (±15.6 m/s²) | ≤ 0.1% |  |
-
-ACQUIRE spec 26.7, acquire-framework 26.7.0
-
 ![](03-doze-downsampling_files/figure-html/fig-doze-output-1.png)
 
 Figure 1: The deficit is a shelf, not a slope. Its edges mark the moment power management engaged.
@@ -46,43 +34,23 @@ Mobile operating systems throttle or suspend sensor delivery to preserve battery
 
 The critical property is that **the application is not told**. The sensor registration remains valid, the callback is still installed, and delivery simply becomes less frequent. Any monitoring that asks “is data arriving?” answers yes.
 
-A secondary cause with the same signature is hardware FIFO batching: the sensor accumulates samples and flushes them opportunistically, so the mean rate is correct while the instantaneous rate is not. The [regularity check](#detection) separates the two.
+A secondary cause with the same signature is hardware FIFO batching: the sensor accumulates samples and flushes them opportunistically, so the mean rate is correct while the instantaneous rate is not. Examining the distribution of inter-sample intervals, rather than their mean, separates the two.
 
 ## Detection
 
-The effective rate — samples per elapsed second — is compared against the rate the application requested. The nominal rate cannot be inferred from the data, because inferring it would define away exactly this failure, so it must be supplied:
+The effective rate — samples per elapsed second — is compared against the rate the application requested. The nominal rate cannot be inferred from the data, because inferring it would define away exactly this failure, so it must be supplied by the study.
 
-``` python
-import acquire
-
-report = acquire.check(df, nominal_hz=50)   # nominal must be stated, not inferred
-[r for r in report.results if not r.passed]
-```
-
-    [CheckResult(id='TIME-01', title='Effective vs nominal sampling rate', passed=np.False_, value='38.41 Hz (77% of nominal)', expected='50.00 Hz ±5%', detail='138273 samples over 3600.0 s. A deficit concentrated in time indicates throttling; a uniform deficit indicates the requested rate was never honoured.', recipe='recipes/03-doze-downsampling.html'),
-     CheckResult(id='TIME-02', title='Stream continuity', passed=False, value='1 gaps, 45.1 s lost, longest 45.1 s', expected='no interval > 1.0 s', detail='Gaps clustering overnight or during device idle periods point to OS power management rather than hardware or connectivity.', recipe='recipes/03-doze-downsampling.html'),
-     CheckResult(id='TIME-04', title='Sampling regularity', passed=False, value='jitter 100.0% above median interval (p90)', expected='≤ 25%', detail='Median interval 20.0 ms. High jitter with a correct mean rate indicates hardware FIFO batching rather than sample loss.', recipe='recipes/03-doze-downsampling.html')]
+Concretely: divide the recording into windows, count samples per window, and compare the result against the nominal rate. A deficit beyond a stated tolerance — 5% is a defensible starting point — is the signal.
 
 Windowing the rate over the recording localises the fault in time, which is what distinguishes throttling (a shelf, with edges) from a rate that was never honoured (a flat deficit from the first sample).
 
 ## Evidence
 
-The detector’s sensitivity is measured against synthetic recordings with faults of known magnitude, rather than asserted. This table is generated at build time:
-
-|     | samples retained | effective rate | detected |
-|-----|------------------|----------------|----------|
-| 0   | 95%              | 47.50 Hz       | yes      |
-| 1   | 90%              | 45.00 Hz       | yes      |
-| 2   | 85%              | 42.50 Hz       | yes      |
-| 3   | 80%              | 40.00 Hz       | yes      |
-| 4   | 70%              | 35.00 Hz       | yes      |
-| 5   | 50%              | 25.00 Hz       | yes      |
-
-Detection is reliable once the deficit exceeds the 5% rate tolerance, which is the tolerance’s purpose; deficits below that are indistinguishable from ordinary scheduling noise on a healthy device.
+A rate deficit is detectable whenever it exceeds the stated tolerance, which is what the tolerance is for; deficits below it are indistinguishable from ordinary scheduling noise on a healthy device. Any study adopting this method should state the tolerance it used, since the tolerance determines what counts as a detection.
 
 **Field observation:** one deployment (n = 40 devices, Android 13–14, six weeks). Throttling appeared on 34 of 40 devices; median onset was within the first overnight period. No independent replication yet.
 
-**Seen this too?** Contributing a replication takes about an hour: run `acquire check` over one participant’s recording, report the effective rate and device model, and the recipe moves from `●●○○` to `●●●○`. Contributors are credited on the next release DOI. See [CONTRIBUTING](https://github.com/acquire-framework/acquire-framework.github.io/blob/main/CONTRIBUTING.md).
+**Seen this too?** Contributing a replication takes about an hour: compare effective against nominal rate over one participant’s recording, report the figures and the device model, and the recipe moves from `●●○○` to `●●●○`. Contributors are credited on the next release DOI. See [CONTRIBUTING](https://github.com/acquire-framework/acquire-framework.github.io/blob/main/CONTRIBUTING.md).
 
 ## Mitigation
 

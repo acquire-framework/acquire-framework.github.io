@@ -28,17 +28,11 @@ This is the stage that separates studies which recover from failure from studies
 
 **MON-06** — Data yield per participant per day is tracked against the minimum acceptable threshold defined at [design](../lifecycle/design.llms.md) time.
 
-**MON-07** — Diagnostics run automatically over incoming data, not on request. In practice: `acquire check` in the ingestion pipeline.
+**MON-07** — Validity checks run automatically over incoming data, not on request — in the ingestion pipeline rather than by hand.
 
 **MON-08** — Detection latency is measured — how long between a failure starting and someone knowing — and reported.
 
-## Running the diagnostics in CI
-
-The package exits non-zero on failure, so it gates a pipeline directly:
-
-``` bash
-acquire check incoming/"$PARTICIPANT"/latest.csv --nominal 50
-```
+## Measuring detection latency
 
 Detection latency is worth measuring explicitly, because it is the quantity that determines how much data a failure costs. A study that detects throttling within a day loses a day; one that detects it at analysis loses everything.
 

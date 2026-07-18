@@ -23,41 +23,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -311,10 +276,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link active" href="../lifecycle/index.html" aria-current="page"> 
 <span class="menu-text">Guideline book</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../check/index.html"> 
-<span class="menu-text">Run the diagnostics</span></a>
-  </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
@@ -421,7 +382,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#infrastructure" id="toc-infrastructure" class="nav-link" data-scroll-target="#infrastructure">Infrastructure</a></li>
   <li><a href="#validity-monitoring" id="toc-validity-monitoring" class="nav-link" data-scroll-target="#validity-monitoring">Validity monitoring</a></li>
   </ul></li>
-  <li><a href="#running-the-diagnostics-in-ci" id="toc-running-the-diagnostics-in-ci" class="nav-link" data-scroll-target="#running-the-diagnostics-in-ci">Running the diagnostics in CI</a></li>
+  <li><a href="#measuring-detection-latency" id="toc-measuring-detection-latency" class="nav-link" data-scroll-target="#measuring-detection-latency">Measuring detection latency</a></li>
   <li><a href="#next" id="toc-next" class="nav-link" data-scroll-target="#next">Next</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/acquire-framework/acquire-framework.github.io/edit/main/lifecycle/monitor.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/acquire-framework/acquire-framework.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -473,15 +434,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><label><input type="checkbox"><strong>MON-04</strong> — Effective sampling rate per device is computed on ingestion and alerted on when it deviates from nominal. → <a href="../recipes/03-doze-downsampling.html">Silent downsampling</a></label></li>
 <li><label><input type="checkbox"><strong>MON-05</strong> — Signal variance is monitored, with alerting on collapse to zero over a window longer than plausible stillness. → <a href="../recipes/04-stuck-sensor.html">Stuck sensor</a></label></li>
 <li><label><input type="checkbox"><strong>MON-06</strong> — Data yield per participant per day is tracked against the minimum acceptable threshold defined at <a href="../lifecycle/design.html">design</a> time.</label></li>
-<li><label><input type="checkbox"><strong>MON-07</strong> — Diagnostics run automatically over incoming data, not on request. In practice: <code>acquire check</code> in the ingestion pipeline.</label></li>
+<li><label><input type="checkbox"><strong>MON-07</strong> — Validity checks run automatically over incoming data, not on request — in the ingestion pipeline rather than by hand.</label></li>
 <li><label><input type="checkbox"><strong>MON-08</strong> — Detection latency is measured — how long between a failure starting and someone knowing — and reported.</label></li>
 </ul>
 </section>
 </section>
-<section id="running-the-diagnostics-in-ci" class="level2">
-<h2 class="anchored" data-anchor-id="running-the-diagnostics-in-ci">Running the diagnostics in CI</h2>
-<p>The package exits non-zero on failure, so it gates a pipeline directly:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">acquire</span> check incoming/<span class="st">"</span><span class="va">$PARTICIPANT</span><span class="st">"</span>/latest.csv <span class="at">--nominal</span> 50</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="measuring-detection-latency" class="level2">
+<h2 class="anchored" data-anchor-id="measuring-detection-latency">Measuring detection latency</h2>
 <p>Detection latency is worth measuring explicitly, because it is the quantity that determines how much data a failure costs. A study that detects throttling within a day loses a day; one that detects it at analysis loses everything.</p>
 </section>
 <section id="next" class="level2">
@@ -943,7 +902,7 @@ Companion)</em> (Shanghai, China). <a href="https://acquire-framework.github.io"
 <p>Maintained at the Department of Measurements and Electronics, AGH University of Krakow</p>
 <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/acquire-framework/acquire-framework.github.io/edit/main/lifecycle/monitor.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/acquire-framework/acquire-framework.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
-<p>ACQUIRE spec 26.7 · site build <a href="https://github.com/acquire-framework/acquire-framework.github.io/tree/c90b23f6e11208a9fc9d516282085602aee45fb1"><code>c90b23f</code></a> · built 2026-07-18 <a href="../licensing.html">Licensing</a> · <a href="../cite.html">How to cite</a> · <a href="../versions.html">All versions</a></p>
+<p>ACQUIRE spec 26.7.1 · site build <a href="https://github.com/acquire-framework/acquire-framework.github.io/tree/199e1e96f18f98f967a7bb714136868243da7090"><code>199e1e9</code></a> · built 2026-07-18 <a href="../licensing.html">Licensing</a> · <a href="../cite.html">How to cite</a> · <a href="../versions.html">All versions</a></p>
 </div>
   </div>
 </footer>

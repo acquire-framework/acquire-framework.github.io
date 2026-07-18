@@ -23,45 +23,10 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -108,9 +73,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
-
-<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -314,10 +276,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link" href="./lifecycle/index.html"> 
 <span class="menu-text">Guideline book</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./check/index.html"> 
-<span class="menu-text">Run the diagnostics</span></a>
-  </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
@@ -368,7 +326,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Reproducibility begins at acquisition.</p>
 </div>
 <p>Most in-the-wild sensing studies collect invalid data for weeks before anyone notices. Dashboards stay green, files keep arriving, and the failure only surfaces during analysis — when the fieldwork is already spent.</p>
-<p>ACQUIRE is a guideline book and a set of diagnostics for catching those failures while they are still cheap to fix.</p>
+<p>ACQUIRE names those failures, says what each one threatens, and specifies what a study should disclose so a reader can tell whether they occurred.</p>
 <div class="acq-cta">
 <p><a href="./lifecycle/index.html">Building a study? Start here</a> <a href="./recipes/index.html" class="secondary">Something wrong with your data?</a></p>
 </div>
@@ -390,71 +348,7 @@ Figure&nbsp;1: Effective sampling rate collapses halfway through the recording. 
 </div>
 </div>
 </div>
-<p>Running the diagnostics against it takes one line:</p>
-<div id="21001c0f" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> acquire</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> acquire.check(df, nominal_hz<span class="op">=</span><span class="dv">50</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>report</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
-<div class="acq-report">
-<table class="caption-top table table-sm table-striped small">
-<tbody>
-<tr class="acq-pass odd">
-<td class="acq-mark">✓</td>
-<td>Timestamp monotonicity</td>
-<td class="acq-val">0 non-increasing steps</td>
-<td class="acq-exp">0</td>
-<td></td>
-</tr>
-<tr class="acq-fail even">
-<td class="acq-mark">×</td>
-<td>Effective vs nominal sampling rate</td>
-<td class="acq-val">38.41 Hz (77% of nominal)</td>
-<td class="acq-exp">50.00 Hz ±5%</td>
-<td><a href="./recipes/03-doze-downsampling.html" class="acq-recipe">recipe →</a></td>
-</tr>
-<tr class="acq-fail odd">
-<td class="acq-mark">×</td>
-<td>Stream continuity</td>
-<td class="acq-val">1 gaps, 45.1 s lost, longest 45.1 s</td>
-<td class="acq-exp">no interval &gt; 1.0 s</td>
-<td><a href="./recipes/03-doze-downsampling.html" class="acq-recipe">recipe →</a></td>
-</tr>
-<tr class="acq-fail even">
-<td class="acq-mark">×</td>
-<td>Sampling regularity</td>
-<td class="acq-val">jitter 100.0% above median interval (p90)</td>
-<td class="acq-exp">≤ 25%</td>
-<td><a href="./recipes/03-doze-downsampling.html" class="acq-recipe">recipe →</a></td>
-</tr>
-<tr class="acq-pass odd">
-<td class="acq-mark">✓</td>
-<td>Resting magnitude</td>
-<td class="acq-val">9.806 m/s² (1.000 g)</td>
-<td class="acq-exp">9.807 m/s² ±2%</td>
-<td></td>
-</tr>
-<tr class="acq-pass even">
-<td class="acq-mark">✓</td>
-<td>Stuck sensor</td>
-<td class="acq-val">longest frozen run 0.0 s</td>
-<td class="acq-exp">≤ 2.0 s</td>
-<td></td>
-</tr>
-<tr class="acq-pass odd">
-<td class="acq-mark">✓</td>
-<td>Saturation</td>
-<td class="acq-val">0.001% of samples at rail (±15.6 m/s²)</td>
-<td class="acq-exp">≤ 0.1%</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<div class="acq-scope">ACQUIRE spec 26.7, acquire-framework 26.7.0</div></div>
-</div>
-</div>
-<p>Two failures, both invisible to conventional monitoring, both traceable to a specific recipe. That is the whole idea.</p>
+<p>Both failures are invisible to conventional monitoring: completeness looks acceptable, no value is impossible, and no error was raised. They are visible only if someone asks what the effective rate was and compares it against what the application requested.</p>
 </section>
 <section id="what-acquire-v26.7-contains" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="what-acquire-v26.7-contains">What ACQUIRE v26.7 contains</h2>
@@ -464,17 +358,6 @@ Figure&nbsp;1: Effective sampling rate collapses halfway through the recording. 
 <p><strong><a href="./lifecycle/index.html">The guideline book</a></strong> — an operational companion for teams building a study, stage by stage.</p>
 <p><strong>Templates and forms</strong> — <a href="./templates/index.html#sensor-schema">sensor schema</a>, <a href="./templates/index.html#quality-flags">quality flags</a>, <a href="./templates/index.html#uncertainty-statement">uncertainty statement</a>, <a href="./templates/index.html#dataset-provenance">dataset provenance</a>, and a <a href="./templates/index.html#reviewer-form">reviewer form</a>.</p>
 <p><strong><a href="https://github.com/acquire-framework/acquire-framework.github.io/tree/main/examples/synchronization">A worked synchronization example</a></strong> — executable. Two BLE devices at +40 and −25 ppm, re-anchored at reconnection: completeness stays at 100% and every quality flag stays green while the inter-device offset spends 96% of the recording outside a ±20 ms tolerance, peaking near 0.8 s. A record-integrity audit passes this dataset; a measurement-validity audit does not.</p>
-</section>
-<section id="run-it-on-your-own-data" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="run-it-on-your-own-data">Run it on your own data</h2>
-<p>The diagnostics are a Python package, intended to run in your own pipeline or CI against incoming study data:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/acquire-framework/acquire-framework.github.io</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> acquire-framework.github.io</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> sync <span class="at">--extra</span> dev</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run acquire check recordings/day01.csv <span class="at">--nominal</span> 50</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>It exits non-zero on failure, so it can gate a pipeline.</p>
-<p>The diagnostics are not published to a package index yet — run them from a clone until they are.</p>
-<p>There is also a <a href="./check/index.html">browser-based demonstration</a> that runs the same code locally in your tab — nothing is uploaded, and nothing leaves your device.</p>
 </section>
 <section id="the-paper" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="the-paper">The paper</h2>
@@ -944,7 +827,7 @@ Companion)</em> (Shanghai, China). <a href="https://acquire-framework.github.io"
 <p>Maintained at the Department of Measurements and Electronics, AGH University of Krakow</p>
 <div class="toc-actions"><ul><li><a href="https://github.com/acquire-framework/acquire-framework.github.io/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/acquire-framework/acquire-framework.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
-<p>ACQUIRE spec 26.7 · site build <a href="https://github.com/acquire-framework/acquire-framework.github.io/tree/c90b23f6e11208a9fc9d516282085602aee45fb1"><code>c90b23f</code></a> · built 2026-07-18 <a href="./licensing.html">Licensing</a> · <a href="./cite.html">How to cite</a> · <a href="./versions.html">All versions</a></p>
+<p>ACQUIRE spec 26.7.1 · site build <a href="https://github.com/acquire-framework/acquire-framework.github.io/tree/199e1e96f18f98f967a7bb714136868243da7090"><code>199e1e9</code></a> · built 2026-07-18 <a href="./licensing.html">Licensing</a> · <a href="./cite.html">How to cite</a> · <a href="./versions.html">All versions</a></p>
 </div>
   </div>
 </footer>

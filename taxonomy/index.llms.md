@@ -50,8 +50,6 @@ evidence
 
 **\[L\]** 84% of scheduled executions missing across four devices (Gonzalez-Perez et al. 2022); 54.2% geolocation loss in the 625-participant IAB-SMART study (Bähr et al. 2022); no GPS on 49% of observation days in a 2,394-person Beiwe cohort (Yi et al. 2024, a figure that aggregates technical loss with attrition and adherence).
 
-Automatically detectable by `rate`, `gaps` — see [running the diagnostics](../check/index.llms.md).
-
 ### Connectivity, backend and integrity layer
 
 #### `ACQ-F02` — Offline-first sync loss / token expiry / duplicate re-sync
@@ -88,7 +86,7 @@ evidence
 >
 > **Detection limit.** Modest drift is NOT detectable from a single recording: nothing distinguishes a fast clock from slow sampling. Detection requires an external reference — a second device, a logged NTP offset, or a deliberate synchronization event.
 
-Automatically detectable by `monotonic` — see [running the diagnostics](../check/index.llms.md). Worked example: [`examples/synchronization`](https://github.com/acquire-framework/acquire-framework.github.io/tree/main/examples/synchronization).
+Worked example: [`examples/synchronization`](https://github.com/acquire-framework/acquire-framework.github.io/tree/main/examples/synchronization).
 
 #### `ACQ-F04` — BLE disconnection / firmware-dependent buffering
 
@@ -103,8 +101,6 @@ property threatened
 evidence
 
 **\[E\]** No systematic reporting of field disconnection and packet-loss rates was identified.
-
-Automatically detectable by `gaps` — see [running the diagnostics](../check/index.llms.md).
 
 ### Participant layer
 
@@ -165,25 +161,6 @@ property threatened
 evidence
 
 **\[L\]** Under-reported for wearables with no standardized characterization protocol (Cosoli et al. 2024); over 70% of surveyed light-dosimetry studies reported no sensor calibration (Spitschan et al. 2022).
-
-Automatically detectable by `resting_magnitude` — see [running the diagnostics](../check/index.llms.md).
-
-## What has an automatic detector, and what does not
-
-|  | ID | Failure mode | Detector |
-|----|----|----|----|
-| 0 | ACQ-F01 | Background-execution kill (Doze, vendor optimi... | rate, gaps |
-| 1 | ACQ-F02 | Offline-first sync loss / token expiry / dupli... | — author-disclosed |
-| 2 | ACQ-F03 | Clock drift / timestamp reconciliation | monotonic |
-| 3 | ACQ-F04 | BLE disconnection / firmware-dependent buffering | gaps |
-| 4 | ACQ-F05 | Participant non-adherence / disabled permissions | — author-disclosed |
-| 5 | ACQ-F06 | Mid-study protocol / firmware / configuration ... | — author-disclosed |
-| 6 | ACQ-F07 | Missing schema / software / firmware provenance | — author-disclosed |
-| 7 | ACQ-F08 | No accuracy or uncertainty statement | resting_magnitude |
-
-Several taxonomy rows have no automatic detector and never will: whether a participant wore the device, whether permissions were revoked, whether the protocol changed mid-study. These are disclosed by the author, which is what the [reporting checklist](../checklist/index.llms.md) is for.
-
-The division matters. Where a detector exists, disclosure should be a by-product of running it. Where none exists, disclosure depends on the author’s honesty, and the checklist’s job is to make the omission visible.
 
 ## Source
 

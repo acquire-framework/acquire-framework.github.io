@@ -311,10 +311,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link" href="./lifecycle/index.html"> 
 <span class="menu-text">Guideline book</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./check/index.html"> 
-<span class="menu-text">Run the diagnostics</span></a>
-  </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
@@ -341,7 +337,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#the-specification" id="toc-the-specification" class="nav-link active" data-scroll-target="#the-specification">The specification</a></li>
   <li><a href="#the-website" id="toc-the-website" class="nav-link" data-scroll-target="#the-website">The website</a></li>
-  <li><a href="#the-diagnostics-package" id="toc-the-diagnostics-package" class="nav-link" data-scroll-target="#the-diagnostics-package">The diagnostics package</a></li>
+  <li><a href="#tooling" id="toc-tooling" class="nav-link" data-scroll-target="#tooling">Tooling</a></li>
   <li><a href="#this-build" id="toc-this-build" class="nav-link" data-scroll-target="#this-build">This build</a></li>
   <li><a href="#published-specifications" id="toc-published-specifications" class="nav-link" data-scroll-target="#published-specifications">Published specifications</a></li>
   <li><a href="#citing" id="toc-citing" class="nav-link" data-scroll-target="#citing">Citing</a></li>
@@ -405,17 +401,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">No</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><strong>Diagnostics package</strong></td>
-<td style="text-align: left;"><code>26.7.0</code></td>
-<td style="text-align: left;">Code changes, including fixes that alter no requirement</td>
-<td style="text-align: left;">If you ran it</td>
+<td style="text-align: left;"><strong>Tooling</strong></td>
+<td style="text-align: left;">not released</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
 </tr>
 </tbody>
 </table>
 <section id="the-specification" class="level2">
 <h2 class="anchored" data-anchor-id="the-specification">The specification</h2>
-<p>The normative content: the <a href="./taxonomy/index.html">acquisition-failure taxonomy</a>, the <a href="./checklist/index.html">Minimum Reporting Checklist</a>, and the thresholds and evidence levels attached to them. This is what a study means when it says it was assessed against ACQUIRE 26.7.</p>
-<p>Versions are calendar-based, <strong><code>&lt;year&gt;.&lt;month&gt;</code></strong> — <code>26.7</code> is July 2026, and a second release in a month adds a patch, <code>26.7.1</code>. Calendar rather than semantic versioning is deliberate: semantic versioning describes API compatibility, and what a reader needs to know here is <em>when</em> the requirements were current, because guidance about operating-system behaviour ages whether or not any interface changes.</p>
+<p>The normative content: the <a href="./taxonomy/index.html">acquisition-failure taxonomy</a>, the <a href="./checklist/index.html">Minimum Reporting Checklist</a>, and the thresholds and evidence levels attached to them. This is what a study means when it says it was assessed against ACQUIRE 26.7.1.</p>
+<p>Versions are calendar-based, <strong><code>&lt;year&gt;.&lt;month&gt;</code></strong> — <code>26.7</code> is July 2026, and a second release within a month adds a patch, as <code>26.7.1</code> does here. Calendar rather than semantic versioning is deliberate: semantic versioning describes API compatibility, and what a reader needs to know here is <em>when</em> the requirements were current, because guidance about operating-system behaviour ages whether or not any interface changes.</p>
 <p>Which files are normative is declared explicitly in <a href="spec/spec.yml"><code>spec/spec.yml</code></a>, and CI fails if any of them changes without a version bump. That guard exists so two different sets of requirements can never be published under one number.</p>
 </section>
 <section id="the-website" class="level2">
@@ -423,14 +419,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The site has <strong>no version of its own</strong>. It is identified only by the commit it was built from, shown in the footer of every page.</p>
 <p>Rewording an explanation, restyling a page, or correcting a typo changes what a reader sees without changing what the framework requires — so it must not change what a study cites.</p>
 </section>
-<section id="the-diagnostics-package" class="level2">
-<h2 class="anchored" data-anchor-id="the-diagnostics-package">The diagnostics package</h2>
-<p>The diagnostics are versioned <code>&lt;spec&gt;.&lt;patch&gt;</code>: <strong>26.7.0</strong> implements specification 26.7, and the patch component moves independently for bug fixes that alter no requirement.</p>
-<p>They are <strong>not yet published to a package index</strong> — run them from a clone, and record the commit you ran alongside the version.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> acquire</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>acquire.__version__    <span class="co"># '26.7.0'  — the code you ran</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>acquire.SPEC_VERSION   <span class="co"># '26.7'    — the requirements it implements</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Diagnostic reports stamp both, so a quality-control record attached to a dataset stays interpretable years later: a reader can tell which requirements applied and which implementation produced the numbers.</p>
+<section id="tooling" class="level2">
+<h2 class="anchored" data-anchor-id="tooling">Tooling</h2>
+<p>No diagnostic software is published. The framework as released is a specification and a set of documents: a taxonomy, a reporting checklist, templates, and one executable example that reproduces a figure from the paper.</p>
+<p>Tooling that would automate parts of the checklist is on the roadmap and is deliberately not announced here — a framework about honest reporting should not advertise capability it does not have.</p>
 </section>
 <section id="this-build" class="level2">
 <h2 class="anchored" data-anchor-id="this-build">This build</h2>
@@ -438,17 +430,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Specification</td>
-<td style="text-align: left;"><strong>26.7</strong></td>
+<td style="text-align: left;"><strong>26.7.1</strong></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Package</td>
-<td style="text-align: left;"><p>26.7.0</p></td>
+<td style="text-align: left;">Site build</td>
+<td style="text-align: left;"><a href="https://github.com/acquire-framework/acquire-framework.github.io/tree/199e1e96f18f98f967a7bb714136868243da7090"><code>199e1e9</code></a></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Site build</td>
-<td style="text-align: left;"><a href="https://github.com/acquire-framework/acquire-framework.github.io/tree/c90b23f6e11208a9fc9d516282085602aee45fb1"><code>c90b23f</code></a></td>
-</tr>
-<tr class="even">
 <td style="text-align: left;">Built</td>
 <td style="text-align: left;"><p>2026-07-18</p></td>
 </tr>
@@ -468,13 +456,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">26.7</td>
-<td style="text-align: left;"><a href="./v26.7/">/v26.7/</a></td>
-<td style="text-align: left;"><code>v26.7</code></td>
+<td style="text-align: left;">26.7.1</td>
+<td style="text-align: left;"><a href="./v26.7.1/">/v26.7.1/</a></td>
+<td style="text-align: left;"><code>v26.7.1</code></td>
 <td style="text-align: left;">DOI pending</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><del>26.7</del></td>
+<td style="text-align: left;">withdrawn</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
 </tr>
 </tbody>
 </table>
+<p>Specification 26.7 was published on 18 July 2026 and withdrawn the same day, before any known use, because it asserted the availability of diagnostic software that is not released. It is not served and should not be cited.</p>
+<p>Withdrawing a snapshot is not the same as rewriting one. Published snapshots are never altered; where one is wrong, it is withdrawn and the reason recorded in <a href="spec/spec.yml"><code>spec/spec.yml</code></a>.</p>
 <p>A snapshot is published at <code>/v&lt;spec&gt;/</code> when the <strong>specification</strong> changes — not when the site changes. Snapshots are built once from the tag and never rebuilt, so the explanatory prose inside an old snapshot may be less polished than the current site. That is intended: the snapshot exists to preserve what was <em>required</em>, not to be the best-written version.</p>
 <p>The root of this site always shows current guidance.</p>
 </section>
@@ -482,22 +478,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="citing">Citing</h2>
 <p>Give the permalink, not the bare domain:</p>
 <blockquote class="blockquote">
-<p>Data collection followed the ACQUIRE Minimum Reporting Checklist, specification 26.7 (<a href="https://acquire-framework.github.io/v26.7/" class="uri">https://acquire-framework.github.io/v26.7/</a>).</p>
-</blockquote>
-<p>If you ran the diagnostics, name the package build too, since a threshold could have been implemented incorrectly and later fixed without the specification changing:</p>
-<blockquote class="blockquote">
-<p>Diagnostics were run with ACQUIRE 26.7.0 (commit <code>abc1234</code>).</p>
+<p>Data collection followed the ACQUIRE Minimum Reporting Checklist, specification 26.7.1 (<a href="https://acquire-framework.github.io/v26.7.1/" class="uri">https://acquire-framework.github.io/v26.7.1/</a>).</p>
 </blockquote>
 </section>
 <section id="rebuilding-a-specification-from-source" class="level2">
 <h2 class="anchored" data-anchor-id="rebuilding-a-specification-from-source">Rebuilding a specification from source</h2>
 <p>Each specification release is a tag:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/acquire-framework/acquire-framework.github.io</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> acquire-framework.github.io</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout v26.7</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> sync <span class="at">--extra</span> dev <span class="at">--extra</span> docs <span class="at">--frozen</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run pytest</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="va">QUARTO_PYTHON</span><span class="op">=</span>.venv/bin/python <span class="ex">uv</span> run quarto render</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/acquire-framework/acquire-framework.github.io</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> acquire-framework.github.io</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout v26.7.1</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> sync <span class="at">--extra</span> dev <span class="at">--extra</span> docs <span class="at">--frozen</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run pytest</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="va">QUARTO_PYTHON</span><span class="op">=</span>.venv/bin/python <span class="ex">uv</span> run quarto render</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The lockfile is committed, the Quarto version is pinned in CI, and the build honours <code>SOURCE_DATE_EPOCH</code>, so a rebuild resolves the same dependencies rather than whatever is current.</p>
 </section>
 <section id="why-a-doi-as-well-as-a-url" class="level2">
@@ -960,7 +952,7 @@ Companion)</em> (Shanghai, China). <a href="https://acquire-framework.github.io"
 <p>Maintained at the Department of Measurements and Electronics, AGH University of Krakow</p>
 <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/acquire-framework/acquire-framework.github.io/edit/main/versions.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/acquire-framework/acquire-framework.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
-<p>ACQUIRE spec 26.7 · site build <a href="https://github.com/acquire-framework/acquire-framework.github.io/tree/c90b23f6e11208a9fc9d516282085602aee45fb1"><code>c90b23f</code></a> · built 2026-07-18 <a href="./licensing.html">Licensing</a> · <a href="./cite.html">How to cite</a> · <a href="./versions.html">All versions</a></p>
+<p>ACQUIRE spec 26.7.1 · site build <a href="https://github.com/acquire-framework/acquire-framework.github.io/tree/199e1e96f18f98f967a7bb714136868243da7090"><code>199e1e9</code></a> · built 2026-07-18 <a href="./licensing.html">Licensing</a> · <a href="./cite.html">How to cite</a> · <a href="./versions.html">All versions</a></p>
 </div>
   </div>
 </footer>

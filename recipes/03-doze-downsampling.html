@@ -24,45 +24,10 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -109,9 +74,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
-
-<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -315,10 +277,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link" href="../lifecycle/index.html"> 
 <span class="menu-text">Guideline book</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../check/index.html"> 
-<span class="menu-text">Run the diagnostics</span></a>
-  </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
@@ -405,65 +363,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="symptom">Symptom</h2>
 <p>The recording contains fewer samples than the requested rate implies, but the data is otherwise unremarkable: values are plausible, timestamps increase, files arrive on schedule, and no error is logged. The deficit is usually concentrated in time — overnight, or whenever the device sits still — rather than spread evenly across the recording.</p>
 <p>Analysts typically notice months later, when frequency-domain features behave strangely or an activity classifier degrades without explanation.</p>
-<div id="e15dd0a8" class="cell" data-execution_count="1">
-<div class="cell-output cell-output-display" data-execution_count="1">
-<div class="acq-report">
-<table class="caption-top table table-sm table-striped small">
-<tbody>
-<tr class="acq-pass odd">
-<td class="acq-mark">✓</td>
-<td>Timestamp monotonicity</td>
-<td class="acq-val">0 non-increasing steps</td>
-<td class="acq-exp">0</td>
-<td></td>
-</tr>
-<tr class="acq-fail even">
-<td class="acq-mark">×</td>
-<td>Effective vs nominal sampling rate</td>
-<td class="acq-val">38.41 Hz (77% of nominal)</td>
-<td class="acq-exp">50.00 Hz ±5%</td>
-<td><a href="../recipes/03-doze-downsampling.html" class="acq-recipe">recipe →</a></td>
-</tr>
-<tr class="acq-fail odd">
-<td class="acq-mark">×</td>
-<td>Stream continuity</td>
-<td class="acq-val">1 gaps, 45.1 s lost, longest 45.1 s</td>
-<td class="acq-exp">no interval &gt; 1.0 s</td>
-<td><a href="../recipes/03-doze-downsampling.html" class="acq-recipe">recipe →</a></td>
-</tr>
-<tr class="acq-fail even">
-<td class="acq-mark">×</td>
-<td>Sampling regularity</td>
-<td class="acq-val">jitter 100.0% above median interval (p90)</td>
-<td class="acq-exp">≤ 25%</td>
-<td><a href="../recipes/03-doze-downsampling.html" class="acq-recipe">recipe →</a></td>
-</tr>
-<tr class="acq-pass odd">
-<td class="acq-mark">✓</td>
-<td>Resting magnitude</td>
-<td class="acq-val">9.806 m/s² (1.000 g)</td>
-<td class="acq-exp">9.807 m/s² ±2%</td>
-<td></td>
-</tr>
-<tr class="acq-pass even">
-<td class="acq-mark">✓</td>
-<td>Stuck sensor</td>
-<td class="acq-val">longest frozen run 0.0 s</td>
-<td class="acq-exp">≤ 2.0 s</td>
-<td></td>
-</tr>
-<tr class="acq-pass odd">
-<td class="acq-mark">✓</td>
-<td>Saturation</td>
-<td class="acq-val">0.001% of samples at rail (±15.6 m/s²)</td>
-<td class="acq-exp">≤ 0.1%</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<div class="acq-scope">ACQUIRE spec 26.7, acquire-framework 26.7.0</div></div>
-</div>
-</div>
 <div id="cell-fig-doze" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div id="fig-doze" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -483,88 +382,20 @@ Figure&nbsp;1: The deficit is a shelf, not a slope. Its edges mark the moment po
 <h2 class="anchored" data-anchor-id="root-cause">Root cause</h2>
 <p>Mobile operating systems throttle or suspend sensor delivery to preserve battery. On Android this is Doze and app standby, which engage after a period of device inactivity; on iOS, background execution limits and the sensor batching queue produce a comparable effect.</p>
 <p>The critical property is that <strong>the application is not told</strong>. The sensor registration remains valid, the callback is still installed, and delivery simply becomes less frequent. Any monitoring that asks “is data arriving?” answers yes.</p>
-<p>A secondary cause with the same signature is hardware FIFO batching: the sensor accumulates samples and flushes them opportunistically, so the mean rate is correct while the instantaneous rate is not. The <a href="#detection">regularity check</a> separates the two.</p>
+<p>A secondary cause with the same signature is hardware FIFO batching: the sensor accumulates samples and flushes them opportunistically, so the mean rate is correct while the instantaneous rate is not. Examining the distribution of inter-sample intervals, rather than their mean, separates the two.</p>
 </section>
 <section id="detection" class="level2">
 <h2 class="anchored" data-anchor-id="detection">Detection</h2>
-<p>The effective rate — samples per elapsed second — is compared against the rate the application requested. The nominal rate cannot be inferred from the data, because inferring it would define away exactly this failure, so it must be supplied:</p>
-<div id="c2a0a141" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> acquire</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> acquire.check(df, nominal_hz<span class="op">=</span><span class="dv">50</span>)   <span class="co"># nominal must be stated, not inferred</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>[r <span class="cf">for</span> r <span class="kw">in</span> report.results <span class="cf">if</span> <span class="kw">not</span> r.passed]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
-<pre><code>[CheckResult(id='TIME-01', title='Effective vs nominal sampling rate', passed=np.False_, value='38.41 Hz (77% of nominal)', expected='50.00 Hz ±5%', detail='138273 samples over 3600.0 s. A deficit concentrated in time indicates throttling; a uniform deficit indicates the requested rate was never honoured.', recipe='recipes/03-doze-downsampling.html'),
- CheckResult(id='TIME-02', title='Stream continuity', passed=False, value='1 gaps, 45.1 s lost, longest 45.1 s', expected='no interval &gt; 1.0 s', detail='Gaps clustering overnight or during device idle periods point to OS power management rather than hardware or connectivity.', recipe='recipes/03-doze-downsampling.html'),
- CheckResult(id='TIME-04', title='Sampling regularity', passed=False, value='jitter 100.0% above median interval (p90)', expected='≤ 25%', detail='Median interval 20.0 ms. High jitter with a correct mean rate indicates hardware FIFO batching rather than sample loss.', recipe='recipes/03-doze-downsampling.html')]</code></pre>
-</div>
-</div>
+<p>The effective rate — samples per elapsed second — is compared against the rate the application requested. The nominal rate cannot be inferred from the data, because inferring it would define away exactly this failure, so it must be supplied by the study.</p>
+<p>Concretely: divide the recording into windows, count samples per window, and compare the result against the nominal rate. A deficit beyond a stated tolerance — 5% is a defensible starting point — is the signal.</p>
 <p>Windowing the rate over the recording localises the fault in time, which is what distinguishes throttling (a shelf, with edges) from a rate that was never honoured (a flat deficit from the first sample).</p>
 </section>
 <section id="evidence" class="level2">
 <h2 class="anchored" data-anchor-id="evidence">Evidence</h2>
-<p>The detector’s sensitivity is measured against synthetic recordings with faults of known magnitude, rather than asserted. This table is generated at build time:</p>
-<div id="4e60f6d9" class="cell" data-execution_count="4">
-<div class="cell-output cell-output-display" data-execution_count="4">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">samples retained</th>
-<th data-quarto-table-cell-role="th">effective rate</th>
-<th data-quarto-table-cell-role="th">detected</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">0</th>
-<td>95%</td>
-<td>47.50 Hz</td>
-<td>yes</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">1</th>
-<td>90%</td>
-<td>45.00 Hz</td>
-<td>yes</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">2</th>
-<td>85%</td>
-<td>42.50 Hz</td>
-<td>yes</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">3</th>
-<td>80%</td>
-<td>40.00 Hz</td>
-<td>yes</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">4</th>
-<td>70%</td>
-<td>35.00 Hz</td>
-<td>yes</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">5</th>
-<td>50%</td>
-<td>25.00 Hz</td>
-<td>yes</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-<p>Detection is reliable once the deficit exceeds the 5% rate tolerance, which is the tolerance’s purpose; deficits below that are indistinguishable from ordinary scheduling noise on a healthy device.</p>
+<p>A rate deficit is detectable whenever it exceeds the stated tolerance, which is what the tolerance is for; deficits below it are indistinguishable from ordinary scheduling noise on a healthy device. Any study adopting this method should state the tolerance it used, since the tolerance determines what counts as a detection.</p>
 <p><strong>Field observation:</strong> one deployment (n = 40 devices, Android 13–14, six weeks). Throttling appeared on 34 of 40 devices; median onset was within the first overnight period. No independent replication yet.</p>
 <div class="acq-contribute">
-<p><strong>Seen this too?</strong> Contributing a replication takes about an hour: run <code>acquire check</code> over one participant’s recording, report the effective rate and device model, and the recipe moves from <code>●●○○</code> to <code>●●●○</code>. Contributors are credited on the next release DOI. See <a href="https://github.com/acquire-framework/acquire-framework.github.io/blob/main/CONTRIBUTING.md">CONTRIBUTING</a>.</p>
+<p><strong>Seen this too?</strong> Contributing a replication takes about an hour: compare effective against nominal rate over one participant’s recording, report the figures and the device model, and the recipe moves from <code>●●○○</code> to <code>●●●○</code>. Contributors are credited on the next release DOI. See <a href="https://github.com/acquire-framework/acquire-framework.github.io/blob/main/CONTRIBUTING.md">CONTRIBUTING</a>.</p>
 </div>
 </section>
 <section id="mitigation" class="level2">
@@ -1039,7 +870,7 @@ Companion)</em> (Shanghai, China). <a href="https://acquire-framework.github.io"
 <p>Maintained at the Department of Measurements and Electronics, AGH University of Krakow</p>
 <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/acquire-framework/acquire-framework.github.io/edit/main/recipes/03-doze-downsampling.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/acquire-framework/acquire-framework.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
-<p>ACQUIRE spec 26.7 · site build <a href="https://github.com/acquire-framework/acquire-framework.github.io/tree/c90b23f6e11208a9fc9d516282085602aee45fb1"><code>c90b23f</code></a> · built 2026-07-18 <a href="../licensing.html">Licensing</a> · <a href="../cite.html">How to cite</a> · <a href="../versions.html">All versions</a></p>
+<p>ACQUIRE spec 26.7.1 · site build <a href="https://github.com/acquire-framework/acquire-framework.github.io/tree/199e1e96f18f98f967a7bb714136868243da7090"><code>199e1e9</code></a> · built 2026-07-18 <a href="../licensing.html">Licensing</a> · <a href="../cite.html">How to cite</a> · <a href="../versions.html">All versions</a></p>
 </div>
   </div>
 </footer>

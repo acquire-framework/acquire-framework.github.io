@@ -22,14 +22,14 @@ The DOI is added here once the proceedings are published.
 
 ## The artifact
 
-Cite the software release in addition to the paper when you depend on a specific version of the checklist, taxonomy, or diagnostics. Thresholds and recipes change as evidence accumulates, so a version identifies exactly what a study was assessed against — a URL alone does not.
+Cite the software release in addition to the paper when you depend on a specific version of the checklist or taxonomy. Thresholds and recipes change as evidence accumulates, so a version identifies exactly what a study was assessed against — a URL alone does not.
 
 ``` bibtex
 @software{acquire_artifact_2026,
   author  = {Danio{\l}, Mateusz and Sroka, Ryszard},
-  title   = {{ACQUIRE} v26.7: Taxonomy, Checklist and Diagnostics for
+  title   = {{ACQUIRE} 26.7.1: Taxonomy, Checklist and Reporting Templates for
              Reproducible In-the-Wild Sensing},
-  version = {26.7},
+  version = {26.7.1},
   year    = {2026},
   url     = {https://acquire-framework.github.io}
 }
@@ -41,7 +41,7 @@ A DOI will be minted on the first archived release and added here.
 
 If you attach a completed checklist as supplementary material, state the checklist version explicitly — it is stamped in the exported artifact:
 
-> Data collection followed the ACQUIRE checklist v26.7 ([Danioł and Sroka 2026](#ref-daniol2026acquire)). The completed checklist, including justifications for items marked not applicable, is provided as supplementary material.
+> Data collection followed the ACQUIRE checklist 26.7.1 ([Danioł and Sroka 2026](#ref-daniol2026acquire)). The completed checklist, including justifications for items marked not applicable, is provided as supplementary material.
 
 ## Contributing changes the citation
 

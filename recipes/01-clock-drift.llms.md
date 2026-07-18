@@ -30,19 +30,9 @@ Recording wall-clock time alone cannot distinguish these. Recording a monotonic 
 
 ## Detection
 
-Backward steps are detectable from a single recording and gate every other timing check, because windowing a non-monotonic series is meaningless:
+Backward steps are detectable from a single recording and gate every other timing check, because windowing a non-monotonic series is meaningless.
 
-``` python
-import acquire
-from acquire.synth import clean
-
-df = clean(duration_s=600, rate_hz=50, seed=5)
-df.loc[200, "timestamp"] = df.loc[100, "timestamp"]   # simulate a clock reset
-
-next(r for r in acquire.check(df, nominal_hz=50).results if r.id == "TIME-03")
-```
-
-    CheckResult(id='TIME-03', title='Timestamp monotonicity', passed=False, value='1 non-increasing steps', expected='0', detail='Backward steps usually indicate a clock reset (NTP correction, timezone change, or device reboot) mid-recording.', recipe='recipes/01-clock-drift.html')
+Concretely: take the successive differences of the timestamp column and test whether any is zero or negative. A single backward step invalidates every windowed statistic computed downstream, so this test should gate the others rather than run alongside them.
 
 ## Evidence
 

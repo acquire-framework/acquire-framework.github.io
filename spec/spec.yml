@@ -17,7 +17,7 @@
 # Conflating them would mean either that a typo fix bumps the number studies
 # cite, or that a published snapshot silently diverges from the site.
 
-spec_version: "26.7"
+spec_version: "26.7.1"
 released: "2026-07-18"
 doi: null # minted on archival deposit
 
@@ -36,8 +36,29 @@ normative:
 # one in under an earlier format; that is a third, independent lifecycle.
 
 changelog:
+  - version: "26.7.1"
+    date: "2026-07-18"
+    summary: >-
+      Removes implementation-availability metadata from the normative content.
+      The requirements themselves are unchanged: the same eight taxonomy rows
+      and the same ten checklist items, with identical wording.
+    changes:
+      - Removed the `auto` field from checklist items. It recorded which items
+        could be populated automatically, which is a statement about tooling
+        rather than about what a study must disclose, and no such tooling is
+        published.
+      - Removed `detectable_by` from taxonomy rows and the `detectors` index,
+        for the same reason.
+    note: >-
+      Specification 26.7 was published on 2026-07-18 and withdrawn the same day,
+      before any known use, because it asserted the availability of diagnostic
+      software that is not released. It is not served, and should not be cited.
+      Snapshots are otherwise never rewritten; this one was withdrawn rather
+      than altered.
+
   - version: "26.7"
     date: "2026-07-18"
+    status: withdrawn
     summary: >-
       First public release. Eight-row acquisition-failure taxonomy across five
       system layers; ten-item Minimum Reporting Checklist with core and
