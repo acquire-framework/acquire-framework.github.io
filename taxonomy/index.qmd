@@ -1,0 +1,128 @@
+---
+title: "Acquisition-failure taxonomy"
+subtitle: "Table 1 of the paper, in machine-readable form."
+toc: true
+---
+
+Failure modes grouped by the acquisition-system layer in which they originate,
+each mapped to its observable signature in the resulting dataset and to the
+property it threatens.
+
+::: {.callout-important appearance="simple"}
+**This is an initial, expert-derived structure, not a systematic review.** There
+was no pre-registered protocol, database search strategy, or inclusion criteria;
+no independent coders, no inter-rater reliability assessment, no Delphi process,
+no external expert validation, and no user study.
+
+It is a formative artifact offered for community evaluation and extension.
+Rows marked `[E]` are candidate classes, **not prevalence estimates**.
+:::
+
+## The three properties
+
+A failure threatens one or more of three analytically distinct properties.
+Conflating them is the error the framework most wants to avoid.
+
+| Tag | Property | Governs |
+|:--|:--|:--|
+| **[M]** | Measurement validity | The quantity indicated by the instrument — accuracy, calibration, traceability, synchronization uncertainty, drift |
+| **[EN]** | Record integrity and provenance | Whether what the instrument indicated was faithfully retained |
+| **[O]** | Observation-process validity | Which observations exist at all — adherence, permissions, attrition, selective observation |
+
+The axes are jointly necessary. A faithfully retained record may still contain
+invalid measurements; valid measurements may still be selectively observed; and
+failure along one axis may mask or compound failure along another.
+
+**[O] is not a metrological problem.** Non-random acquisition loss changes the
+observation process and may bias estimands, but that is a missing-data and
+study-design issue, distinct from measurement error in the samples that do
+exist. Forcing it into metrological language overclaims.
+
+## Evidence labels
+
+| Tag | Meaning |
+|:--|:--|
+| **[L]** | Anchored by an illustrative published example |
+| **[E]** | Experience-derived candidate class, not a prevalence estimate |
+| **[A]** | Illustrative assumption |
+
+## The taxonomy
+
+```{python}
+#| echo: false
+import yaml
+from pathlib import Path
+from IPython.display import Markdown
+
+spec = yaml.safe_load(Path("taxonomy/acquire-taxonomy.yml").read_text())
+layers = spec["layers"]
+
+by_layer = {}
+for f in spec["failures"]:
+    by_layer.setdefault(f["layer"], []).append(f)
+
+out = []
+for key, title in layers.items():
+    rows = by_layer.get(key, [])
+    if not rows:
+        continue
+    out.append(f"### {title}\n")
+    for f in rows:
+        props = " ".join(f"**[{p}]**" for p in f["property"])
+        out.append(f"#### `{f['id']}` — {f['mode']} {{.unnumbered}}\n")
+        out.append(f"[signature]{{.acq-label}}\n\n{f['signature'].strip()}\n")
+        out.append(f"[property threatened]{{.acq-label}}\n\n{props} "
+                   f"{f['property_note'].strip()}\n")
+        out.append(f"[evidence]{{.acq-label}}\n\n**[{f['evidence']}]** "
+                   f"{f['evidence_note'].strip()}\n")
+        if f.get("limitation"):
+            out.append(f"::: {{.callout-warning appearance='simple'}}\n"
+                       f"**Detection limit.** {f['limitation'].strip()}\n:::\n")
+        links = []
+        if f.get("detectable_by"):
+            names = ", ".join(f"`{d}`" for d in f["detectable_by"])
+            links.append(f"Automatically detectable by {names} — see "
+                         f"[running the diagnostics](../check/index.qmd).")
+        if f.get("worked_example"):
+            links.append(f"Worked example: [`{f['worked_example']}`]"
+                         f"(https://github.com/acquire-framework/"
+                         f"acquire-framework.github.io/tree/main/"
+                         f"{f['worked_example']}).")
+        if links:
+            out.append(" ".join(links) + "\n")
+        out.append("\n")
+Markdown("\n".join(out))
+```
+
+## What has an automatic detector, and what does not
+
+```{python}
+#| echo: false
+import pandas as pd
+rows = []
+for f in spec["failures"]:
+    rows.append({
+        "ID": f["id"],
+        "Failure mode": f["mode"],
+        "Detector": ", ".join(f["detectable_by"]) if f.get("detectable_by") else "— author-disclosed",
+    })
+pd.DataFrame(rows)
+```
+
+Several taxonomy rows have no automatic detector and never will: whether a
+participant wore the device, whether permissions were revoked, whether the
+protocol changed mid-study. These are disclosed by the author, which is what the
+[reporting checklist](../checklist/index.qmd) is for.
+
+The division matters. Where a detector exists, disclosure should be a
+by-product of running it. Where none exists, disclosure depends on the author's
+honesty, and the checklist's job is to make the omission visible.
+
+## Source
+
+The machine-readable taxonomy is
+[`taxonomy/acquire-taxonomy.yml`](https://github.com/acquire-framework/acquire-framework.github.io/blob/main/taxonomy/acquire-taxonomy.yml).
+
+Contribute a failure case — particularly one with a quantified field rate — via
+the [failure-case issue template](https://github.com/acquire-framework/acquire-framework.github.io/issues/new?template=failure-case.yml).
+Negative reports are also valuable.

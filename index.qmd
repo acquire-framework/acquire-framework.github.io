@@ -60,16 +60,36 @@ report
 Two failures, both invisible to conventional monitoring, both traceable to a
 specific recipe. That is the whole idea.
 
-## Two ways in {.unnumbered}
+## What ACQUIRE v0.1 contains {.unnumbered}
 
-**[The guideline book](lifecycle/index.qmd)** follows the study lifecycle —
-design, instrument, pilot, deploy, monitor, curate, release. Each stage carries
-an ordered checklist. Use it when you are building a study and want to know what
-to do next.
+**[The acquisition-failure taxonomy](taxonomy/index.qmd)** — eight failure modes
+by system layer, each mapped to its signature in the dataset and to the property
+it threatens. Table 1 of the paper, machine-readable.
 
-**[The failure catalogue](recipes/index.qmd)** is entered by symptom. Each entry
-states what you observe, what causes it, how to detect it automatically, and how
-well that detection is evidenced. Use it when your data already looks wrong.
+**[The Minimum Reporting Checklist](checklist/index.qmd)** — ten methods-section
+disclosures about the measuring system. Table 2 of the paper. Complementary to
+CONSORT-EHEALTH and mERA, which report the intervention rather than the
+instrument.
+
+**[The failure catalogue](recipes/index.qmd)** — entered by symptom, for when
+data already looks wrong. Each entry states what you observe, what causes it,
+how to detect it, and how well that detection is evidenced.
+
+**[The guideline book](lifecycle/index.qmd)** — an operational companion for
+teams building a study, stage by stage.
+
+**Templates and forms** — [sensor schema](https://github.com/acquire-framework/acquire-framework.github.io/blob/main/templates/sensor-schema.yml),
+[quality flags](https://github.com/acquire-framework/acquire-framework.github.io/blob/main/templates/quality-flags.yml),
+[uncertainty statement](https://github.com/acquire-framework/acquire-framework.github.io/blob/main/templates/uncertainty-statement.md),
+[dataset provenance](https://github.com/acquire-framework/acquire-framework.github.io/blob/main/templates/dataset-provenance.yml),
+and a [reviewer form](https://github.com/acquire-framework/acquire-framework.github.io/blob/main/templates/reviewer-form.md).
+
+**[A worked synchronization example](https://github.com/acquire-framework/acquire-framework.github.io/tree/main/examples/synchronization)** —
+executable. Two BLE devices at +40 and −25 ppm, re-anchored at reconnection:
+completeness stays at 100% and every quality flag stays green while the
+inter-device offset spends 96% of the recording outside a ±20 ms tolerance,
+peaking near 0.8 s. A record-integrity audit passes this dataset; a
+measurement-validity audit does not.
 
 ## Run it on your own data {.unnumbered}
 

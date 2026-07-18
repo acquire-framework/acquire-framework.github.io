@@ -1,0 +1,71 @@
+# ACQUIRE quality-flag template — supports MRC-01, MRC-02, MRC-09.
+#
+# A quality flag records a judgement about a span of data. The point of writing
+# them down in this form is that a flag is only interpretable if the reader
+# knows the threshold that produced it and who or what applied it.
+#
+# The cautionary case from the paper: a conventional quality audit passes a
+# dataset in which two device clocks have drifted hundreds of milliseconds
+# apart. Completeness is 100%, no values are impossible, every flag is green —
+# and any inter-modal measurand is invalid. Green flags are evidence about the
+# checks that ran, never about the checks that did not.
+
+schema_version: "0.1.0"
+stream_id: <matches sensor-schema.yml>
+
+# Every flag definition states its threshold and its provenance.
+definitions:
+  - flag: rate_deficit
+    description: Effective sampling rate below nominal beyond tolerance
+    threshold: <e.g. |1 - effective/nominal| > 0.05>
+    applied_by: <e.g. acquire v0.1.0, check TIME-01>
+    property: O
+
+  - flag: gap
+    description: Interruption in the stream longer than the stated limit
+    threshold: <e.g. inter-sample interval > 1.0 s>
+    applied_by: <e.g. acquire v0.1.0, check TIME-02>
+    property: O
+
+  - flag: clock_nonmonotonic
+    description: Timestamps not strictly increasing
+    threshold: any backward step
+    applied_by: <e.g. acquire v0.1.0, check TIME-03>
+    property: M
+
+  - flag: unit_scale_suspect
+    description: Resting magnitude departs from one standard gravity
+    threshold: <e.g. |1 - observed/9.80665| > 0.02>
+    applied_by: <e.g. acquire v0.1.0, check SIG-01>
+    property: M
+
+  - flag: sensor_stuck
+    description: All channels bit-identical across consecutive samples
+    threshold: <e.g. frozen run > 2 s>
+    applied_by: <e.g. acquire v0.1.0, check SIG-02>
+    property: M
+
+  - flag: saturation
+    description: Samples censored at the configured range
+    threshold: <e.g. > 0.1% of samples at the rail>
+    applied_by: <e.g. acquire v0.1.0, check SIG-03>
+    property: M
+
+# What these flags do NOT cover. State this explicitly: a reader who sees only
+# green flags will otherwise infer a validation that was never performed.
+not_covered:
+  - Calibration against a reference instrument
+  - Agreement between device clocks, or with wall time
+  - Whether the participant wore or carried the device as instructed
+  - Whether recorded activity matches any label or diary entry
+  - <add every check your study did not run>
+
+spans:
+  - stream_id: <stream>
+    participant: <pseudonymous id>
+    start: <timestamp>
+    end: <timestamp>
+    flag: <flag name>
+    value: <measured value that triggered it>
+    action: <excluded | retained_with_caveat | corrected>
+    note: <free text>

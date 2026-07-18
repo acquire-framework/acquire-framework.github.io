@@ -32,14 +32,18 @@ website:
     type: overlay
   navbar:
     logo-alt: "ACQUIRE"
+    # Ordered to mirror the paper: taxonomy, then the checklist derived from it,
+    # then the operational material built on top.
     left:
-      - text: "Guideline book"
-        href: lifecycle/index.qmd
-      - text: "Failure catalogue"
-        href: recipes/index.qmd
+      - text: "Taxonomy"
+        href: taxonomy/index.qmd
       - text: "Checklist"
         href: checklist/index.qmd
-      - text: "Check your data"
+      - text: "Failure catalogue"
+        href: recipes/index.qmd
+      - text: "Guideline book"
+        href: lifecycle/index.qmd
+      - text: "Run the diagnostics"
         href: check/index.qmd
     right:
       - icon: github

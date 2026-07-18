@@ -1,91 +1,142 @@
 ---
-title: "The ACQUIRE checklist"
-subtitle: "Verifiable statements about how a study was conducted."
+title: "Minimum Reporting Checklist"
+subtitle: "Ten methods-section disclosures about the measuring system."
 toc: true
 ---
 
 Clinical trials have CONSORT. Systematic reviews have PRISMA. Observational
-studies have STROBE. In-the-wild sensing has nothing comparable — no agreed
-statement of what a study should have done and reported for its measurements to
-be assessable by a reader.
+studies have STROBE. For in-the-wild sensing there is no agreed statement of
+what a study should have done and reported for its measurements to be assessable
+by a reader.
 
-This checklist is a first attempt. It is generated from
-[`checklist/acquire-checklist.yml`](https://github.com/acquire-framework/acquire-framework.github.io/blob/main/checklist/acquire-checklist.yml),
-which is the single source of truth for the site, the package, and the exported
-artifact.
+The MRC reports a **different object** than existing mHealth reporting
+standards. CONSORT-EHEALTH and mERA standardize the reporting of
+*interventions*, saying little about the acquisition system that produced the
+sensor data. ACQUIRE is complementary: it reports the **measuring system**.
 
-## How to use it
+::: {.callout-important appearance="simple"}
+**v0.1 is one group's opinion, not a community consensus.** The checklist has
+not been evaluated for usability, coverage, or inter-rater agreement, and no
+claim is made that applying it improves study outcomes.
 
-Work through the items relevant to your study type, then attach the completed
-checklist as supplementary material alongside your paper or dataset.
+It becomes a standard only if other groups use it, disagree with it in public,
+and shape it. [Challenge an item →](https://github.com/acquire-framework/acquire-framework.github.io/issues/new?template=checklist-feedback.yml)
+:::
 
-**Items marked not applicable require a written justification.** Silent omission
-and reasoned exclusion look identical in a finished document, and only one of
-them is honest. Requiring the justification is what makes the completed artifact
-worth a reader's trust.
+## Who it is for
+
+**Authors**, who attach it to a methods section. **Reviewers**, who use it to
+request specific acquisition details rather than a vague "more detail on data
+quality" — see the [reviewer form](https://github.com/acquire-framework/acquire-framework.github.io/blob/main/templates/reviewer-form.md).
+**Dataset curators**, who use the schema and provenance templates. And
+**students**, for whom acquisition discipline is most cheaply instilled during
+supervision.
+
+## The checklist
 
 ```{python}
 #| echo: false
 import yaml
 from pathlib import Path
-import pandas as pd
 from IPython.display import Markdown
 
-spec = yaml.safe_load(Path("checklist/acquire-checklist.yml").read_text())
+mrc = yaml.safe_load(Path("checklist/acquire-mrc.yml").read_text())
 
-types = spec["study_types"]
-lines = [f"**Version {spec['version']}** · updated {spec['updated']} · "
-         f"{len(spec['items'])} items\n"]
-lines.append("\n**Study types used for filtering:**\n")
-for key, desc in types.items():
-    lines.append(f"- `{key}` — {desc}")
-Markdown("\n".join(lines))
-```
+AUTO = {
+    True: "automatic",
+    "partial": "partly automatic",
+    False: "author-disclosed",
+}
 
-## Items
-
-```{python}
-#| echo: false
-from IPython.display import Markdown
-
-STAGE_ORDER = ["design", "instrument", "pilot", "deploy", "monitor", "curate", "release"]
-by_stage = {}
-for item in spec["items"]:
-    by_stage.setdefault(item["stage"], []).append(item)
-
-out = []
-for stage in STAGE_ORDER:
-    items = by_stage.get(stage, [])
-    if not items:
-        continue
-    out.append(f"### {stage.capitalize()}\n")
-    out.append(f"[{len(items)} items]{{.acq-label}}\n")
-    out.append("| | Statement | Applies to | Recipe |")
-    out.append("|:--|:--|:--|:--|")
-    for item in items:
-        applies = ", ".join(f"`{t}`" for t in item.get("applies_when", []))
-        recipe = item.get("recipe")
-        link = f"[detail](../{recipe}.qmd)" if recipe else ""
-        out.append(
-            f"| `{item['id']}` | {item['statement'].strip()} | {applies} | {link} |"
-        )
-    out.append("")
+out = ["| | Disclose in the methods section | Property | Tier | Disclosure |",
+       "|:--|:--|:-:|:-:|:-:|"]
+for item in mrc["items"]:
+    props = " ".join(f"[{p}]" for p in item["property"])
+    out.append(
+        f"| `{item['id']}` | {item['statement'].strip()} | {props} "
+        f"| {item['tier']} | {AUTO[item.get('auto', False)]} |"
+    )
 Markdown("\n".join(out))
 ```
 
-## Export
+## Proportionality
 
-Machine-readable export is planned for v0.2: a completed checklist will be
-emitted as YAML and as a formatted PDF, each stamped with the checklist version,
-the date, and the DOI of the release that produced it, so a reader can tell
-exactly which version of the standard a study was assessed against.
+Items marked **core** apply to any study using this framework. Items marked
+**conditional** should be judged against the intended measurand and the study's
+risk, not applied uniformly.
 
-For now, the source YAML can be copied and completed directly.
+The synchronization example makes the point concretely: tens of milliseconds of
+clock error are negligible for daily step counts and disqualifying for
+cross-modal latency estimation. **The same dataset can be fit for one purpose
+and unfit for another.** Acquisition requirements should be set and evaluated
+against what is being measured.
 
-## This is a draft standard
+## Disclosure should be a by-product, not extra work
 
-Version 0.1.0 is one group's opinion, not a community consensus, and should be
-read that way. It becomes a standard only if other groups use it, disagree with
-it in public, and shape it. Disagreement about specific items — especially items
-you think are wrong, unmeasurable, or missing — is the most useful contribution
-at this stage.
+The reason most acquisition detail goes unreported is not that authors are
+careless — it is that disclosure is unpaid work with no reward, and often
+requires numbers nobody computed.
+
+Six of the ten items can be populated wholly or partly from data and logs by the
+shipped diagnostics, so that reporting becomes a by-product of a validation you
+would want to run anyway:
+
+```bash
+pip install acquire-framework
+acquire check recordings/day01.csv --nominal 50
+```
+
+```{python}
+#| echo: false
+out = ["| Item | What the diagnostics supply | What you must still supply |",
+       "|:--|:--|:--|"]
+for item in mrc["items"]:
+    if item.get("auto") in (True, "partial"):
+        note = item.get("auto_note", "").strip()
+        supplied, _, manual = note.partition(" ")
+        out.append(f"| `{item['id']}` | {note} | — |")
+Markdown("\n".join(out))
+```
+
+The remaining four items — integrity logic, health-event recording, published
+schema and software, and pre-deployment verification — are properties of how the
+study was built. No tool can infer them, and the checklist's role there is to
+make their absence visible rather than silent.
+
+## A floor under item MRC-05
+
+MRC-05 permits a documented justification in place of an uncertainty statement.
+Without a floor, that escape hatch would be taken universally and the item would
+carry no information. A justification is acceptable only if it:
+
+1. **Names the dominant uncertainty sources** that would appear in a budget
+2. **States why each could not be quantified**
+3. **Describes the validation evidence offered instead**
+
+"Uncertainty could not be established" alone does not satisfy the item. The
+[uncertainty statement template](https://github.com/acquire-framework/acquire-framework.github.io/blob/main/templates/uncertainty-statement.md)
+provides both the budget form and the justification form.
+
+## Templates
+
+| Template | Satisfies |
+|:--|:--|
+| [Sensor schema](https://github.com/acquire-framework/acquire-framework.github.io/blob/main/templates/sensor-schema.yml) | MRC-08 |
+| [Quality flags](https://github.com/acquire-framework/acquire-framework.github.io/blob/main/templates/quality-flags.yml) | MRC-01, MRC-02, MRC-09 |
+| [Uncertainty statement](https://github.com/acquire-framework/acquire-framework.github.io/blob/main/templates/uncertainty-statement.md) | MRC-05 |
+| [Dataset provenance](https://github.com/acquire-framework/acquire-framework.github.io/blob/main/templates/dataset-provenance.yml) | MRC-03, MRC-09 |
+| [Reviewer form](https://github.com/acquire-framework/acquire-framework.github.io/blob/main/templates/reviewer-form.md) | all |
+
+## Going further
+
+The MRC is the reporting minimum — what a reader needs to assess a study after
+the fact. The [extended operational checklist](extended.qmd) is a longer,
+stage-by-stage companion for people **building** a study, covering decisions
+that never appear in a methods section but determine whether the MRC can be
+answered honestly at all.
+
+## Source
+
+[`checklist/acquire-mrc.yml`](https://github.com/acquire-framework/acquire-framework.github.io/blob/main/checklist/acquire-mrc.yml)
+is the single source of truth: the site renders it, the exports derive from it,
+and each item names the taxonomy rows it comes from.

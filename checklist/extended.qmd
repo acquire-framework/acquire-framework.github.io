@@ -1,0 +1,88 @@
+---
+title: "Extended operational checklist"
+subtitle: "For building a study, not for reporting one."
+toc: true
+---
+
+::: {.callout-note appearance="simple"}
+**This is not the paper's checklist.** The paper's instrument is the
+ten-item [Minimum Reporting Checklist](index.qmd), which specifies what a study
+should *disclose* so a reader can assess it.
+
+This longer list is an operational companion covering what a team should *do*,
+stage by stage, so that the MRC can be answered honestly at the end. Most of
+these decisions never appear in a methods section. It is offered as practice,
+not as a reporting standard, and carries no claim to completeness.
+:::
+
+Each item maps to the MRC item it ultimately serves, or to a taxonomy row it
+guards against.
+
+```{python}
+#| echo: false
+import yaml
+from pathlib import Path
+from IPython.display import Markdown
+
+spec = yaml.safe_load(Path("checklist/acquire-checklist.yml").read_text())
+
+lines = [f"**Version {spec['version']}** · updated {spec['updated']} · "
+         f"{len(spec['items'])} items\n",
+         "\n**Study types used for filtering:**\n"]
+for key, desc in spec["study_types"].items():
+    lines.append(f"- `{key}` — {desc}")
+Markdown("\n".join(lines))
+```
+
+## Items by stage
+
+```{python}
+#| echo: false
+STAGE_ORDER = ["design", "instrument", "pilot", "deploy", "monitor", "curate", "release"]
+by_stage = {}
+for item in spec["items"]:
+    by_stage.setdefault(item["stage"], []).append(item)
+
+out = []
+for stage in STAGE_ORDER:
+    items = by_stage.get(stage, [])
+    if not items:
+        continue
+    out.append(f"### {stage.capitalize()}\n")
+    out.append(f"[{len(items)} items]{{.acq-label}}\n")
+    out.append("| | Statement | Applies to | Guards against |")
+    out.append("|:--|:--|:--|:--|")
+    for item in items:
+        applies = ", ".join(f"`{t}`" for t in item.get("applies_when", []))
+        recipe = item.get("recipe")
+        link = f"[detail](../{recipe}.qmd)" if recipe else ""
+        out.append(
+            f"| `{item['id']}` | {item['statement'].strip()} | {applies} | {link} |"
+        )
+    out.append("")
+Markdown("\n".join(out))
+```
+
+## How this relates to the reporting checklist
+
+The two instruments answer different questions and are used at different times.
+
+| | Minimum Reporting Checklist | Extended operational checklist |
+|:--|:--|:--|
+| **Question** | What must a reader be told? | What should a team do? |
+| **Used** | When writing the methods section | Throughout the study |
+| **Audience** | Authors, reviewers, curators | Engineers, PhD students, PIs |
+| **Status** | The paper's instrument, v0.1 | Practice, no standing as a standard |
+| **Length** | 10 items | 65 items |
+
+A study can complete the extended checklist and still report nothing; a study
+can report everything on the MRC without having done any of this. The intended
+relationship is that doing the first makes the second answerable with real
+numbers instead of silence.
+
+## Source
+
+[`checklist/acquire-checklist.yml`](https://github.com/acquire-framework/acquire-framework.github.io/blob/main/checklist/acquire-checklist.yml).
+
+Items here are less settled than the MRC and were not derived by the procedure
+described in the paper. Disagreement is expected and welcome.

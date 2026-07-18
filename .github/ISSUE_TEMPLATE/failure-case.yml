@@ -1,0 +1,118 @@
+name: Contribute a failure case
+description: >-
+  Report an acquisition failure you encountered in a real deployment. This is
+  the contribution the taxonomy most needs.
+title: "[failure] "
+labels: ["failure-case", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you — field reports are the contribution the taxonomy most needs.
+
+        Most rows are currently `[E]` (experience-derived candidate classes,
+        not prevalence estimates). Every independent report moves a class
+        toward quantification. **Negative reports are also valuable**: if you
+        looked for a failure and did not find it, say so.
+
+        Please do not include participant data or anything identifying.
+
+  - type: dropdown
+    id: existing
+    attributes:
+      label: Does this match an existing taxonomy entry?
+      options:
+        - "ACQ-F01 Background-execution kill (Doze, vendor optimizers)"
+        - "ACQ-F02 Offline-first sync loss / token expiry / duplicate re-sync"
+        - "ACQ-F03 Clock drift / timestamp reconciliation"
+        - "ACQ-F04 BLE disconnection / firmware-dependent buffering"
+        - "ACQ-F05 Participant non-adherence / disabled permissions"
+        - "ACQ-F06 Mid-study protocol / firmware / configuration change"
+        - "ACQ-F07 Missing schema / software / firmware provenance"
+        - "ACQ-F08 No accuracy or uncertainty statement"
+        - "None of these — a new class"
+    validations:
+      required: true
+
+  - type: textarea
+    id: signature
+    attributes:
+      label: Signature in the dataset
+      description: What did you actually observe? What made it visible?
+      placeholder: >-
+        Effective rate fell to 43 Hz against a nominal 50 Hz, with gaps
+        clustered between 01:00 and 06:00 local time.
+    validations:
+      required: true
+
+  - type: textarea
+    id: cause
+    attributes:
+      label: Root cause, if established
+      description: >-
+        How did you confirm it? If the cause is suspected rather than
+        established, say which.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: property
+    attributes:
+      label: Which property was threatened?
+      multiple: true
+      options:
+        - "[M] Measurement validity — the quantity indicated by the instrument"
+        - "[EN] Record integrity and provenance — whether it was faithfully retained"
+        - "[O] Observation-process validity — which observations exist at all"
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Deployment context
+      description: >-
+        Device models, OS versions, firmware, study duration, number of
+        devices. Coarse is fine — this is what makes the report comparable.
+      placeholder: |
+        Devices: 40 × mixed Android handsets (Samsung, Xiaomi)
+        OS: Android 13–14
+        Duration: 6 weeks
+        Modality: tri-axial accelerometer at 50 Hz
+    validations:
+      required: true
+
+  - type: textarea
+    id: rate
+    attributes:
+      label: Rate, if you can quantify it
+      description: >-
+        On what fraction of devices, days, or participants? State the
+        denominator. Leave blank rather than estimating — an unquantified
+        report is still useful, a wrong number is not.
+
+  - type: textarea
+    id: detection
+    attributes:
+      label: How was it detected, and how long did that take?
+      description: >-
+        Detection latency — the interval between the failure starting and
+        someone knowing — is the quantity that determines what it cost.
+
+  - type: textarea
+    id: mitigation
+    attributes:
+      label: What resolved or mitigated it?
+
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Confirmation
+      options:
+        - label: This report contains no participant data or identifying information
+          required: true
+        - label: >-
+            I understand contributors are credited on the archived release
+            record, and that this is distinct from co-authorship on associated
+            papers
+          required: true
