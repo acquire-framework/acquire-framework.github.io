@@ -113,8 +113,22 @@ jobs:
           echo "clean"
 
       # ── publish ──────────────────────────────────────────────────────────
-      # keep_files preserves the /v<version>/ directories already on the
-      # branch; without it each deploy would delete every published version.
+      # The root must mirror _site exactly, so a page deleted from the source
+      # disappears from the site. keep_files would prevent that — it preserves
+      # everything, including pages that no longer exist. Instead the published
+      # snapshots are carried forward explicitly and the root replaced whole.
+
+      - name: Carry published snapshots into the new root
+        if: github.ref == 'refs/heads/main'
+        run: |
+          git fetch origin gh-pages --depth=1 || exit 0
+          git worktree add /tmp/published origin/gh-pages
+          for dir in /tmp/published/v*/; do
+            [ -d "$dir" ] || continue
+            echo "preserving $(basename "$dir")"
+            cp -R "$dir" ./_site/
+          done
+          git worktree remove --force /tmp/published
 
       - name: Publish current guidance to the site root
         if: github.ref == 'refs/heads/main'
@@ -122,7 +136,8 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./_site
-          keep_files: true
+          # Root mirrors _site exactly; snapshots were copied in above.
+          keep_files: false
           commit_message: "site: ${{ github.sha }}"
 
       - name: Publish immutable versioned copy
