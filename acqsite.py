@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 Mateusz Danioł, Ryszard Sroka
 """Shared plotting style for the website.
 
 Not part of the distributed package: the figures on the site must match the

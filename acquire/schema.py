@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 Mateusz Danioł, Ryszard Sroka
 """The canonical ACQUIRE schema for tri-axial inertial data.
 
 Defining this schema explicitly is a deliverable, not an inconvenience: a

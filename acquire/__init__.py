@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 Mateusz Danioł, Ryszard Sroka
 """ACQUIRE — diagnostics for reproducible in-the-wild sensing studies.
 
     >>> import acquire

@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 Mateusz Danioł, Ryszard Sroka
 """Result types for ACQUIRE diagnostics."""
 
 from __future__ import annotations

@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 Mateusz Danioł, Ryszard Sroka
 """Each diagnostic is tested against a fault whose ground truth is known.
 
 This is the layer that matters most: a diagnostic which silently fails to

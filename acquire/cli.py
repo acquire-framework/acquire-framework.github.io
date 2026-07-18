@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 Mateusz Danioł, Ryszard Sroka
 """Command-line interface: ``acquire check <path> --nominal 50``.
 
 Designed to run in CI against incoming study data, which is the intended

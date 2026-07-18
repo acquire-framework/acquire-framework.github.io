@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: CC-BY-4.0
+# SPDX-FileCopyrightText: 2026 Mateusz Danioł, Ryszard Sroka
 # ACQUIRE quality-flag template — supports MRC-01, MRC-02, MRC-09.
 #
 # A quality flag records a judgement about a span of data. The point of writing

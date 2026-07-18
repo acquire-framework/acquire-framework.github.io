@@ -21,7 +21,11 @@ authors:
       Department of Measurements and Electronics, AGH University of Krakow
 version: "26.7"
 date-released: "2026-07-18"
-license: MIT
+# Data CC0-1.0, documentation CC-BY-4.0, code MIT — see LICENSING.md.
+license:
+  - CC0-1.0
+  - CC-BY-4.0
+  - MIT
 repository-code: >-
   https://github.com/acquire-framework/acquire-framework.github.io
 url: https://acquire-framework.github.io

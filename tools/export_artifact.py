@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 Mateusz Danioł, Ryszard Sroka
 """Emit the taxonomy and checklist as CSV and Markdown.
 
 The paper commits to distributing both in machine-readable form (Markdown, CSV,
@@ -50,6 +52,9 @@ def export_taxonomy(spec: dict) -> None:
     md = [
         "# ACQUIRE acquisition-failure taxonomy, specification " + spec["spec_version"],
         "",
+        "SPDX-License-Identifier: CC0-1.0 — public domain, no attribution",
+        "required. Citation is a scholarly norm here, not a licence condition.",
+        "",
         f"Machine-readable form of Table 1 of {spec['paper']}.",
         "",
         "Initial, expert-derived, formative. Not a systematic review: no",
@@ -94,6 +99,9 @@ def export_mrc(spec: dict) -> None:
 
     md = [
         "# ACQUIRE Minimum Reporting Checklist, specification " + spec["spec_version"],
+        "",
+        "SPDX-License-Identifier: CC0-1.0 — public domain, no attribution",
+        "required. Citation is a scholarly norm here, not a licence condition.",
         "",
         f"Machine-readable form of Table 2 of {spec['paper']}.",
         "",

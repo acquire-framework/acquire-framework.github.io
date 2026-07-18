@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 Mateusz Danioł, Ryszard Sroka
 """Timing diagnostics: sampling rate, gaps, monotonicity, drift.
 
 Timing faults are the archetypal in-the-wild failure — they are invisible in

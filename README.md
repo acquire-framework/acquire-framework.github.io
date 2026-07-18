@@ -20,11 +20,14 @@ reproducible dataset release.
 ## Quick start
 
 ```bash
-pip install acquire-framework
-acquire check recordings/day01.csv --nominal 50
+git clone https://github.com/acquire-framework/acquire-framework.github.io
+cd acquire-framework.github.io
+uv sync --extra dev
+uv run acquire check recordings/day01.csv --nominal 50
 ```
 
 Exits non-zero on failure, so it can gate a pipeline.
+Not yet published to a package index.
 
 ## Development
 

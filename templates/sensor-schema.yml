@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: CC-BY-4.0
+# SPDX-FileCopyrightText: 2026 Mateusz Danioł, Ryszard Sroka
 # ACQUIRE sensor schema template — satisfies MRC-08.
 #
 # Publish one of these per sensor stream, alongside the data. Without it a

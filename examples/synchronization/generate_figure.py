@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 Mateusz Danioł, Ryszard Sroka
 """Cross-device clock drift under re-anchoring at BLE reconnection.
 
 Reproduces Figure 2 of the accompanying paper and the offset series behind it,

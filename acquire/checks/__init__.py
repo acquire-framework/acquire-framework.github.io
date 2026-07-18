@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 Mateusz Danioł, Ryszard Sroka
 """Individual diagnostics. One module per failure family."""
 
 from .signal import check_clipping, check_resting_magnitude, check_stuck
