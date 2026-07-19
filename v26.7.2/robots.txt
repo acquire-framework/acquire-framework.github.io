@@ -1,0 +1,38 @@
+# ACQUIRE — explicitly permissive.
+#
+# These tokens are INDEPENDENT: blocking ClaudeBot does not block
+# Claude-SearchBot, and blocking GPTBot does not block OAI-SearchBot. Many sites
+# that blocked "AI" in 2024 removed themselves from ChatGPT and Claude search
+# results without intending to. Listing each explicitly documents the intent.
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: *
+Allow: /
+
+Sitemap: https://acquire-framework.github.io/sitemap.xml

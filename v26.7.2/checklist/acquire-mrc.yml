@@ -1,0 +1,117 @@
+# SPDX-License-Identifier: CC0-1.0
+# SPDX-FileCopyrightText: 2026 Mateusz Danioł, Ryszard Sroka
+# ACQUIRE Minimum Reporting Checklist (MRC)
+#
+# Machine-readable form of Table 3 of the accompanying paper. Each item derives
+# from a row of the taxonomy (taxonomy/acquire-taxonomy.yml) and is intended to
+# be auditable by a reviewer and proportionate to the study's measurand and risk.
+#
+# This checklist reports a different object than CONSORT-EHEALTH or mERA, which
+# standardize the reporting of interventions. ACQUIRE reports the measuring
+# system, and is complementary to them.
+#
+# property:  M   measurement validity
+#            EN  record integrity and provenance
+#            O   observation-process validity
+#
+# tier:      core         disclose in every study using this framework
+#            conditional  disclose where the measurand or risk warrants it
+#
+
+spec_version: "26.7.2"   # see spec/spec.yml
+updated: "2026-07-18"
+paper: "Danioł & Sroka (2026), UbiComp/ISWC '26 Companion"
+
+items:
+  - id: MRC-01
+    tier: core
+    statement: >-
+      Expected versus observed completeness and wear time, per modality, with the
+      sampling policy, background-execution policy, and valid-observation
+      criteria.
+    property: [O]
+    taxonomy: [ACQ-F01]
+
+  - id: MRC-02
+    tier: core
+    statement: >-
+      Missingness statistics, temporal patterns, and suspected attribution to
+      technical loss, non-wear, adherence or attrition, with the evidence used
+      for that attribution.
+    property: [O]
+    taxonomy: [ACQ-F01, ACQ-F04, ACQ-F05]
+
+  - id: MRC-03
+    tier: core
+    statement: >-
+      Device models, OS versions, app and firmware versions, and every mid-study
+      change.
+    property: [M, EN]
+    taxonomy: [ACQ-F06]
+
+  - id: MRC-04
+    tier: core
+    statement: >-
+      Timestamping source, synchronization policy, and residual clock
+      uncertainty after reconciliation.
+    property: [M]
+    taxonomy: [ACQ-F03]
+
+  - id: MRC-05
+    tier: conditional
+    statement: >-
+      An accuracy or uncertainty statement appropriate to each primary derived
+      measurand, or a documented justification of why quantitative uncertainty
+      could not be established and what validation evidence is provided instead.
+    property: [M]
+    taxonomy: [ACQ-F08]
+    justification_floor: >-
+      A justification is acceptable only if it names the dominant uncertainty
+      sources, states why each could not be quantified, and describes the
+      validation evidence offered in place of a budget. "Uncertainty could not
+      be established" alone does not satisfy this item.
+
+  - id: MRC-06
+    tier: core
+    statement: >-
+      Upload retry, deduplication, and integrity-verification logic (checksums,
+      sequence numbers).
+    property: [EN]
+    taxonomy: [ACQ-F02]
+
+  - id: MRC-07
+    tier: core
+    statement: >-
+      Context and system-health events recorded alongside the data: power state,
+      connectivity, permissions; crashes and service kills.
+    property: [EN]
+    taxonomy: [ACQ-F01, ACQ-F02, ACQ-F04]
+
+  - id: MRC-08
+    tier: core
+    statement: >-
+      Machine-readable schema, timestamp semantics, quality-flag definitions,
+      and available collection-software artifacts published alongside the data,
+      or an availability statement documenting proprietary, ethical or licensing
+      restrictions and the versioned information supplied instead.
+    property: [EN]
+    taxonomy: [ACQ-F07]
+    template: templates/sensor-schema.yml
+
+  - id: MRC-09
+    tier: core
+    statement: >-
+      QC exclusion criteria, wear-time rules and valid-day thresholds where
+      applicable, and preprocessing provenance from raw log to released
+      dataset.
+    property: [EN]
+    taxonomy: [ACQ-F07]
+    template: templates/dataset-provenance.yml
+
+  - id: MRC-10
+    tier: conditional
+    statement: >-
+      Pre-deployment verification evidence: which failure modes of the taxonomy
+      were tested, how, and with what observed behaviour.
+    property: [M, EN, O]
+    taxonomy: [ACQ-F01, ACQ-F02, ACQ-F03, ACQ-F04, ACQ-F06]

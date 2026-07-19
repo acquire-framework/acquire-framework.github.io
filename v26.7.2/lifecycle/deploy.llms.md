@@ -1,0 +1,54 @@
+**ACQUIRE 26.7.2** — a fixed snapshot of the specification, built 2026-07-19 from commit `32d64e8`. Thresholds and recipes change as evidence accumulates. [See the current version](https://acquire-framework.github.io/).
+
+# Deploy
+
+Starting collection without betting the study on an untested rollout.
+
+Deployment is where a single mistake multiplies by your participant count. The goal is to make a bad rollout detectable in days rather than at analysis.
+
+## Checklist
+
+**DPLY-01** — Enrolment is staged: a small first cohort is validated before the remainder are enrolled.
+
+**DPLY-02** — Each participant’s first 24 hours are validated individually before their data is counted toward the study.
+
+**DPLY-03** — The app version deployed to each participant is recorded, and changes to it during the study are logged as events.
+
+**DPLY-04** — A rollback path exists and has been tested: a bad release can be reverted without losing buffered data.
+
+**DPLY-05** — Device model, OS version, and vendor are recorded per participant, so failures can be attributed to hardware populations.
+
+**DPLY-06** — Participants have a documented route to report problems, and those reports are logged alongside the technical telemetry.
+
+**DPLY-07** — Onboarding instructions state explicitly what participants must not do (force-stop the app, disable background activity, revoke permissions), and this is verified rather than assumed.
+
+## Staged enrolment is the cheapest insurance
+
+The difference between discovering a fatal configuration error at participant 5 and at participant 200 is the entire study. Staging costs a few days.
+
+## Next
+
+→ [Monitor](../lifecycle/monitor.llms.md): detect failure while it is still cheap.
+
+## Citation
+
+BibTeX citation:
+
+``` quarto-appendix-bibtex
+@inproceedings{daniol2026acquire,
+  author = {Danioł, Mateusz and Sroka, Ryszard},
+  publisher = {Association for Computing Machinery},
+  title = {Reproducibility {Begins} at {Acquisition:} {The} {ACQUIRE}
+    {Framework} for {Trustworthy} {In-the-Wild} {Sensing}},
+  booktitle = {Companion of the 2026 ACM International Joint Conference
+    on Pervasive and Ubiquitous Computing (UbiComp/ISWC ’26 Companion)},
+  date = {2026},
+  address = {Shanghai, China},
+  url = {https://acquire-framework.github.io},
+  langid = {en}
+}
+```
+
+For attribution, please cite this work as:
+
+Danioł, Mateusz, and Ryszard Sroka. 2026. “Reproducibility Begins at Acquisition: The ACQUIRE Framework for Trustworthy In-the-Wild Sensing.” *Companion of the 2026 ACM International Joint Conference on Pervasive and Ubiquitous Computing (UbiComp/ISWC ’26 Companion)* (Shanghai, China). <https://acquire-framework.github.io>.

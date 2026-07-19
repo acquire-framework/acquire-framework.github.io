@@ -1,0 +1,87 @@
+# SPDX-License-Identifier: CC-BY-4.0
+# SPDX-FileCopyrightText: 2026 Mateusz Danioł, Ryszard Sroka
+# ACQUIRE dataset provenance template — satisfies MRC-03 and MRC-09.
+#
+# Records the auditable lineage from a published number back to the act of
+# measurement. This is the record-fidelity analogue of metrological
+# traceability, and distinct from it.
+#
+# Provenance reconstructed at the end of a study is a best-effort narrative.
+# Provenance recorded as data arrives is evidence. The difference costs almost
+# nothing during collection and cannot be recovered afterwards.
+
+schema_version: "0.1.0"
+dataset:
+  name: <dataset name>
+  version: <e.g. 1.0.0>                 # REQUIRED — analyses must cite a version
+  doi: <DOI or archive URL>
+  licence: <e.g. CC-BY-4.0>
+  released: <YYYY-MM-DD>
+
+# ── the instrument, and every change to it ────────────────────────────────────
+# A mid-study change means prior verification does not transfer across it.
+instrument_history:
+  - from: <YYYY-MM-DD>
+    to: <YYYY-MM-DD | ongoing>
+    device_model: <e.g. Polar H10>
+    firmware_version: <version>
+    app_version: <version>
+    os_versions: [<Android 13>, <Android 14>]
+    change_reason: <initial deployment | firmware update | vendor policy change>
+    verification_transferred: <true|false>
+    note: >-
+      <If false, say what was re-verified after the change and what was not.
+      Externally imposed changes — an OS policy change mid-recruitment, for
+      instance — belong here even though you did not initiate them.>
+
+# ── the raw record ────────────────────────────────────────────────────────────
+raw_record:
+  append_only: <true|false>             # REQUIRED
+  integrity: <e.g. SHA-256 payload checksums, sequence numbers, server dedup>
+  location: <archive identifier>
+  retained: <true|false>
+  note: <if raw records were not retained, say so plainly and explain why>
+
+# ── from raw to released ──────────────────────────────────────────────────────
+# Every processed product derives from the raw record by re-executable steps.
+processing:
+  - step: <e.g. resample to 50 Hz>
+    software: <package and version>
+    code: <URL and commit hash>
+    inputs: <path or identifier>
+    outputs: <path or identifier>
+    parameters: <the parameters actually used>
+
+# ── quality control ───────────────────────────────────────────────────────────
+quality_control:
+  checks_applied: <name and version of the validation software used>
+  report: <path to the emitted validation report>
+  exclusion_criteria:
+    - criterion: <e.g. effective rate below 95% of nominal>
+      rationale: <why this threshold>
+      excluded_n: <count>
+  excluded_summary: >-
+    <Report exclusions in aggregate so a reader can judge selection effects.
+    A dataset reporting "9% of recordings failed the sampling-rate check and
+    were excluded" is more useful and more credible than one reporting nothing.>
+
+# ── observation process ───────────────────────────────────────────────────────
+# Distinct from the two sections above: this is about which observations exist,
+# not whether the ones that exist are valid or faithfully retained.
+observation_process:
+  expected_completeness: <what the protocol called for>
+  observed_completeness: <what was obtained, per modality>
+  attribution:
+    technical: <estimate and the evidence used>
+    adherence: <estimate and the evidence used>
+    attrition: <estimate and the evidence used>
+    note: >-
+      <If these cannot be separated, say so. Most published completeness
+      figures aggregate all three without stating it, which is precisely the
+      failure this field records.>
+
+# ── limits ────────────────────────────────────────────────────────────────────
+known_limitations:
+  - <state them; an empty list reads as "none known", which is rarely true>
+not_checked:
+  - <every validity property this dataset does not establish>
