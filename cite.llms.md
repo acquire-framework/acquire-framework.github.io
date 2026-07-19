@@ -27,9 +27,9 @@ Cite the software release in addition to the paper when you depend on a specific
 ``` bibtex
 @software{acquire_artifact_2026,
   author  = {Danio{\l}, Mateusz and Sroka, Ryszard},
-  title   = {{ACQUIRE} 26.7.1: Taxonomy, Checklist and Reporting Templates for
+  title   = {{ACQUIRE} 26.7.2: Taxonomy, Checklist and Reporting Templates for
              Reproducible In-the-Wild Sensing},
-  version = {26.7.1},
+  version = {26.7.2},
   year    = {2026},
   url     = {https://acquire-framework.github.io}
 }
@@ -41,7 +41,7 @@ A DOI will be minted on the first archived release and added here.
 
 If you attach a completed checklist as supplementary material, state the checklist version explicitly — it is stamped in the exported artifact:
 
-> Data collection followed the ACQUIRE checklist 26.7.1 ([Danioł and Sroka 2026](#ref-daniol2026acquire)). The completed checklist, including justifications for items marked not applicable, is provided as supplementary material.
+> Data collection followed the ACQUIRE checklist 26.7.2 ([Danioł and Sroka 2026](#ref-daniol2026acquire)). The completed checklist, including justifications for items marked not applicable, is provided as supplementary material.
 
 ## Contributing changes the citation
 

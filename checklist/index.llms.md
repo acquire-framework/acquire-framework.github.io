@@ -20,15 +20,15 @@ The MRC reports a **different object** than existing mHealth reporting standards
 
 |  | Disclose in the methods section | Property | Tier |
 |:---|:---|:--:|:--:|
-| `MRC-01` | Expected versus observed completeness, per modality, with the sampling and background-execution policy. | \[O\] | core |
-| `MRC-02` | Missingness statistics and their suspected attribution (technical / adherence / attrition), with the evidence used. | \[O\] | core |
+| `MRC-01` | Expected versus observed completeness and wear time, per modality, with the sampling policy, background-execution policy, and valid-observation criteria. | \[O\] | core |
+| `MRC-02` | Missingness statistics, temporal patterns, and suspected attribution to technical loss, non-wear, adherence or attrition, with the evidence used for that attribution. | \[O\] | core |
 | `MRC-03` | Device models, OS versions, app and firmware versions, and every mid-study change. | \[M\] \[EN\] | core |
 | `MRC-04` | Timestamping source, synchronization policy, and residual clock uncertainty after reconciliation. | \[M\] | core |
 | `MRC-05` | An accuracy or uncertainty statement appropriate to each primary derived measurand, or a documented justification of why quantitative uncertainty could not be established and what validation evidence is provided instead. | \[M\] | conditional |
 | `MRC-06` | Upload retry, deduplication, and integrity-verification logic (checksums, sequence numbers). | \[EN\] | core |
 | `MRC-07` | Context and system-health events recorded alongside the data: power state, connectivity, permissions; crashes and service kills. | \[EN\] | core |
-| `MRC-08` | Machine-readable schema and collection-software artifacts published alongside the data. | \[EN\] | core |
-| `MRC-09` | QC exclusion criteria and preprocessing provenance from raw log to released dataset. | \[EN\] | core |
+| `MRC-08` | Machine-readable schema, timestamp semantics, quality-flag definitions, and available collection-software artifacts published alongside the data, or an availability statement documenting proprietary, ethical or licensing restrictions and the versioned information supplied instead. | \[EN\] | core |
+| `MRC-09` | QC exclusion criteria, wear-time rules and valid-day thresholds where applicable, and preprocessing provenance from raw log to released dataset. | \[EN\] | core |
 | `MRC-10` | Pre-deployment verification evidence: which failure modes of the taxonomy were tested, how, and with what observed behaviour. | \[M\] \[EN\] \[O\] | conditional |
 
 ## Proportionality

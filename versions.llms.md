@@ -12,7 +12,7 @@ Three things here change at different rates, so they are versioned separately. C
 
 ## The specification
 
-The normative content: the [acquisition-failure taxonomy](taxonomy/index.llms.md), the [Minimum Reporting Checklist](checklist/index.llms.md), and the thresholds and evidence levels attached to them. This is what a study means when it says it was assessed against ACQUIRE 26.7.1.
+The normative content: the [acquisition-failure taxonomy](taxonomy/index.llms.md), the [Minimum Reporting Checklist](checklist/index.llms.md), and the thresholds and evidence levels attached to them. This is what a study means when it says it was assessed against ACQUIRE 26.7.2.
 
 Versions are calendar-based, **`<year>.<month>`** — `26.7` is July 2026, and a second release within a month adds a patch, as `26.7.1` does here. Calendar rather than semantic versioning is deliberate: semantic versioning describes API compatibility, and what a reader needs to know here is *when* the requirements were current, because guidance about operating-system behaviour ages whether or not any interface changes.
 
@@ -34,14 +34,15 @@ Any future tooling is not announced here: a framework about honest reporting sho
 
 |  |  |
 |:---|:---|
-| Specification | **26.7.1** |
-| Site build | [`eb4cf31`](https://github.com/acquire-framework/acquire-framework.github.io/tree/eb4cf310327f5ef5e63b61c595e863971a767112) |
-| Built | 2026-07-18 |
+| Specification | **26.7.2** |
+| Site build | [`6d9b086`](https://github.com/acquire-framework/acquire-framework.github.io/tree/6d9b0864b485b1993f41d42907a933fc540c21e6) |
+| Built | 2026-07-19 |
 
 ## Published specifications
 
 | Spec     | Permalink               | Tag       | Archive     |
 |:---------|:------------------------|:----------|:------------|
+| 26.7.2   | [/v26.7.2/](./v26.7.2/) | `v26.7.2` | DOI pending |
 | 26.7.1   | [/v26.7.1/](./v26.7.1/) | `v26.7.1` | DOI pending |
 | ~~26.7~~ | withdrawn               | —         | —           |
 
