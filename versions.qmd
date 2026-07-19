@@ -19,7 +19,7 @@ cite, or that a published snapshot silently diverges from the site.
 The normative content: the [acquisition-failure taxonomy](taxonomy/index.qmd),
 the [Minimum Reporting Checklist](checklist/index.qmd), and the thresholds and
 evidence levels attached to them. This is what a study means when it says it
-was assessed against ACQUIRE 26.7.1.
+was assessed against ACQUIRE 26.7.2.
 
 Versions are calendar-based, **`<year>.<month>`** — `26.7` is July 2026, and a
 second release within a month adds a patch, as `26.7.1` does here. Calendar rather than semantic
@@ -64,6 +64,7 @@ should not advertise capability it does not have.
 
 | Spec | Permalink | Tag | Archive |
 |:--|:--|:--|:--|
+| 26.7.2 | [/v26.7.2/](/v26.7.2/) | `v26.7.2` | DOI pending |
 | 26.7.1 | [/v26.7.1/](/v26.7.1/) | `v26.7.1` | DOI pending |
 | ~~26.7~~ | withdrawn | — | — |
 

@@ -18,7 +18,7 @@
 #            conditional  disclose where the measurand or risk warrants it
 #
 
-spec_version: "26.7.1"   # see spec/spec.yml
+spec_version: "26.7.2"   # see spec/spec.yml
 updated: "2026-07-18"
 paper: "Danioł & Sroka (2026), UbiComp/ISWC '26 Companion"
 
@@ -26,16 +26,18 @@ items:
   - id: MRC-01
     tier: core
     statement: >-
-      Expected versus observed completeness, per modality, with the sampling and
-      background-execution policy.
+      Expected versus observed completeness and wear time, per modality, with the
+      sampling policy, background-execution policy, and valid-observation
+      criteria.
     property: [O]
     taxonomy: [ACQ-F01]
 
   - id: MRC-02
     tier: core
     statement: >-
-      Missingness statistics and their suspected attribution (technical /
-      adherence / attrition), with the evidence used.
+      Missingness statistics, temporal patterns, and suspected attribution to
+      technical loss, non-wear, adherence or attrition, with the evidence used
+      for that attribution.
     property: [O]
     taxonomy: [ACQ-F01, ACQ-F04, ACQ-F05]
 
@@ -88,8 +90,10 @@ items:
   - id: MRC-08
     tier: core
     statement: >-
-      Machine-readable schema and collection-software artifacts published
-      alongside the data.
+      Machine-readable schema, timestamp semantics, quality-flag definitions,
+      and available collection-software artifacts published alongside the data,
+      or an availability statement documenting proprietary, ethical or licensing
+      restrictions and the versioned information supplied instead.
     property: [EN]
     taxonomy: [ACQ-F07]
     template: templates/sensor-schema.yml
@@ -97,8 +101,9 @@ items:
   - id: MRC-09
     tier: core
     statement: >-
-      QC exclusion criteria and preprocessing provenance from raw log to
-      released dataset.
+      QC exclusion criteria, wear-time rules and valid-day thresholds where
+      applicable, and preprocessing provenance from raw log to released
+      dataset.
     property: [EN]
     taxonomy: [ACQ-F07]
     template: templates/dataset-provenance.yml

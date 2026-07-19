@@ -7,7 +7,7 @@ in-the-wild sensing studies — instrument validity, failure detection,
 monitoring, data versioning, and reproducible dataset release.
 
 **Site:** <https://acquire-framework.github.io>
-**Status:** specification 26.7.1.
+**Status:** specification 26.7.2.
 
 ## What's here
 

@@ -17,8 +17,8 @@
 # Conflating them would mean either that a typo fix bumps the number studies
 # cite, or that a published snapshot silently diverges from the site.
 
-spec_version: "26.7.1"
-released: "2026-07-18"
+spec_version: "26.7.2"
+released: "2026-07-19"
 doi: null # minted on archival deposit
 
 # Files whose content is normative. Changing any of these requires a
@@ -36,6 +36,28 @@ normative:
 # one in under an earlier format; that is a third, independent lifecycle.
 
 changelog:
+  - version: "26.7.2"
+    date: "2026-07-19"
+    summary: >-
+      Clarifies four checklist statements in light of published evidence on wear
+      time, missingness structure, and restricted-access datasets. The taxonomy
+      is unchanged: the same eight rows, and the same ten checklist items with
+      unchanged identifiers, tiers, properties and taxonomy mappings.
+    changes:
+      - MRC-01 now asks for wear time alongside completeness, and for the
+        valid-observation criteria used, since derived estimates depend on the
+        wear-time definition applied.
+      - MRC-02 now asks for the temporal pattern of missingness and names
+        non-wear as a distinct attribution alongside technical loss, adherence
+        and attrition, because the structure and timing of missing data support
+        inference about plausible loss mechanisms.
+      - MRC-08 now asks for timestamp semantics and quality-flag definitions,
+        and accepts an availability statement documenting proprietary, ethical
+        or licensing restrictions where artifacts cannot be published. The
+        previous wording was not satisfiable by restricted-access studies.
+      - MRC-09 now names wear-time rules and valid-day thresholds among the
+        preprocessing decisions to disclose, where applicable.
+
   - version: "26.7.1"
     date: "2026-07-18"
     summary: >-
