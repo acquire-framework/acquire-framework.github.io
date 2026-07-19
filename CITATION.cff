@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 title: >-
-  ACQUIRE 26.7.1: Taxonomy, Checklist and Reporting Templates for Reproducible
+  ACQUIRE 26.7.2: Taxonomy, Checklist and Reporting Templates for Reproducible
   In-the-Wild Sensing
 message: >-
   If you use this framework, its taxonomy, or its checklist, please cite the
@@ -19,8 +19,8 @@ authors:
     email: rsroka@agh.edu.pl
     affiliation: >-
       Department of Measurements and Electronics, AGH University of Krakow
-version: "26.7.1"
-date-released: "2026-07-18"
+version: "26.7.2"
+date-released: "2026-07-19"
 # Data CC0-1.0, documentation CC-BY-4.0, code MIT — see LICENSING.md.
 license:
   - CC0-1.0

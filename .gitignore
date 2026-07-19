@@ -25,3 +25,6 @@ build/
 _variables.yml
 _banner.html
 /_freeze/
+
+# property-test cache
+.hypothesis/
