@@ -22,7 +22,7 @@ evidence levels attached to them. This is what a study means when it says it
 was assessed against ACQUIRE 26.7.2.
 
 Versions are calendar-based, **`<year>.<month>`** — `26.7` is July 2026, and a
-second release within a month adds a patch, as `26.7.1` does here. Calendar rather than semantic
+second release within a month adds a patch — `26.7.1`, `26.7.2`, and so on. Calendar rather than semantic
 versioning is deliberate: semantic versioning describes API compatibility, and
 what a reader needs to know here is *when* the requirements were current,
 because guidance about operating-system behaviour ages whether or not any
@@ -65,7 +65,7 @@ should not advertise capability it does not have.
 | Spec | Permalink | Tag | Archive |
 |:--|:--|:--|:--|
 | 26.7.2 | [/v26.7.2/](/v26.7.2/) | `v26.7.2` | DOI pending |
-| 26.7.1 | [/v26.7.1/](/v26.7.1/) | `v26.7.1` | DOI pending |
+| 26.7.1 | [/v26.7.1/](/v26.7.1/) | `v26.7.1` | superseded |
 | ~~26.7~~ | withdrawn | — | — |
 
 Specification 26.7 was published on 18 July 2026 and withdrawn the same day,
@@ -89,7 +89,7 @@ The root of this site always shows current guidance.
 Give the permalink, not the bare domain:
 
 > Data collection followed the ACQUIRE Minimum Reporting Checklist,
-> specification 26.7.1 (<https://acquire-framework.github.io/v26.7.1/>).
+> specification 26.7.2 (<https://acquire-framework.github.io/v26.7.2/>).
 
 
 ## Rebuilding a specification from source
@@ -99,7 +99,7 @@ Each specification release is a tag:
 ```bash
 git clone https://github.com/acquire-framework/acquire-framework.github.io
 cd acquire-framework.github.io
-git checkout v26.7.1
+git checkout v26.7.2
 uv sync --extra dev --extra docs --frozen
 uv run pytest
 QUARTO_PYTHON=.venv/bin/python uv run quarto render

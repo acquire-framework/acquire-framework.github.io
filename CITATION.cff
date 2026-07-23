@@ -3,10 +3,11 @@ title: >-
   ACQUIRE 26.7.2: Taxonomy, Checklist and Reporting Templates for Reproducible
   In-the-Wild Sensing
 message: >-
-  If you use this framework, its taxonomy, or its checklist, please cite the
-  accompanying paper (see preferred-citation) and state the artifact version.
-  Thresholds and recipes change as evidence accumulates, so a version identifies
-  exactly what a study was assessed against.
+  If you use this framework, its taxonomy, or its checklist, please cite this
+  artifact and state the version. Thresholds and recipes change as evidence
+  accumulates, so a version identifies exactly what a study was assessed
+  against. A manuscript describing the framework is in preparation and is not
+  yet citable.
 type: software
 authors:
   - given-names: Mateusz
@@ -46,21 +47,3 @@ keywords:
   - data provenance
   - observation process
   - offline-first architecture
-preferred-citation:
-  type: conference-paper
-  title: >-
-    Reproducibility Begins at Acquisition: The ACQUIRE Framework for Trustworthy
-    In-the-Wild Sensing
-  authors:
-    - given-names: Mateusz
-      family-names: Danioł
-    - given-names: Ryszard
-      family-names: Sroka
-  collection-title: >-
-    Companion of the 2026 ACM International Joint Conference on Pervasive and
-    Ubiquitous Computing (UbiComp/ISWC '26 Companion)
-  publisher:
-    name: Association for Computing Machinery
-  year: 2026
-  location:
-    name: Shanghai, China

@@ -3,58 +3,45 @@ title: "Citing ACQUIRE"
 toc: false
 ---
 
-## The paper
+## Cite the artifact
 
-If you use the framework, the taxonomy, or the checklist, cite the paper. It is
-the authoritative description of ACQUIRE — *Acquisition Criteria for Quality,
-Uncertainty, Integrity, Reproducibility, and Evidence* — and of the three axes
-along which it evaluates an acquisition chain: measurement validity, record
-integrity and provenance, and observation-process validity.
-
-```bibtex
-@inproceedings{daniol2026acquire,
-  author    = {Danio{\l}, Mateusz and Sroka, Ryszard},
-  title     = {Reproducibility Begins at Acquisition: The {ACQUIRE} Framework
-               for Trustworthy In-the-Wild Sensing},
-  booktitle = {Companion of the 2026 ACM International Joint Conference on
-               Pervasive and Ubiquitous Computing (UbiComp/ISWC '26 Companion)},
-  year      = {2026},
-  address   = {Shanghai, China},
-  publisher = {Association for Computing Machinery},
-  location  = {Shanghai, China}
-}
-```
-
-The DOI is added here once the proceedings are published.
-
-## The artifact
-
-Cite the software release in addition to the paper when you depend on a specific
-version of the checklist or taxonomy. Thresholds and recipes change
-as evidence accumulates, so a version identifies exactly what a study was
-assessed against — a URL alone does not.
+ACQUIRE is released as a versioned, citable artifact — this website and the
+taxonomy, checklist and templates it publishes. Cite it by version, because
+thresholds and recipes change as evidence accumulates and a version identifies
+exactly what a study was assessed against. A bare URL does not.
 
 ```bibtex
-@software{acquire_artifact_2026,
+@software{acquire_2026,
   author  = {Danio{\l}, Mateusz and Sroka, Ryszard},
-  title   = {{ACQUIRE} 26.7.2: Taxonomy, Checklist and Reporting Templates for
-             Reproducible In-the-Wild Sensing},
+  title   = {{ACQUIRE}: Acquisition Criteria for Quality, Uncertainty,
+             Integrity, Reproducibility, and Evidence},
   version = {26.7.2},
   year    = {2026},
-  url     = {https://acquire-framework.github.io}
+  url     = {https://acquire-framework.github.io/v26.7.2/}
 }
 ```
 
-A DOI will be minted on the first archived release and added here.
+A DOI will be minted on the first archived deposit and added here. Until then,
+the versioned permalink above is the stable reference.
 
 ## The checklist
 
 If you attach a completed checklist as supplementary material, state the
 checklist version explicitly — it is stamped in the exported artifact:
 
-> Data collection followed the ACQUIRE checklist 26.7.2 [@daniol2026acquire].
-> The completed checklist, including justifications for items marked not
-> applicable, is provided as supplementary material.
+> Data collection followed the ACQUIRE Minimum Reporting Checklist,
+> specification 26.7.2 (<https://acquire-framework.github.io/v26.7.2/>). The
+> completed checklist, including justifications for items marked not applicable,
+> is provided as supplementary material.
+
+## A note on the manuscript
+
+A manuscript describing the framework and its motivation is **in preparation**.
+It has not been published or accepted, so there is nothing yet to cite as a
+paper — please cite the artifact above. A paper reference will be added here if
+and when the manuscript is published, and the two will then be complementary:
+the paper for the argument, the artifact for the versioned content a study was
+assessed against.
 
 ## Contributing changes the citation
 
@@ -62,7 +49,7 @@ Contributors of accepted recipes, replications, and adapters are credited on the
 archived release record. This is deliberate: replication is the contribution the
 catalogue most needs, and it should carry credit that appears on a CV.
 
-Contributing to the framework is distinct from co-authorship on associated
-research papers — see
+Contributing to the framework is distinct from co-authorship on any associated
+manuscript — see
 [CONTRIBUTING](https://github.com/acquire-framework/acquire-framework.github.io/blob/main/CONTRIBUTING.md)
 for how the two are handled.
