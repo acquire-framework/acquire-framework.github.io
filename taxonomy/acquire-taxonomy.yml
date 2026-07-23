@@ -2,7 +2,7 @@
 # SPDX-FileCopyrightText: 2026 Mateusz Danioł, Ryszard Sroka
 # ACQUIRE initial acquisition-failure taxonomy, v26.7
 #
-# Machine-readable form of Table 1 of the accompanying paper.
+# Machine-readable form of the acquisition-failure taxonomy.
 #
 # Status: initial, expert-derived, formative. NOT a systematic review — no
 # protocol, no pre-registered search strategy, no independent coders, no
@@ -19,7 +19,7 @@
 
 spec_version: "26.7.2"   # see spec/spec.yml
 updated: "2026-07-18"
-paper: "Danioł & Sroka (2026), UbiComp/ISWC '26 Companion"
+source: "Danioł & Sroka (2026), ACQUIRE framework (manuscript in preparation)"
 
 properties:
   M: Measurement validity — the quantity indicated by the instrument

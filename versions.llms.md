@@ -14,7 +14,7 @@ Three things here change at different rates, so they are versioned separately. C
 
 The normative content: the [acquisition-failure taxonomy](taxonomy/index.llms.md), the [Minimum Reporting Checklist](checklist/index.llms.md), and the thresholds and evidence levels attached to them. This is what a study means when it says it was assessed against ACQUIRE 26.7.2.
 
-Versions are calendar-based, **`<year>.<month>`** — `26.7` is July 2026, and a second release within a month adds a patch, as `26.7.1` does here. Calendar rather than semantic versioning is deliberate: semantic versioning describes API compatibility, and what a reader needs to know here is *when* the requirements were current, because guidance about operating-system behaviour ages whether or not any interface changes.
+Versions are calendar-based, **`<year>.<month>`** — `26.7` is July 2026, and a second release within a month adds a patch — `26.7.1`, `26.7.2`, and so on. Calendar rather than semantic versioning is deliberate: semantic versioning describes API compatibility, and what a reader needs to know here is *when* the requirements were current, because guidance about operating-system behaviour ages whether or not any interface changes.
 
 Which files are normative is declared explicitly in [`spec/spec.yml`](spec/spec.yml), and CI fails if any of them changes without a version bump. That guard exists so two different sets of requirements can never be published under one number.
 
@@ -35,15 +35,15 @@ Any future tooling is not announced here: a framework about honest reporting sho
 |  |  |
 |:---|:---|
 | Specification | **26.7.2** |
-| Site build | [`6d9b086`](https://github.com/acquire-framework/acquire-framework.github.io/tree/6d9b0864b485b1993f41d42907a933fc540c21e6) |
-| Built | 2026-07-19 |
+| Site build | [`64ae9f9`](https://github.com/acquire-framework/acquire-framework.github.io/tree/64ae9f9a5508ef31b00468956ee13bfdf2a0a6ea) |
+| Built | 2026-07-23 |
 
 ## Published specifications
 
 | Spec     | Permalink               | Tag       | Archive     |
 |:---------|:------------------------|:----------|:------------|
 | 26.7.2   | [/v26.7.2/](./v26.7.2/) | `v26.7.2` | DOI pending |
-| 26.7.1   | [/v26.7.1/](./v26.7.1/) | `v26.7.1` | DOI pending |
+| 26.7.1   | [/v26.7.1/](./v26.7.1/) | `v26.7.1` | superseded  |
 | ~~26.7~~ | withdrawn               | —         | —           |
 
 Specification 26.7 was published on 18 July 2026 and withdrawn the same day, before any known use, because it asserted the availability of diagnostic software that is not released. It is not served and should not be cited.
@@ -58,7 +58,7 @@ The root of this site always shows current guidance.
 
 Give the permalink, not the bare domain:
 
-> Data collection followed the ACQUIRE Minimum Reporting Checklist, specification 26.7.1 (<https://acquire-framework.github.io/v26.7.1/>).
+> Data collection followed the ACQUIRE Minimum Reporting Checklist, specification 26.7.2 (<https://acquire-framework.github.io/v26.7.2/>).
 
 ## Rebuilding a specification from source
 
@@ -67,7 +67,7 @@ Each specification release is a tag:
 ``` bash
 git clone https://github.com/acquire-framework/acquire-framework.github.io
 cd acquire-framework.github.io
-git checkout v26.7.1
+git checkout v26.7.2
 uv sync --extra dev --extra docs --frozen
 uv run pytest
 QUARTO_PYTHON=.venv/bin/python uv run quarto render
@@ -86,15 +86,12 @@ For a framework arguing that provenance must survive the people who created it, 
 BibTeX citation:
 
 ``` quarto-appendix-bibtex
-@inproceedings{daniol2026acquire,
+@software{acquire_2026,
   author = {Danioł, Mateusz and Sroka, Ryszard},
-  publisher = {Association for Computing Machinery},
-  title = {Reproducibility {Begins} at {Acquisition:} {The} {ACQUIRE}
-    {Framework} for {Trustworthy} {In-the-Wild} {Sensing}},
-  booktitle = {Companion of the 2026 ACM International Joint Conference
-    on Pervasive and Ubiquitous Computing (UbiComp/ISWC ’26 Companion)},
+  title = {ACQUIRE: {Acquisition} {Criteria} for {Quality,}
+    {Uncertainty,} {Integrity,} {Reproducibility,} and {Evidence}},
+  version = {26.7.2},
   date = {2026},
-  address = {Shanghai, China},
   url = {https://acquire-framework.github.io},
   langid = {en}
 }
@@ -102,4 +99,4 @@ BibTeX citation:
 
 For attribution, please cite this work as:
 
-Danioł, Mateusz, and Ryszard Sroka. 2026. “Reproducibility Begins at Acquisition: The ACQUIRE Framework for Trustworthy In-the-Wild Sensing.” *Companion of the 2026 ACM International Joint Conference on Pervasive and Ubiquitous Computing (UbiComp/ISWC ’26 Companion)* (Shanghai, China). <https://acquire-framework.github.io>.
+Danioł, Mateusz, and Ryszard Sroka. 2026. *ACQUIRE: Acquisition Criteria for Quality, Uncertainty, Integrity, Reproducibility, and Evidence*. V. 26.7.2. Released. <https://acquire-framework.github.io>.

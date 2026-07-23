@@ -79,9 +79,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-7ebcd8d6d84910df5062aada6d3c69fc.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-1247303bb49706c311cade13bb646200.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-66062dfbf5f7b16c7504ec90cf6b4b29.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-1247303bb49706c311cade13bb646200.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-d8254ad1b4bf64edc1ec853e0877d4a8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-151299b18af03fd53bd9bd263b9cfd36.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-d8254ad1b4bf64edc1ec853e0877d4a8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -409,7 +409,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="sensor-schema">Sensor schema</h2>
 <p>Publish one per sensor stream, alongside the data. Without it a dataset is not machine-interpretable: a reader cannot tell what was measured, in what units, at what nominal rate, or against what expectation — and so cannot check the data for the failures the taxonomy catalogues.</p>
 <p>The nominal rate matters most. It cannot be inferred from the data, because inferring it would define away <a href="../taxonomy/index.html">ACQ-F01</a>, the best-quantified failure in the taxonomy.</p>
-<div id="09f70d8e" class="cell" data-execution_count="2">
+<div id="365078db" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="an">SPDX-License-Identifier:</span><span class="co"> CC-BY-4.0</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="an">SPDX-FileCopyrightText:</span><span class="co"> 2026 Mateusz Danioł, Ryszard Sroka</span></span>
@@ -474,7 +474,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="quality-flags" class="level2">
 <h2 class="anchored" data-anchor-id="quality-flags">Quality flags</h2>
 <p>A flag is only interpretable if the reader knows the threshold that produced it and what applied it. The <code>not_covered</code> section is the important one: a reader who sees only green flags will otherwise infer a validation that never ran.</p>
-<div id="286f16e0" class="cell" data-execution_count="3">
+<div id="ece9218b" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="an">SPDX-License-Identifier:</span><span class="co"> CC-BY-4.0</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="an">SPDX-FileCopyrightText:</span><span class="co"> 2026 Mateusz Danioł, Ryszard Sroka</span></span>
@@ -555,7 +555,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="uncertainty-statement" class="level2">
 <h2 class="anchored" data-anchor-id="uncertainty-statement">Uncertainty statement</h2>
 <p>Part A is the quantitative budget. Part B is the justification route permitted by MRC-05, with the floor that keeps it from becoming a null answer: name the dominant sources, state why each could not be quantified, describe the validation evidence offered instead.</p>
-<div id="64f79c55" class="cell" data-execution_count="4">
+<div id="7c8833bf" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Uncertainty statement template — satisfies MRC-05</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -648,7 +648,7 @@ After:
 <h2 class="anchored" data-anchor-id="dataset-provenance">Dataset provenance</h2>
 <p>Records the auditable lineage from a published number back to the act of measurement — the record-fidelity analogue of metrological traceability, and distinct from it.</p>
 <p>Provenance reconstructed at the end of a study is a best-effort narrative; provenance recorded as data arrives is evidence.</p>
-<div id="7fa44718" class="cell" data-execution_count="5">
+<div id="49ace1b0" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="an">SPDX-License-Identifier:</span><span class="co"> CC-BY-4.0</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="an">SPDX-FileCopyrightText:</span><span class="co"> 2026 Mateusz Danioł, Ryszard Sroka</span></span>
@@ -744,7 +744,7 @@ After:
 <h2 class="anchored" data-anchor-id="reviewer-form">Reviewer form</h2>
 <p>For reviewing a manuscript or dataset reporting in-the-wild sensor data. Its purpose is to let a reviewer request <em>specific</em> acquisition details instead of “more detail on data quality”, which authors cannot act on.</p>
 <p>Note the proportionality rule and the instruction that absence of a disclosure is a finding rather than a failing — the form should not push authors toward false precision.</p>
-<div id="7cf1e2f8" class="cell" data-execution_count="6">
+<div id="793606c7" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># ACQUIRE reviewer form v26.7</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -839,24 +839,19 @@ After:
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@inproceedings{daniol2026acquire,
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@software{acquire_2026,
   author = {Danioł, Mateusz and Sroka, Ryszard},
-  publisher = {Association for Computing Machinery},
-  title = {Reproducibility {Begins} at {Acquisition:} {The} {ACQUIRE}
-    {Framework} for {Trustworthy} {In-the-Wild} {Sensing}},
-  booktitle = {Companion of the 2026 ACM International Joint Conference
-    on Pervasive and Ubiquitous Computing (UbiComp/ISWC ’26 Companion)},
+  title = {ACQUIRE: {Acquisition} {Criteria} for {Quality,}
+    {Uncertainty,} {Integrity,} {Reproducibility,} and {Evidence}},
+  version = {26.7.2},
   date = {2026},
-  address = {Shanghai, China},
   url = {https://acquire-framework.github.io},
   langid = {en}
 }
-</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-daniol2026acquire" class="csl-entry quarto-appendix-citeas" role="listitem">
-Danioł, Mateusz, and Ryszard Sroka. 2026. <span>“Reproducibility Begins
-at Acquisition: The ACQUIRE Framework for Trustworthy In-the-Wild
-Sensing.”</span> <em>Companion of the 2026 ACM International Joint
-Conference on Pervasive and Ubiquitous Computing (UbiComp/ISWC ’26
-Companion)</em> (Shanghai, China). <a href="https://acquire-framework.github.io">https://acquire-framework.github.io</a>.
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-acquire_2026" class="csl-entry quarto-appendix-citeas" role="listitem">
+Danioł, Mateusz, and Ryszard Sroka. 2026. <em>ACQUIRE: Acquisition
+Criteria for Quality, Uncertainty, Integrity, Reproducibility, and
+Evidence</em>. V. 26.7.2. Released. <a href="https://acquire-framework.github.io">https://acquire-framework.github.io</a>.
 </div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1291,7 +1286,7 @@ Companion)</em> (Shanghai, China). <a href="https://acquire-framework.github.io"
 <p>Maintained at the Department of Measurements and Electronics, AGH University of Krakow</p>
 <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/acquire-framework/acquire-framework.github.io/edit/main/templates/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/acquire-framework/acquire-framework.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
-<p>ACQUIRE spec 26.7.2 · site build <a href="https://github.com/acquire-framework/acquire-framework.github.io/tree/6d9b0864b485b1993f41d42907a933fc540c21e6"><code>6d9b086</code></a> · built 2026-07-19 <a href="../licensing.html">Licensing</a> · <a href="../cite.html">How to cite</a> · <a href="../versions.html">All versions</a></p>
+<p>ACQUIRE spec 26.7.2 · site build <a href="https://github.com/acquire-framework/acquire-framework.github.io/tree/64ae9f9a5508ef31b00468956ee13bfdf2a0a6ea"><code>64ae9f9</code></a> · built 2026-07-23 <a href="../licensing.html">Licensing</a> · <a href="../cite.html">How to cite</a> · <a href="../versions.html">All versions</a></p>
 </div>
   </div>
 </footer>

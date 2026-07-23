@@ -3,7 +3,7 @@
 SPDX-License-Identifier: CC0-1.0 — public domain, no attribution
 required. Citation is a scholarly norm here, not a licence condition.
 
-Machine-readable form of Table 1 of Danioł & Sroka (2026), UbiComp/ISWC '26 Companion.
+Machine-readable form of the taxonomy. Source: Danioł & Sroka (2026), ACQUIRE framework (manuscript in preparation).
 
 Initial, expert-derived, formative. Not a systematic review: no
 pre-registered protocol, no independent coders, no inter-rater

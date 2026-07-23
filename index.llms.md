@@ -22,9 +22,9 @@ Both failures are invisible to conventional monitoring: completeness looks accep
 
 ## What ACQUIRE v26.7 contains
 
-**[The acquisition-failure taxonomy](taxonomy/index.llms.md)** — eight failure modes by system layer, each mapped to its signature in the dataset and to the property it threatens. Table 1 of the paper, machine-readable.
+**[The acquisition-failure taxonomy](taxonomy/index.llms.md)** — eight failure modes by system layer, each mapped to its signature in the dataset and to the property it threatens, machine-readable.
 
-**[The Minimum Reporting Checklist](checklist/index.llms.md)** — ten methods-section disclosures about the measuring system. Table 3 of the paper. Complementary to CONSORT-EHEALTH and mERA, which report the intervention rather than the instrument.
+**[The Minimum Reporting Checklist](checklist/index.llms.md)** — ten methods-section disclosures about the measuring system. Complementary to CONSORT-EHEALTH and mERA, which report the intervention rather than the instrument.
 
 **[The failure catalogue](recipes/index.llms.md)** — entered by symptom, for when data already looks wrong. Each entry states what you observe, what causes it, how to detect it, and how well that detection is evidenced.
 
@@ -34,11 +34,11 @@ Both failures are invisible to conventional monitoring: completeness looks accep
 
 **[A worked synchronization example](https://github.com/acquire-framework/acquire-framework.github.io/tree/main/examples/synchronization)** — executable. Two BLE devices at +40 and −25 ppm, re-anchored at reconnection: completeness stays at 100% and every quality flag stays green while the inter-device offset spends 96% of the recording outside a ±20 ms tolerance, peaking near 0.8 s. A record-integrity audit passes this dataset; a measurement-validity audit does not.
 
-## The paper
+## The framework
 
 ACQUIRE — *Acquisition Criteria for Quality, Uncertainty, Integrity, Reproducibility, and Evidence* — treats the whole acquisition chain as a measuring system and evaluates it along three axes: **measurement validity**, **record integrity and provenance**, and **observation-process validity**.
 
-> Danioł, M. and Sroka, R. (2026). Reproducibility Begins at Acquisition: The ACQUIRE Framework for Trustworthy In-the-Wild Sensing. *Companion of the 2026 ACM International Joint Conference on Pervasive and Ubiquitous Computing (UbiComp/ISWC ’26 Companion)*, Shanghai, China.
+A manuscript setting out the argument in full is in preparation. Until it is published, please cite the versioned artifact rather than the manuscript.
 
 [How to cite →](cite.llms.md)
 
@@ -53,15 +53,12 @@ Replications are the single most useful contribution — see [contributing](http
 BibTeX citation:
 
 ``` quarto-appendix-bibtex
-@inproceedings{daniol2026acquire,
+@software{acquire_2026,
   author = {Danioł, Mateusz and Sroka, Ryszard},
-  publisher = {Association for Computing Machinery},
-  title = {Reproducibility {Begins} at {Acquisition:} {The} {ACQUIRE}
-    {Framework} for {Trustworthy} {In-the-Wild} {Sensing}},
-  booktitle = {Companion of the 2026 ACM International Joint Conference
-    on Pervasive and Ubiquitous Computing (UbiComp/ISWC ’26 Companion)},
+  title = {ACQUIRE: {Acquisition} {Criteria} for {Quality,}
+    {Uncertainty,} {Integrity,} {Reproducibility,} and {Evidence}},
+  version = {26.7.2},
   date = {2026},
-  address = {Shanghai, China},
   url = {https://acquire-framework.github.io},
   langid = {en}
 }
@@ -69,4 +66,4 @@ BibTeX citation:
 
 For attribution, please cite this work as:
 
-Danioł, Mateusz, and Ryszard Sroka. 2026. “Reproducibility Begins at Acquisition: The ACQUIRE Framework for Trustworthy In-the-Wild Sensing.” *Companion of the 2026 ACM International Joint Conference on Pervasive and Ubiquitous Computing (UbiComp/ISWC ’26 Companion)* (Shanghai, China). <https://acquire-framework.github.io>.
+Danioł, Mateusz, and Ryszard Sroka. 2026. *ACQUIRE: Acquisition Criteria for Quality, Uncertainty, Integrity, Reproducibility, and Evidence*. V. 26.7.2. Released. <https://acquire-framework.github.io>.

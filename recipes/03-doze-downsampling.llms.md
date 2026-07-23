@@ -70,15 +70,12 @@ A rate deficit is detectable whenever it exceeds the stated tolerance, which is 
 BibTeX citation:
 
 ``` quarto-appendix-bibtex
-@inproceedings{daniol2026acquire,
+@software{acquire_2026,
   author = {Danioł, Mateusz and Sroka, Ryszard},
-  publisher = {Association for Computing Machinery},
-  title = {Reproducibility {Begins} at {Acquisition:} {The} {ACQUIRE}
-    {Framework} for {Trustworthy} {In-the-Wild} {Sensing}},
-  booktitle = {Companion of the 2026 ACM International Joint Conference
-    on Pervasive and Ubiquitous Computing (UbiComp/ISWC ’26 Companion)},
+  title = {ACQUIRE: {Acquisition} {Criteria} for {Quality,}
+    {Uncertainty,} {Integrity,} {Reproducibility,} and {Evidence}},
+  version = {26.7.2},
   date = {2026},
-  address = {Shanghai, China},
   url = {https://acquire-framework.github.io},
   langid = {en}
 }
@@ -86,4 +83,4 @@ BibTeX citation:
 
 For attribution, please cite this work as:
 
-Danioł, Mateusz, and Ryszard Sroka. 2026. “Reproducibility Begins at Acquisition: The ACQUIRE Framework for Trustworthy In-the-Wild Sensing.” *Companion of the 2026 ACM International Joint Conference on Pervasive and Ubiquitous Computing (UbiComp/ISWC ’26 Companion)* (Shanghai, China). <https://acquire-framework.github.io>.
+Danioł, Mateusz, and Ryszard Sroka. 2026. *ACQUIRE: Acquisition Criteria for Quality, Uncertainty, Integrity, Reproducibility, and Evidence*. V. 26.7.2. Released. <https://acquire-framework.github.io>.

@@ -2,7 +2,7 @@
 # SPDX-FileCopyrightText: 2026 Mateusz Danioł, Ryszard Sroka
 # ACQUIRE Minimum Reporting Checklist (MRC)
 #
-# Machine-readable form of Table 3 of the accompanying paper. Each item derives
+# Machine-readable form of the Minimum Reporting Checklist. Each item derives
 # from a row of the taxonomy (taxonomy/acquire-taxonomy.yml) and is intended to
 # be auditable by a reviewer and proportionate to the study's measurand and risk.
 #
@@ -20,7 +20,7 @@
 
 spec_version: "26.7.2"   # see spec/spec.yml
 updated: "2026-07-18"
-paper: "Danioł & Sroka (2026), UbiComp/ISWC '26 Companion"
+source: "Danioł & Sroka (2026), ACQUIRE framework (manuscript in preparation)"
 
 items:
   - id: MRC-01

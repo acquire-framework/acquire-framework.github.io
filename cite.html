@@ -58,26 +58,7 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -98,9 +79,9 @@ div.csl-indent {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7ebcd8d6d84910df5062aada6d3c69fc.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-1247303bb49706c311cade13bb646200.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-66062dfbf5f7b16c7504ec90cf6b4b29.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-1247303bb49706c311cade13bb646200.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-d8254ad1b4bf64edc1ec853e0877d4a8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-151299b18af03fd53bd9bd263b9cfd36.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-d8254ad1b4bf64edc1ec853e0877d4a8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -374,73 +355,51 @@ div.csl-indent {
 </header>
 
 
-<section id="the-paper" class="level2">
-<h2 class="anchored" data-anchor-id="the-paper">The paper</h2>
-<p>If you use the framework, the taxonomy, or the checklist, cite the paper. It is the authoritative description of ACQUIRE — <em>Acquisition Criteria for Quality, Uncertainty, Integrity, Reproducibility, and Evidence</em> — and of the three axes along which it evaluates an acquisition chain: measurement validity, record integrity and provenance, and observation-process validity.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">@inproceedings</span>{<span class="ot">daniol2026acquire</span>,</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span>    = {Danio{<span class="ch">\l</span>}, Mateusz and Sroka, Ryszard},</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span>     = {Reproducibility Begins at Acquisition: The {ACQUIRE} Framework</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>               for Trustworthy In-the-Wild Sensing},</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">booktitle</span> = {Companion of the 2026 ACM International Joint Conference on</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>               Pervasive and Ubiquitous Computing (UbiComp/ISWC '26 Companion)},</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span>      = {2026},</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">address</span>   = {Shanghai, China},</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">publisher</span> = {Association for Computing Machinery},</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">location</span>  = {Shanghai, China}</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The DOI is added here once the proceedings are published.</p>
-</section>
-<section id="the-artifact" class="level2">
-<h2 class="anchored" data-anchor-id="the-artifact">The artifact</h2>
-<p>Cite the software release in addition to the paper when you depend on a specific version of the checklist or taxonomy. Thresholds and recipes change as evidence accumulates, so a version identifies exactly what a study was assessed against — a URL alone does not.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">@software{acquire_artifact_2026,</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">  author  = {Danio{\l}, Mateusz and Sroka, Ryszard},</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">  title   = {{ACQUIRE} 26.7.2: Taxonomy, Checklist and Reporting Templates for</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">             Reproducible In-the-Wild Sensing},</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">  version = {26.7.2},</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">  year    = {2026},</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">  url     = {https://acquire-framework.github.io}</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>A DOI will be minted on the first archived release and added here.</p>
+<section id="cite-the-artifact" class="level2">
+<h2 class="anchored" data-anchor-id="cite-the-artifact">Cite the artifact</h2>
+<p>ACQUIRE is released as a versioned, citable artifact — this website and the taxonomy, checklist and templates it publishes. Cite it by version, because thresholds and recipes change as evidence accumulates and a version identifies exactly what a study was assessed against. A bare URL does not.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">@software{acquire_2026,</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">  author  = {Danio{\l}, Mateusz and Sroka, Ryszard},</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">  title   = {{ACQUIRE}: Acquisition Criteria for Quality, Uncertainty,</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">             Integrity, Reproducibility, and Evidence},</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">  version = {26.7.2},</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">  year    = {2026},</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">  url     = {https://acquire-framework.github.io/v26.7.2/}</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A DOI will be minted on the first archived deposit and added here. Until then, the versioned permalink above is the stable reference.</p>
 </section>
 <section id="the-checklist" class="level2">
 <h2 class="anchored" data-anchor-id="the-checklist">The checklist</h2>
 <p>If you attach a completed checklist as supplementary material, state the checklist version explicitly — it is stamped in the exported artifact:</p>
 <blockquote class="blockquote">
-<p>Data collection followed the ACQUIRE checklist 26.7.2 <span class="citation" data-cites="daniol2026acquire">(<a href="#ref-daniol2026acquire" role="doc-biblioref">Danioł and Sroka 2026</a>)</span>. The completed checklist, including justifications for items marked not applicable, is provided as supplementary material.</p>
+<p>Data collection followed the ACQUIRE Minimum Reporting Checklist, specification 26.7.2 (<a href="https://acquire-framework.github.io/v26.7.2/" class="uri">https://acquire-framework.github.io/v26.7.2/</a>). The completed checklist, including justifications for items marked not applicable, is provided as supplementary material.</p>
 </blockquote>
+</section>
+<section id="a-note-on-the-manuscript" class="level2">
+<h2 class="anchored" data-anchor-id="a-note-on-the-manuscript">A note on the manuscript</h2>
+<p>A manuscript describing the framework and its motivation is <strong>in preparation</strong>. It has not been published or accepted, so there is nothing yet to cite as a paper — please cite the artifact above. A paper reference will be added here if and when the manuscript is published, and the two will then be complementary: the paper for the argument, the artifact for the versioned content a study was assessed against.</p>
 </section>
 <section id="contributing-changes-the-citation" class="level2">
 <h2 class="anchored" data-anchor-id="contributing-changes-the-citation">Contributing changes the citation</h2>
 <p>Contributors of accepted recipes, replications, and adapters are credited on the archived release record. This is deliberate: replication is the contribution the catalogue most needs, and it should carry credit that appears on a CV.</p>
-<p>Contributing to the framework is distinct from co-authorship on associated research papers — see <a href="https://github.com/acquire-framework/acquire-framework.github.io/blob/main/CONTRIBUTING.md">CONTRIBUTING</a> for how the two are handled.</p>
-
+<p>Contributing to the framework is distinct from co-authorship on any associated manuscript — see <a href="https://github.com/acquire-framework/acquire-framework.github.io/blob/main/CONTRIBUTING.md">CONTRIBUTING</a> for how the two are handled.</p>
 
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-daniol2026acquire" class="csl-entry" role="listitem">
-Danioł, Mateusz, and Ryszard Sroka. 2026. <span>“Reproducibility Begins at Acquisition: The <span>ACQUIRE</span> Framework for Trustworthy in-the-Wild Sensing.”</span> <em>Companion of the 2026 ACM International Joint Conference on Pervasive and Ubiquitous Computing (UbiComp/ISWC ’26 Companion)</em> (Shanghai, China).
-</div>
-</div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@inproceedings{daniol2026acquire,
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@software{acquire_2026,
   author = {Danioł, Mateusz and Sroka, Ryszard},
-  publisher = {Association for Computing Machinery},
-  title = {Reproducibility {Begins} at {Acquisition:} {The} {ACQUIRE}
-    {Framework} for {Trustworthy} {In-the-Wild} {Sensing}},
-  booktitle = {Companion of the 2026 ACM International Joint Conference
-    on Pervasive and Ubiquitous Computing (UbiComp/ISWC ’26 Companion)},
+  title = {ACQUIRE: {Acquisition} {Criteria} for {Quality,}
+    {Uncertainty,} {Integrity,} {Reproducibility,} and {Evidence}},
+  version = {26.7.2},
   date = {2026},
-  address = {Shanghai, China},
   url = {https://acquire-framework.github.io},
   langid = {en}
 }
-</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-daniol2026acquire" class="csl-entry quarto-appendix-citeas" role="listitem">
-Danioł, Mateusz, and Ryszard Sroka. 2026. <span>“Reproducibility Begins
-at Acquisition: The ACQUIRE Framework for Trustworthy In-the-Wild
-Sensing.”</span> <em>Companion of the 2026 ACM International Joint
-Conference on Pervasive and Ubiquitous Computing (UbiComp/ISWC ’26
-Companion)</em> (Shanghai, China). <a href="https://acquire-framework.github.io">https://acquire-framework.github.io</a>.
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-acquire_2026" class="csl-entry quarto-appendix-citeas" role="listitem">
+Danioł, Mateusz, and Ryszard Sroka. 2026. <em>ACQUIRE: Acquisition
+Criteria for Quality, Uncertainty, Integrity, Reproducibility, and
+Evidence</em>. V. 26.7.2. Released. <a href="https://acquire-framework.github.io">https://acquire-framework.github.io</a>.
 </div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -875,7 +834,7 @@ Companion)</em> (Shanghai, China). <a href="https://acquire-framework.github.io"
 <p>Maintained at the Department of Measurements and Electronics, AGH University of Krakow</p>
 <div class="toc-actions"><ul><li><a href="https://github.com/acquire-framework/acquire-framework.github.io/edit/main/cite.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/acquire-framework/acquire-framework.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
-<p>ACQUIRE spec 26.7.2 · site build <a href="https://github.com/acquire-framework/acquire-framework.github.io/tree/6d9b0864b485b1993f41d42907a933fc540c21e6"><code>6d9b086</code></a> · built 2026-07-19 <a href="./licensing.html">Licensing</a> · <a href="./cite.html">How to cite</a> · <a href="./versions.html">All versions</a></p>
+<p>ACQUIRE spec 26.7.2 · site build <a href="https://github.com/acquire-framework/acquire-framework.github.io/tree/64ae9f9a5508ef31b00468956ee13bfdf2a0a6ea"><code>64ae9f9</code></a> · built 2026-07-23 <a href="./licensing.html">Licensing</a> · <a href="./cite.html">How to cite</a> · <a href="./versions.html">All versions</a></p>
 </div>
   </div>
 </footer>

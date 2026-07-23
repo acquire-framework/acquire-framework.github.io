@@ -79,9 +79,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7ebcd8d6d84910df5062aada6d3c69fc.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-1247303bb49706c311cade13bb646200.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-66062dfbf5f7b16c7504ec90cf6b4b29.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-1247303bb49706c311cade13bb646200.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-d8254ad1b4bf64edc1ec853e0877d4a8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-151299b18af03fd53bd9bd263b9cfd36.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-d8254ad1b4bf64edc1ec853e0877d4a8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -411,7 +411,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="the-specification" class="level2">
 <h2 class="anchored" data-anchor-id="the-specification">The specification</h2>
 <p>The normative content: the <a href="./taxonomy/index.html">acquisition-failure taxonomy</a>, the <a href="./checklist/index.html">Minimum Reporting Checklist</a>, and the thresholds and evidence levels attached to them. This is what a study means when it says it was assessed against ACQUIRE 26.7.2.</p>
-<p>Versions are calendar-based, <strong><code>&lt;year&gt;.&lt;month&gt;</code></strong> — <code>26.7</code> is July 2026, and a second release within a month adds a patch, as <code>26.7.1</code> does here. Calendar rather than semantic versioning is deliberate: semantic versioning describes API compatibility, and what a reader needs to know here is <em>when</em> the requirements were current, because guidance about operating-system behaviour ages whether or not any interface changes.</p>
+<p>Versions are calendar-based, <strong><code>&lt;year&gt;.&lt;month&gt;</code></strong> — <code>26.7</code> is July 2026, and a second release within a month adds a patch — <code>26.7.1</code>, <code>26.7.2</code>, and so on. Calendar rather than semantic versioning is deliberate: semantic versioning describes API compatibility, and what a reader needs to know here is <em>when</em> the requirements were current, because guidance about operating-system behaviour ages whether or not any interface changes.</p>
 <p>Which files are normative is declared explicitly in <a href="spec/spec.yml"><code>spec/spec.yml</code></a>, and CI fails if any of them changes without a version bump. That guard exists so two different sets of requirements can never be published under one number.</p>
 </section>
 <section id="the-website" class="level2">
@@ -434,11 +434,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td style="text-align: left;">Site build</td>
-<td style="text-align: left;"><a href="https://github.com/acquire-framework/acquire-framework.github.io/tree/6d9b0864b485b1993f41d42907a933fc540c21e6"><code>6d9b086</code></a></td>
+<td style="text-align: left;"><a href="https://github.com/acquire-framework/acquire-framework.github.io/tree/64ae9f9a5508ef31b00468956ee13bfdf2a0a6ea"><code>64ae9f9</code></a></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Built</td>
-<td style="text-align: left;"><p>2026-07-19</p></td>
+<td style="text-align: left;"><p>2026-07-23</p></td>
 </tr>
 </tbody>
 </table>
@@ -465,7 +465,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">26.7.1</td>
 <td style="text-align: left;"><a href="./v26.7.1/">/v26.7.1/</a></td>
 <td style="text-align: left;"><code>v26.7.1</code></td>
-<td style="text-align: left;">DOI pending</td>
+<td style="text-align: left;">superseded</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><del>26.7</del></td>
@@ -484,7 +484,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="citing">Citing</h2>
 <p>Give the permalink, not the bare domain:</p>
 <blockquote class="blockquote">
-<p>Data collection followed the ACQUIRE Minimum Reporting Checklist, specification 26.7.1 (<a href="https://acquire-framework.github.io/v26.7.1/" class="uri">https://acquire-framework.github.io/v26.7.1/</a>).</p>
+<p>Data collection followed the ACQUIRE Minimum Reporting Checklist, specification 26.7.2 (<a href="https://acquire-framework.github.io/v26.7.2/" class="uri">https://acquire-framework.github.io/v26.7.2/</a>).</p>
 </blockquote>
 </section>
 <section id="rebuilding-a-specification-from-source" class="level2">
@@ -492,7 +492,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Each specification release is a tag:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/acquire-framework/acquire-framework.github.io</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> acquire-framework.github.io</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout v26.7.1</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout v26.7.2</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> sync <span class="at">--extra</span> dev <span class="at">--extra</span> docs <span class="at">--frozen</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run pytest</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="va">QUARTO_PYTHON</span><span class="op">=</span>.venv/bin/python <span class="ex">uv</span> run quarto render</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -506,24 +506,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@inproceedings{daniol2026acquire,
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@software{acquire_2026,
   author = {Danioł, Mateusz and Sroka, Ryszard},
-  publisher = {Association for Computing Machinery},
-  title = {Reproducibility {Begins} at {Acquisition:} {The} {ACQUIRE}
-    {Framework} for {Trustworthy} {In-the-Wild} {Sensing}},
-  booktitle = {Companion of the 2026 ACM International Joint Conference
-    on Pervasive and Ubiquitous Computing (UbiComp/ISWC ’26 Companion)},
+  title = {ACQUIRE: {Acquisition} {Criteria} for {Quality,}
+    {Uncertainty,} {Integrity,} {Reproducibility,} and {Evidence}},
+  version = {26.7.2},
   date = {2026},
-  address = {Shanghai, China},
   url = {https://acquire-framework.github.io},
   langid = {en}
 }
-</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-daniol2026acquire" class="csl-entry quarto-appendix-citeas" role="listitem">
-Danioł, Mateusz, and Ryszard Sroka. 2026. <span>“Reproducibility Begins
-at Acquisition: The ACQUIRE Framework for Trustworthy In-the-Wild
-Sensing.”</span> <em>Companion of the 2026 ACM International Joint
-Conference on Pervasive and Ubiquitous Computing (UbiComp/ISWC ’26
-Companion)</em> (Shanghai, China). <a href="https://acquire-framework.github.io">https://acquire-framework.github.io</a>.
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-acquire_2026" class="csl-entry quarto-appendix-citeas" role="listitem">
+Danioł, Mateusz, and Ryszard Sroka. 2026. <em>ACQUIRE: Acquisition
+Criteria for Quality, Uncertainty, Integrity, Reproducibility, and
+Evidence</em>. V. 26.7.2. Released. <a href="https://acquire-framework.github.io">https://acquire-framework.github.io</a>.
 </div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -958,7 +953,7 @@ Companion)</em> (Shanghai, China). <a href="https://acquire-framework.github.io"
 <p>Maintained at the Department of Measurements and Electronics, AGH University of Krakow</p>
 <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/acquire-framework/acquire-framework.github.io/edit/main/versions.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/acquire-framework/acquire-framework.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
-<p>ACQUIRE spec 26.7.2 · site build <a href="https://github.com/acquire-framework/acquire-framework.github.io/tree/6d9b0864b485b1993f41d42907a933fc540c21e6"><code>6d9b086</code></a> · built 2026-07-19 <a href="./licensing.html">Licensing</a> · <a href="./cite.html">How to cite</a> · <a href="./versions.html">All versions</a></p>
+<p>ACQUIRE spec 26.7.2 · site build <a href="https://github.com/acquire-framework/acquire-framework.github.io/tree/64ae9f9a5508ef31b00468956ee13bfdf2a0a6ea"><code>64ae9f9</code></a> · built 2026-07-23 <a href="./licensing.html">Licensing</a> · <a href="./cite.html">How to cite</a> · <a href="./versions.html">All versions</a></p>
 </div>
   </div>
 </footer>

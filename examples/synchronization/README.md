@@ -1,6 +1,6 @@
 # Worked example: cross-device synchronization
 
-Reproduces Figure 2 of the accompanying paper and the offset series behind it.
+Reproduces the clock-drift figure from the accompanying manuscript (in preparation) and the offset series behind it.
 
 ```bash
 python generate_figure.py
@@ -55,7 +55,7 @@ seed is fixed so the artifact is bit-reproducible.
 
 Not to clean the data afterwards, but to instrument acquisition: log the
 device-versus-phone offset at every reconnection, estimate drift, re-anchor more
-often, and report the residual. The budget in Table 3 of the paper is dominated
+often, and report the residual. The budget in the manuscript is dominated
 by free-running drift between re-anchors, so the effective intervention is
 immediate — shorten the interval, or log the offset and correct for it.
 
