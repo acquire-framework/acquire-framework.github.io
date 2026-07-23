@@ -125,14 +125,15 @@ execute:
 bibliography: references.bib
 
 # Without explicit metadata Quarto emits an empty @online{untitled,...} stub on
-# every page. Pointing it at the accompanying paper means any page a reader
-# lands on offers the correct citation.
+# every page. Pointing it at the citable artifact means any page a reader lands
+# on offers the correct citation. No paper is cited: the manuscript is in
+# preparation and has not been published.
 citation:
-  id: daniol2026acquire
-  type: paper-conference
+  id: acquire_2026
+  type: software
   title: >-
-    Reproducibility Begins at Acquisition: The ACQUIRE Framework for Trustworthy
-    In-the-Wild Sensing
+    ACQUIRE: Acquisition Criteria for Quality, Uncertainty, Integrity,
+    Reproducibility, and Evidence
   author:
     - name:
         given: Mateusz
@@ -142,10 +143,6 @@ citation:
         given: Ryszard
         family: Sroka
       email: rsroka@agh.edu.pl
-  container-title: >-
-    Companion of the 2026 ACM International Joint Conference on Pervasive and
-    Ubiquitous Computing (UbiComp/ISWC '26 Companion)
-  publisher: Association for Computing Machinery
-  publisher-place: Shanghai, China
+  version: 26.7.2
   issued: 2026
   url: https://acquire-framework.github.io

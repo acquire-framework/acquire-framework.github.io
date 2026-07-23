@@ -3,13 +3,14 @@
 # SPDX-FileCopyrightText: 2026 Mateusz Danioł, Ryszard Sroka
 """Cross-device clock drift under re-anchoring at BLE reconnection.
 
-Reproduces Figure 2 of the accompanying paper and the offset series behind it,
+Reproduces the clock-drift figure from the accompanying manuscript (in
+preparation) and the offset series behind it,
 so a reviewer can confirm that the plotted excursions follow from the stated
 ppm values and re-anchor intervals.
 
 All values are synthetic [A]. No participant or device data is used.
 
-Model (Section 5 of the paper)
+Model (cross-device synchronization)
 ------------------------------
 Two BLE devices timestamp on free-running real-time clocks with fractional
 frequency offsets of +40 and -25 ppm relative to the phone. Each device's clock

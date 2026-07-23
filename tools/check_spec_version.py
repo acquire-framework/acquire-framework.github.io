@@ -36,8 +36,8 @@ def git(*args: str) -> str:
     ).stdout.strip()
 
 
-def load_at(path: str, ref: str | None) -> object | None:
-    """Parse *path* at *ref* (or the working tree if ref is None)."""
+def parse_at(path: str, ref: str | None) -> object | None:
+    """Parse *path* at *ref* (or the working tree if ref is None), verbatim."""
     try:
         text = (
             (ROOT / path).read_text(encoding="utf-8")
@@ -47,6 +47,23 @@ def load_at(path: str, ref: str | None) -> object | None:
     except (subprocess.CalledProcessError, FileNotFoundError):
         return None
     return yaml.safe_load(text)
+
+
+# Top-level keys that carry provenance and versioning metadata rather than
+# requirements. Correcting a citation, a date, or a DOI is editorial and must
+# not demand a specification bump; only the requirement-bearing content does.
+_METADATA_KEYS = frozenset(
+    {"version", "spec_version", "updated", "revised", "released", "doi",
+     "paper", "source"}
+)
+
+
+def requirements_at(path: str, ref: str | None) -> object | None:
+    """The requirement-bearing content: metadata keys removed for comparison."""
+    doc = parse_at(path, ref)
+    if isinstance(doc, dict):
+        return {k: v for k, v in doc.items() if k not in _METADATA_KEYS}
+    return doc
 
 
 def main() -> int:
@@ -61,7 +78,7 @@ def main() -> int:
 
     changed = []
     for path in normative:
-        before, after = load_at(path, base), load_at(path, None)
+        before, after = requirements_at(path, base), requirements_at(path, None)
         if before != after:
             changed.append(path)
 
@@ -69,7 +86,8 @@ def main() -> int:
         print("no normative content changed (semantic comparison)")
         return 0
 
-    previous = (load_at("spec/spec.yml", base) or {}).get("spec_version")
+    # Version read verbatim, never metadata-stripped.
+    previous = (parse_at("spec/spec.yml", base) or {}).get("spec_version")
     print(f"normative content changed: {', '.join(changed)}")
     print(f"spec_version {previous} -> {current}")
 

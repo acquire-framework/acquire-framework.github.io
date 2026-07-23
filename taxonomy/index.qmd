@@ -1,6 +1,6 @@
 ---
 title: "Acquisition-failure taxonomy"
-subtitle: "Table 1 of the paper, in machine-readable form."
+subtitle: "The acquisition-failure taxonomy, in machine-readable form."
 toc: true
 ---
 
